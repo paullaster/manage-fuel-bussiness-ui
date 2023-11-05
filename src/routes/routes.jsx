@@ -1,3 +1,13 @@
 import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from 'react-router-dom';
+import App from '../App'
 
-export default const router = 
+const  router = createBrowserRouter(
+    createRoutesFromElements(
+        <Route element={<App />} errorElement={<ErrorComponent />} path='/'>
+
+        </Route>
+    )
+);
+
+
+export default router;

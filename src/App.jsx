@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './App.css'
+import Logo from './assets/finiflow.svg'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -7,6 +7,7 @@ function App() {
   return (
     <>
       <div>
+        <img src={Logo} alt="finiflow logo" />
         <a href="https://vitejs.dev" target="_blank">
         </a>
         <a href="https://react.dev" target="_blank">

@@ -1,3 +1,5 @@
+@use './variables' as v;
+
 h1 {
 
 }
@@ -15,13 +17,14 @@ h4 {
 }
 
 p {
-
+    margin: v.$small;
+    padding: v.$small;
 }
 
 a {
-
+    text-decoration: none;
 }
 
 li {
-    
+    list-style: none;
 }

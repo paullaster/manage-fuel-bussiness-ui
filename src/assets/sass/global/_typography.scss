@@ -1,19 +1,27 @@
 @use './variables' as v;
 
 h1 {
-
+    margin: v.$small;
+    padding: v.$small;
+    font-size: v.$large;
 }
 
 h2 {
-
+    margin: v.$small;
+    padding: v.$small;
+    font-size: v.$medium;
 }
 
 h3 {
-
+    margin: v.$small;
+    padding: v.$small;
+    font-size: v.$small;
 }
 
 h4 {
-
+    margin: v.$small;
+    padding: v.$small;
+    font-size: v.$msmall;
 }
 
 p {

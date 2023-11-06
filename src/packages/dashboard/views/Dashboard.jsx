@@ -5,4 +5,4 @@ const Dashboard = () => {
   return <Outlet />;
 }
 
-export default Dashboard
+export default Dashboard;

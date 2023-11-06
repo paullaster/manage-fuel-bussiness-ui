@@ -1,5 +1,12 @@
-const Logo = () => {
-    return <div>Logo</div>
-};
+import React from 'react'
+import logo from '../assets/finiflow.svg'
 
-export default Logo;
+const Logo = ({height, width}) => {
+  return (
+    <div className='logo'>
+        <img src={logo} alt="finiflow logo" srcset="" />
+    </div>
+  )
+}
+
+export default Logo

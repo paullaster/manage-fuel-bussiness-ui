@@ -10,7 +10,9 @@ const  router = createBrowserRouter(
             <Route element={<Landing/>} index />
             <Route path='dashboard'>
                 <Route element={<Dashboard />} index />
-                <Route element={<Admin />} path='admin/:id'></Route>
+                <Route element={<Admin />} path='admin/:id'>
+                    
+                </Route>
                 <Route element={<User />} path='user/:id'></Route>
             </Route>
         </Route>

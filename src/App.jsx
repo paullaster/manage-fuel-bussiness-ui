@@ -1,7 +1,15 @@
+import { Navigation, Footer } from './components';
+import { Outlet } from 'react-router-dom';
 
 const App = () => {
   return (
-    main
+    <>
+      <Navigation />
+      <main>
+        <Outlet />
+      </main>
+      <Footer />
+    </>
   )
 }
 

@@ -7,6 +7,10 @@ const  router = createBrowserRouter(
     createRoutesFromElements(
         <Route element={<App />} errorElement={<ErrorComponent />} path='/'>
             <Route element={<Landing/>} index />
+            <Route path='/dashboard'>
+                <Route path='/admin'></Route>
+                <Route path='/users'></Route>
+            </Route>
         </Route>
     )
 );

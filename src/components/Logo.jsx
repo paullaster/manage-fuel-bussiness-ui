@@ -4,7 +4,7 @@ import logo from '../assets/finiflow.svg'
 const Logo = ({height ='25%', width = '25%'}) => {
   return (
     <div className='logo'>
-        <img src={logo} alt="finiflow logo" srcset="" style={{height, width}}/>
+        <img src={logo} alt="finiflow logo" srcSet="" style={{height, width}}/>
     </div>
   )
 }

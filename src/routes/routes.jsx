@@ -5,7 +5,7 @@ import { ErrorComponent } from '../components';
 const  router = createBrowserRouter(
     createRoutesFromElements(
         <Route element={<App />} errorElement={<ErrorComponent />} path='/'>
-
+            <Route element={<Landing/>} index />
         </Route>
     )
 );

@@ -1,9 +1,12 @@
 import React from 'react';
-import { Logo } from '../'
+import { Logo } from '@/components';
 
 const Landing = () => {
   return (
-    <div>Landing</div>
+    <div>
+      <Logo height='20vh' width="20vw" />
+      Landing
+      </div>
   )
 }
 

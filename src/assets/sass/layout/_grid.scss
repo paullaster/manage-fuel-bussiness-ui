@@ -1,0 +1,55 @@
+@use '../utilities/' as u;
+@use '../global/' as g;
+
+.container {
+    display: grid;
+    grid-template-areas:
+        'header main'
+        'header footer'
+    ;
+    grid-template-columns: .6fr 3fr;
+    // gap: u.rem(2);
+    // column-gap: u.rem(2);
+
+    header {
+        grid-area: header;
+        background-color: g.$color_secondary;
+        min-height: 100dvh;
+
+        .nav {
+            display: grid;
+            grid-template-columns: .4fr 2fr;
+             & > * {
+                padding-top: u.rem(40);
+             }
+            aside {
+                background-color: g.$color_tertiary;
+                min-height: 100dvh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                & > div {
+                    max-height: fit-content;
+                    margin: u.rem(20) 0;
+                }
+            }
+
+            // ul {
+                
+            // }
+        }
+    }
+
+    main {
+        grid-area: main;
+        background-color: red;
+        min-height: 95dvh;
+        padding-top: u.rem(40);
+    }
+
+    footer {
+        grid-area: footer;
+        background-color: yellow;
+    }
+}

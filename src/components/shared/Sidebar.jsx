@@ -1,11 +1,19 @@
-import React from 'react'
+import { NavLink } from 'react-router-dom';
 
 const Sidebar = ({links = []}) => {
   return (
     <aside className='sidebar'>
-       <div>
-        company
-       </div>
+       {
+        links.map((menu) => {
+          return (
+            <div title={menu.caption}>
+              <NavLink to={menu.path} onClick={menu.action}>
+                {menu.icon}
+              </NavLink>
+            </div>
+          )
+        })
+       }
     </aside>
   )
 }

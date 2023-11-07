@@ -4,10 +4,15 @@ import { Outlet } from 'react-router-dom';
 const App = () => {
   return (
     <>
+      <header>
+        <Navigation />
+      </header>
       <main>
         <Outlet />
       </main>
-      <Footer />
+      <footer>
+        <Footer />
+      </footer>
     </>
   )
 }

@@ -3,7 +3,6 @@ import { Navigation } from '../../../../components'
 const User = () => {
     return (
         <>
-            <Navigation />
             <div>User</div>
         </>
     )

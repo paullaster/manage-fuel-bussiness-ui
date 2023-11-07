@@ -2,10 +2,12 @@ import { Navigation } from "../../../../components"
 
 const Admin = () => {
   return (
-    <section className="admin">
+    <>
       <Navigation />
-      <div>Admin</div>
-    </section>
+      <section className="admin">
+        <div>Admin</div>
+      </section>
+    </>
   )
 }
 

@@ -2,9 +2,9 @@ import React from 'react';
 import Logo from '../Logo';
 import { Hide } from '../../packages/utils';
 
-const Navigation = () => {
+const Navigation = ({links = []}) => {
 
-  if ( Hide('/admin')) return null;
+  // if ( Hide('/admin')) return null;
 
   return (
     <div>

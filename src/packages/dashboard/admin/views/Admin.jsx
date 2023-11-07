@@ -1,9 +1,9 @@
-import { Sidebar } from "../../../../components"
+import { Navigation } from "../../../../components"
 
 const Admin = () => {
   return (
     <section className="admin">
-      <Sidebar />
+      <Navigation />
       <div>Admin</div>
     </section>
   )

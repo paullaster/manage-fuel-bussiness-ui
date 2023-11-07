@@ -1,9 +1,12 @@
-import React from 'react'
+import { Navigation } from '../../../../components'
 
 const User = () => {
-  return (
-    <div>User</div>
-  )
+    return (
+        <>
+            <Navigation />
+            <div>User</div>
+        </>
+    )
 }
 
 export default User

@@ -6,7 +6,7 @@ const Sidebar = ({links = []}) => {
        {
         links.map((menu) => {
           return (
-            <div title={menu.caption}>
+            <div title={menu.caption} key={menu.id}>
               <NavLink to={menu.path} onClick={menu.action}>
                 {menu.icon}
               </NavLink>

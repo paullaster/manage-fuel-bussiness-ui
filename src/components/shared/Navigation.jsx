@@ -4,7 +4,7 @@ import { Hide, NavigationAside } from '../../packages/utils';
 import { NavLink } from 'react-router-dom';
 import Sidebar from './Sidebar';
 
-const Navigation = () => {
+const Navigation = ({links = []}) => {
 
   // if ( Hide('/admin')) return null;
 

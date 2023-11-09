@@ -18,6 +18,8 @@ export const StateReudcer = (state, action) => {
         /**
          * @TODO: Add case for adding sublinks to links
          */
+        case 'COMPANIES':
+            return state.companies = action.payload;
         
     }
 }

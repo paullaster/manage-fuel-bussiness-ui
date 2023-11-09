@@ -2,13 +2,21 @@ import { Navigation, Footer } from "../../../../components";
 import { Outlet } from "react-router-dom";
 import { state, dispatcher } from "../../../../store";
 import { links } from "../links";
+import { useEffect } from "react";
 
 const Admin = () => {
 
   const appState = state();
   const appStateDispatcher = dispatcher();
 
-  appStateDispatcher({type: 'LINKS', payload: links});
+  useEffect(() => {
+    appStateDispatcher({type: 'LINKS', payload: links});
+  
+    return () => {
+    
+    }
+  }, [appState.links])
+  
 
   return (
     <>

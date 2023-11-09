@@ -1,0 +1,15 @@
+@use '../utilities/' as u;
+@use '../global/' as g;
+
+.logo-container {
+    border: u.rem(1) solid g.$color_primary;
+    border-radius: u.rem(50);
+    max-height: u.rem(30);
+    max-width: u.rem(30);
+
+    & > * {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

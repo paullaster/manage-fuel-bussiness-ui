@@ -9,6 +9,8 @@ export const StateProvider = ({children}) => {
         StateReudcer,
         {
             links: [],
+            companies: [],
+            company: {},
         }
     );
 

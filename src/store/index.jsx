@@ -1,3 +1,3 @@
-import { dispatcher, StateProvider, state } from "./state";
+import { useGlobalDispatcher, StateProvider, useGlobalState } from "./GlobalStateContext";
 
-export {dispatcher, StateProvider, state};
+export {useGlobalDispatcher, StateProvider, useGlobalState};

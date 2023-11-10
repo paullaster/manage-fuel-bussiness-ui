@@ -66,13 +66,17 @@
 
     main {
         grid-area: main;
-        background-color: red;
         min-height: 95dvh;
         padding-top: u.rem(40);
+
+        div.container {
+            display: flex;
+            justify-content: center;
+        }
     }
 
     footer {
         grid-area: footer;
-        background-color: yellow;
+        background-color: g.$color_primary_light;
     }
 }

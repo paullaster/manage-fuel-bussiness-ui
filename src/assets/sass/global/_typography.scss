@@ -36,3 +36,7 @@ a {
 li {
     list-style: none;
 }
+
+input::-webkit-search-cancel-button{
+    display: none;
+}

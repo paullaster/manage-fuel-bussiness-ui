@@ -1,27 +1,48 @@
-import { useRoutes } from "react-router-dom"
-import { request } from "../../../../../../services";
-import constants from "../constants";
-import { state, dispatcher } from "../../../../../../store";
 import { useEffect } from "react";
+import { MdOutlineStarBorder } from 'react-icons/md';
+import { useGlobalDispatcher, useGlobalState } from "../../../../../../store";
+import { Button, SearchComponent } from "../../../../../../components";
+import { Form } from "react-router-dom";
+
 
 const CompanyList = () => {
 
-  const appState = state();
-  const appStateDispatcher = dispatcher();
+  const appState = useGlobalState();
+  const appStateDispatcher = useGlobalDispatcher();
 
-   const companies = request(constants.getCompanies, 'GET');
-
-   useEffect(() => {
-    const controller = new AbortController();
-    const companies = request(constants.getCompanies, 'GET', controller.signal);
-    appStateDispatcher({type: 'COMPANIES', payload: companies});
+  /**
+   * @todo add cacelling of request using signa
+   * const controller = new AbortController();
+   */
+  
+  useEffect(() => {
+    appStateDispatcher({ type: 'COMPANIES'});
+  
     return () => {
-       controller.abort();
+      
     }
-   },[appState.companies]);
-   
+  }, [appState.companies])
+  
+
   return (
-    <div>CompanyList</div>
+    <section className="company">
+      <div>
+        <div>
+            <span>Company</span>
+            <Button clickEvent = {() => console.log("Add favorite")}>
+                <MdOutlineStarBorder size={30} />
+            </Button>
+        </div>
+        <div>
+          <Button clickEvent = {() => console.log("add new company")}>new company</Button>
+        </div>
+      </div>
+      <div>
+        <Form role="search">
+            <SearchComponent placeholder={'Search for ...'}/>
+        </Form>
+      </div>
+    </section>
   )
 }
 

@@ -1,11 +1,14 @@
-import _ from "lodash"
-export const StateReudcer = (state, action) => {
+import _ from "lodash";
+import { _request } from "../services";
+import { constants } from "../packages/dashboard";
+
+export const StateReducer = (state, action) => {
     switch(action.type) {
         case 'LINKS':
             /**
              * Checking if link exist
              */
-            if (_.findIndex(state.links, (link) => link.to === action.payload.to) === -1) {
+            if (state.links && _.findIndex(state.links, (link) => link.to === action.payload.to) === -1) {
                 /**
                  * ADD link
                  */
@@ -19,7 +22,11 @@ export const StateReudcer = (state, action) => {
          * @TODO: Add case for adding sublinks to links
          */
         case 'COMPANIES':
-            return state.companies = action.payload;
+            let companies = _request({url: constants.getCompanies, method: 'GET'})
+            return state = {
+                ...state,
+                companies: companies.data
+            };
         
     }
 }

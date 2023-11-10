@@ -1,3 +1,3 @@
-import { request } from "./apiCallService";
+import { _request } from "./apiCallService";
 
-export { request };
+export { _request };

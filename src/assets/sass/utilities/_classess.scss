@@ -1,9 +1,11 @@
 @use '../global/' as g;
 @use './functions' as f;
+@use './mixins' as m;
+
 .btn-element {
     border-radius: g.$xsmall;
     padding: g.$xsmall g.$medium;
-    box-shadow: f.rem(.1) f.rem(.1) f.rem(.2) f.rem(.4) rgba(0, 0, 0, 0.184);
+    @include m.boxshadow;
     text-transform: capitalize;
 }
 

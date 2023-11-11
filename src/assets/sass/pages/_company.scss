@@ -1,0 +1,40 @@
+@use '../global/' as g;
+
+.company {
+    width: 80vw;
+
+    .topsection {
+        padding: g.$xsmall g.$xsmall g.$small g.$xsmall;
+        display: flex;
+        flex-direction: row;
+
+        .topsection_div__1 {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            flex-grow: 1;
+        
+            & > * {
+                display: block;
+            }
+
+            & > *:first-child {
+                margin-right: g.$msmall;
+            }
+
+            span {
+                
+            }
+        }
+
+        .topsection_div__2 {
+            display: flex;
+            flex-direction: row;
+            justify-content: right;
+            flex-grow: 1;
+
+            // button {
+            // }
+        }
+    }
+}

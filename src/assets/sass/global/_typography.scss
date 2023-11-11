@@ -49,4 +49,10 @@ input[type="search"] {
     border-radius: v.$small;
     border: f.rem(.1) solid v.$color_primary;
     padding: f.rem(.4) f.rem(.8) f.rem(.8) f.rem(1.8);
+    outline: none !important;
+    
+}
+input[type="search"]:focus{
+    border: none !important;
+    border-bottom: f.rem(.1) solid v.$color_primary !important;
 }

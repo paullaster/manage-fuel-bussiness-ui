@@ -9,12 +9,12 @@ import { axiosInstance } from "./axios";
  */
 export const _request = async (options) => {
     try {
-        return axiosInstance.request(options)
+        return axiosInstance.request(options);
     } catch (e) {
-        console.log(e);
+    console.log("Requested failed", e);
         return "Error: " + e
     } finally {
-        axiosInstance.defaults.timeout = 0;
+        // axiosInstance.defaults.timeout = 0;
         console.log("Request completed");
     }
 }

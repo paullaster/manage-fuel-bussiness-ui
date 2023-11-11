@@ -1,4 +1,5 @@
 @use './variables' as v;
+@use '../utilities/functions' as f;
 
 h1 {
     margin: v.$small;
@@ -39,4 +40,13 @@ li {
 
 input::-webkit-search-cancel-button{
     display: none;
+}
+
+input[type="search"] {
+    display: block;
+    width: 100%;
+    height: 5dvh;
+    border-radius: v.$small;
+    border: f.rem(.1) solid v.$color_primary;
+    padding: f.rem(.4) f.rem(.8) f.rem(.8) f.rem(1.8);
 }

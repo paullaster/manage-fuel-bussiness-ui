@@ -22,10 +22,9 @@ export const StateReducer = (state, action) => {
          * @TODO: Add case for adding sublinks to links
          */
         case 'COMPANIES':
-            let companies = _request({url: constants.getCompanies, method: 'GET'})
             return state = {
                 ...state,
-                companies: companies.data
+                companies: action.payload
             };
         
     }

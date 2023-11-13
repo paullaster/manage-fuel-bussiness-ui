@@ -1,0 +1,22 @@
+@use './functions' as f;
+@use '../global/' as g;
+
+@mixin boxshadow {
+    box-shadow: f.rem(.1) f.rem(.1) f.rem(.2) f.rem(.4) rgba(0, 0, 0, 0.424);
+}
+
+@mixin border ($border: null, $top: null, $bottom: null,  $left: null, $right: null) {
+    border: $border;
+    border-top: $top;
+    border-bottom: $bottom;
+    border-left: $left;
+    border-right: $right;
+}
+
+@mixin borderradius($borderTopLeft: null, $borderTopRight: null, $borderBottomLeft: null, $borderBottomRight: null) {
+    border-radius: g.$xsmall;
+    border-top-left-radius: $borderTopLeft;
+    border-top-right-radius: $borderTopRight;
+    border-bottom-left-radius: $borderBottomLeft;
+    border-bottom-right-radius: $borderBottomRight;
+}

@@ -7,12 +7,14 @@ $color_secondary: #f2f4fc;
 $color_tertiary: #dce2f9;
 $colr_additional: '';
 $color_active: #5f6c92;
+$color_active-light: #5f6c921e;
 $color_default: #787aba;
 
 
 /**
 * SIZES
 */
+$default: .1rem;
 $tiny: .4rem;
 $xsmall: .8rem;
 $msmall: 1.2rem;
@@ -20,3 +22,10 @@ $small: 1.6rem;
 $medium: 3.2rem;
 $large: 4.0rem;
 $xlarge: 6.0rem;
+
+
+/**
+* DEFAULT BORDER
+*
+*/
+$default_border: $default solid $color_active-light;

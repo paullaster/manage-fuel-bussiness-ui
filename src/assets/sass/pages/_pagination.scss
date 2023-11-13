@@ -1,0 +1,48 @@
+@use '../global/' as g;
+@use '../utilities/' as u;
+
+div.pagination {
+    background-color: g.$color_primary_light;
+    margin: 0 g.$xsmall g.$medium;
+    padding: g.$xsmall 0;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    @include u.borderradius(0, 0, g.$xsmall, g.$xsmall);
+
+    & > * {
+        width: 12%;
+    }
+    .initial_caption {
+        display: flex;
+        justify-content: end;
+        padding-right: g.$xsmall;
+    }
+
+    .select_max_item_per_page {
+        select {
+            background-color: transparent;
+            width: 70%;
+            height: 4dvh;
+            padding: 0 g.$msmall;
+            outline: none;
+            @include u.border(g.$default_border);
+
+            option {
+                background-color: transparent;
+            }
+        }
+    }
+
+    .navigate_previous_next {
+        display: flex;
+        justify-content: center;
+
+        & > * {
+            display: block;
+            flex-grow: 1;
+
+        }
+    }
+}

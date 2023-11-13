@@ -1,0 +1,24 @@
+@use '../global/' as g;
+@use './functions' as f;
+@use './mixins' as m;
+
+.btn-element {
+    padding: g.$xsmall g.$medium;
+    @include m.borderradius;
+    @include m.boxshadow;
+    text-transform: capitalize;
+}
+
+.btn_primary {
+    background-color: g.$color_primary !important;
+    color: g.$color_tertiary;
+}
+
+.text_small {
+    font-size: g.$small;
+}
+
+button:disabled {
+    background-color: transparent;
+    color: g.$color_tertiary;
+}

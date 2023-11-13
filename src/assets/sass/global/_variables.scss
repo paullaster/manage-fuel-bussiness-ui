@@ -9,6 +9,7 @@ $colr_additional: '';
 $color_active: #5f6c92;
 $color_active-light: #5f6c921e;
 $color_default: #787aba;
+$color_error: #f80303;
 
 
 /**
@@ -29,3 +30,4 @@ $xlarge: 6.0rem;
 *
 */
 $default_border: $default solid $color_active-light;
+$error_border: $default solid $color_error;

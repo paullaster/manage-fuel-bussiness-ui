@@ -1,5 +1,6 @@
 @use './variables' as v;
 @use '../utilities/functions' as f;
+@use '../utilities/mixins' as m;
 
 h1 {
     margin: v.$small;
@@ -57,4 +58,10 @@ input[type="search"]:focus{
     border-bottom: f.rem(.1) solid v.$color_primary !important;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+}
+span.error_span {
+    color: v.$color_error;
+}
+input:invalid {
+    @include m.border(v.$error_border);
 }

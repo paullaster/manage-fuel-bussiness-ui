@@ -3,7 +3,9 @@ import { Form } from "react-router-dom"
 const NewCompany = () => {
   return (
     <section className='newCompany'>
-      <Form></Form>
+      <Form method="POST">
+        
+      </Form>
     </section>
   )
 }

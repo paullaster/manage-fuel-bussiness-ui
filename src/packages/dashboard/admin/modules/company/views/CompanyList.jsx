@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { MdOutlineStarBorder, MdAdd } from 'react-icons/md';
+import { MdOutlineStarBorder } from 'react-icons/md';
 import { useGlobalDispatcher, useGlobalState } from "../../../../../../store";
 import { Button, SearchComponent, TableComponent } from "../../../../../../components";
-import { Form } from "react-router-dom";
+import { Form, redirect, NavLink } from "react-router-dom";
 import { _request } from "../../../../../../services";
 // import constants from '../constants';
 import { SearchArray, TableHeaders } from "../../../../../utils";
@@ -18,9 +18,6 @@ const CompanyList = () => {
    * @todo add cacelling of request using signa
    * const controller = new AbortController();
    */
-  useEffect(() => {
-  }, []);
-
   useEffect(() => {
     return () => { };
   }, [searchText, appState.companies]);
@@ -65,21 +62,25 @@ const CompanyList = () => {
     setCompanies(SearchArray(items, searchText));
   }
 
+  // const gotToNewCreateNewCompany = (e) => {
+  //   e.stopPropagation();
+  //   console.log('gotToNewCreateNewCompany', e);
+  //   return redirect('');
+  // };
 
   return (
     <section className="company">
       <div className="topsection">
         <div className="topsection_div__1">
           <span className={'text_small'}>Company</span>
-          <Button clickEvent={() => console.log("Add favorite")} title ={'Add favorite'}>
+          <Button clickEvent={() => console.log("Add favorite")} title={'Add favorite'}>
             <MdOutlineStarBorder size={30} />
           </Button>
         </div>
         <div className="topsection_div__2">
-          <Button className={'btn-element btn_primary'} clickEvent={() => console.log("add new company")} >
-            <span><MdAdd size={30}/></span>
+          <NavLink className={'btn-element btn_primary'} to={'/admin/:id/company/new'} >
             <span>new company</span>
-            </Button>
+          </NavLink>
         </div>
       </div>
       <div>

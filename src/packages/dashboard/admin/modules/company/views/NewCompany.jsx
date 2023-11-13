@@ -1,8 +1,10 @@
-import React from 'react'
+import { Form } from "react-router-dom"
 
 const NewCompany = () => {
   return (
-    <div>NewCompany</div>
+    <section className='newCompany'>
+      <Form></Form>
+    </section>
   )
 }
 

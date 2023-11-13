@@ -33,15 +33,15 @@
             justify-content: right;
             flex-grow: 1;
 
-            button {
-                display: flex;
-                & > * {
-                    display: block;
-                }
-                & > *:first-child {
-                    margin-right: g.$tiny;
-                }
-            }
+            // button {
+            //     display: flex;
+            //     & > * {
+            //         display: block;
+            //     }
+            //     & > *:first-child {
+            //         margin-right: g.$tiny;
+            //     }
+            // }
         }
     }
 }

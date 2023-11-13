@@ -1,46 +1,46 @@
-import { useEffect } from "react";
-import { MdOutlineStarBorder } from 'react-icons/md';
+import { useEffect, useState } from "react";
+import { MdOutlineStarBorder, MdAdd } from 'react-icons/md';
 import { useGlobalDispatcher, useGlobalState } from "../../../../../../store";
-import { Button, SearchComponent } from "../../../../../../components";
+import { Button, SearchComponent, TableComponent } from "../../../../../../components";
 import { Form } from "react-router-dom";
-import TableComponent from "../../../../../../components/shared/TableComponent";
-import TableHeading from "../../../../../../components/TableHeading";
 import { _request } from "../../../../../../services";
-import constants from '../constants';
-import { TableHeaders } from "../../../../../utils";
+// import constants from '../constants';
+import { SearchArray, TableHeaders } from "../../../../../utils";
 
 const CompanyList = () => {
 
+  const [searchText, setSearchText] = useState('');
+  const [companies, setCompanies] = useState([]);
   const appState = useGlobalState();
-  const appStateDispatcher = useGlobalDispatcher();
+  // const appStateDispatcher = useGlobalDispatcher();
 
   /**
    * @todo add cacelling of request using signa
    * const controller = new AbortController();
    */
   useEffect(() => {
-    const controller = new AbortController();
-    _request({ url: constants.getCompanies, method: 'GET', headers: { 'Content-Type': 'application/json' }, signal: controller.signal })
-      .then((response) => {
-        console.log(response.Company_data.results);
-        appStateDispatcher({ type: 'COMPANIES', payload: response.Company_data.results });
-      }).catch((error) => {
-        //@TODO: HANDLE TOASTING ERROR MESSAGE
-        // appStateDispatcher({ type: 'ERROR', payload: error });
-      });
-    return () => {
-      controller.abort();
-    }
   }, []);
+
+  useEffect(() => {
+    return () => { };
+  }, [searchText, appState.companies]);
 
   const headers = TableHeaders([
     {
-      caption: 'ID',
-      value: 'id',
-    },
-    {
       caption: 'Name',
       value: 'company_name',
+    },
+    {
+      caption: 'Brand Name',
+      value: 'brand_name',
+    },
+    {
+      caption: 'Station Name',
+      value: 'station_name',
+    },
+    {
+      caption: 'Station Management Type',
+      value: 'station_management_type',
     },
     {
       caption: 'No. of Tanks',
@@ -56,11 +56,14 @@ const CompanyList = () => {
     }
   ]);
 
-  const items = appState.companies.filter((row) => {
-    return headers.every((header) => {
-      return row[header.value] !== undefined
-    });
-  });
+  let items = [...appState.companies];
+
+  const searchCompany = (e) => {
+    e.stopPropagation();
+    setSearchText(e.target.value);
+
+    setCompanies(SearchArray(items, searchText));
+  }
 
 
   return (
@@ -68,58 +71,27 @@ const CompanyList = () => {
       <div className="topsection">
         <div className="topsection_div__1">
           <span className={'text_small'}>Company</span>
-          <Button clickEvent={() => console.log("Add favorite")}>
+          <Button clickEvent={() => console.log("Add favorite")} title ={'Add favorite'}>
             <MdOutlineStarBorder size={30} />
           </Button>
         </div>
         <div className="topsection_div__2">
-          <Button className={'btn-element btn_primary'} clickEvent={() => console.log("add new company")}>new company</Button>
+          <Button className={'btn-element btn_primary'} clickEvent={() => console.log("add new company")} >
+            <span><MdAdd size={30}/></span>
+            <span>new company</span>
+            </Button>
         </div>
       </div>
       <div>
         <Form role="search">
-          <SearchComponent placeholder={'Search for ...'} />
+          <SearchComponent placeholder={'Search for ...'} onInput={searchCompany} />
         </Form>
       </div>
       <div>
-        <TableComponent>
-          <thead>
-            <tr>
-              {
-                headers.map((header) => {
-                  return (
-                    <TableHeading key={header.value}>
-                        {header.caption}
-                    </TableHeading>
-                  )
-                })
-              }
-            </tr>
-          </thead>
-          <tbody>
-            {
-              items.map((item) =>{
-                return (
-                  <tr key={item.id}>
-                    {headers.map((h) =>{
-                      return (
-                        <td key={h.value}>
-                          {item[h.value]}
-                        </td>
-                      )
-                    })}
-                  </tr>
-                )
-              })
-            }
-          </tbody>
-          <tfooter>
-
-          </tfooter>
-        </TableComponent>
+        <TableComponent headers={headers} items={companies.length > 0 ? companies : items} />
       </div>
     </section>
   )
-}
+};
 
-export default CompanyList
+export default CompanyList;

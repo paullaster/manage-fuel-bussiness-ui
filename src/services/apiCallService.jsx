@@ -1,7 +1,7 @@
 import { axiosInstance } from "./axios";
 /**
  * 
- * @param {*} options - object of options:
+ * @param {*Object} options - object of options:
  * url -property is the only mandatory property of the option
  * GET - default method.
  * options object accepts any axios valid request configuration properties

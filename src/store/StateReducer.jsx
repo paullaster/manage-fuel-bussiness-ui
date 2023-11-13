@@ -27,5 +27,20 @@ export const StateReducer = (state, action) => {
                 companies: action.payload
             };
         
+        case 'SETCOMPANIESLISTCOUNT':
+            return state = {
+                ...state,
+                itemsCount: action.payload,
+            };
+        case 'SETPREVIOUSSEARCHITEM':
+            return state = {
+                ...state,
+                previousSearchItem: action.payload,
+            };
+            case 'SETPNEXTSEARCHITEM':
+                return state = {
+                    ...state,
+                    nextSearchItem: action.payload,
+                };
     }
 }

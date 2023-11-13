@@ -3,8 +3,8 @@
 @use './mixins' as m;
 
 .btn-element {
-    border-radius: g.$xsmall;
     padding: g.$xsmall g.$medium;
+    @include m.borderradius;
     @include m.boxshadow;
     text-transform: capitalize;
 }
@@ -16,4 +16,9 @@
 
 .text_small {
     font-size: g.$small;
+}
+
+button:disabled {
+    background-color: transparent;
+    color: g.$color_tertiary;
 }

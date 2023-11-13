@@ -48,11 +48,13 @@ input[type="search"] {
     height: 5dvh;
     border-radius: v.$small;
     border: f.rem(.1) solid v.$color_primary;
-    padding: f.rem(.4) f.rem(.8) f.rem(.8) f.rem(1.8);
+    padding: v.$tiny v.$tiny v.$tiny v.$small;
     outline: none !important;
     
 }
 input[type="search"]:focus{
     border: none !important;
     border-bottom: f.rem(.1) solid v.$color_primary !important;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }

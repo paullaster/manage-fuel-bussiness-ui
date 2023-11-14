@@ -1,6 +1,7 @@
-import { Form } from "react-router-dom"
-import { Button, InputComponent } from "../../../../../../components"
-import { useRef, useState } from "react"
+import { Form } from "react-router-dom";
+import { Button, InputComponent } from "../../../../../../components";
+import { useRef, useState } from "react";
+import { MdAdd } from "react-icons/md"
 
 const NewCompany = () => {
 
@@ -115,8 +116,8 @@ const NewCompany = () => {
                 value={index + 1}
                 readOnly
               />
-              <Button className ={''}>
-                add valve
+              <Button className={'btn-element btn_primary btn-icon'} title={'add valve'}>
+                <MdAdd size={30} />
               </Button>
               {/* <InputComponent
                 type={'number'}
@@ -128,67 +129,11 @@ const NewCompany = () => {
           )
         })}
 
-        <InputComponent
+        {/* <InputComponent
           type={'number'}
           name={'number_of_valves'}
           placeholder={' Number of valves '}
           required min={1}
-        />
-
-        {/* <InputComponent
-          type={'text'}
-          name={'company_name'}
-          placeholder={'Company Name'}
-          required
-        />
-
-        <InputComponent
-          type={'text'}
-          name={'company_name'}
-          placeholder={'Company Name'}
-          required
-        />
-
-        <InputComponent
-          type={'text'}
-          name={'company_name'}
-          placeholder={'Company Name'}
-          required
-        />
-
-        <InputComponent
-          type={'text'}
-          name={'company_name'}
-          placeholder={'Company Name'}
-          required
-        />
-
-        <InputComponent
-          type={'text'}
-          name={'company_name'}
-          placeholder={'Company Name'}
-          required
-        />
-
-        <InputComponent
-          type={'text'}
-          name={'company_name'}
-          placeholder={'Company Name'}
-          required
-        /> */}
-
-        {/* <InputComponent
-          type={'text'}
-          name={'company_name'}
-          placeholder={'Company Name'}
-          required
-        />
-
-        <InputComponent
-          type={'text'}
-          name={'company_name'}
-          placeholder={'Company Name'}
-          required
         /> */}
 
         <InputComponent
@@ -196,7 +141,7 @@ const NewCompany = () => {
           name={'dead_stock'}
           placeholder={''}
           required
-          postlabel = {'Dead Stock ?'}
+          postlabel={'Dead Stock ?'}
         />
 
       </Form>

@@ -6,3 +6,4 @@ export { default as SearchComponent } from './SearchComponent';
 export { default as TableComponent } from './TableComponent';
 export { default as PaginatorComponent } from './PaginatorComponent';
 export { default as InputComponent } from './InputComponent';
+export { default as Stepper} from './Stepper';

@@ -4,7 +4,7 @@
 
 .btn-element {
     padding: g.$xsmall g.$medium;
-    @include m.borderradius;
+    @include m.borderradius(g.$xsmall);
     @include m.boxshadow;
     text-transform: capitalize;
 }
@@ -12,6 +12,12 @@
 .btn_primary {
     background-color: g.$color_primary !important;
     color: g.$color_tertiary;
+}
+
+.btn-icon {
+    padding: 0;
+    display: block;
+    @include m.borderradius(50% !important);
 }
 
 .text_small {
@@ -22,3 +28,28 @@ button:disabled {
     background-color: transparent;
     color: g.$color_tertiary;
 }
+.stepper-btn {
+    background-color: g.$color_default !important;
+    color: g.$color_secondary;
+}
+
+/**
+*INPUT GROUP:div
+*
+*/
+// div.input-group {
+//     // width: 50%;
+//     margin: auto 0;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     margin: g.$small 0;
+
+//     & > * {
+//         // display: block;
+//         // margin: g.$msmall 0;
+//     }
+//     & > *:last-child {
+//         // margin: 0 0;
+//     }
+// }

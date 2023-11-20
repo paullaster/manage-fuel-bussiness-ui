@@ -6,7 +6,7 @@ import Sidebar from './Sidebar';
 
 const Navigation = ({links}) => {
 
-  // if ( Hide('/admin')) return null;
+  if ( Hide('/wizard')) return null;
   return (
     <nav className='nav'>
       <Sidebar links={NavigationAside} />

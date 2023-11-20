@@ -1,5 +1,4 @@
 @use './functions' as f;
-@use '../global/' as g;
 
 @mixin boxshadow {
     box-shadow: f.rem(.1) f.rem(.1) f.rem(.2) f.rem(.4) rgba(0, 0, 0, 0.424);
@@ -13,8 +12,8 @@
     border-right: $right;
 }
 
-@mixin borderradius($borderTopLeft: null, $borderTopRight: null, $borderBottomLeft: null, $borderBottomRight: null) {
-    border-radius: g.$xsmall;
+@mixin borderradius($border: null, $borderTopLeft: null, $borderTopRight: null, $borderBottomLeft: null, $borderBottomRight: null) {
+    border-radius: $border;
     border-top-left-radius: $borderTopLeft;
     border-top-right-radius: $borderTopRight;
     border-bottom-left-radius: $borderBottomLeft;

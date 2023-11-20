@@ -3,8 +3,9 @@ import { Outlet } from "react-router-dom";
 import { useGlobalDispatcher, useGlobalState } from "../../../../store";
 import { links } from "../links";
 import { useEffect } from "react";
-import { constants } from "../modules";
+import constants  from "../constants";
 import { _request } from "../../../../services";
+import AdminStateProvider from "../store";
 
 const Admin = () => {
 
@@ -15,15 +16,15 @@ const Admin = () => {
     appStateDispatcher({ type: 'LINKS', payload: links });
 
     const controller = new AbortController();
-    _request({ 
-      url: constants.getCompanies, 
-      method: 'GET', 
+    _request({
+      url: constants.company,
+      method: 'GET',
       params: {
         page: 1,
         limit: 10,
-      }, 
-      headers: { 'Content-Type': 'application/json' }, 
-      signal: controller.signal 
+      },
+      headers: { 'Content-Type': 'application/json' },
+      signal: controller.signal
     })
       .then((response) => {
         appStateDispatcher({ type: 'COMPANIES', payload: response.Company_data.results });
@@ -46,9 +47,11 @@ const Admin = () => {
         <Navigation links={appState.links} />
       </header>
       <main className='main'>
-        <div className="container">
-          <Outlet />
-        </div>
+        <AdminStateProvider>
+          <div className="container">
+            <Outlet />
+          </div>
+        </AdminStateProvider>
       </main >
       <footer>
         <Footer className='footer' />

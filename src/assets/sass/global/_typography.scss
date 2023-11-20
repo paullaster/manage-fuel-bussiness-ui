@@ -65,7 +65,7 @@ span {
 span.error_span {
     color: v.$color_error;
 }
-input:not([type="search"]){
+input:not([type="search"], [type="checkbox"], [type="radio"]){
     height: 6vh;
     @include m.borderradius(v.$xsmall);
     padding-inline: v.$xsmall;

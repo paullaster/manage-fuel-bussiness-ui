@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { v4 as uuidv4} from "uuid";
 import TankData from './TankData';
 import PumpData from './PumpData';
-import { Stepper } from '../../../../../../components';
+import { Stepper, Button } from '../../../../../../components';
 import { Form } from 'react-router-dom';
 
 
@@ -40,22 +40,24 @@ const Wizard = () => {
     <section className= {'wizard'}>
         <Form method='POST'>
         <Stepper steps={steps} activeStep={activeStep}>
-        <div>
+        <div className='stepper_form_controls'>
             {
               getSection(activeStep)
             }
+          </div>
+          <div className='stepper_and_wizard_btns'>
             {
               (activeStep !== 0)
-              && <button onClick={ () => setActiveStep(activeStep - 1) }>Previous</button>
+              && <Button className = {'btn-element stepper-btn'} onClick={ () => setActiveStep(activeStep - 1) }>Previous</Button>
             }
             {
               activeStep !== steps.length - 1
-              && <button onClick={ () => setActiveStep(activeStep + 1) }>Next</button>
+              && <Button className = {'btn-element stepper-btn'}onClick={ () => setActiveStep(activeStep + 1) }>Next</Button>
             }
             {
-                <button onClick={ handleSave} type='submit'>save</button>
+                <Button className = {'btn-element btn_primary'} onClick={ handleSave} type='submit'>save</Button>
             }
-          </div>
+            </div>
         </Stepper>
         </Form>
     </section>

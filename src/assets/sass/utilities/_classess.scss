@@ -28,6 +28,10 @@ button:disabled {
     background-color: transparent;
     color: g.$color_tertiary;
 }
+.stepper-btn {
+    background-color: g.$color_default !important;
+    color: g.$color_secondary;
+}
 
 /**
 *INPUT GROUP:div

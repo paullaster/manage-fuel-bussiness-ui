@@ -13,24 +13,18 @@ const TankData = () => {
           required
           min={1}
           onChange={(e) => set_number_of_tanks(e.target.value)}
+          prelabelText = {"Number of tanks"}
         />
         {number_of_tanks > 0 &&
           [...Array(Number(number_of_tanks))].map((_, index) => {
             return (
               <div key={index + 1}>
                 <InputComponent
-                  key={index}
-                  type={"number"}
-                  name={`tank_number_${index + 1}`}
-                  required
-                  value={index + 1}
-                  readOnly
-                /> 
-                <InputComponent
                   type={"number"}
                   name={`tank_capacity_${index + 1}`}
-                  placeholder={`Enter tank capacity for tank ${index + 1}`}
+                  // placeholder={`Enter tank capacity for tank ${index + 1}`}
                   required
+                  prelabelText = {`Enter tank capacity for tank ${index + 1}`}
                   min={1}
                 />
               </div>

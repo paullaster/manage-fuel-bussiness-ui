@@ -29,6 +29,8 @@ const AdminStateReducer = (state, action) => {
                 ...state,
                 formData: { ...state.formData, ...action.payload },
             };
+        case 'SAVE_TANK_AND_PUMP_DATA':
+            
     }
 };
 

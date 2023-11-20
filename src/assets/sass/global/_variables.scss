@@ -24,6 +24,19 @@ $medium: 3.2rem;
 $large: 4.0rem;
 $xlarge: 6.0rem;
 
+/*
+*
+* FONT SIZES
+*/
+$default_font: .1rem;
+$tiny_font: .2rem;
+$xsmall_font: .4rem;
+$msmall_font: .8rem;
+$small_font: 1.2rem;
+$medium_font: 2.4rem;
+$large_font: 3.2rem;
+$xlarge_font: 4.0rem;
+$xxlarge_font: 4.8rem;
 
 /**
 * DEFAULT BORDER
@@ -31,3 +44,5 @@ $xlarge: 6.0rem;
 */
 $default_border: $default solid $color_active-light;
 $error_border: $default solid $color_error;
+$valid_border: $default solid #16cd16;
+$focus_border: $default solid $color_primary;

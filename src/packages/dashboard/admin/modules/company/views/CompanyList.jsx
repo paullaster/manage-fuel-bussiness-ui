@@ -73,7 +73,7 @@ const CompanyList = () => {
       <div className="topsection">
         <div className="topsection_div__1">
           <span className={'text_small'}>Company</span>
-          <Button clickEvent={() => console.log("Add favorite")} title={'Add favorite'}>
+          <Button onClick={() => console.log("Add favorite")} title={'Add favorite'}>
             <MdOutlineStarBorder size={30} />
           </Button>
         </div>

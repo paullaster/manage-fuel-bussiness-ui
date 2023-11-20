@@ -1,0 +1,8 @@
+@use '../global/' as g;
+
+.wizard {
+    width: 80%;
+    min-height: 60dvh;
+    margin: g.$medium 0;
+    z-index: 100;
+}

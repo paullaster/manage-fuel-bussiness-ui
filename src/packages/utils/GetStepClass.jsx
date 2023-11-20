@@ -1,9 +1,16 @@
+/**
+ * 
+ * @param {*} step 
+ * @param {*} activeStep 
+ * @returns {*string}
+ */
+
 export const getStepClass = (step, activeStep) => {
-  let className = "steps";
+  let className = "step";
   if (activeStep === step) {
-    className += " step-active";
+    className += " active";
   } else if (activeStep > step) {
-    className += " step-done";
+    className += " complete";
   } else {
     className += " step-inactive";
   }

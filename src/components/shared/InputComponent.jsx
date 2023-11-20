@@ -1,10 +1,10 @@
 import { forwardRef } from "react";
 
-const InputComponent = forwardRef(({prelabel = null , postlabel = null, error = null, ...arg}, ref) => {
+const InputComponent = forwardRef(({prelabelText = null, prelabelIcon = null , postlabel = null, error = null, ...arg}, ref) => {
   return (
-    <div>
-        <label htmlFor={prelabel}>{prelabel}</label>
-        <input {...arg} ref={ref} id={prelabel || postlabel || ''}/>
+    <div className="input-group">
+        <label htmlFor={prelabelText}><span>{prelabelText}</span><span>{prelabelIcon}</span></label>
+        <input {...arg} ref={ref} id={prelabelText || postlabel || ''}/>
         <label htmlFor={postlabel}>{postlabel}</label>
 
         {error && <span className="error_span">{error}</span>}

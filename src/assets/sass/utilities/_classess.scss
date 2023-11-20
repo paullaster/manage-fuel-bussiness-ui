@@ -28,3 +28,24 @@ button:disabled {
     background-color: transparent;
     color: g.$color_tertiary;
 }
+
+/**
+*INPUT GROUP:div
+*
+*/
+// div.input-group {
+//     // width: 50%;
+//     margin: auto 0;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     margin: g.$small 0;
+
+//     & > * {
+//         // display: block;
+//         // margin: g.$msmall 0;
+//     }
+//     & > *:last-child {
+//         // margin: 0 0;
+//     }
+// }

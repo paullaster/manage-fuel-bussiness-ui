@@ -1,0 +1,87 @@
+@use '../global/' as g;
+
+.newCompany {
+    width: 80vw;
+    padding: 0 g.$xsmall;
+    display: flex;
+    flex-direction: column;
+
+    div.introduction {
+        border-bottom: g.$default_border;
+
+        &>div.introduction_heading {
+            padding: g.$xsmall 0;
+
+            h1 {
+                font-weight: 100;
+            }
+        }
+
+        &>div.intriduction_subheading {
+            margin: g.$tiny 0;
+
+            &>h3 {
+                padding: g.$tiny 0;
+            }
+
+            &>p {
+                padding: g.$tiny 0;
+            }
+
+            &>p::first-letter {
+                text-transform: capitalize;
+            }
+        }
+    }
+
+    div.form_section {
+        form.newCompany_form {
+            .form_iput_controls {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                column-gap: 8%;
+                width: 60%;
+                .input-group {
+                    width: 100%;
+                    padding: g.$xsmall 0;
+                    margin-bottom: g.$small;
+
+                    label {
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: g.$tiny;
+
+                        &>* {
+                            display: block;
+                        }
+
+                        &>*:last-child {
+                            color: red;
+                            margin-left: g.$tiny;
+                        }
+                    }
+
+                    input {
+                        display: block;
+                        width: 100%;
+                    }
+                }
+            }
+
+            div.form_btn {
+                width: 60%;
+                display: flex;
+                justify-content: flex-end;
+                margin-top: g.$small;
+
+                &>* {
+                    display: block;
+                }
+
+                &>*:last-child {
+                    margin-left: g.$small
+                }
+            }
+        }
+    }
+}

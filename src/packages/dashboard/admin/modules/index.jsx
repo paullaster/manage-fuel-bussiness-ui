@@ -1,3 +1,3 @@
-import { AddCompany, CompanyList, GetCompanies, NewCompany, constants } from "./company";
+import { AddCompany, CompanyList, GetCompanies, NewCompany, constants, Wizard } from "./company";
 
-export { AddCompany, CompanyList, GetCompanies, NewCompany, constants };
+export { AddCompany, CompanyList, GetCompanies, NewCompany, constants, Wizard };

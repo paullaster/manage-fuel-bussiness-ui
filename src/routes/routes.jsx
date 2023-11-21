@@ -9,7 +9,7 @@ const router = createBrowserRouter(
             <Route element={<Admin />} path='admin/:id'>
                 <Route element={<CompanyList />} path='company/list' />
                 <Route element={<NewCompany />} path='company/new' action={AddCompany} />
-                <Route element={<Wizard /> } path='company/wizard' action={TankAndPumpData}/>
+                <Route element={<Wizard /> } path='company/wizard/:step' action={TankAndPumpData}/>
             </Route>
             <Route element={<User />} path='user/:id'></Route>
         </Route>

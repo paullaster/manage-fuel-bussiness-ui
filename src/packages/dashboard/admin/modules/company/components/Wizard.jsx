@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from "uuid";
 import TankData from './TankData';
 import PumpData from './PumpData';
-import { Stepper, Button } from '../../../../../../components';
-import { Form } from 'react-router-dom';
+import { Stepper, Button, InputComponent } from '../../../../../../components';
+import { Form, useLocation, useActionData, useParams, useNavigate } from 'react-router-dom';
 
 
 
@@ -21,6 +21,18 @@ const Wizard = () => {
 
   const [activeStep, setActiveStep] = useState(0);
 
+  const currentLocation = useLocation();
+  const actionData = useActionData();
+  const { step }  = useParams();
+  const navigate = useNavigate();
+  console.log(step);
+
+  
+  useEffect(() => {
+    
+    setActiveStep(parseInt(step));
+  },[activeStep]);
+
   const steps = [
     {
       id: uuidv4(),
@@ -32,9 +44,25 @@ const Wizard = () => {
     },
   ];
 
+  const handleSkipNext = () => {
+    setActiveStep((prev) => {
+      navigate(`/admin/:id/company/wizard/${prev + 1}`, { replace: true });
+      return prev + 1;
+    });
+  };
+
+  const handlePreviouseClick = () => {
+    setActiveStep((prev) => {
+      if (prev < 1) return;
+      navigate(`/admin/:id/company/wizard/${prev - 1}`, { replace: true });
+      return prev - 1;
+    });
+  };
+
   return (
     <section className={'wizard'}>
-      <Form method='POST'>
+      <Form method='PUT'>
+        {/* <InputComponent name = {'organization_id'} value = {''} hidden /> */}
         <Stepper steps={steps} activeStep={activeStep}>
           <div className='stepper_form_controls'>
             {
@@ -44,13 +72,13 @@ const Wizard = () => {
           <div className='stepper_and_wizard_btns'>
             {
               (activeStep !== 0)
-              && <Button className={'btn-element stepper-btn'} onClick={() => setActiveStep(activeStep - 1)}>Previous</Button>
+              && <Button className={'btn-element'} onClick={ handlePreviouseClick }>Previous</Button>
             }
             {
               activeStep !== steps.length - 1
-              && <Button className={'btn-element stepper-btn'} onClick={() => setActiveStep(activeStep + 1)}>Next</Button>
+              && <Button className={'btn-element'} onClick={ handleSkipNext }>skip this step</Button>
             }
-            {activeStep === steps.length - 1 && <Button className={'btn-element btn_primary'}  type='submit'>save</Button>}
+           <Button className={'btn-element btn_primary'}  type='submit'>save</Button>
           </div>
         </Stepper>
       </Form>

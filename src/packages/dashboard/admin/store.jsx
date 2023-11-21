@@ -12,15 +12,7 @@ const AdminStateDispatchContext = createContext(null);
  * STATE
  */
 const AdminState = {
-    tank_data: {
-        number_of_tanks: 0,
-        tank_data: [
-            {
-                tank_number: 1,
-                tank_capacity: 2000
-            }
-        ]
-    }
+    organization_id: null,
 };
 
 
@@ -35,7 +27,7 @@ const AdminStateReducer = (state, action) => {
             console.log(action.payload);
             return state = {
                 ...state,
-                formData: { ...state.formData, ...action.payload },
+                organization_id: action.payload,
             };
         case 'SAVE_TANK_AND_PUMP_DATA':
             

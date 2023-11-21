@@ -21,7 +21,7 @@ const NewCompany = () => {
    * @param {*} event 
    */
   const validateForm = (event) => {
-    console.log(event.target);
+    // console.log(event.target);
   }
 
   return (

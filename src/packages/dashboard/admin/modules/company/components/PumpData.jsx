@@ -28,42 +28,48 @@ const PumpData = () => {
             return (
               <div key={index + 1} className="valve_information">
                 {/* <div className="valves"> */}
-                  <p>Pump {index + 1} valves </p>
+                  <p className="pump_caption">Pump {index + 1} valves </p>
                   <div className= {'valve_type'}>
-                    <InputComponent
+                    <input
                       key={index}
                       type={"checkbox"}
                       name={`valve_type`}
                       required
                       value={'Petrol'}
                       readOnly
-                      postlabel={'Petrol'}
+                      className={'type_checkbox'}
+                      id="Petrol"
                     />
-                    <InputComponent type={'number'} placeholder={'How many?'} className = {'type_number'} />
+                    <label htmlFor="Petrol">Petrol</label>
+                    <input type={'number'} placeholder={'How many?'} className = {'type_number'} />
                   </div>
                   <div  className= {'valve_type'}>
-                    <InputComponent
+                    <input
                       key={index}
                       type={"checkbox"}
                       name={`valve_type`}
                       required
                       value={'Diesel'}
                       readOnly
-                      postlabel={'Diesel'}
+                      className={'type_checkbox'}
+                      id="Diesel"
                     />
-                    <InputComponent type={'number'} placeholder={'How many?'} />
+                    <label htmlFor="Diesel">Diesel</label>
+                    <input type={'number'} placeholder={'How many?'} className = {'type_number'} />
                   </div>
                   <div  className= {'valve_type'}>
-                    <InputComponent
+                    <input
                       key={index}
                       type={"checkbox"}
                       name={`valve_type`}
                       required
                       value={'Kerosene'}
                       readOnly
-                      postlabel={'Kerosene'}
+                      id = {'Kerosene'}
+                      className={'type_checkbox'}
                     />
-                    <InputComponent type={'number'} placeholder={'How many?'} />
+                    <label htmlFor="Kerosene">Kerosene</label>
+                    <input htmlFor = "Kerosene" type={'number'} placeholder={'How many?'} className = {'type_number'} />
                   </div>
                 {/* </div> */}
                 {/* <Button

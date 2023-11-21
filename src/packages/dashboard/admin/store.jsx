@@ -12,7 +12,15 @@ const AdminStateDispatchContext = createContext(null);
  * STATE
  */
 const AdminState = {
-    formData: {}
+    tank_data: {
+        number_of_tanks: 0,
+        tank_data: [
+            {
+                tank_number: 1,
+                tank_capacity: 2000
+            }
+        ]
+    }
 };
 
 

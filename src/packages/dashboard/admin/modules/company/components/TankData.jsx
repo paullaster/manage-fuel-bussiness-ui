@@ -21,7 +21,7 @@ const TankData = () => {
               <div key={index + 1}>
                 <InputComponent
                   type={"number"}
-                  name={`tank_capacity_${index + 1}`}
+                  name={`tank_capacity_for_tank_${index + 1}`}
                   // placeholder={`Enter tank capacity for tank ${index + 1}`}
                   required
                   prelabelText = {`Enter tank capacity for tank ${index + 1}`}

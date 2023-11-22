@@ -19,19 +19,19 @@ const getSection = (activeStep) => {
 
 const Wizard = () => {
 
-  const [activeStep, setActiveStep] = useState(0);
+  const { step }  = useParams();
+  const [activeStep, setActiveStep] = useState(parseInt(step));
 
   const currentLocation = useLocation();
   const actionData = useActionData();
-  const { step }  = useParams();
+  
   const navigate = useNavigate();
   console.log(step);
 
   
   useEffect(() => {
-    
     setActiveStep(parseInt(step));
-  },[activeStep]);
+  },[step]);
 
   const steps = [
     {
@@ -62,7 +62,7 @@ const Wizard = () => {
   return (
     <section className={'wizard'}>
       <Form method='PUT'>
-        {/* <InputComponent name = {'organization_id'} value = {''} hidden /> */}
+        <InputComponent name = {'organization_id'} value = {''} hidden />
         <Stepper steps={steps} activeStep={activeStep}>
           <div className='stepper_form_controls'>
             {
@@ -78,7 +78,11 @@ const Wizard = () => {
               activeStep !== steps.length - 1
               && <Button className={'btn-element'} onClick={ handleSkipNext }>skip this step</Button>
             }
-           <Button className={'btn-element btn_primary'}  type='submit'>save</Button>
+           <Button className={'btn-element btn_primary'}  type='submit'>
+            {
+              activeStep === steps.length - 1 ? 'submit' : 'save'
+           }
+           </Button>
           </div>
         </Stepper>
       </Form>

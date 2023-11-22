@@ -22,5 +22,6 @@ export const TankAndPumpData = async ({request}) => {
 
     ]
     console.log(data);
+    // window.history.replaceState(null, "", "/admin/:id/company/wizard/1");
     return redirect('/admin/:id/company/wizard/1');
 }

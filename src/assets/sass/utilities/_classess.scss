@@ -3,8 +3,8 @@
 @use './mixins' as m;
 
 .btn-element {
-    padding: g.$xsmall g.$medium;
-    @include m.borderradius(g.$xsmall);
+    padding: g.$xsmall g.$small;
+    @include m.borderradius(g.$small);
     @include m.boxshadow;
     text-transform: capitalize;
 }

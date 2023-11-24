@@ -4,6 +4,7 @@ import TankData from './TankData';
 import PumpData from './PumpData';
 import { Stepper, Button, InputComponent } from '../../../../../../components';
 import { Form, useLocation, useActionData, useParams, useNavigate } from 'react-router-dom';
+import { useAdminState, useAdminStateDispatch } from '../../../store';
 
 
 
@@ -19,19 +20,32 @@ const getSection = (activeStep) => {
 
 const Wizard = () => {
 
-  const { step }  = useParams();
+  const { step } = useParams();
   const [activeStep, setActiveStep] = useState(parseInt(step));
 
   const currentLocation = useLocation();
-  const actionData = useActionData();
-  
+  const dispatcher = useAdminStateDispatch();
+  const { formData } = useAdminState();
   const navigate = useNavigate();
-  console.log(step);
 
-  
+  const initPageResponse = JSON.parse(atob(currentLocation.search.slice(1).split('=')[1], 'base64'));
+
+  console.log(initPageResponse)
   useEffect(() => {
     setActiveStep(parseInt(step));
-  },[step]);
+
+    dispatcher({
+      type: 'SAVE_COMPANY_DATA',
+      payload: {
+        uuid: initPageResponse.uuid,
+        station_management_type: initPageResponse.station_management_type,
+        company_name: initPageResponse.company_name,
+        brand_name: initPageResponse.brand_name,
+        station_name: initPageResponse.station_name,
+      }
+    });
+
+  }, [step]);
 
   const steps = [
     {
@@ -46,7 +60,7 @@ const Wizard = () => {
 
   const handleSkipNext = () => {
     setActiveStep((prev) => {
-      navigate(`/admin/:id/company/wizard/${prev + 1}`, { replace: true });
+      navigate(`/admin/:id/company/wizard/${prev + 1}${currentLocation.search}`, { replace: true });
       return prev + 1;
     });
   };
@@ -54,7 +68,7 @@ const Wizard = () => {
   const handlePreviouseClick = () => {
     setActiveStep((prev) => {
       if (prev < 1) return;
-      navigate(`/admin/:id/company/wizard/${prev - 1}`, { replace: true });
+      navigate(`/admin/:id/company/wizard/${prev - 1}${currentLocation.search}`, { replace: true });
       return prev - 1;
     });
   };
@@ -62,7 +76,11 @@ const Wizard = () => {
   return (
     <section className={'wizard'}>
       <Form method='PUT'>
-        <InputComponent name = {'organization_id'} value = {''} hidden />
+        <InputComponent name={'company_name'} value={formData.company_name} hidden readOnly />
+        <InputComponent name={'brand_name'} value={formData.brand_name} hidden readOnly />
+        <InputComponent name={'station_name'} value={formData.station_name} hidden readOnly />
+        <InputComponent name={'station_management_type'} value={formData.station_management_type} hidden readOnly />
+        <InputComponent name={'organization_id'} value={formData.uuid} hidden readOnly />
         <Stepper steps={steps} activeStep={activeStep}>
           <div className='stepper_form_controls'>
             {
@@ -72,17 +90,17 @@ const Wizard = () => {
           <div className='stepper_and_wizard_btns'>
             {
               (activeStep !== 0)
-              && <Button className={'btn-element'} onClick={ handlePreviouseClick }>Previous</Button>
+              && <Button className={'btn-element'} onClick={handlePreviouseClick}>Previous</Button>
             }
             {
               activeStep !== steps.length - 1
-              && <Button className={'btn-element'} onClick={ handleSkipNext }>skip this step</Button>
+              && <Button className={'btn-element'} onClick={handleSkipNext}>skip this step</Button>
             }
-           <Button className={'btn-element btn_primary'}  type='submit'>
-            {
-              activeStep === steps.length - 1 ? 'submit' : 'save'
-           }
-           </Button>
+            <Button className={'btn-element btn_primary'} type='submit'>
+              {
+                activeStep === steps.length - 1 ? 'submit' : 'save'
+              }
+            </Button>
           </div>
         </Stepper>
       </Form>

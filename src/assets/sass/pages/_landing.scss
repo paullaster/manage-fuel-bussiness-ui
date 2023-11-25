@@ -25,7 +25,7 @@
 
         .card_header {
              grid-area: card-header;
-             padding-left: g.$medium;
+             padding-left: g.$large;
 
              @include u.borderradius(null, u.rem(16), u.rem(16));
 
@@ -57,7 +57,7 @@
         }
         .card_content {
             grid-area: card-content;
-            padding-left: g.$medium;
+            padding-left: g.$xlarge;
 
             @include u.borderradius(null, null, null, u.rem(16), u.rem(16));
 
@@ -65,7 +65,6 @@
             grid-template-columns: 1fr 1fr;
 
             .card_content_left {
-                background-color: orange;
 
                 & > *:not(:last-child) {
                     margin-bottom: g.$medium;
@@ -83,6 +82,7 @@
 
                 .card_content_introduction {
                     & > p {
+                        font-size: g.$small_font;
                         & > span {
                             display: block;
                         }
@@ -96,7 +96,7 @@
                     & > *:not(:last-child) {
                         margin-right: g.$small;
                     }
-                    button {
+                    a {
                         display: flex;
                         align-items: center;
                         & > * {

@@ -9,6 +9,7 @@ import { axiosInstance } from "./axios";
  */
 export const _request = async (options) => {
     try {
+        console.log(options.params);
         return axiosInstance.request(options);
     } catch (e) {
     console.log("Requested failed", e);

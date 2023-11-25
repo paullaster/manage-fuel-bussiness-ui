@@ -47,3 +47,7 @@ export const TankAndPumpData = async ({ request }) => {
     const url = `/admin/:id/company/wizard/1?page_response=${pageResponse}`;
     return redirect(url);
 }
+
+const PumpData = ({request}) => {
+
+};

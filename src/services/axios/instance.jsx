@@ -7,7 +7,6 @@ export const instance = axios.create({
 });
 
 export const protectedRequestInterceptor = (config) => {
- 
  return config;
 };
 

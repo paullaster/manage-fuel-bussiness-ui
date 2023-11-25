@@ -29,8 +29,7 @@ const Wizard = () => {
   const navigate = useNavigate();
 
   const initPageResponse = JSON.parse(atob(currentLocation.search.slice(1).split('=')[1], 'base64'));
-
-  console.log(initPageResponse)
+  console.log(initPageResponse);
   useEffect(() => {
     setActiveStep(parseInt(step));
 
@@ -73,6 +72,16 @@ const Wizard = () => {
     });
   };
 
+  const validateOnSubmit = (e) => {
+    e.target.textContent === "submit" &&
+    !initPageResponse.number_of_tanks && 
+    setActiveStep((prev) => {
+      if (prev < 1) return;
+      navigate(`/admin/:id/company/wizard/${prev - 1}${currentLocation.search}`, { replace: true });
+      return prev - 1;
+    });
+  }
+
   return (
     <section className={'wizard'}>
       <Form method='PUT'>
@@ -80,7 +89,7 @@ const Wizard = () => {
         <InputComponent name={'brand_name'} value={formData.brand_name} hidden readOnly />
         <InputComponent name={'station_name'} value={formData.station_name} hidden readOnly />
         <InputComponent name={'station_management_type'} value={formData.station_management_type} hidden readOnly />
-        <InputComponent name={'organization_id'} value={formData.uuid} hidden readOnly />
+        <InputComponent name={'uuid'} value={formData.uuid} hidden readOnly />
         <Stepper steps={steps} activeStep={activeStep}>
           <div className='stepper_form_controls'>
             {
@@ -96,7 +105,7 @@ const Wizard = () => {
               activeStep !== steps.length - 1
               && <Button className={'btn-element'} onClick={handleSkipNext}>skip this step</Button>
             }
-            <Button className={'btn-element btn_primary'} type='submit'>
+            <Button className={'btn-element btn_primary'} type='submit' onClick = { validateOnSubmit }>
               {
                 activeStep === steps.length - 1 ? 'submit' : 'save'
               }

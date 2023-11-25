@@ -23,7 +23,7 @@ const Landing = () => {
             </li>
           </ul>
           <div className='landing_cta'>
-            <Button className={'btn-element btn_primary'}>Get started</Button>
+            <NavLink className={'btn-element btn_primary'}>Get started</NavLink>
           </div>
         </div>
         <div className='card_content'>
@@ -42,11 +42,11 @@ const Landing = () => {
               </p>
             </div>
             <div className={"card_content_cta"}>
-              <Button className={'btn-element btn_primary'}>
+              <NavLink className={'btn-element btn_primary'}>
                 <span><FaAngleRight size={20} /></span>
                 <span>Get started</span>
-              </Button>
-              <Button className={'btn-element btn-primary'}>Schedule for a demo</Button>
+              </NavLink>
+              <NavLink className={'btn-element btn-primary btn_transparent'}>Schedule for a demo</NavLink>
             </div>
           </div>
           <div className='card_content_right'>

@@ -8,7 +8,9 @@
     @include m.boxshadow;
     text-transform: capitalize;
 }
-
+.btn_transparent {
+    @include m.boxshadow_light;
+}
 .btn_primary {
     background-color: g.$color_primary !important;
     color: g.$color_tertiary;

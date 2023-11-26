@@ -1,7 +1,6 @@
 import { redirect } from "react-router-dom";
-import { _request } from "../../../../../services";
+import { _request } from "@/services";
 import constants from "../../constants";
-import { generator } from "@/packages/utils";
 // import { ENCRYPTION_SECRET } from "../../../../../environments";
 
 /**
@@ -19,7 +18,24 @@ export const AddCompany = async ({ request }) => {
 };
 
 export const TankAndPumpData = async ({ request }) => {
-    const data = Object.fromEntries(await request.formData());
+    // const data = Object.fromEntries(await request.formData());
+    const data = {
+        "company_name": "Rubis",
+        "brand_name": "Rubis Kenya",
+        "station_name": "Rubis Mlolongo",
+        "station_management_type": "Dealers",
+        "uuid": "f65c7b2a-6825-4725-8c62-fe6d5fc64df4",
+        "type": "pump_data",
+        "number_of_pumps": "8",
+        "valve_petrol_for_pump_1": "Petrol",
+        "valve_diesel_for_pump_2": "Diesel",
+        "valve_kerosene_for_pump_3": "Kerosene",
+        "valve_diesel_for_pump_4": "Diesel",
+        "valve_diesel_for_pump_5": "Diesel",
+        "valve_petrol_for_pump_6": "Petrol",
+        "valve_petrol_for_pump_7": "Petrol",
+        "valve_petrol_for_pump_8": "Petrol"
+    };
     let payload = {
         station_name: data.station_name,
         station_management_type: data.station_management_type,
@@ -45,7 +61,6 @@ export const TankAndPumpData = async ({ request }) => {
     if (data.type === "pump_data") {
         let pumps = [];
         let number_of_valves = 0;
-        console.log(data);
         for (let prop in data) {
             if (prop.includes('valve_')) {
                 let propArray = prop.split('_');
@@ -55,9 +70,9 @@ export const TankAndPumpData = async ({ request }) => {
                 let pumpObject = {};
                 if (!pumps.length && !valvesArray.length) {
                     data[prop] !== ''
-                    ? ( number_of_valves++, valvesArray = [...valvesArray, { fuel_type: data[prop] }] ) 
-                    : 
-                    '';
+                        ? (number_of_valves++, valvesArray = [...valvesArray, { fuel_type: data[prop] }])
+                        :
+                        '';
 
                     valvesArray.length ? pumpObject = {
                         pump_number,
@@ -67,34 +82,35 @@ export const TankAndPumpData = async ({ request }) => {
                     Object.keys(pumpObject).length ? pumps = [...pumps, pumpObject] : '';
 
                 } else {
-                    for (let item of pumps) {
-                        if (item.pump_number === pump_number) {
-                            data[prop] !== '' && item.valves 
-                            ? ( number_of_valves++, item.valves = [...item.valves, { fuel_type: data[prop] }] ) 
+                    let itemExist = pumps && pumps.findIndex((item) => {
+                        return item.pump_number === pump_number
+                    })
+                    if (itemExist >= 0) {
+                        data[prop] !== '' && pumps[itemExist].valves
+                            ? (number_of_valves++, item.valves = [...item.valves, { fuel_type: data[prop] }])
                             : '';
-                        } else {
+                    } else {
 
-                            data[prop] !== '' 
-                            ? ( number_of_valves++, valvesArray = [...valvesArray, { fuel_type: data[prop] }]) 
+                        data[prop] !== ''
+                            ? (number_of_valves++, valvesArray = [...valvesArray, { fuel_type: data[prop] }])
                             : '';
-                            valvesArray.length ? pumpObject = {
-                                pump_number,
-                                valves: valvesArray
-                            } : '';
-                            Object.keys(pumpObject).length ? pumps = [...pumps, pumpObject] : '';
-                        }
+                        valvesArray.length ? pumpObject = {
+                            pump_number,
+                            valves: valvesArray
+                        } : '';
+                        Object.keys(pumpObject).length ? pumps = [...pumps, pumpObject] : '';
                     }
                 }
-                pumps.length && number_of_valves ? payload = {
-                    ...payload,
-                    number_of_pumps: data.number_of_pumps,
-                    number_of_valves,
-                    pumps,
-                } :
-                    new Error('Invalid data!, Please add valves data properly!')
-                redirect(window.location);
             }
         }
+        pumps.length && number_of_valves ? payload = {
+            ...payload,
+            number_of_pumps: data.number_of_pumps,
+            number_of_valves,
+            pumps,
+        } :
+            new Error('Invalid data!, Please add valves data properly!');
+        // redirect(window.location);
     }
     const response = await _request({
         method: 'PUT',

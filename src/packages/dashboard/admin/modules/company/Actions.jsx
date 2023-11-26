@@ -79,9 +79,11 @@ export const TankAndPumpData = async ({ request }) => {
             }
         }
         pumps.length ? payload = {
-                ...payload,
-                pumps,
-            }: new Error('Invalid data!, Please add valves data properly!');
+            ...payload,
+            pumps,
+        } :
+            new Error('Invalid data!, Please add valves data properly!')
+        redirect(window.location);
     }
     const response = await _request({
         method: 'PUT',

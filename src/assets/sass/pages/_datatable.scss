@@ -5,7 +5,7 @@ table.default {
     table-layout: fixed;
     width: 100%;
     margin: g.$medium g.$xsmall 0;
-    // background-color: g.$color_primary_light;
+    // background-color: g.$color_secondary;
     @include u.borderradius(null, null, 0, 0);
 
     tr {
@@ -26,11 +26,10 @@ table.default {
     }
 
     thead {
+        @include u.border(null, null, g.$default_border);
         tr {
             th {
                 font-weight: 600;
-                background-color: g.$color_secondary;
-                @include u.boxshadow;
             }
         }
     }

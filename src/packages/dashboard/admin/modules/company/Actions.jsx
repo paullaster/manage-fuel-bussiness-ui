@@ -89,6 +89,7 @@ export const TankAndPumpData = async ({ request }) => {
         pumps.length && number_of_valves ? payload = {
             ...payload,
             number_of_pumps: pumps.length,
+            number_of_valves,
             pumps,
         } :
             new Error('Invalid data!, Please add valves data properly!')

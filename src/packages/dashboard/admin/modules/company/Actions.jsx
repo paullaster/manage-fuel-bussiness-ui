@@ -63,7 +63,6 @@ export const TankAndPumpData = async ({ request }) => {
                         pump_number,
                         valves: valvesArray
                     } : '';
-                    console.log(pumpObject);
                     Object.keys(pumpObject).length ? pumps = [...pumps, pumpObject] : '';
 
                 } else {

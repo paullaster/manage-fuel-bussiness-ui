@@ -42,6 +42,7 @@ export const TankAndPumpData = async ({ request }) => {
     }
 
     if (data.type === "pump_data") {
+        console.log(data.type);
         let pumps = [];
         let number_of_valves = 0;
         for (let prop in data) {
@@ -52,6 +53,7 @@ export const TankAndPumpData = async ({ request }) => {
                 let valvesArray = [];
                 let pumpObject = {};
                 if (!pumps.length && !valvesArray.length) {
+                    console.log(data[prop]);
                     data[prop] !== ''
                         ? (number_of_valves++, valvesArray = [...valvesArray, { fuel_type: data[prop] }])
                         :
@@ -61,19 +63,18 @@ export const TankAndPumpData = async ({ request }) => {
                         pump_number,
                         valves: valvesArray
                     } : '';
-
+                    console.log(pumpObject);
                     Object.keys(pumpObject).length ? pumps = [...pumps, pumpObject] : '';
 
                 } else {
-                    let itemExist = pumps && pumps.findIndex((item) => {
-                        return item.pump_number === pump_number
-                    })
+                    const itemExist = pumps && pumps.findIndex((item) => {
+                        return item.pump_number === pump_number;
+                    });
                     if (itemExist >= 0) {
                         data[prop] !== '' && pumps[itemExist].valves
-                            ? (number_of_valves++, item.valves = [...item.valves, { fuel_type: data[prop] }])
+                            ? (number_of_valves++, pumps[itemExist].valves = [...pumps[itemExist].valves, { fuel_type: data[prop] }])
                             : '';
                     } else {
-
                         data[prop] !== ''
                             ? (number_of_valves++, valvesArray = [...valvesArray, { fuel_type: data[prop] }])
                             : '';
@@ -86,14 +87,13 @@ export const TankAndPumpData = async ({ request }) => {
                 }
             }
         }
-        pumps.length && number_of_valves ? payload = {
+        pumps.length && number_of_valves 
+        ? payload = {
             ...payload,
             number_of_pumps: data.number_of_pumps,
             number_of_valves,
             pumps,
-        } :
-            new Error('Invalid data!, Please add valves data properly!');
-        // redirect(window.location);
+        } :(new Error('Invalid data!, Please add valves data properly!'), redirect(window.location));
     }
     const response = await _request({
         method: 'PUT',

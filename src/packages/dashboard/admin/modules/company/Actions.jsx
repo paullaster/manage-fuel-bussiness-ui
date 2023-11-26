@@ -88,12 +88,23 @@ export const TankAndPumpData = async ({ request }) => {
     });
     //TODO: MAKE THIS DUPLICATED CODE A REUSABLE FUNCTION
     //TODO: HANDLE API CALLS ON ERROR
-    if(response) {
-        console.log(response);
-        return;
-    }
+    // if(response) {
+    //     console.log(response);
+    //     return;
+    // }
     const pageResponse = btoa(JSON.stringify(response));
     // const hmac = new CryptoJS.HmacSHA256(ENCRYPTION_SECRET);
-    // const url = `/admin/:id/company/wizard/1?page_response=${pageResponse}`;
-    // return redirect(url);
+
+    //TODO: add dynamic admin ID
+    let url = '';
+    switch (data.type) {
+        case 'pump_data':
+            url = `/admin/:id/company/list`;
+            break;
+        case 'tank_data':
+            url = `/admin/:id/company/wizard/1?page_response=${pageResponse}`;
+            break;
+        default: url = `/*`;
+    }
+    return redirect(url);
 }

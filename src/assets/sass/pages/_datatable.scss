@@ -5,7 +5,7 @@ table.default {
     table-layout: fixed;
     width: 100%;
     margin: g.$medium g.$xsmall 0;
-    background-color: g.$color_primary_light;
+    // background-color: g.$color_primary_light;
     @include u.borderradius(null, null, 0, 0);
 
     tr {
@@ -21,7 +21,7 @@ table.default {
 
     th,
     td {
-        padding-left: g.$xsmall;
+        padding-left: g.$tiny;
         text-align: start;
     }
 

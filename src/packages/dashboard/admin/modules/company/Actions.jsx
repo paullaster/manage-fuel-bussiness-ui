@@ -18,24 +18,7 @@ export const AddCompany = async ({ request }) => {
 };
 
 export const TankAndPumpData = async ({ request }) => {
-    // const data = Object.fromEntries(await request.formData());
-    const data = {
-        "company_name": "Rubis",
-        "brand_name": "Rubis Kenya",
-        "station_name": "Rubis Mlolongo",
-        "station_management_type": "Dealers",
-        "uuid": "f65c7b2a-6825-4725-8c62-fe6d5fc64df4",
-        "type": "pump_data",
-        "number_of_pumps": "8",
-        "valve_petrol_for_pump_1": "Petrol",
-        "valve_diesel_for_pump_2": "Diesel",
-        "valve_kerosene_for_pump_3": "Kerosene",
-        "valve_diesel_for_pump_4": "Diesel",
-        "valve_diesel_for_pump_5": "Diesel",
-        "valve_petrol_for_pump_6": "Petrol",
-        "valve_petrol_for_pump_7": "Petrol",
-        "valve_petrol_for_pump_8": "Petrol"
-    };
+    const data = Object.fromEntries(await request.formData());
     let payload = {
         station_name: data.station_name,
         station_management_type: data.station_management_type,

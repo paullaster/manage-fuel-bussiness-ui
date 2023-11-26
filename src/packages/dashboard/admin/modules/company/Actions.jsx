@@ -44,6 +44,7 @@ export const TankAndPumpData = async ({ request }) => {
 
     if (data.type === "pump_data") {
         let pumps = [];
+        let number_of_valves = 0;
         for (let prop in data) {
             if (prop.includes('valve_')) {
                 let propArray = prop.split('_');
@@ -52,7 +53,10 @@ export const TankAndPumpData = async ({ request }) => {
                 let valvesArray = [];
                 let pumpObject = {};
                 if (!pumps.length && !valvesArray.length) {
-                    data[prop] !== '' ? valvesArray = [...valvesArray, { fuel_type: data[prop] }] : '';
+                    data[prop] !== ''
+                    ? ( number_of_valves++, valvesArray = [...valvesArray, { fuel_type: data[prop] }] ) 
+                    : 
+                    '';
 
                     valvesArray.length ? pumpObject = {
                         pump_number,
@@ -64,10 +68,14 @@ export const TankAndPumpData = async ({ request }) => {
                 } else {
                     for (let item of pumps) {
                         if (item.pump_number === pump_number) {
-                            data[prop] !== '' && item.valves ? item.valves = [...item.valves, { fuel_type: data[prop] }] : '';
+                            data[prop] !== '' && item.valves 
+                            ? ( number_of_valves++, item.valves = [...item.valves, { fuel_type: data[prop] }] ) 
+                            : '';
                         } else {
 
-                            data[prop] !== '' ? valvesArray = [...valvesArray, { fuel_type: data[prop] }] : '';
+                            data[prop] !== '' 
+                            ? ( number_of_valves++, valvesArray = [...valvesArray, { fuel_type: data[prop] }]) 
+                            : '';
                             valvesArray.length ? pumpObject = {
                                 pump_number,
                                 valves: valvesArray
@@ -78,8 +86,9 @@ export const TankAndPumpData = async ({ request }) => {
                 }
             }
         }
-        pumps.length ? payload = {
+        pumps.length && number_of_valves ? payload = {
             ...payload,
+            number_of_pumps: pumps.length,
             pumps,
         } :
             new Error('Invalid data!, Please add valves data properly!')

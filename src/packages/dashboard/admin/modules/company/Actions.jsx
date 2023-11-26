@@ -51,15 +51,15 @@ export const TankAndPumpData = async ({ request }) => {
 
                 let valvesArray = [];
                 let pumpObject = {};
-                if (pumps.length < 1 && valvesArray.length < 1) {
+                if ( !pumps.length && !valvesArray.length ) {
                     data[prop] !== '' ? valvesArray = [...valvesArray, { fuel_type: data[prop] }] : '';
 
-                    valvesArray.length < 1 ? pumpObject = {
+                    valvesArray.length ? pumpObject = {
                         pump_number,
                         valves: valvesArray
                     } : '';
 
-                    Object.keys(pumpObject).length < 1 ? pumps = [...pumps, pumpObject] : '';
+                    Object.keys(pumpObject).length ? pumps = [...pumps, pumpObject] : '';
 
                 } else {
                     for (let item of pumps) {

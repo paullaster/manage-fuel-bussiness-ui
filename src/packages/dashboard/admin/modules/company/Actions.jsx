@@ -51,7 +51,7 @@ export const TankAndPumpData = async ({ request }) => {
 
                 let valvesArray = [];
                 let pumpObject = {};
-                if ( !pumps.length && !valvesArray.length ) {
+                if (!pumps.length && !valvesArray.length) {
                     data[prop] !== '' ? valvesArray = [...valvesArray, { fuel_type: data[prop] }] : '';
 
                     valvesArray.length ? pumpObject = {
@@ -68,21 +68,20 @@ export const TankAndPumpData = async ({ request }) => {
                         } else {
 
                             data[prop] !== '' ? valvesArray = [...valvesArray, { fuel_type: data[prop] }] : '';
-                            valvesArray.length < 1 ? pumpObject = {
+                            valvesArray.length ? pumpObject = {
                                 pump_number,
                                 valves: valvesArray
-                            }
-                            pumps = [...pumps, pumpObject];
+                            } : '';
+                            Object.keys(pumpObject).length ? pumps = [...pumps, pumpObject] : '';
                         }
                     }
                 }
             }
         }
-        if
-        payload = {
+        pumps.length ? payload = {
                 ...payload,
                 pumps,
-            };
+            }: new Error('Invalid data!, Please add valves data properly!');
     }
     const response = await _request({
         method: 'PUT',

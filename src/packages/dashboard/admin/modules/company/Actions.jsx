@@ -52,19 +52,23 @@ export const TankAndPumpData = async ({ request }) => {
                 let valvesArray = [];
                 let pumpObject = {};
                 if (pumps.length < 1 && valvesArray.length < 1) {
-                    valvesArray = [...valvesArray, { fuel_type: data[prop] }];
-                    pumpObject = {
+                    data[prop] !== '' ? valvesArray = [...valvesArray, { fuel_type: data[prop] }] : '';
+
+                    valvesArray.length < 1 ? pumpObject = {
                         pump_number,
                         valves: valvesArray
-                    };
-                    pumps = [...pumps, pumpObject];
+                    } : '';
+
+                    Object.keys(pumpObject).length < 1 ? pumps = [...pumps, pumpObject] : '';
+
                 } else {
                     for (let item of pumps) {
                         if (item.pump_number === pump_number) {
-                            item.valves = [...item.valves, { fuel_type: data[prop] }];
+                            data[prop] !== '' && item.valves ? item.valves = [...item.valves, { fuel_type: data[prop] }] : '';
                         } else {
-                            valvesArray = [...valvesArray, { fuel_type: data[prop] }];
-                            pumpObject = {
+
+                            data[prop] !== '' ? valvesArray = [...valvesArray, { fuel_type: data[prop] }] : '';
+                            valvesArray.length < 1 ? pumpObject = {
                                 pump_number,
                                 valves: valvesArray
                             }
@@ -74,10 +78,11 @@ export const TankAndPumpData = async ({ request }) => {
                 }
             }
         }
+        if
         payload = {
-            ...payload,
-            pumps,
-        };
+                ...payload,
+                pumps,
+            };
     }
     const response = await _request({
         method: 'PUT',

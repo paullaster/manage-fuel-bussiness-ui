@@ -99,11 +99,11 @@ const Wizard = () => {
           <div className='stepper_and_wizard_btns'>
             {
               (activeStep !== 0)
-              && <Button className={'btn-element'} onClick={handlePreviouseClick}>Previous</Button>
+              && <Button className={'btn-element btn_transparent'} onClick={handlePreviouseClick}>Previous</Button>
             }
             {
               activeStep !== steps.length - 1
-              && <Button className={'btn-element'} onClick={handleSkipNext}>skip this step</Button>
+              && <Button className={'btn-element btn_transparent'} onClick={handleSkipNext}>skip this step</Button>
             }
             <Button className={'btn-element btn_primary'} type='submit' onClick = { validateOnSubmit }>
               {

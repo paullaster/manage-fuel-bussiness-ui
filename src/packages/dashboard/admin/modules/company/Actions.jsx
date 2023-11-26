@@ -1,6 +1,7 @@
 import { redirect } from "react-router-dom";
 import { _request } from "../../../../../services";
 import constants from "../../constants";
+import { generator } from "@/packages/utils";
 // import { ENCRYPTION_SECRET } from "../../../../../environments";
 
 /**
@@ -19,21 +20,37 @@ export const AddCompany = async ({ request }) => {
 
 export const TankAndPumpData = async ({ request }) => {
     const data = Object.fromEntries(await request.formData());
-    let tank_data = [];
-    for (let prop in data) {
-        if (prop.includes("tank_capacity_for_tank")) {
-            const tankNumber = prop.split("_").slice(-1)[0];
-            tank_data = [...tank_data, { tank_number: parseInt(tankNumber), tank_capacity: parseInt(data[prop]) }];
-        }
-    }
-    const payload = {
+    let payload = {
         station_name: data.station_name,
         station_management_type: data.station_management_type,
         brand_name: data.brand_name,
         company_name: data.company_name,
-        number_of_tanks: parseInt(data.number_of_tanks),
-        tank_data: tank_data
     };
+
+    if (data.type === "tank_data") {
+        let tank_data = [];
+        for (let prop in data) {
+            if (prop.includes("tank_capacity_for_tank")) {
+                const tankNumber = prop.split("_").slice(-1)[0];
+                tank_data = [...tank_data, { tank_number: parseInt(tankNumber), tank_capacity: parseInt(data[prop]) }];
+            }
+        }
+        payload = {
+            ...payload,
+            number_of_tanks: parseInt(data.number_of_tanks),
+            tank_data: tank_data
+        }
+    }
+
+    // if (data.type === "pump_data") {
+    //     let dataArray = Object.keys(data);
+    //     let pump_data = dataArray.map((item) => {
+    //         if (item.includes('valve_')) {
+    //             let number = item.split('_').slice(-1);
+                
+    //         }
+    //     })
+    // }
     const response = await _request({
         method: 'PUT',
         url: constants.company,
@@ -47,7 +64,3 @@ export const TankAndPumpData = async ({ request }) => {
     const url = `/admin/:id/company/wizard/1?page_response=${pageResponse}`;
     return redirect(url);
 }
-
-const PumpData = ({request}) => {
-
-};

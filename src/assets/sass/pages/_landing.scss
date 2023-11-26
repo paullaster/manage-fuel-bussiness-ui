@@ -57,7 +57,7 @@
         }
         .card_content {
             grid-area: card-content;
-            padding-left: g.$xlarge;
+            padding-left: g.$large;
 
             @include u.borderradius(null, null, null, u.rem(16), u.rem(16));
 
@@ -72,10 +72,13 @@
 
                 .card_content_theme_text {
                     & > h2 {
-                        font-weight: 700;
-                        font-size: g.$large_font;
+                        font-weight: 900;
+                        font-size: g.$medium_font;
+                        font-style: normal;
+                        word-spacing: .5%;
                         & > span{
                             display: block;
+                            text-transform: none !important;
                         }
                     }
                 }
@@ -83,6 +86,7 @@
                 .card_content_introduction {
                     & > p {
                         font-size: g.$small_font;
+                        font-weight: 200 !important;
                         & > span {
                             display: block;
                         }

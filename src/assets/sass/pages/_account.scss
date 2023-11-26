@@ -1,0 +1,39 @@
+@use '../global/' as g;
+@use '../utilities/' as u;
+
+section.account {
+    background-color: g.$color_secondary;
+    min-width: 100dvw;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .account_card {
+        display: flex;
+        background-color: g.$color_primary_light;
+        min-width: 80%;
+        min-height: 80%;
+        @include u.boxshadow;
+        @include u.borderradius(u.rem(16));
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        .account_card_left {
+            @include u.borderradius(null, u.rem(16), null, u.rem(16));
+
+            .account_avatar {
+                @include u.borderradius(null, null, null, u.rem(16));
+                img {
+                    @include u.borderradius(null, null, null, u.rem(16));
+                }
+            }
+        }
+
+        .account_card_right {
+            @include u.borderradius(null, null, u.rem(16), null, u.rem(16));
+            background-color: g.$color_secondary;
+        }
+    }
+}

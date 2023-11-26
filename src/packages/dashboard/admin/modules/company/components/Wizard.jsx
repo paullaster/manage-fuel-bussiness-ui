@@ -87,7 +87,7 @@ const Wizard = () => {
       <Form method='PUT'>
         <InputComponent name={'company_name'} value={formData.company_name} hidden readOnly />
         <InputComponent name={'brand_name'} value={formData.brand_name} hidden readOnly />
-        <InputComponent name={'station_name'} value={formData.station_name} hidden readOnly />
+        {/* <InputComponent name={'station_name'} value={formData.station_name} hidden readOnly /> */}
         <InputComponent name={'station_management_type'} value={formData.station_management_type} hidden readOnly />
         <InputComponent name={'uuid'} value={formData.uuid} hidden readOnly />
         <Stepper steps={steps} activeStep={activeStep}>

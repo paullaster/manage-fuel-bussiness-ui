@@ -42,15 +42,43 @@ export const TankAndPumpData = async ({ request }) => {
         }
     }
 
-    // if (data.type === "pump_data") {
-    //     let dataArray = Object.keys(data);
-    //     let pump_data = dataArray.map((item) => {
-    //         if (item.includes('valve_')) {
-    //             let number = item.split('_').slice(-1);
-                
-    //         }
-    //     })
-    // }
+    if (data.type === "pump_data") {
+        let pumps = [];
+        for (let prop in data) {
+            if (prop.includes('valve_')) {
+                let propArray = prop.split('_');
+                let pump_number = parseInt(propArray.slice(-1));
+
+                let valvesArray = [];
+                let pumpObject = {};
+                if (pumps.length < 1 && valvesArray.length < 1) {
+                    valvesArray = [...valvesArray, { fuel_type: data[prop] }];
+                    pumpObject = {
+                        pump_number,
+                        valves: valvesArray
+                    };
+                    pumps = [...pumps, pumpObject];
+                } else {
+                    for (let item of pumps) {
+                        if (item.pump_number === pump_number) {
+                            item.valves = [...item.valves, { fuel_type: data[prop] }];
+                        } else {
+                            valvesArray = [...valvesArray, { fuel_type: data[prop] }];
+                            pumpObject = {
+                                pump_number,
+                                valves: valvesArray
+                            }
+                            pumps = [...pumps, pumpObject];
+                        }
+                    }
+                }
+            }
+        }
+        payload = {
+            ...payload,
+            pumps,
+        };
+    }
     const response = await _request({
         method: 'PUT',
         url: constants.company,
@@ -59,8 +87,13 @@ export const TankAndPumpData = async ({ request }) => {
         headers: { 'Content-Type': 'application/json' }
     });
     //TODO: MAKE THIS DUPLICATED CODE A REUSABLE FUNCTION
+    //TODO: HANDLE API CALLS ON ERROR
+    if(response) {
+        console.log(response);
+        return;
+    }
     const pageResponse = btoa(JSON.stringify(response));
     // const hmac = new CryptoJS.HmacSHA256(ENCRYPTION_SECRET);
-    const url = `/admin/:id/company/wizard/1?page_response=${pageResponse}`;
-    return redirect(url);
+    // const url = `/admin/:id/company/wizard/1?page_response=${pageResponse}`;
+    // return redirect(url);
 }

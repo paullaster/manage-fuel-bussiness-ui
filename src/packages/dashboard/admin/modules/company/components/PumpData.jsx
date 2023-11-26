@@ -7,11 +7,11 @@ const PumpData = () => {
   return (
     <div className="pump_information">
       <div className="number_of_pumps">
-        {/* <InputComponent
+        <input
           name={"type"}
           value={"pump_data"}
           hidden readOnly
-        /> */}
+        />
         <InputComponent
           type={"number"}
           name={"number_of_pumps"}
@@ -38,9 +38,9 @@ const PumpData = () => {
                     value={'Petrol'}
                     readOnly
                     className={'type_checkbox'}
-                    id="Petrol"
+                    id={`Petrol_for_pump_${index + 1}`}
                   />
-                  <label htmlFor="Petrol">Petrol</label>
+                  <label htmlFor={`Petrol_for_pump_${index + 1}`}>Petrol</label>
                 </div>
                 <div className={'valve_type'}>
                   <input
@@ -51,9 +51,9 @@ const PumpData = () => {
                     value={'Diesel'}
                     readOnly
                     className={'type_checkbox'}
-                    id="Diesel"
+                    id={`Diesel_for_pump_${index + 1}`}
                   />
-                  <label htmlFor="Diesel">Diesel</label>
+                  <label htmlFor={`Diesel_for_pump_${index + 1}`}>Diesel</label>
                 </div>
                 <div className={'valve_type'}>
                   <input
@@ -63,10 +63,10 @@ const PumpData = () => {
                     required
                     value={'Kerosene'}
                     readOnly
-                    id={'Kerosene'}
+                    id={`Kerosene_for_pump_${index + 1}`}
                     className={'type_checkbox'}
                   />
-                  <label htmlFor="Kerosene">Kerosene</label>
+                  <label htmlFor={`Kerosene_for_pump_${index + 1}`}>Kerosene</label>
                 </div>
               </div>
             )

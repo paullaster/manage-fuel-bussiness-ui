@@ -6,11 +6,11 @@ const TankData = () => {
 
   return (
     <>
-      {/* <InputComponent
+      <input
         name={"type"}
         value={"tank_data"}
         hidden readOnly
-      /> */}
+      />
       <InputComponent
         type={"number"}
         name={"number_of_tanks"}

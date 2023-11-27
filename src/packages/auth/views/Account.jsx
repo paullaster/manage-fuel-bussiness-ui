@@ -1,12 +1,9 @@
 import React from 'react';
-import { NavLink, Outlet, useLocation, redirect } from 'react-router-dom';
+import { NavLink, Outlet, redirect } from 'react-router-dom';
 import account_avatar from '@/assets/images/accounts_avatar.svg';
 import { Hide } from '@/utils'
 
 const Account = () => {
-
-  const location = useLocation();
-  console.log(location);
 
   return (
     <section className='account'>
@@ -31,18 +28,27 @@ const Account = () => {
             {
               Hide('/register') &&
               <div>
-              <p>START FOR FREE</p>
-            </div>
+                <p>START FOR FREE</p>
+              </div>
             }
             <div>
               <h2>
                 {
-                  Hide('/register') ? 'Sign up to fluecloud' : Hide('/login') ? 'Sign in to fluecloud' : redirect('/*')
+                  Hide('/register')
+                    ? 'Sign up to fluecloud'
+                    : Hide('/login')
+                      ? 'Sign in to fluecloud'
+                      : redirect('/*')
                 }
               </h2>
             </div>
             <div>
-              <p>Already a member? <NavLink to={'/account/login'}>Login</NavLink></p>
+              {
+                Hide('/register') && <p>Already a member? <NavLink to={'/account/login'}>Login</NavLink></p>
+              }
+              {
+                Hide('/login') && <p>Do not have account yet? <NavLink to={'/account/register'}>Register</NavLink></p>
+              }
             </div>
           </div>
           <div className='account_options'>

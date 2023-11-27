@@ -11,8 +11,8 @@
     align-items: center;
     .landing_card {
         background-color: g.$color_secondary;
-        min-height: 60dvh;
-        min-width: 60dvw;
+        min-height: 100dvh;
+        min-width: 100dvw;
         @include u.borderradius(u.rem(16));
         @include u.boxshadow;
 
@@ -57,7 +57,7 @@
         }
         .card_content {
             grid-area: card-content;
-            padding-left: g.$large;
+            padding-left: g.$xlarge;
 
             @include u.borderradius(null, null, null, u.rem(16), u.rem(16));
 
@@ -117,10 +117,10 @@
                 position: relative;
 
                 & > img {
-                    width: u.rem(600);
+                    width: u.rem(640);
                     position: absolute;
-                    top: -16%;
-                    right: -4%;
+                    top: 2%;
+                    right: 50%;
                 }
             }
         }

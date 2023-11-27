@@ -55,6 +55,18 @@ section.account {
                     background-color: transparent;
                     padding-inline: g.$small;
 
+                    option {
+                        display: none;
+                    }
+
+                    .selectLangActive {
+                        display: block !important;
+                    }
+
+                    &:focus {
+                        display: none;
+                        overflow: hidden;
+                    }
                     &::after {
                         // background-color: blue;
                     }

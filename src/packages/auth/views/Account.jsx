@@ -1,12 +1,44 @@
-import React from 'react';
 import { NavLink, Outlet, redirect } from 'react-router-dom';
 import account_avatar from '@/assets/images/accounts_avatar.svg';
 import { Hide } from '@/utils';
 import { Logo } from '@/components';
 import { MdArrowDropDown } from 'react-icons/md';
+import { useEffect, useState } from 'react';
+import { v4 as uuidv4} from 'uuid';
 
 
 const Account = () => {
+
+  const [selectLanguage, setSelectLanguage] = useState(false);
+
+  useEffect(() => {
+
+  }, [selectLanguage]);
+
+
+  const handleSelectLanguage = (e) => {
+     e.stopPropagation();
+     e.preventDefault();
+     setSelectLanguage(true);
+  }
+
+  const languageList = [
+      {
+        id: uuidv4(),
+        lang: 'en',
+        caption: 'English',
+      },
+      {
+        id: uuidv4(),
+        lang: 'es',
+        caption: 'Espanyol',
+      },
+      {
+        id: uuidv4(),
+        lang: 'fr',
+        caption: 'French',
+      }
+  ]
 
   return (
     <section className='account'>
@@ -22,12 +54,19 @@ const Account = () => {
         <div className='account_card_right'>
           <div className='i18n'>
               <select id='i18n_list'>
-                <option value="en" defaultValue={'en'}>English</option>
+                {
+                  languageList.map((item) => {
+                    return (
+                      <option className = {selectLanguage && 'selectLangActive'} value= {item.lang} defaultValue={'en'}>{item.caption}</option>
+                    )
+                  })
+                }
+                {/* <option value="en" defaultValue={'en'}>English</option>
                 <option value="es">Espanol</option>
-                <option value="fr">French</option>
+                <option value="fr">French</option> */}
               </select>
-              <span>
-                <MdArrowDropDown size = {25}/>
+              <span onClick={ handleSelectLanguage }>
+                <MdArrowDropDown size = {25} />
               </span>
           </div>
           <div className='conditional_login_page_text'>

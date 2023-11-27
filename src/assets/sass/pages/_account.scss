@@ -3,7 +3,7 @@
 
 section.account {
     background-color: g.$color_secondary;
-    min-width: 100dvw;
+    min-width: 99dvw;
     min-height: 100dvh;
     display: flex;
     justify-content: center;
@@ -37,6 +37,7 @@ section.account {
             display: flex;
             flex-direction: column;
             margin-bottom: g.$medium;
+            padding-inline: g.$xlarge;
 
             div.i18n {
                 padding: g.$small g.$small g.$small 0;
@@ -67,12 +68,13 @@ section.account {
                         display: none;
                         overflow: hidden;
                     }
-                    &::after {
-                        // background-color: blue;
-                    }
                 }
             }
 
+            .conditional_account_page_text {
+                background-color: red;
+                padding: g.$small 0;
+            }
         }
     }
 }

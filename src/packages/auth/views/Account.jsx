@@ -69,10 +69,10 @@ const Account = () => {
                 <MdArrowDropDown size = {25} />
               </span>
           </div>
-          <div className='conditional_login_page_text'>
+          <div className='conditional_account_page_text'>
             {
               Hide('/register') &&
-              <div>
+              <div className='free_package'>
                 <p>START FOR FREE</p>
               </div>
             }

@@ -117,7 +117,17 @@ section.account {
                     padding-top: g.$small;
 
                     & > div {
-                        
+                        form {
+                            & > .input-group {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                @include u.border(g.$default_border);
+                                & > * {
+                                    display: block;
+                                }
+                            }
+                        }
                     }
                 }
             }

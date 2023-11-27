@@ -119,15 +119,24 @@ section.account {
 
                     &>div {
                         form {
+                            &>.input-group:not(:last-child) {
+                                margin-bottom: g.$small;
+                            }
                             &>.input-group {
                                 display: flex;
                                 flex-direction: column;
                                 justify-content: center;
 
+                                & > label {
+                                    display: block;
+                                    margin-bottom: g.$xsmall;
+                                }
+
                                 .input_control {
                                     width: 60%;
                                     @include u.borderradius (u.rem(8));
                                     @include u.border(g.$default_border);
+                                    @include u.boxshadow_light;
                                     display: flex;
                                     align-items: center;
                                     &>* {
@@ -140,7 +149,13 @@ section.account {
                                         border: none;
                                         outline: none;
                                     }
+                                    & > svg {
+                                        font-weight: 100;
+                                    }
                                 }
+                            }
+                            & > .btn-group {
+                                margin-bottom: g.$small ;
                             }
                         }
                     }

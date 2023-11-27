@@ -21,15 +21,18 @@ const Register = () => {
               <MdAlternateEmail size={25} />
             </div>
           </div>
-          <InputComponent
-            prelabelText={'Password'}
-            placeholder={'8+ characters, 1+ Capital letter, 1+ special characters'}
-            type={'password'}
-            required
-          >
-            <MdLockOutline size={25} />
-          </InputComponent>
-
+          <div className="input-group">
+            <label htmlFor="password">Password</label>
+            <div className="input_control">
+              <input
+                placeholder={'8+ characters, 1+ Capital letter, 1+ special characters'}
+                type={'password'}
+                id='password'
+                required
+              />
+              <MdLockOutline size={25} />
+            </div>
+          </div>
           <div>
             <Button className={'btn-element btn_primary'}>Create an account</Button>
           </div>

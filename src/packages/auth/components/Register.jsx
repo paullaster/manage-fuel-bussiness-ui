@@ -33,7 +33,7 @@ const Register = () => {
               <MdLockOutline size={25} />
             </div>
           </div>
-          <div>
+          <div className='btn-group'>
             <Button className={'btn-element btn_primary'}>Create an account</Button>
           </div>
         </Form>

@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink, Outlet, redirect } from 'react-router-dom';
 import account_avatar from '@/assets/images/accounts_avatar.svg';
 import { Hide } from '@/utils'
+import { Logo } from '@/components';
+
 
 const Account = () => {
 
@@ -10,7 +12,7 @@ const Account = () => {
       <div className='account_card'>
         <div className='account_card_left'>
           <div className='wording'>
-            <div><h2>Finiflow</h2></div>
+            <div><Logo width = {'10%'}/></div>
           </div>
           <div className='account_avatar'>
             <img src={account_avatar} alt="user accounts avatar" />

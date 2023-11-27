@@ -79,6 +79,7 @@ section.account {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
+
                 .conditional_account_page_text {
                     display: flex;
                     flex-direction: column;
@@ -112,19 +113,33 @@ section.account {
                         }
                     }
                 }
+
                 .account_options {
-                    background-color: red;
                     padding-top: g.$small;
 
-                    & > div {
+                    &>div {
                         form {
-                            & > .input-group {
+                            &>.input-group {
                                 display: flex;
                                 flex-direction: column;
                                 justify-content: center;
-                                @include u.border(g.$default_border);
-                                & > * {
-                                    display: block;
+
+                                .input_control {
+                                    width: 60%;
+                                    @include u.borderradius (u.rem(8));
+                                    @include u.border(g.$default_border);
+                                    display: flex;
+                                    align-items: center;
+                                    &>* {
+                                        display: block;
+                                    }
+
+                                    & > input {
+                                        width: 90%;
+                                        background-color: transparent;
+                                        border: none;
+                                        outline: none;
+                                    }
                                 }
                             }
                         }

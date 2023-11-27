@@ -34,6 +34,15 @@ section.account {
         .account_card_right {
             @include u.borderradius(null, null, u.rem(16), null, u.rem(16));
             background-color: g.$color_secondary;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: g.$medium;
+
+            div.i18n {
+                background-color: red;
+                padding: g.$small 0;
+            }
+
         }
     }
 }

@@ -52,6 +52,7 @@ const Account = () => {
           </div>
         </div>
         <div className='account_card_right'>
+          <div className='account_card_right_container'>
           <div className='i18n'>
               <select id='i18n_list'>
                 {
@@ -76,7 +77,7 @@ const Account = () => {
                 <p>START FOR FREE</p>
               </div>
             }
-            <div>
+            <div className='account_sign_options'>
               <h2>
                 {
                   Hide('/register')
@@ -87,7 +88,7 @@ const Account = () => {
                 }
               </h2>
             </div>
-            <div>
+            <div className='account_action_option'>
               {
                 Hide('/register') && <p>Already a member? <NavLink to={'/account/login'}>Login</NavLink></p>
               }
@@ -98,6 +99,7 @@ const Account = () => {
           </div>
           <div className='account_options'>
             <Outlet />
+          </div>
           </div>
         </div>
       </div>

@@ -32,49 +32,74 @@ section.account {
         }
 
         .account_card_right {
+
+            .account_card_right_container {
+                div.i18n {
+                    padding: g.$small g.$small g.$small 0;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+    
+                    & > * {
+                        display: block;
+                    }
+    
+                    select {
+                        width: 6dvw;
+                        outline: none;
+                        appearance: none;
+                        background-color: transparent;
+                        padding-inline: g.$small;
+    
+                        option {
+                            display: none;
+                        }
+    
+                        .selectLangActive {
+                            display: block !important;
+                        }
+    
+                        &:focus {
+                            display: none;
+                            overflow: hidden;
+                        }
+                    }
+                }
+    
+                .conditional_account_page_text {
+                    padding: g.$small 0;
+    
+                    .free_package {
+                        margin: g.$xsmall 0;
+                        p {
+                            font-weight: 200;
+                        }
+                    }
+                    .account_sign_options {
+                        margin: g.$xsmall 0;
+                        h2 {
+                            font-weight: 800;
+                            font-size: g.$small_font;
+                        }
+                    }
+                    .account_action_option {
+                        p {
+                            font-weight: 200;
+    
+                            a {
+                                color: g.$color_primary;
+                                font-weight: 800;
+                            }
+                        }
+                    }
+                }
+            }
             @include u.borderradius(null, null, u.rem(16), null, u.rem(16));
             background-color: g.$color_secondary;
             display: flex;
             flex-direction: column;
-            margin-bottom: g.$medium;
+            // margin-bottom: g.$medium;
             padding-inline: g.$xlarge;
-
-            div.i18n {
-                padding: g.$small g.$small g.$small 0;
-                display: flex;
-                flex-direction: row;
-                justify-content: flex-end;
-
-                & > * {
-                    display: block;
-                }
-
-                select {
-                    width: 6dvw;
-                    outline: none;
-                    appearance: none;
-                    background-color: transparent;
-                    padding-inline: g.$small;
-
-                    option {
-                        display: none;
-                    }
-
-                    .selectLangActive {
-                        display: block !important;
-                    }
-
-                    &:focus {
-                        display: none;
-                        overflow: hidden;
-                    }
-                }
-            }
-
-            .conditional_account_page_text {
-                background-color: red;
-                padding: g.$small 0;
-            }
         }
     }
 }

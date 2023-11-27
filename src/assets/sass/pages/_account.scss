@@ -122,12 +122,13 @@ section.account {
                             &>.input-group:not(:last-child) {
                                 margin-bottom: g.$small;
                             }
+
                             &>.input-group {
                                 display: flex;
                                 flex-direction: column;
                                 justify-content: center;
 
-                                & > label {
+                                &>label {
                                     display: block;
                                     margin-bottom: g.$xsmall;
                                 }
@@ -139,23 +140,36 @@ section.account {
                                     @include u.boxshadow_light;
                                     display: flex;
                                     align-items: center;
+
                                     &>* {
                                         display: block;
                                     }
 
-                                    & > input {
+                                    &>input {
                                         width: 90%;
                                         background-color: transparent;
                                         border: none;
                                         outline: none;
                                     }
-                                    & > svg {
+
+                                    &>svg {
                                         font-weight: 100;
                                     }
                                 }
                             }
-                            & > .btn-group {
+
+                            &>.btn-group {
                                 margin: g.$medium 0 g.$small ;
+                                @include u.borderradius (u.rem(8));
+                                @include u.border(g.$default_border);
+                                width: 60%;
+
+                                button {
+                                    display: block;
+                                    width: 100%;
+                                    border: none !important;
+                                    border-radius: 0 !important;
+                                }
                             }
                         }
                     }

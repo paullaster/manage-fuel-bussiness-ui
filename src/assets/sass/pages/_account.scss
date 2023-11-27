@@ -40,7 +40,13 @@ section.account {
 
             div.i18n {
                 background-color: red;
-                padding: g.$small 0;
+                padding: g.$small g.$small g.$small 0;
+                display: flex;
+                justify-content: flex-end;
+
+                .i18n_list {
+                    
+                }
             }
 
         }

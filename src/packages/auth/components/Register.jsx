@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Form, NavLink } from 'react-router-dom';
 import { Button, InputComponent } from '@/components';
 import { MdAlternateEmail, MdLockOutline } from "react-icons/md";
@@ -7,17 +7,6 @@ import keycloak from '@/assets/images/keycloak.svg';
 const Register = () => {
   return (
     <section className='register'>
-      <div>
-      <div>
-        <p>START FOR FREE</p>
-      </div>
-      <div>
-        <h2>Sign up to fluecloud</h2>
-      </div>
-      <div>
-        <p>Already a member? <NavLink to={'/account/login'}>Login</NavLink></p>
-      </div>
-      </div>
       <div>
         <div>
           <Form>

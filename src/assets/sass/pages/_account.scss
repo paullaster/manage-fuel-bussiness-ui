@@ -3,7 +3,7 @@
 
 section.account {
     background-color: g.$color_secondary;
-    min-width: 99dvw;
+    min-width: 100dvw;
     min-height: 100dvh;
     display: flex;
     justify-content: center;
@@ -12,8 +12,8 @@ section.account {
     .account_card {
         display: flex;
         background-color: g.$color_primary_light;
-        min-width: 80%;
-        min-height: 80%;
+        min-width: 70%;
+        min-height: 70%;
         @include u.boxshadow;
         @include u.borderradius(u.rem(16));
 
@@ -33,6 +33,9 @@ section.account {
         }
 
         .account_card_right {
+
+            .account_card_right_container {}
+
             @include u.borderradius(null, null, u.rem(16), null, u.rem(16));
             background-color: g.$color_secondary;
             display: flex;
@@ -40,40 +43,45 @@ section.account {
             // margin-bottom: g.$medium;
             padding-inline: g.$xlarge;
 
-            .account_card_right_container {
-                div.i18n {
-                    padding: g.$small g.$small g.$small 0;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: flex-end;
+            div.i18n {
+                padding: g.$small g.$small g.$small 0;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
 
-                    &>* {
-                        display: block;
-                    }
-
-                    select {
-                        width: 6dvw;
-                        outline: none;
-                        appearance: none;
-                        background-color: transparent;
-                        padding-inline: g.$small;
-
-                        option {
-                            display: none;
-                        }
-
-                        .selectLangActive {
-                            display: block !important;
-                        }
-
-                        &:focus {
-                            display: none;
-                            overflow: hidden;
-                        }
-                    }
+                &>* {
+                    display: block;
                 }
 
+                select {
+                    width: 6dvw;
+                    outline: none;
+                    appearance: none;
+                    background-color: transparent;
+                    padding-inline: g.$small;
+
+                    option {
+                        display: none;
+                    }
+
+                    .selectLangActive {
+                        display: block !important;
+                    }
+
+                    &:focus {
+                        display: none;
+                        overflow: hidden;
+                    }
+                }
+            }
+
+            .account_specific {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
                 .conditional_account_page_text {
+                    display: flex;
+                    flex-direction: column;
                     padding: g.$small 0;
 
                     .free_package {
@@ -103,6 +111,10 @@ section.account {
                             }
                         }
                     }
+                }
+                .account_options {
+                    background-color: red;
+                    padding-top: g.$smal;
                 }
             }
         }

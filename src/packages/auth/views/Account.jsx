@@ -1,8 +1,9 @@
 import React from 'react';
 import { NavLink, Outlet, redirect } from 'react-router-dom';
 import account_avatar from '@/assets/images/accounts_avatar.svg';
-import { Hide } from '@/utils'
+import { Hide } from '@/utils';
 import { Logo } from '@/components';
+import { MdArrowDropDown } from 'react-icons/md';
 
 
 const Account = () => {
@@ -12,7 +13,7 @@ const Account = () => {
       <div className='account_card'>
         <div className='account_card_left'>
           <div className='wording'>
-            <div><Logo width = {'10%'}/></div>
+            <div><Logo width={'10%'} /></div>
           </div>
           <div className='account_avatar'>
             <img src={account_avatar} alt="user accounts avatar" />
@@ -20,11 +21,14 @@ const Account = () => {
         </div>
         <div className='account_card_right'>
           <div className='i18n'>
-            <select id='i18n_list'>
-              <option value="en" defaultValue={'en'}>English</option>
-              <option value="es">Espanol</option>
-              <option value="fr">French</option>
-            </select>
+              <select id='i18n_list'>
+                <option value="en" defaultValue={'en'}>English</option>
+                <option value="es">Espanol</option>
+                <option value="fr">French</option>
+              </select>
+              <span>
+                <MdArrowDropDown size = {25}/>
+              </span>
           </div>
           <div className='conditional_login_page_text'>
             {

@@ -39,13 +39,25 @@ section.account {
             margin-bottom: g.$medium;
 
             div.i18n {
-                background-color: red;
                 padding: g.$small g.$small g.$small 0;
                 display: flex;
+                flex-direction: row;
                 justify-content: flex-end;
 
-                .i18n_list {
-                    
+                & > * {
+                    display: block;
+                }
+
+                select {
+                    width: 6dvw;
+                    outline: none;
+                    appearance: none;
+                    background-color: transparent;
+                    padding-inline: g.$small;
+
+                    &::after {
+                        // background-color: blue;
+                    }
                 }
             }
 

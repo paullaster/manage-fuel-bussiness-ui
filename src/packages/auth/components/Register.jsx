@@ -6,8 +6,7 @@ import keycloak from '@/assets/images/keycloak.svg';
 
 const Register = () => {
   return (
-    <section className='register'>
-      <div>
+      <>
         <div>
           <Form>
             <InputComponent 
@@ -46,8 +45,7 @@ const Register = () => {
               <NavLink to = {'#'}>Terms</NavLink>
               </p> 
         </div>
-      </div>
-    </section>
+      </>
   )
 }
 

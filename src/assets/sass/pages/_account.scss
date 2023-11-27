@@ -114,7 +114,11 @@ section.account {
                 }
                 .account_options {
                     background-color: red;
-                    padding-top: g.$smal;
+                    padding-top: g.$small;
+
+                    & > div {
+                        
+                    }
                 }
             }
         }

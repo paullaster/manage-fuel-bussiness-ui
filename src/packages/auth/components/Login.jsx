@@ -5,38 +5,38 @@ import keycloak from '@/assets/images/keycloak.svg';
 
 const Login = () => {
   return (
-    <section>
+    <>
       <div>
-          <Form>
-            <InputComponent 
-            prelabelText = {'E-mail'}
-            placeholder = {'someone@email.com'}
-            type = {'email'}
+        <Form>
+          <InputComponent
+            prelabelText={'E-mail'}
+            placeholder={'someone@email.com'}
+            type={'email'}
             required
-            >
-              <MdAlternateEmail size={25} />
-            </InputComponent>
-            <InputComponent 
-            prelabelText = {'Password'}
-            placeholder = {'8+ characters, 1+ Capital letter, 1+ special characters'}
-            type = {'password'}
+          >
+            <MdAlternateEmail size={25} />
+          </InputComponent>
+          <InputComponent
+            prelabelText={'Password'}
+            placeholder={'8+ characters, 1+ Capital letter, 1+ special characters'}
+            type={'password'}
             required
-            >
-              <MdLockOutline size = {25} />
-            </InputComponent>
+          >
+            <MdLockOutline size={25} />
+          </InputComponent>
 
-            <div>
-              <Button className = {'btn-element btn_primary'}>Login</Button>
-            </div>
-          </Form>
           <div>
-          <Button className = {'btn-element btn_transparent'}>
-            <span><img src={keycloak} alt='keycloack logo ' /></span>
-            <span>Sign in with keycloak</span>
-          </Button>
+            <Button className={'btn-element btn_primary'}>Create an account</Button>
           </div>
+        </Form>
+        <div>
+          <Button className={'btn-element btn_transparent'}>
+            <span><img src={keycloak} alt='keycloack logo ' /></span>
+            <span>Sign up with keycloak</span>
+          </Button>
         </div>
-    </section>
+      </div>
+    </>
   )
 }
 

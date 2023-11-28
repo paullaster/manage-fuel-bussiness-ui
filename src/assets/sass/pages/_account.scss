@@ -179,6 +179,7 @@ section.account {
                         .idp_providers {
                             @include u.borderradius (u.rem(8));
                             @include u.border(g.$default_border);
+                            margin-bottom: g.$medium;
 
                             width: 60%;
 

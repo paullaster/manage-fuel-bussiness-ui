@@ -37,7 +37,7 @@ const Register = () => {
             <Button className={'btn-element btn_primary'}>Create an account</Button>
           </div>
         </Form>
-        <div>
+        <div className='idp_providers'>
           <Button className={'btn-element btn_transparent'}>
             <span><img src={keycloak} alt='keycloack logo ' /></span>
             <span>Sign up with keycloak</span>

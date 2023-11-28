@@ -165,8 +165,14 @@ section.account {
                                     display: block;
                                     width: 100%;
                                     border: none !important;
-                                    border-radius: 0 !important;
+                                    @include u.borderradius (u.rem(8));
+                                    text-transform: lowercase !important;
+                                    
+                                    &::first-letter {
+                                        text-transform: uppercase !important;
+                                    }
                                 }
+                                
                             }
                         }
                     }

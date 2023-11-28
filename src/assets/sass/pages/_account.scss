@@ -192,6 +192,10 @@ section.account {
                                 
                                 & > span {
                                     text-transform: lowercase !important;
+
+                                    &::first-letter {
+                                        text-transform: uppercase !important;
+                                    }
                                 }
 
                                 &>.idp_provider_icon {
@@ -201,9 +205,6 @@ section.account {
 
                                 &>* {
                                     display: block;
-                                }
-                                &::first-letter {
-                                    text-transform: uppercase !important;
                                 }
                             }
                         }

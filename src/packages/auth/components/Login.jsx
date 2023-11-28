@@ -34,12 +34,12 @@ const Login = () => {
           </div>
 
           <div className='btn-group'>
-            <Button className={'btn-element btn_primary'}>Create an account</Button>
+            <Button className={'btn-element btn_primary'}>Login</Button>
           </div>
         </Form>
-        <div>
+        <div className='idp_providers'>
           <Button className={'btn-element btn_transparent'}>
-            <span><img src={keycloak} alt='keycloack logo ' /></span>
+            <span className='idp_provider_icon'><img src={keycloak} alt='keycloack logo ' /></span>
             <span>Sign up with keycloak</span>
           </Button>
         </div>

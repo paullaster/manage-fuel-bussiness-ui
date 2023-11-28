@@ -24,6 +24,7 @@ section.account {
             @include u.borderradius(null, u.rem(16), null, u.rem(16));
             & > .wording {
                 padding-left: g.$xlarge;
+                padding-top: g.$tiny; 
             }
             .account_avatar {
                 @include u.borderradius(null, null, null, u.rem(16));

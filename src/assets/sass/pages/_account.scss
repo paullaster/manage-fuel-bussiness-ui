@@ -167,26 +167,31 @@ section.account {
                                     border: none !important;
                                     @include u.borderradius (u.rem(8));
                                     text-transform: lowercase !important;
-                                    
+
                                     &::first-letter {
                                         text-transform: uppercase !important;
                                     }
                                 }
-                                
+
                             }
                         }
+
                         .idp_providers {
-                            & > button {
-                                display:  flex !important;
+                            @include u.borderradius (u.rem(8));
+                            @include u.border(g.$default_border);
+                            width: 60%;
+
+                            &>button {
+                                display: flex !important;
                                 justify-content: center !important;
                                 align-items: center !important;
 
-                                & > .idp_provider_icon {
+                                &>.idp_provider_icon {
                                     width: 8%;
                                     margin-right: g.$xsmall;
                                 }
 
-                                & > * {
+                                &>* {
                                     display: block;
                                 }
                             }

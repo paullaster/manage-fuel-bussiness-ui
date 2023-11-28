@@ -175,6 +175,22 @@ section.account {
                                 
                             }
                         }
+                        .idp_providers {
+                            & > button {
+                                display:  flex !important;
+                                justify-content: center !important;
+                                align-items: center !important;
+
+                                & > .idp_provider_icon {
+                                    width: 8%;
+                                    margin-right: g.$xsmall;
+                                }
+
+                                & > * {
+                                    display: block;
+                                }
+                            }
+                        }
                     }
                 }
             }

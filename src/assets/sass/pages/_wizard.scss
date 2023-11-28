@@ -6,10 +6,10 @@
     min-height: 70dvh;
     margin: g.$medium 0;
     z-index: 100;
-    box-shadow: u.rem(1) u.rem(2) u.rem(4) rgba(0, 0, 0, 0.482);
+    @include u.boxshadow;
     padding: g.$medium 0;
     border-radius: 2%;
-    
+
 
     form {
         .stepper_form_controls {
@@ -24,29 +24,36 @@
                 width: 100%;
                 margin-bottom: g.$xsmall;
 
-                & > * {
+                &>* {
                     display: block;
                     width: 80%;
-                    margin-bottom: g.$large 0;
+                    margin-bottom: g.$tiny;
                 }
 
             }
+
             .pump_information {
                 display: flex;
                 flex-direction: column;
+
                 .number_of_pumps {
+                    width: 40% !important;
+                    margin-bottom: g.$msmall;
+
                     .input-group {
                         width: 100%;
                         margin-bottom: g.$xsmall;
-        
-                        & > * {
+
+
+                        &>* {
                             display: block;
                             width: 70%;
-                            margin-bottom: g.$large 0;
+                            margin-bottom: g.$tiny;
                         }
-        
+
                     }
                 }
+
                 .valve_data_container {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
@@ -55,39 +62,53 @@
                     .valve_information {
                         display: flex;
                         flex-direction: column;
-                        .valve_type { 
+                        .pump_caption {
+                            font-weight: 700;
+                        }
+                        .valve_type {
                             display: flex;
-                            align-items: center;
-                            .input-group {
-                                display: flex;
-                                align-items: center;
+                            align-items: flex-start;
+                            justify-content: flex-start;
+                            padding: g.$msmall 0;
 
-                                & > * {
-                                    display: block !important;
-                                }
-                                input {
-                                    height: 2dvh;
-                                }
+                            &>* {
+                                display: block !important;
                             }
 
-                            & > * {
+                            &>* {
                                 display: block;
                             }
+                            &>*:not( & > *:last-child) {
+                                margin-right: g.$small;
+                            }
+                            & > *:nth-child(2) {
+                                min-width: 20%;
+                            }
+
                             .type_number {
-                                width: 25%;
+                                width: 30%;
+                                height: 3dvh;
+                                text-align: center;
+                            }
+                            .type_checkbox {
+                                outline: none !important;
+                                height: 3dvh;
+                                width: 4% !important;
                             }
                         }
                     }
                 }
             }
         }
+
         .stepper_and_wizard_btns {
             display: flex;
             justify-content: space-between;
             margin: g.$medium g.$xlarge;
             padding-inline: g.$xlarge;
             width: 80%;
-            & > * {
+
+            &>* {
                 display: block;
             }
         }

@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo from '../Logo';
-import { Hide, NavigationAside } from '../../packages/utils';
+import { Hide, NavigationAside } from '../../utils';
 import { NavLink } from 'react-router-dom';
 import Sidebar from './Sidebar';
 

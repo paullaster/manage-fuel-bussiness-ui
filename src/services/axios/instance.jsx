@@ -7,21 +7,18 @@ export const instance = axios.create({
 });
 
 export const protectedRequestInterceptor = (config) => {
- 
  return config;
 };
 
-instance.interceptors.request.use(protectedRequestInterceptor);
+export const  errorInterceptor = (error) => {
+    return Promise.reject(error);
+};
+
+instance.interceptors.request.use(protectedRequestInterceptor, errorInterceptor);
 
 
 export const resolvedResponseInterceptor = (response) => {
-    // console.log(response);
     return Promise.resolve(response.data);
 };
-export const errorResponseInterceptor = (error) => {
-    console.log("Response error logs: ", error);
-    //TODO: Logout user when error response has status code 401
-    return Promise.reject(error.response);
-};
 
-instance.interceptors.response.use(resolvedResponseInterceptor, errorResponseInterceptor);
+instance.interceptors.response.use(resolvedResponseInterceptor, errorInterceptor);

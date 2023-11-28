@@ -5,7 +5,7 @@ import { Button, SearchComponent, TableComponent } from "../../../../../../compo
 import { Form, redirect, NavLink } from "react-router-dom";
 import { _request } from "../../../../../../services";
 // import constants from '../constants';
-import { SearchArray, TableHeaders } from "../../../../../utils";
+import { SearchArray, TableHeaders } from "../../../../../../utils";
 
 const CompanyList = () => {
 

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useGlobalState, useGlobalDispatcher } from "../../store";
-import { ItemAndMaximumItemsPerPage, NumberOfPages } from "../../packages/utils";
+import { ItemAndMaximumItemsPerPage, NumberOfPages } from "../../utils";
 import { MdSkipPrevious, MdSkipNext } from 'react-icons/md';
 import Button from "./Button";
 import { _request } from "../../services";

@@ -1,0 +1,235 @@
+@use '../global/' as g;
+@use '../utilities/' as u;
+
+section.account {
+    background-color: g.$color_secondary;
+    min-width: 100dvw;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .account_card {
+        display: flex;
+        background-color: g.$color_primary_light;
+        min-width: 70%;
+        min-height: 70%;
+        @include u.boxshadow;
+        @include u.borderradius(u.rem(16));
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        .account_card_left {
+            @include u.borderradius(null, u.rem(16), null, u.rem(16));
+            & > .wording {
+                padding-left: g.$xlarge;
+                padding-top: g.$tiny; 
+            }
+            .account_avatar {
+                @include u.borderradius(null, null, null, u.rem(16));
+
+                img {
+                    @include u.borderradius(null, null, null, u.rem(16));
+                }
+            }
+        }
+
+        .account_card_right {
+            @include u.borderradius(null, null, u.rem(16), null, u.rem(16));
+            background-color: g.$color_secondary;
+            display: flex;
+            flex-direction: column;
+            // margin-bottom: g.$medium;
+            padding-inline: g.$xlarge;
+
+            div.i18n {
+                padding: g.$small g.$small g.$small 0;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+
+                &>* {
+                    display: block;
+                }
+
+                select {
+                    width: 6dvw;
+                    outline: none;
+                    appearance: none;
+                    background-color: transparent;
+                    padding-inline: g.$small;
+
+                    option {
+                        display: none;
+                    }
+
+                    .selectLangActive {
+                        display: block !important;
+                    }
+
+                    &:focus {
+                        display: none;
+                        overflow: hidden;
+                    }
+                }
+            }
+
+            .account_specific {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+
+                .conditional_account_page_text {
+                    display: flex;
+                    flex-direction: column;
+                    padding: g.$small 0;
+
+                    .free_package {
+                        margin: g.$xsmall 0;
+
+                        p {
+                            font-weight: 200;
+                        }
+                    }
+
+                    .account_sign_options {
+                        margin: g.$xsmall 0;
+
+                        h2 {
+                            font-weight: 800;
+                            font-size: g.$small_font;
+                        }
+                    }
+
+                    .account_action_option {
+                        p {
+                            font-weight: 200;
+
+                            a {
+                                color: g.$color_primary;
+                                font-weight: 800;
+                            }
+                        }
+                    }
+                }
+
+                .account_options {
+                    padding-top: g.$small;
+
+                    &>div {
+                        form {
+                            &>.input-group:not(:last-child) {
+                                margin-bottom: g.$small;
+                            }
+
+                            &>.input-group {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+
+                                &>label {
+                                    display: block;
+                                    margin-bottom: g.$xsmall;
+                                }
+
+                                .input_control {
+                                    width: 100%;
+                                    @include u.borderradius (u.rem(8));
+                                    @include u.border(g.$default_border);
+                                    @include u.boxshadow_light;
+                                    display: flex;
+                                    align-items: center;
+
+                                    &>* {
+                                        display: block;
+                                    }
+
+                                    &>input {
+                                        width: 90%;
+                                        background-color: transparent;
+                                        border: none;
+                                        outline: none;
+                                    }
+
+                                    &>svg {
+                                        font-weight: 100;
+                                    }
+                                }
+                            }
+
+                            &>.btn-group {
+                                margin: g.$medium 0 g.$small ;
+                                @include u.borderradius (u.rem(8));
+                                @include u.border(g.$default_border);
+                                width: 100%;
+
+                                button {
+                                    display: block;
+                                    width: 100%;
+                                    border: none !important;
+                                    @include u.borderradius (u.rem(8));
+                                    text-transform: lowercase !important;
+
+                                    &::first-letter {
+                                        text-transform: uppercase !important;
+                                    }
+                                }
+
+                            }
+                        }
+
+                        .idp_providers {
+                            @include u.borderradius (u.rem(8));
+                            @include u.border(g.$default_border);
+                            margin-bottom: g.$msmall;
+                            width: 100%;
+
+                            & > button {
+                                display: flex !important;
+                                justify-content: center !important;
+                                align-items: center !important;
+                                width: 100%;
+                                border: none !important;
+                                @include u.borderradius (u.rem(8));
+                                
+                                & > span {
+                                    text-transform: lowercase !important;
+
+                                    &::first-letter {
+                                        text-transform: uppercase !important;
+                                    }
+                                }
+
+                                &>.idp_provider_icon {
+                                    width: 8%;
+                                    margin-right: g.$xsmall;
+                                }
+
+                                &>* {
+                                    display: block;
+                                }
+                            }
+                        }
+                    }
+                    & > .tac {
+                        margin-bottom: g.$xsmall;
+                        p { 
+                            font-size: g.$msmall_font !important;
+                            font-weight: 200 !important;
+
+                            & > * {
+                                text-transform: none !important;
+                            }
+
+                            & > a {
+                                color: g.$color_primary;
+                                font-weight: 600 !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

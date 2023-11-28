@@ -1,4 +1,6 @@
-const APPNAME = import.meta.env.REACT_APP_NAME;
-const BASEAPIURL = import.meta.env.REACT_APP_API_BASER_URL;
+export const {
+    REACT_APP_NAME: APPNAME,
+    REACT_APP_API_BASER_URL: BASEAPIURL,
+    REACT_APP_ENCRYPTION_SECRET_KEY: ENCRYPTION_SECRET,
 
-export { APPNAME, BASEAPIURL };
+} = import.meta.env;

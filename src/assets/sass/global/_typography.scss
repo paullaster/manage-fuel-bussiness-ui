@@ -10,9 +10,10 @@ h1 {
 }
 
 h2 {
-    // margin: v.$xsmall;
-    // padding: v.$xsmall;
     font-size: v.$small_font;
+}
+h2::first-letter {
+    text-transform: uppercase;
 }
 
 h3 {

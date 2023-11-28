@@ -179,7 +179,7 @@ section.account {
                         .idp_providers {
                             @include u.borderradius (u.rem(8));
                             @include u.border(g.$default_border);
-                            margin-bottom: g.$medium;
+                            margin-bottom: g.$msmall;
                             width: 100%;
 
                             & > button {
@@ -208,8 +208,21 @@ section.account {
                                 }
                             }
                         }
-                        .tac {
-                            margin: 0 0 g.$medium 0 !important;
+                    }
+                    & > .tac {
+                        margin-bottom: g.$xsmall;
+                        p { 
+                            font-size: g.$msmall_font !important;
+                            font-weight: 200 !important;
+
+                            & > * {
+                                text-transform: none !important;
+                            }
+
+                            & > a {
+                                color: g.$color_primary;
+                                font-weight: 600 !important;
+                            }
                         }
                     }
                 }

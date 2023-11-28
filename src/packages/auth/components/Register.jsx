@@ -46,10 +46,10 @@ const Register = () => {
       </div>
       <div className='tac'>
         <p>
-          <span>By proceeding you confirm you agree<br /> to our</span>
+          <span>By proceeding you confirm you agree to our</span>
           <NavLink to={'#'}> Privacy policy </NavLink>
-          <span> and </span>
-          <NavLink to={'#'}> Terms </NavLink>
+          <span> and </span><br />
+          <NavLink to={'#'}> Terms and conditions </NavLink>
         </p>
       </div>
     </>

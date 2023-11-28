@@ -22,7 +22,9 @@ section.account {
 
         .account_card_left {
             @include u.borderradius(null, u.rem(16), null, u.rem(16));
-
+            & > .wording {
+                padding-left: g.$xlarge;
+            }
             .account_avatar {
                 @include u.borderradius(null, null, null, u.rem(16));
 

@@ -131,7 +131,7 @@ section.account {
                                 }
 
                                 .input_control {
-                                    width: 60%;
+                                    width: 100%;
                                     @include u.borderradius (u.rem(8));
                                     @include u.border(g.$default_border);
                                     @include u.boxshadow_light;
@@ -159,7 +159,7 @@ section.account {
                                 margin: g.$medium 0 g.$small ;
                                 @include u.borderradius (u.rem(8));
                                 @include u.border(g.$default_border);
-                                width: 60%;
+                                width: 100%;
 
                                 button {
                                     display: block;
@@ -180,8 +180,7 @@ section.account {
                             @include u.borderradius (u.rem(8));
                             @include u.border(g.$default_border);
                             margin-bottom: g.$medium;
-
-                            width: 60%;
+                            width: 100%;
 
                             & > button {
                                 display: flex !important;
@@ -208,6 +207,9 @@ section.account {
                                     display: block;
                                 }
                             }
+                        }
+                        .tac {
+                            margin: 0 0 g.$medium 0 !important;
                         }
                     }
                 }

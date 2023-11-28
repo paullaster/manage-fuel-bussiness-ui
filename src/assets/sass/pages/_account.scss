@@ -179,12 +179,20 @@ section.account {
                         .idp_providers {
                             @include u.borderradius (u.rem(8));
                             @include u.border(g.$default_border);
+
                             width: 60%;
 
-                            &>button {
+                            & > button {
                                 display: flex !important;
                                 justify-content: center !important;
                                 align-items: center !important;
+                                width: 100%;
+                                border: none !important;
+                                @include u.borderradius (u.rem(8));
+                                
+                                & > span {
+                                    text-transform: lowercase !important;
+                                }
 
                                 &>.idp_provider_icon {
                                     width: 8%;
@@ -193,6 +201,9 @@ section.account {
 
                                 &>* {
                                     display: block;
+                                }
+                                &::first-letter {
+                                    text-transform: uppercase !important;
                                 }
                             }
                         }

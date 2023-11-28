@@ -3,8 +3,8 @@ import { createContext, useContext, useReducer } from "react";
 /**
  * CREATE CONTENXT
  */
-const AdminStateContext = createContext(null);
-const AdminStateDispatchContext = createContext(null);
+const AdminStateContext = createContext(undefined);
+const AdminStateDispatchContext = createContext(undefined);
 
 
 /**
@@ -12,7 +12,13 @@ const AdminStateDispatchContext = createContext(null);
  * STATE
  */
 const AdminState = {
-    formData: {}
+    formData: {
+        uuid: undefined,
+        company_name: undefined,
+        brand_name: undefined,
+        station_name: undefined,
+        station_management_type: undefined,
+    }
 };
 
 
@@ -24,13 +30,12 @@ const AdminState = {
 const AdminStateReducer = (state, action) => {
     switch (action.type) {
         case 'SAVE_COMPANY_DATA':
-            console.log(action.payload);
             return state = {
                 ...state,
-                formData: { ...state.formData, ...action.payload },
+                formData: action.payload,
             };
         case 'SAVE_TANK_AND_PUMP_DATA':
-            
+
     }
 };
 

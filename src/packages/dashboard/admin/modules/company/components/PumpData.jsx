@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { InputComponent, Button } from "../../../../../../components";
-import { MdAdd } from "react-icons/md"
+import { v4 as uuidv4 } from "uuid";
 
 const PumpData = () => {
   const [number_of_pumps, set_number_of_pumps] = useState(0);
-
-  const handleAddValves = () => {
-    return <ValvesData />
-  };
   return (
     <div className="pump_information">
       <div className="number_of_pumps">
+        <input
+          name={"type"}
+          value={"pump_data"}
+          hidden readOnly
+        />
         <InputComponent
           type={"number"}
           name={"number_of_pumps"}
@@ -27,59 +28,46 @@ const PumpData = () => {
           [...Array(Number(number_of_pumps))].map((_, index) => {
             return (
               <div key={index + 1} className="valve_information">
-                {/* <div className="valves"> */}
-                  <p>Pump {index + 1} valves </p>
-                  <div className= {'valve_type'}>
-                    <InputComponent
-                      key={index}
-                      type={"checkbox"}
-                      name={`valve_type`}
-                      required
-                      value={'Petrol'}
-                      readOnly
-                      postlabel={'Petrol'}
-                    />
-                    <InputComponent type={'number'} placeholder={'How many?'} className = {'type_number'} />
-                  </div>
-                  <div  className= {'valve_type'}>
-                    <InputComponent
-                      key={index}
-                      type={"checkbox"}
-                      name={`valve_type`}
-                      required
-                      value={'Diesel'}
-                      readOnly
-                      postlabel={'Diesel'}
-                    />
-                    <InputComponent type={'number'} placeholder={'How many?'} />
-                  </div>
-                  <div  className= {'valve_type'}>
-                    <InputComponent
-                      key={index}
-                      type={"checkbox"}
-                      name={`valve_type`}
-                      required
-                      value={'Kerosene'}
-                      readOnly
-                      postlabel={'Kerosene'}
-                    />
-                    <InputComponent type={'number'} placeholder={'How many?'} />
-                  </div>
-                {/* </div> */}
-                {/* <Button
-                className={"btn-element btn_primary btn-icon"}
-                title={"add valve"}
-                onClick={handleAddValves}
-              >
-                <span><MdAdd size={30} /></span>
-                {/* <span>add valves</span> */}
-                {/* </Button> */}
-                {/* <InputComponent
-                type={'number'}
-                name={`tank_capacity_${index + 1}`}
-                placeholder={`Enter tank capacity for tank ${index + 1}`} required
-                min={1}
-              /> */}
+                <p className="pump_caption">Pump {index + 1} valves </p>
+                <div className={'valve_type'}>
+                  <input
+                    key={uuidv4()}
+                    type={"checkbox"}
+                    name={`valve_petrol_for_pump_${index + 1}`}
+                    required
+                    value={'Petrol'}
+                    readOnly
+                    className={'type_checkbox'}
+                    id={`Petrol_for_pump_${index + 1}`}
+                  />
+                  <label htmlFor={`Petrol_for_pump_${index + 1}`}>Petrol</label>
+                </div>
+                <div className={'valve_type'}>
+                  <input
+                    key={uuidv4()}
+                    type={"checkbox"}
+                    name={`valve_diesel_for_pump_${index + 1}`}
+                    required
+                    value={'Diesel'}
+                    readOnly
+                    className={'type_checkbox'}
+                    id={`Diesel_for_pump_${index + 1}`}
+                  />
+                  <label htmlFor={`Diesel_for_pump_${index + 1}`}>Diesel</label>
+                </div>
+                <div className={'valve_type'}>
+                  <input
+                    key={uuidv4()}
+                    type={"checkbox"}
+                    name={`valve_kerosene_for_pump_${index + 1}`}
+                    required
+                    value={'Kerosene'}
+                    readOnly
+                    id={`Kerosene_for_pump_${index + 1}`}
+                    className={'type_checkbox'}
+                  />
+                  <label htmlFor={`Kerosene_for_pump_${index + 1}`}>Kerosene</label>
+                </div>
               </div>
             )
           })

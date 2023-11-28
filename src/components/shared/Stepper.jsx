@@ -1,4 +1,4 @@
-import { getStepClass } from "../../packages/utils";
+import { getStepClass } from "../../utils";
 
 const Stepper = ({ steps, activeStep, children, ...arg }) => {
   return (

@@ -1,0 +1,128 @@
+@use '../global/' as g;
+@use '../utilities/' as u;
+
+.landing {
+    background-color: g.$color_tertiary;
+    min-height: 100dvh;
+    min-width: 100dvw;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .landing_card {
+        background-color: g.$color_secondary;
+        min-height: 100dvh;
+        min-width: 100dvw;
+        @include u.borderradius(u.rem(16));
+        @include u.boxshadow;
+
+        display: grid;
+        grid-template-areas: 
+            'card-header card-header'
+             'card-content card-content '
+        ;
+        grid-template-rows: .8fr 4fr;
+
+        .card_header {
+             grid-area: card-header;
+             padding-left: g.$large;
+
+             @include u.borderradius(null, u.rem(16), u.rem(16));
+
+             display: grid;
+             grid-template-columns: 2fr 6fr 2fr;
+
+             .lading_logo {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+             }
+
+             .lading_menus {
+                display: flex;
+                align-items: center;
+                font-size: g.$small_font;
+                font-weight: 300;
+
+                & > li:not(:last-child) {
+                    padding-right: g.$medium;
+                }
+             }
+
+             .landing_cta {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+             }
+        }
+        .card_content {
+            grid-area: card-content;
+            padding-left: g.$xlarge;
+
+            @include u.borderradius(null, null, null, u.rem(16), u.rem(16));
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            .card_content_left {
+
+                & > *:not(:last-child) {
+                    margin-bottom: g.$medium;
+                }
+
+                .card_content_theme_text {
+                    & > h2 {
+                        font-weight: 900;
+                        font-size: g.$medium_font;
+                        font-style: normal;
+                        word-spacing: .5%;
+                        & > span{
+                            display: block;
+                            text-transform: none !important;
+                        }
+                    }
+                }
+
+                .card_content_introduction {
+                    & > p {
+                        font-size: g.$small_font;
+                        font-weight: 200 !important;
+                        & > span {
+                            display: block;
+                        }
+                    }
+                }
+
+                .card_content_cta {
+                    display: flex;
+                    align-items: center;
+
+                    & > *:not(:last-child) {
+                        margin-right: g.$small;
+                    }
+                    a {
+                        display: flex;
+                        align-items: center;
+                        & > * {
+                            display: block;
+                        }
+                        & > *:not(:last-child) {
+                            margin-right: g.$xsmall;
+                        }
+                    }
+                }
+            }
+
+            .card_content_right {
+                position: relative;
+
+                & > img {
+                    width: u.rem(640);
+                    position: absolute;
+                    top: 2%;
+                    right: 50%;
+                }
+            }
+        }
+    }
+}

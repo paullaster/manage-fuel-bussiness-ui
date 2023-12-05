@@ -4,9 +4,9 @@ import { Hide, NavigationAside } from '../../utils';
 import { NavLink } from 'react-router-dom';
 import Sidebar from './Sidebar';
 
-const Navigation = ({links}) => {
+const Navigation = ({ links }) => {
 
-  if ( Hide('/wizard')) return null;
+  if (Hide('/wizard')) return null;
   return (
     <nav className='nav'>
       <Sidebar links={NavigationAside} />
@@ -16,10 +16,35 @@ const Navigation = ({links}) => {
           {
             links.map((link) => {
               return (
-                <li key={link.id}>
-                    <span>{link.icon}</span>
-                    <NavLink to={link.to}>{link.caption}</NavLink>
-                </li>
+                <>
+                  {
+                    !link.hasSublinks && <li key={link.id}>
+                      <span>{link.icon}</span>
+                      <NavLink to={link.to}>{link.caption}</NavLink>
+                    </li>
+                  }
+                  {
+                    link.hasSublinks &&
+                    <li key={link.id}>
+                      <span>{link.icon}</span>
+                      <NavLink to={link.to}>{link.caption}</NavLink>
+                        <ul>
+                          {
+                            link.hasSublinks.map((sub) => {
+                              return (
+                                <>
+                                <li>
+                                  <span> { sub.icon} </span>
+                                  <NavLink to={sub.to} >{sub.caption}</NavLink>
+                                </li>
+                                </>
+                              )
+                            })
+                          }
+                        </ul>
+                    </li>
+                  }
+                </>
               )
             })
           }

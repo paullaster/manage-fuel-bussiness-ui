@@ -3,11 +3,12 @@ import purchases from "../../purchases";
 import { useGlobalDispatcher, useGlobalState } from "@/store";
 import { useEffect } from "react";
 import { Navigation, Footer } from "@/components";
-import { _request } from "@/services";
+// import { _request } from "@/services";
 
 const Dashboard = () => {
 
    const appStateDispatcher = useGlobalDispatcher();
+   const appState = useGlobalState();
 
    useEffect(() => {
       appStateDispatcher({
@@ -17,7 +18,7 @@ const Dashboard = () => {
    },[]);
 
 
-  return 
+  return (
   <>
       <header className='header'>
         <Navigation links={appState.links} />
@@ -31,6 +32,7 @@ const Dashboard = () => {
         <Footer className='footer' />
       </footer>
     </>
+  )
 }
 
 export default Dashboard;

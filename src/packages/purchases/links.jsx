@@ -3,7 +3,7 @@ import { MdTrolley, MdOutlineBusinessCenter  } from "react-icons/md";
 
 export default {
     id: uuidv4(),
-    to: '/purchases',
+    to: 'purchases',
     icon: <MdTrolley size={30} />,
     caption: "purchase",
     disabled: false,
@@ -11,8 +11,9 @@ export default {
     hasSublinks: true,
     sublinks: [
         {
-            to: 'vendor',
-            icon: <MdOutlineBusinessCenter  size={30} />,
+            id: uuidv4(),
+            to: 'purchases/vendor',
+            icon: <MdOutlineBusinessCenter  size={20} />,
             caption: "vendor",
             disabled: false,
             order: 2,

@@ -17,7 +17,7 @@ const Navigation = ({ links }) => {
     e.preventDefault();
     e.stopPropagation();
 
-    appStateDispatcher({type: "TOGGLESUBLINK"});
+    appStateDispatcher({type: "TOGGLESUBLINK"}); //@todo: MAKE TOGGLING PER CHILD INISIDE A SPECIFIC LINK!!!
   }
 
   if (Hide('/wizard')) return null;

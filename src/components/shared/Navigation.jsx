@@ -13,13 +13,13 @@ const Navigation = ({ links }) => {
   const appState = useGlobalState();
 
 
-  const handleOnClick = (e) => {
+  const handleOnClick = (e, item) => {
+    console.log(e, item);
     e.preventDefault();
     e.stopPropagation();
 
-    appStateDispatcher({type: "TOGGLESUBLINK"}); //@todo: MAKE TOGGLING PER CHILD INISIDE A SPECIFIC LINK!!!
+    appStateDispatcher({type: "TOGGLESUBLINK", payload: item}); //@todo: MAKE TOGGLING PER CHILD INISIDE A SPECIFIC LINK!!!
   }
-
   if (Hide('/wizard')) return null;
   return (
     <nav className='nav'>
@@ -40,16 +40,16 @@ const Navigation = ({ links }) => {
                   {
                     link.hasSublinks &&
                     <div key={link.id} className='hasSublink' >
-                      <div onClick={handleOnClick} >
+                      <div onClick={(e) => handleOnClick(e, link.id)} >
                       <div className='nav_text'>
                       <span>{link.icon}</span>
                       <NavLink to={link.to}>{link.caption}</NavLink>
                       </div>
                       <div className='nav_icon'>
-                        { appState.toggleSubNavigation ? <MdExpandLess size= {30} /> : <MdExpandMore  size= {30} />}
+                        { link.showSubs ? <MdExpandLess size= {30} /> : <MdExpandMore  size= {30} />}
                       </div>
                       </div>
-                        <ul className= { appState.toggleSubNavigation ? 'show' : ''} >
+                        <ul className= { link.showSubs ? 'show' : ''} >
                           {
                             link.sublinks.map((sub) => {
                               return (

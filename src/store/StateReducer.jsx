@@ -45,7 +45,18 @@ export const StateReducer = (state, action) => {
         case 'TOGGLESUBLINK':
             return state = {
                 ...state,
-                toggleSubNavigation: !state.toggleSubNavigation,
+                links: state.links.map((link) => {
+                    if(link.id === action.payload) {
+                        return link =  {
+                            ...link,
+                            showSubs: !link.showSubs,
+                        };
+                    }
+                    return link = {
+                        ...link,
+                        showSubs: false,
+                    };
+                }),
             };
     }
 }

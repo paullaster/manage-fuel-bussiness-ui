@@ -9,6 +9,7 @@ export default {
     disabled: false,
     order: 1,
     hasSublinks: true,
+    showSubs: false,
     sublinks: [
         {
             id: uuidv4(),
@@ -18,6 +19,7 @@ export default {
             disabled: false,
             order: 2,
             hasSublinks: false,
+            showSubs: false,
         }
     ]
 }

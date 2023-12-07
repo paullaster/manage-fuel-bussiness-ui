@@ -43,19 +43,11 @@ const Admin = () => {
 
   return (
     <>
-      <header className='header'>
-        <Navigation links={appState.links} />
-      </header>
-      <main className='main'>
+      <section>
         <AdminStateProvider>
-          <div className="container">
             <Outlet />
-          </div>
         </AdminStateProvider>
-      </main >
-      <footer>
-        <Footer className='footer' />
-      </footer>
+      </section >
     </>
   );
 }

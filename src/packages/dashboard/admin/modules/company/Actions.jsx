@@ -13,7 +13,7 @@ export const AddCompany = async ({ request }) => {
     const response = await _request({ method: 'POST', url: constants.company, data: data, headers: { 'Content-Type': 'application/json' } });
     const pageResponse = btoa(JSON.stringify(response));
     // const hmac = new CryptoJS.HmacSHA256(ENCRYPTION_SECRET);
-    const url = `/admin/:id/company/wizard/0?page_response=${pageResponse}`;
+    const url = `/dashboard/admin/:id/company/wizard/0?page_response=${pageResponse}`;
     return redirect(url);
 };
 
@@ -114,10 +114,10 @@ export const TankAndPumpData = async ({ request }) => {
     let url = '';
     switch (data.type) {
         case 'pump_data':
-            url = `/admin/:id/company/list`;
+            url = `/dashboard/admin/:id/company/list`;
             break;
         case 'tank_data':
-            url = `/admin/:id/company/wizard/1?page_response=${pageResponse}`;
+            url = `/dashboard/admin/:id/company/wizard/1?page_response=${pageResponse}`;
             break;
         default: url = `/*`;
     }

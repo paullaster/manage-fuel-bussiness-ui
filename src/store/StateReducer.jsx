@@ -3,7 +3,7 @@ import { _request } from "../services";
 import { constants } from "../packages/dashboard";
 
 export const StateReducer = (state, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case 'LINKS':
             /**
              * Checking if link exist
@@ -26,7 +26,7 @@ export const StateReducer = (state, action) => {
                 ...state,
                 companies: action.payload
             };
-        
+
         case 'SETCOMPANIESLISTCOUNT':
             return state = {
                 ...state,
@@ -37,10 +37,26 @@ export const StateReducer = (state, action) => {
                 ...state,
                 previousSearchItem: action.payload,
             };
-            case 'SETPNEXTSEARCHITEM':
-                return state = {
-                    ...state,
-                    nextSearchItem: action.payload,
-                };
+        case 'SETPNEXTSEARCHITEM':
+            return state = {
+                ...state,
+                nextSearchItem: action.payload,
+            };
+        case 'TOGGLESUBLINK':
+            return state = {
+                ...state,
+                links: state.links.map((link) => {
+                    if(link.id === action.payload) {
+                        return link =  {
+                            ...link,
+                            showSubs: !link.showSubs,
+                        };
+                    }
+                    return link = {
+                        ...link,
+                        showSubs: false,
+                    };
+                }),
+            };
     }
 }

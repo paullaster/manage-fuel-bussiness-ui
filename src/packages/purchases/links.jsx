@@ -5,7 +5,7 @@ export default {
     id: uuidv4(),
     to: 'purchases',
     icon: <MdTrolley size={30} />,
-    caption: "purchase",
+    caption: "purchases",
     disabled: false,
     order: 1,
     hasSublinks: true,

@@ -15,12 +15,6 @@ const NewVendor = () => {
             </div>
             <div className="new_vendor_form">
                 <Form>
-                    <div>
-                        <label htmlFor="organization_id">Organization</label>
-                        <select name="organization_id" id="organization_id">
-
-                        </select>
-                    </div>
                     <InputComponent 
                     type="text"
                     prelabelText = {"national ID"}
@@ -47,9 +41,64 @@ const NewVendor = () => {
                     name="company_name"
                     />
                      <div>
-                        <label htmlFor="product_description"></label>
+                        <label htmlFor="product_description">product description</label>
                         <textarea name="product_description" id="product_description" cols="30" rows="10"></textarea>
                      </div>
+                     <InputComponent 
+                    type="text"
+                    prelabelText = {"kra pin"}
+                    name="kra_pin"
+                    />
+                     <InputComponent 
+                    type="text"
+                    prelabelText = {"address"}
+                    name="address"
+                    />
+                     <InputComponent 
+                    type="text"
+                    prelabelText = {"city"}
+                    name="city"
+                    />
+                     <InputComponent 
+                    type="text"
+                    prelabelText = {"zip code"}
+                    name="zip_code"
+                    />
+                     <InputComponent 
+                    type="text"
+                    prelabelText = {"state"}
+                    name="state"
+                    />
+                     <InputComponent 
+                    type="text"
+                    prelabelText = {"country"}
+                    name="country"
+                    />
+                     <InputComponent 
+                    type="url"
+                    prelabelText = {"website"}
+                    name="website"
+                    />
+                     <InputComponent 
+                    type="url"
+                    prelabelText = {"vendor reference"}
+                    name="vendor_reference"
+                    />
+                    
+                    <div>
+                        <div>
+                            <h3>Contact Person</h3>
+                            <p>To include additional recipients in an email as CC, add them as contact persons</p>
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
+                     <InputComponent 
+                    type="url"
+                    prelabelText = {"vendor reference"}
+                    name="contact_name"
+                    />
                 </Form>
             </div>
         </div>

@@ -16,7 +16,7 @@ const Vendors = () => {
           <div>
             <NavLink>
               <span className="action_name_and_description">
-                <span className="action_name new_vendor_glow">new vendor</span>
+                <span className="action_name new_vendor_glow"><span>new vendor</span><span></span></span>
                 <span className="action_description">Enter the details and create your first vendor</span>
               </span>
               <span className="action_graphic"><MdChevronRight size={30} /></span>

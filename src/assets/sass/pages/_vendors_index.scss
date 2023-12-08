@@ -54,6 +54,21 @@
                             margin-bottom: 2%;
                             font-size: u.rem(14);
                         }
+                        & > .new_vendor_glow {
+                             display: flex;
+                             align-items: center;
+                            & > * { display: block;}
+                            & > *:first-child {
+                                width: 20%;
+                                max-width: 20%;
+                            }
+                            & > *:last-child {
+                                width: .8rem;
+                                height: .8rem;
+                                border-radius: 100%;
+                                background-color: g.$color_primary;
+                            }
+                        }
                         & > .action_description {
                             text-transform: lowercase !important;
                         }

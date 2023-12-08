@@ -26,6 +26,30 @@ const NewVendor = () => {
                     prelabelText = {"national ID"}
                     name="organization_id"
                     />
+                     <InputComponent 
+                    type="text"
+                    prelabelText = {"vendor name"}
+                    name="vendor_name"
+                    />
+                     <InputComponent 
+                    type="email"
+                    prelabelText = {"vendor email"}
+                    name="vendor_email"
+                    />
+                     <InputComponent 
+                    type="tel"
+                    prelabelText = {"vendor phone"}
+                    name="vendor_phone"
+                    />
+                     <InputComponent 
+                    type="text"
+                    prelabelText = {"company name"}
+                    name="company_name"
+                    />
+                     <div>
+                        <label htmlFor="product_description"></label>
+                        <textarea name="product_description" id="product_description" cols="30" rows="10"></textarea>
+                     </div>
                 </Form>
             </div>
         </div>

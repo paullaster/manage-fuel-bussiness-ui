@@ -24,7 +24,7 @@ const router = createBrowserRouter(
                 <Route element={<User />} path='user/:id'></Route>
                 <Route element={<Purchases.Purchases />} path='purchases'>
                     <Route element={<Purchases.modules.vendors.Vendors />} path='vendor'/>
-                    <Route element={<Purchases.modules.vendors.components.NewVendor />} path='create'/>
+                    <Route element={<Purchases.modules.vendors.components.NewVendor />} path='vendor/create'/>
                 </Route>
             </Route>
         </Route>

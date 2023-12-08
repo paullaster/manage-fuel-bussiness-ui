@@ -14,7 +14,7 @@ const Vendors = () => {
         </div>
         <div className="vendor_action_link">
           <div>
-            <NavLink>
+            <NavLink to={'/dashboard/purchases/vendor/create'}>
               <span className="action_name_and_description">
                 <span className="action_name new_vendor_glow"><span>new vendor</span><span></span></span>
                 <span className="action_description">Enter the details and create your first vendor</span>

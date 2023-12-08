@@ -23,7 +23,8 @@ const NewVendor = () => {
                     </div>
                     <InputComponent 
                     type="text"
-                    prela
+                    prelabelText = {"national ID"}
+                    name="organization_id"
                     />
                 </Form>
             </div>

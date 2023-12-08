@@ -1,5 +1,5 @@
 import { Button, InputComponent,  } from "@/components";
-import { MdOutlineStarOutline } from "react-icons/md";
+import { MdOutlineStarOutline, MdAdd  } from "react-icons/md";
 import { Form } from "react-router-dom";
 
 
@@ -94,6 +94,12 @@ const NewVendor = () => {
                             <div>Name</div>
                             <div>Email</div>
                             <div>Phone</div>
+                        </div>
+                        <div>
+                            <Button>
+                                <span><MdAdd size={35}/></span>
+                                <span>add a contact person</span>
+                            </Button>
                         </div>
                     </div>
                      <InputComponent 

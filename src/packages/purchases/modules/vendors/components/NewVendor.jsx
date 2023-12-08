@@ -91,7 +91,9 @@ const NewVendor = () => {
                             <p>To include additional recipients in an email as CC, add them as contact persons</p>
                         </div>
                         <div>
-
+                            <div>Name</div>
+                            <div>Email</div>
+                            <div>Phone</div>
                         </div>
                     </div>
                      <InputComponent 

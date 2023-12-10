@@ -1,0 +1,108 @@
+@use '../global/' as g;
+@use '../utilities/' as u;
+
+.purchase_items_index {
+    width: 80%;
+    display: flex;
+
+    .purchase_items_index_actions {
+        width: 60%;
+        max-width: 70%;
+        &>.purchase_items_heading {
+            padding-bottom: g.$msmall;
+
+            &>h2 {
+                font-weight: 100;
+                font-size: g.$medium_font;
+                margin: 2.8% 0;
+            }
+
+            &>p {
+                margin: .8% 0;
+                font-size: u.rem(16);
+            }
+
+            &>* {
+                display: block;
+            }
+        }
+
+        &>.purchase_items_action_link {
+            padding-top: g.$tiny;
+            @include u.border(null, g.$default_border);
+
+            &>div {
+                padding: .8% 0;
+                @include u.border(null, null, g.$default_border);
+
+                &>a {
+                    display: flex;
+
+                    &>* {
+                        display: block;
+                        font-size: u.rem(16);
+                    }
+
+                    &>.action_name_and_description {
+                        width: 80%;
+                        max-width: 80%;
+
+                        & > * {
+                            display: block;
+                        }
+                        &>span.action_name {
+                            margin-bottom: 2%;
+                            font-size: u.rem(14);
+                        }
+                        & > .new_purchase_items_glow {
+                             display: flex;
+                             align-items: center;
+                            & > * { display: block;}
+                            & > *:first-child {
+                                width: 20%;
+                                max-width: 20%;
+                            }
+                            & > *:last-child {
+                                width: .8rem;
+                                height: .8rem;
+                                border-radius: 100%;
+                                background-color: g.$color_primary;
+                            }
+                        }
+                        & > .action_description {
+                            text-transform: lowercase !important;
+                        }
+                        & > .action_description::first-letter {
+                            text-transform: uppercase !important;
+                        }
+                    }
+                    & > .action_graphic { 
+                        width: 20%;
+                        max-width: 20%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        & > * {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    & > .purchase_items_graphics {
+        width: 40%;
+        max-width: 40%;
+        height: 90dvh;
+        position: relative;
+
+        & > img {
+            position: absolute;
+            bottom: 2%;
+            right: 0;
+            display: block;
+            width: 100%;
+        }
+    }
+
+}

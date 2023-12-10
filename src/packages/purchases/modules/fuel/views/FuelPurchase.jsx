@@ -1,8 +1,7 @@
 import shared from "../../../shared";
-import vendorsImage from "@/assets/images/vendors.svg";
+import fuelPurchase from "@/assets/images/fuel_purchase.svg";
 
-const Vendors = () => {
-
+const FuelPurchase = () => {
   const actionInfo = [
     {
       caption: "new vendor",
@@ -19,16 +18,26 @@ const Vendors = () => {
       link: "",
       description: "Reduce time spent on employee payments, benefits, and deductions"
     },
+    {
+      caption: "Payroll",
+      link: "",
+      description: "Reduce time spent on employee payments, benefits, and deductions"
+    },
+    {
+      caption: "Payroll",
+      link: "",
+      description: "Reduce time spent on employee payments, benefits, and deductions"
+    },
   ];
 
   return (
     <shared.components.PurchasesItemsIndex
-      particular="Vendors"
-      intro="Vendors are required if you want to create bills. You can see the balance<br />you owe and filter reports by the vendor."
+      particular="Fuel Purchase"
+      intro="Fuels purchases information"
       actionInformation={actionInfo}
-      componentImage={vendorsImage}
+      componentImage={fuelPurchase}
     />
   )
 }
 
-export default Vendors
+export default FuelPurchase

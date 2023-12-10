@@ -1,8 +1,7 @@
-import Vendors from "./views/Vendors";
+import Items from "./views/Items";
 import components from "./components";
 
-
 export default {
-    Vendors,
+    Items,
     components,
 }

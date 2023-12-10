@@ -1,8 +1,8 @@
-import Vendors from "./views/Vendors";
+import FuelPurchase from "./views/FuelPurchase";
 import components from "./components";
 
 
 export default {
-    Vendors,
     components,
+    FuelPurchase,
 }

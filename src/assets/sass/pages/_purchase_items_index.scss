@@ -1,14 +1,14 @@
 @use '../global/' as g;
 @use '../utilities/' as u;
 
-.vendor_index {
+.purchase_items_index {
     width: 80%;
     display: flex;
 
-    .vendor_index_actions {
+    .purchase_items_index_actions {
         width: 60%;
         max-width: 70%;
-        &>.vendor_heading {
+        &>.purchase_items_heading {
             padding-bottom: g.$msmall;
 
             &>h2 {
@@ -27,7 +27,7 @@
             }
         }
 
-        &>.vendor_action_link {
+        &>.purchase_items_action_link {
             padding-top: g.$tiny;
             @include u.border(null, g.$default_border);
 
@@ -54,7 +54,7 @@
                             margin-bottom: 2%;
                             font-size: u.rem(14);
                         }
-                        & > .new_vendor_glow {
+                        & > .new_purchase_items_glow {
                              display: flex;
                              align-items: center;
                             & > * { display: block;}
@@ -90,7 +90,7 @@
             }
         }
     }
-    & > .vendor_graphics {
+    & > .purchase_items_graphics {
         width: 40%;
         max-width: 40%;
         height: 90dvh;

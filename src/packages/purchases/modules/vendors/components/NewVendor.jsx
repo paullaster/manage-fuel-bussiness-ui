@@ -26,10 +26,10 @@ const NewVendor = () => {
         }
     };
     const handleOnMouseLeave = (event) => {
-        // if (event.type = "mouseleave" && upload) {
-        //     let span = Array.from(event.target.parentNode.children).filter(child => child.nodeName === "SPAN");
-        //     span[0].classList.remove("show");
-        // }
+        if (event.type = "mouseleave" && upload) {
+            let span = Array.from(event.target.parentNode.children).filter(child => child.nodeName === "SPAN");
+            span[0].classList.remove("show");
+        }
     };
 
     return (

@@ -110,6 +110,7 @@
                             margin-top: g.$small;
 
                             &>.file_upload_container {
+                                position: relative;
                                 height: 50%;
                                 @include u.borderradius(g.$xsmall);
                                 border: u.rem(2) dotted g.$color_active;
@@ -142,11 +143,15 @@
                                 }
 
                                 & > span {
+                                    position: absolute;
+                                    left: 0;
+                                    top: 0;
                                     display: none;
                                     width: 100%;
                                     height: 100%;
                                     z-index: 1000;
                                     background-color: #2490ee31;
+                                    color: red;
                                 }
                             }
                         }

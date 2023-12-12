@@ -85,7 +85,8 @@
 
                     &__others {
                         display: grid;
-                        grid-template-columns: 4fr 1.6fr;
+                        grid-template-columns: 3.2fr 1.6fr;
+                        column-gap: 4%;
                         margin-top: g.$small;
 
                         &_left {
@@ -101,6 +102,22 @@
 
                                 &>*:first-child {
                                     margin-bottom: g.$tiny;
+                                }
+                            }
+                        }
+                        &_right {
+                            margin-top: g.$small;
+                            & > .file_upload_container {
+                                height: 50%;
+                                @include u.borderradius(g.$xsmall);
+                                border: u.rem(2) dotted g.$color_active;
+                                & > input {
+                                    width: 100%;
+                                    height: 100%;
+                                    border: none !important;
+                                    outline: none !important;
+
+                                    
                                 }
                             }
                         }

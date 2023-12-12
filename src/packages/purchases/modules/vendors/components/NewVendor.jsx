@@ -60,7 +60,11 @@ const NewVendor = () => {
                                         name="vendor_reference"
                                     />
                                 </div>
-                                <div></div>
+                                <div className="new_vendors__left__dataentry__form_vendorinfo__others_right">
+                                    <div className="file_upload_container">
+                                    <input type="file" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div className="new_vendors__left__dataentry__form_billinginfo">

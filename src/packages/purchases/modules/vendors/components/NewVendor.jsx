@@ -20,10 +20,18 @@ const NewVendor = () => {
     };
 
     const handleOnMouseEnter = (event) => {
-        event.type = "mouseenter" && upload ?
-            (
-                event.target.querySelector('span').className += " show"
-            ) : "";
+        console.log(event.target.parentNode.children.querySelector('span'));
+        // if (event.type = "mouseenter" && upload) {
+        //     let span = event.target.querySelector('span');
+        //     span.className += " show";
+        // }
+    };
+    const handleOnMouseLeave = (event) => {
+        console.log(event.target);
+        // if (event.type = "mouseenter" && upload) {
+        //     let span = event.target.querySelector('span');
+        //     span.classList.remove("show");
+        // }
     };
 
     return (
@@ -83,10 +91,10 @@ const NewVendor = () => {
                                     />
                                 </div>
                                 <div className="new_vendors__left__dataentry__form_vendorinfo__others_right">
-                                    <div className="file_upload_container" onMouseEnter={handleOnMouseEnter}>
+                                    <div className="file_upload_container">
                                         <label htmlFor="vendor_logo" className={upload ? '' : 'show'}>upload picture</label>
                                         <input type="file" id="vendor_logo" accept=".ico, .svg, .jpg, .jpeg, .png, .gif, .web" onChange={handleUploadChange} />
-                                        <img src={upload} alt="image preview" className={upload ? 'show' : ''} />
+                                        <img src={upload} alt="image preview" className={upload ? 'show' : ''} onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}/>
                                         <span onClick={handleDeleteImage}> <MdDelete size={20} /></span>
                                     </div>
                                 </div>

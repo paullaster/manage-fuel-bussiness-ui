@@ -1,9 +1,31 @@
 import { Button, InputComponent, } from "@/components";
-import { MdOutlineStarOutline, MdAdd } from "react-icons/md";
+import { useState } from "react";
+import { MdOutlineStarOutline, MdAdd, MdDelete } from "react-icons/md";
 import { Form } from "react-router-dom";
 
 
 const NewVendor = () => {
+
+    const [upload, uploadPreview] = useState(null);
+
+    const handleUploadChange = (event) => {
+        console.log(event.target.files);
+        uploadPreview(URL.createObjectURL(event.target.files[0]));
+    };
+
+    const handleDeleteImage = (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        console.log(event.type)
+    };
+
+    const handleOnMouseEnter = (event) => {
+        event.type = "mouseenter" && upload ?
+            (
+                event.target.querySelector('span').className += " show"
+            ) : "";
+    };
+
     return (
         <section className="new_vendors">
             <div className="new_vendors__left">
@@ -61,8 +83,11 @@ const NewVendor = () => {
                                     />
                                 </div>
                                 <div className="new_vendors__left__dataentry__form_vendorinfo__others_right">
-                                    <div className="file_upload_container">
-                                    <input type="file" />
+                                    <div className="file_upload_container" onMouseEnter={handleOnMouseEnter}>
+                                        <label htmlFor="vendor_logo" className={upload ? '' : 'show'}>upload picture</label>
+                                        <input type="file" id="vendor_logo" accept=".ico, .svg, .jpg, .jpeg, .png, .gif, .web" onChange={handleUploadChange} />
+                                        <img src={upload} alt="image preview" className={upload ? 'show' : ''} />
+                                        <span onClick={handleDeleteImage}> <MdDelete size={20} /></span>
                                     </div>
                                 </div>
                             </div>

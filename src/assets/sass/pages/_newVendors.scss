@@ -105,19 +105,47 @@
                                 }
                             }
                         }
+
                         &_right {
                             margin-top: g.$small;
-                            & > .file_upload_container {
+
+                            &>.file_upload_container {
                                 height: 50%;
                                 @include u.borderradius(g.$xsmall);
                                 border: u.rem(2) dotted g.$color_active;
-                                & > input {
+
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+
+                                &>* {
+                                    display: block;
+                                }
+                                & > label {
+                                    display: none;
+                                    width: 100%;
+                                    height: 100%;
+                                }
+                                &>input {
                                     width: 100%;
                                     height: 100%;
                                     border: none !important;
                                     outline: none !important;
+                                    display: none !important;
+                                }
+                                & > img {
+                                    width: 100%;
+                                    height: 100%;
+                                    display: none;
+                                    @include u.borderradius(g.$xsmall);
+                                }
 
-                                    
+                                & > span {
+                                    display: none;
+                                    width: 100%;
+                                    height: 100%;
+                                    z-index: 1000;
+                                    background-color: #2490ee31;
                                 }
                             }
                         }
@@ -265,24 +293,28 @@
                                 margin-left: g.$small;
                             }
 
-                            & > div {
+                            &>div {
                                 padding-bottom: g.$tiny;
                                 flex: 1;
                             }
                         }
-                        & > .button_container {
+
+                        &>.button_container {
                             justify-content: center;
                             align-items: center;
                             padding-bottom: g.$small;
-                            & > button {
+
+                            &>button {
                                 display: flex;
                                 justify-content: center;
                                 align-items: center;
                                 font-size: g.$msmall_font;
-                                & > * {
+
+                                &>* {
                                     display: block;
                                 }
-                                & > *:not(:first-child) {
+
+                                &>*:not(:first-child) {
                                     margin-left: g.$tiny;
                                 }
                             }

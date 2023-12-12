@@ -20,17 +20,15 @@ const NewVendor = () => {
     };
 
     const handleOnMouseEnter = (event) => {
-        console.log(event.target.parentNode.children.querySelector('span'));
-        // if (event.type = "mouseenter" && upload) {
-        //     let span = event.target.querySelector('span');
-        //     span.className += " show";
-        // }
+        if (event.type = "mouseenter" && upload) {
+            let span = Array.from(event.target.parentNode.children).filter(child => child.nodeName === "SPAN");
+            span[0].className += " show";
+        }
     };
     const handleOnMouseLeave = (event) => {
-        console.log(event.target);
-        // if (event.type = "mouseenter" && upload) {
-        //     let span = event.target.querySelector('span');
-        //     span.classList.remove("show");
+        // if (event.type = "mouseleave" && upload) {
+        //     let span = Array.from(event.target.parentNode.children).filter(child => child.nodeName === "SPAN");
+        //     span[0].classList.remove("show");
         // }
     };
 

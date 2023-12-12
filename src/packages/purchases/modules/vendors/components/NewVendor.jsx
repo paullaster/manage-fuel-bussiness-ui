@@ -93,7 +93,7 @@ const NewVendor = () => {
                                         <label htmlFor="vendor_logo" className={upload ? '' : 'show'}>upload picture</label>
                                         <input type="file" id="vendor_logo" accept=".ico, .svg, .jpg, .jpeg, .png, .gif, .web" onChange={handleUploadChange} />
                                         <img src={upload} alt="image preview" className={upload ? 'show' : ''} onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}/>
-                                        <span onClick={handleDeleteImage}> <MdDelete size={20} /></span>
+                                        <span onClick={handleDeleteImage}> <MdDelete size={25} /></span>
                                     </div>
                                 </div>
                             </div>

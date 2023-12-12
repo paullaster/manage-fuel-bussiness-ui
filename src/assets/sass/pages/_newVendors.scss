@@ -122,12 +122,14 @@
                                 &>* {
                                     display: block;
                                 }
-                                & > label {
+
+                                &>label {
                                     display: none;
                                     width: 100%;
                                     height: 100%;
                                     padding: 50% 25%;
                                 }
+
                                 &>input {
                                     width: 100%;
                                     height: 100%;
@@ -135,14 +137,15 @@
                                     outline: none !important;
                                     display: none !important;
                                 }
-                                & > img {
+
+                                &>img {
                                     width: 100%;
                                     height: 100%;
                                     display: none;
                                     @include u.borderradius(g.$xsmall);
                                 }
 
-                                & > span {
+                                &>span {
                                     position: absolute;
                                     left: 0;
                                     top: 0;
@@ -152,6 +155,8 @@
                                     z-index: 1000;
                                     background-color: #2490ee31;
                                     color: red;
+                                    padding-left: u.rem(200);
+                                    padding-top: u.rem(200);
                                 }
                             }
                         }

@@ -14,7 +14,8 @@
     header {
         grid-area: header;
         background-color: g.$color_secondary;
-        min-height: 100dvh;
+        height: 100dvh;
+        position: fixed;
 
         .nav {
             display: grid;

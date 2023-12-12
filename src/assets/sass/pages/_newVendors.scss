@@ -1,0 +1,304 @@
+@use '../global/' as g;
+@use '../utilities/' as u;
+
+.new_vendors {
+    width: 80%;
+    display: grid;
+    grid-template-columns: 6.0fr 3.6fr;
+
+
+    &__left {
+        &__introduction {
+            display: flex;
+            // flex-direction: column;
+            align-items: center;
+            margin-bottom: g.$msmall;
+
+            &>*:not(:first-child) {
+                margin-left: g.$small_font;
+            }
+
+            // &>*:last-child {
+            //     border-bottom: g.$default_border;
+            //     padding-bottom: g.$msmall_font;
+            // }
+
+            // &_heading {
+            display: flex;
+            align-items: center;
+            margin-bottom: g.$msmall;
+
+            &>*:first-child {
+                margin-right: g.$small;
+            }
+
+            &>h2 {
+                font-size: g.$medium_font;
+                font-weight: 100;
+            }
+
+            &>* {
+                display: block;
+            }
+
+            // }
+        }
+
+        &__dataentry {
+            padding: g.$xsmall 0;
+
+            &__form {
+                display: flex;
+                flex-direction: column;
+
+                &>* {
+                    margin-bottom: g.$medium_font;
+                }
+
+                &_vendorinfo {
+                    // &_introduction {
+                    //     border-bottom: g.$default_border;
+                    //     padding-bottom: g.$msmall_font;
+
+                    //     &>h4 {
+                    //         font-weight: 300;
+                    //         font-size: g.$small_font;
+                    //     }
+                    // }
+
+                    &__vendorname {
+                        margin-bottom: g.$small_font;
+
+                        &>.input-group {
+                            display: flex;
+                            flex-direction: column;
+
+                            &>* {
+                                display: block;
+                            }
+
+                            &>*:first-child {
+                                margin-bottom: g.$tiny;
+                            }
+                        }
+                    }
+
+                    &__others {
+                        display: grid;
+                        grid-template-columns: 4fr 1.6fr;
+                        margin-top: g.$small;
+
+                        &_left {
+
+                            &>.input-group {
+                                display: flex;
+                                flex-direction: column;
+                                margin-bottom: g.$small;
+
+                                &>* {
+                                    display: block;
+                                }
+
+                                &>*:first-child {
+                                    margin-bottom: g.$tiny;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &_billinginfo {
+                    display: flex;
+                    flex-direction: column;
+
+                    &_dataentry {
+                        display: flex;
+                        flex-direction: column;
+
+                        &>* {
+                            margin-bottom: g.$msmall;
+                        }
+
+                        &_section-one {
+                            padding: g.$xsmall 0;
+                            display: flex;
+                            flex-direction: row;
+
+                            &>*:not(:first-child) {
+                                margin-left: g.$small;
+                            }
+
+                            &>.input-group {
+                                display: flex;
+                                flex-direction: column;
+                                flex: 1;
+
+                                &>* {
+                                    display: block;
+                                }
+
+                                &>*:first-child {
+                                    margin-bottom: g.$tiny;
+                                }
+                            }
+                        }
+
+                        &_section-two {
+                            display: flex;
+                            flex-direction: column;
+
+                            &>* {
+                                display: block;
+                            }
+
+                            &>label {
+                                text-transform: capitalize;
+                                margin-bottom: g.$tiny;
+                            }
+
+
+                        }
+                    }
+                }
+
+                &_addressinfo {
+                    &_datanetry {
+                        display: flex;
+                        flex-direction: column;
+                        margin-top: g.$msmall;
+
+                        &>* {
+                            margin-bottom: g.$small;
+                        }
+
+                        &__section-one {
+                            display: flex;
+                            flex-direction: column;
+
+                            &>*:not(:first-child) {
+                                margin-top: g.$msmall;
+                            }
+
+                            &>.input-group {
+                                &>* {
+                                    display: block;
+                                }
+
+                                &>*:first-child {
+                                    margin-bottom: g.$tiny;
+                                }
+
+                                &>input {
+                                    width: 60%;
+                                    max-width: 60%;
+                                }
+                            }
+
+                            &>.textarea_container {
+                                display: flex;
+                                flex-direction: column;
+                                text-transform: capitalize;
+
+                                &>* {
+                                    display: block;
+                                }
+
+                                &>*:first-child {
+                                    margin-bottom: g.$tiny;
+                                }
+                            }
+                        }
+
+                        &__section-two {
+                            display: grid;
+                            grid-template-columns: 6fr 6fr;
+                            column-gap: 4%;
+
+                            &>.input-group {
+                                margin-bottom: 8%;
+
+                                &>* {
+                                    display: block;
+                                }
+
+                                &>*:first-child {
+                                    margin-bottom: g.$tiny;
+                                }
+
+                                &>input {
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &_contactperson {
+
+                    &_datacolumns {
+                        &>*:not(:last-child) {
+                            margin-bottom: g.$small;
+                        }
+
+                        &>div {
+                            display: flex;
+                            border-bottom: g.$default_border;
+
+                            &>div:not(:first-child) {
+                                margin-left: g.$small;
+                            }
+
+                            & > div {
+                                padding-bottom: g.$tiny;
+                                flex: 1;
+                            }
+                        }
+                        & > .button_container {
+                            justify-content: center;
+                            align-items: center;
+                            padding-bottom: g.$small;
+                            & > button {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                font-size: g.$msmall_font;
+                                & > * {
+                                    display: block;
+                                }
+                                & > *:not(:first-child) {
+                                    margin-left: g.$tiny;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.form_section_introductions {
+    border-bottom: g.$default_border;
+    padding-bottom: g.$msmall_font;
+    margin-bottom: g.$small_font;
+
+    &>h4 {
+        font-weight: 300;
+        font-size: g.$small_font;
+    }
+}
+
+.info_textarea {
+    @include u.border(g.$valid_border);
+    padding: g.$tiny g.$tiny g.$tiny g.$small;
+    @include u.borderradius(g.$xsmall);
+}
+
+.info_textarea:focus {
+    // border: g.$color_primary !important;
+    outline: g.$color_primary !important;
+}
+
+.info_textarea:focus:invalid {
+    @include u.border(red);
+}

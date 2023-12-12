@@ -7,10 +7,8 @@ import { Form } from "react-router-dom";
 const NewVendor = () => {
 
     const [upload, uploadPreview] = useState(null);
-    let isHovering = false;
 
     const handleUploadChange = (event) => {
-        console.log(event.target.files);
         uploadPreview(URL.createObjectURL(event.target.files[0]));
     };
 
@@ -79,7 +77,7 @@ const NewVendor = () => {
                                 <div className="new_vendors__left__dataentry__form_vendorinfo__others_right">
                                     <div className="file_upload_container">
                                         <label htmlFor="vendor_logo" className={upload ? '' : 'show'}>upload picture</label>
-                                        <input type="file" id="vendor_logo" accept=".ico, .svg, .jpg, .jpeg, .png, .gif, .web" onChange={handleUploadChange} />
+                                        <input type="file" id="vendor_logo" accept=".ico, .svg, .jpg, .jpeg, .png, .gif, .web" name="vendor_image" onChange={handleUploadChange} />
                                         <img src={upload} alt="image preview" className={upload ? 'show' : ''} />
                                         <span onClick={handleDeleteImage} className={upload ? 'show' : ''}> <MdDelete size={25} /></span>
                                     </div>

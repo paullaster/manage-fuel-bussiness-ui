@@ -14,11 +14,10 @@ const Navigation = ({ links }) => {
 
 
   const handleOnClick = (e, item) => {
-    console.log(e, item);
     e.preventDefault();
     e.stopPropagation();
 
-    appStateDispatcher({type: "TOGGLESUBLINK", payload: item}); //@todo: MAKE TOGGLING PER CHILD INISIDE A SPECIFIC LINK!!!
+    appStateDispatcher({ type: "TOGGLESUBLINK", payload: item });
   }
   if (Hide('/wizard')) return null;
   return (
@@ -41,28 +40,28 @@ const Navigation = ({ links }) => {
                     link.hasSublinks &&
                     <div key={link.id} className='hasSublink' >
                       <div onClick={(e) => handleOnClick(e, link.id)} >
-                      <div className='nav_text'>
-                      <span>{link.icon}</span>
-                      <NavLink to={link.to}>{link.caption}</NavLink>
+                        <div className='nav_text'>
+                          <span>{link.icon}</span>
+                          <NavLink to={link.to}>{link.caption}</NavLink>
+                        </div>
+                        <div className='nav_icon'>
+                          {link.showSubs ? <MdExpandLess size={30} /> : <MdExpandMore size={30} />}
+                        </div>
                       </div>
-                      <div className='nav_icon'>
-                        { link.showSubs ? <MdExpandLess size= {30} /> : <MdExpandMore  size= {30} />}
-                      </div>
-                      </div>
-                        <ul className= { link.showSubs ? 'show' : ''} >
-                          {
-                            link.sublinks.map((sub) => {
-                              return (
-                                <>
+                      <ul className={link.showSubs ? 'show' : ''} >
+                        {
+                          link.sublinks.map((sub) => {
+                            return (
+                              <>
                                 <li key={sub.id}>
-                                  <span> { sub.icon} </span>
+                                  <span> {sub.icon} </span>
                                   <NavLink to={sub.to} >{sub.caption}</NavLink>
                                 </li>
-                                </>
-                              )
-                            })
-                          }
-                        </ul>
+                              </>
+                            )
+                          })
+                        }
+                      </ul>
                     </div>
                   }
                 </>

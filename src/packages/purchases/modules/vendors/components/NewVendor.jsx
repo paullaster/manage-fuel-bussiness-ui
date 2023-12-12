@@ -2,6 +2,7 @@ import { Button, InputComponent, } from "@/components";
 import { useState } from "react";
 import { MdOutlineStarOutline, MdAdd, MdDelete } from "react-icons/md";
 import { Form } from "react-router-dom";
+import cardImage from "@/assets/images/card_image.svg";
 
 
 const NewVendor = () => {
@@ -69,7 +70,7 @@ const NewVendor = () => {
                                         name="website"
                                     />
                                     <InputComponent
-                                        type="url"
+                                        type="text"
                                         prelabelText={"reference"}
                                         name="vendor_reference"
                                     />
@@ -77,7 +78,7 @@ const NewVendor = () => {
                                 <div className="new_vendors__left__dataentry__form_vendorinfo__others_right">
                                     <div className="file_upload_container">
                                         <label htmlFor="vendor_logo" className={upload ? '' : 'show'}>upload picture</label>
-                                        <input type="file" id="vendor_logo" accept=".ico, .svg, .jpg, .jpeg, .png, .gif, .web" name="vendor_image" onChange={handleUploadChange} />
+                                        <input type="file" id="vendor_logo" accept=".ico, .svg, .jpg, .jpeg, .png, .gif, .webp" name="vendor_image" onChange={handleUploadChange} />
                                         <img src={upload} alt="image preview" className={upload ? 'show' : ''} />
                                         <span onClick={handleDeleteImage} className={upload ? 'show' : ''}> <MdDelete size={25} /></span>
                                     </div>
@@ -169,7 +170,21 @@ const NewVendor = () => {
                     </Form>
                 </div>
             </div>
-            <div className="new_vendors__right"></div>
+            <div className="new_vendors__right">
+                <div className="new_vendors__right_container">
+                    <img src={cardImage} alt=" card image" />
+                </div>
+                <div className="new_vendors__right_text_div">
+                    <div className="customefields">
+                        <Button>custom fields</Button>
+                    </div>
+                    <div className="payroll-hypertext">
+                        <h3>Payroll</h3>
+                        <p>Create multiple pay calendars, run payrolls, print payslips, add benefits and deductions, and make bulk payments.</p>
+                        <Button>Learn more</Button>
+                    </div>
+                </div>
+            </div>
         </section>
     )
 }

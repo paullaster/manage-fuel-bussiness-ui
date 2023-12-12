@@ -331,14 +331,17 @@
             }
         }
     }
+
     &__right {
         position: relative;
+
         &_container {
             margin-top: g.$medium;
             margin-left: g.$small;
             perspective: u.rem(400);
             transform: rotateY(15deg) rotateZ(-70deg);
         }
+
         &_text_div {
             text-align: right;
             font-weight: 100;
@@ -348,32 +351,40 @@
             width: 70%;
             perspective: u.rem(400);
             transform: rotateZ(10deg);
-
-            & > .customefields {
+            &>.customefields {
                 margin-bottom: g.$large;
                 display: flex;
                 justify-content: flex-end;
 
-                & > button {
+                &>button {
                     display: block;
                     @include u.borderradius(g.$xsmall);
                     background-color: #5f6c9227;
                     padding: 2% 4%;
+                    transition: all .5s ease-in-out;
+
+                    &:hover {
+                        background-color: #5f6c924f;
+                    }
                 }
             }
-            & > .payroll-hypertext {
 
-                & > p {
+            &>.payroll-hypertext {
+
+                &>p {
                     font-weight: 100;
                     font-size: g.$msmall_font;
                     padding: 4% 0;
                 }
-                & > button {
+
+                &>button {
                     font-weight: 100;
                     font-size: g.$msmall_font;
-                }
-                & > button:focus {
-                    border-bottom: u.rem(1) solid #575bcf;
+                    transition: all .5s ease-in-out;
+
+                    &:hover {
+                        border-bottom: u.rem(1) solid #575bcf;
+                    }
                 }
             }
         }

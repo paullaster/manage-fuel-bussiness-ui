@@ -3,11 +3,13 @@ import { useState } from "react";
 import { MdOutlineStarOutline, MdAdd, MdDelete } from "react-icons/md";
 import { Form } from "react-router-dom";
 import cardImage from "@/assets/images/card_image.svg";
+import { ContactPerson } from "../ContactPerson";
 
 
 const NewVendor = () => {
 
     const [upload, uploadPreview] = useState(null);
+    const [contactPerson, setContactPerson] = useState([]);
 
     const handleUploadChange = (event) => {
         uploadPreview(URL.createObjectURL(event.target.files[0]));
@@ -17,6 +19,15 @@ const NewVendor = () => {
         event.stopPropagation();
         event.preventDefault();
         uploadPreview(null);
+    };
+
+    const handleCreateNewVendorColumn = (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+            if(event.type === 'click') {
+                const options = [{prop: 'name', type: 'text'}, {prop: 'email', type: 'email'}, {prop: 'phone', type: 'tel'}];
+                setContactPerson( prev => prev = [...prev, <ContactPerson options = {options} />]);
+            }
     };
 
     return (
@@ -159,8 +170,11 @@ const NewVendor = () => {
                                     <div>Email</div>
                                     <div>Phone</div>
                                 </div>
+                                {
+                                    contactPerson.length > 0 && contactPerson.map( p => p )
+                                }
                                 <div className="button_container">
-                                    <Button>
+                                    <Button onClick={handleCreateNewVendorColumn}>
                                         <span><MdAdd size={20} /></span>
                                         <span>add a contact person</span>
                                     </Button>

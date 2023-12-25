@@ -1,0 +1,42 @@
+@use '../global/' as g;
+@use '../utilities/' as u;
+
+.new_fuel_purchase {
+    width: 80% !important;
+
+    &_introduction {
+        display: flex;
+        // flex-direction: column;
+        align-items: center;
+        margin-bottom: g.$msmall;
+
+        &>*:not(:first-child) {
+            margin-left: g.$small_font;
+        }
+        display: flex;
+            align-items: center;
+            margin-bottom: g.$msmall;
+
+            &>*:first-child {
+                margin-right: g.$small;
+            }
+
+            &>h2 {
+                font-size: g.$medium_font;
+                font-weight: 100;
+            }
+
+            &>* {
+                display: block;
+            }
+    }
+    &_bill_info {
+        &__billitem_1 {
+            padding: 1.6rem 0;
+            &_left {
+                
+            }
+        }
+    }
+}
+

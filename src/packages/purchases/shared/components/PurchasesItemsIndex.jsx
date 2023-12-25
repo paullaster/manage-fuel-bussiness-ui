@@ -26,12 +26,13 @@ const PurchasesItemsIndex = (
                 <div className="purchase_items_action_link">
 
                     {
-                        actionInformation.map((action) => {
+                        actionInformation.map((action, index) => {
                             return (
                                 <div key={action.caption}>
                                     <NavLink to={action.link} >
                                         <span className="action_name_and_description">
-                                            <span className="action_name new_purchase_items_glow"><span>{action.caption}</span><span></span></span>
+                                            <span className="action_name new_purchase_items_glow"><span>{action.caption}</span><span></span>
+                                            </span>
                                             <span className="action_description">{action.description}</span>
                                         </span>
                                         <span className="action_graphic"><MdChevronRight size={30} /></span>

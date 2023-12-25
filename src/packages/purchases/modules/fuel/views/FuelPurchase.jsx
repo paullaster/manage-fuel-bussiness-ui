@@ -4,29 +4,29 @@ import fuelPurchase from "@/assets/images/fuel_purchase.svg";
 const FuelPurchase = () => {
   const actionInfo = [
     {
-      caption: "new vendor",
-      link: "/dashboard/purchases/vendor/create",
-      description: "Enter the details and create your first vendor"
+      caption: "new fuel purchase",
+      link: "/dashboard/purchases/fuel/create",
+      description: "Enter the details and create your fuel purchase"
     },
     {
-      caption: "import vendor",
+      caption: "import fuel purchase",
       link: "",
-      description: "Import your existing vendor with a single click"
+      description: "Import your existing fuel purchase with a single click"
     },
     {
-      caption: "Payroll",
+      caption: "Receipt",
       link: "",
-      description: "Reduce time spent on employee payments, benefits, and deductions"
+      description: "Save time by uploading receipt images"
     },
     {
-      caption: "Payroll",
+      caption: "Debit notes",
       link: "",
-      description: "Reduce time spent on employee payments, benefits, and deductions"
+      description: "Issue debit notes to your vendors for return goods"
     },
     {
-      caption: "Payroll",
+      caption: "Purchase orders",
       link: "",
-      description: "Reduce time spent on employee payments, benefits, and deductions"
+      description: "Initiate purchase for items ready to be shipped and delivery"
     },
   ];
 

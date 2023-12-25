@@ -59,3 +59,72 @@ button:disabled {
 .show {
     display: block !important;
 }
+
+.label-required {
+
+    &::after {
+        content: '*';
+        color: red;
+        padding-left: .4rem !important;
+    }
+}
+
+.add_item_placeholder {
+    border:  .1rem solid g.$color_active;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 16rem !important;
+    height: 8rem !important;
+    @include m.borderradius(.8rem);
+    margin-top: .4rem;
+    & > * {
+        display: block;
+    }
+}
+.add_new_item_card {
+    border:  .1rem solid g.$color_active;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20rem !important;
+    height: 12rem !important;
+    @include m.borderradius(.8rem);
+
+    &__search {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-bottom: .1rem solid g.$color_active;
+        width: 100% !important;
+        height: .2rem;
+        margin-top: -.4rem;
+        position: relative;
+        
+        & > * {
+            display: block;
+            padding-top: -8.6rem;
+        }
+        & > input {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 90%;
+             border: none !important;
+             outline: none !important;
+             background-color: transparent !important;
+            //  height: 1.2rem !important;
+             &:focus {
+                outline: none !important;
+                border: none !important;
+             }
+        }
+        & > span {
+            position: absolute;
+            top: .9rem !important;
+            left: .4rem !important;
+        }
+    }
+}

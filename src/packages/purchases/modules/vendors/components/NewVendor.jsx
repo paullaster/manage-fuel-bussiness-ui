@@ -25,7 +25,11 @@ const NewVendor = () => {
         event.stopPropagation();
         event.preventDefault();
             if(event.type === 'click') {
-                const options = [{prop: 'name', type: 'text'}, {prop: 'email', type: 'email'}, {prop: 'phone', type: 'tel'}];
+                const options = [
+                    {prop: 'name', type: 'text', placeholder: "name",}, 
+                    {prop: 'email', type: 'email', placeholder: "email",}, 
+                    {prop: 'phone', type: 'tel', placeholder: "phone",}, 
+                ];
                 setContactPerson( prev => prev = [...prev, <shared.components.NewConstruct options = {options} />]);
             }
     };

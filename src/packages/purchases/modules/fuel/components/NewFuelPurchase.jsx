@@ -6,63 +6,140 @@ import shared from "../../../shared";
 const NewFuelPurchase = () => {
 
   const [tankData, setTankData] = useState([]);
+  const [taxData, setTaxData] = useState([]);
 
+  const handleAddNewTankentry = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    if (event.type === 'click') {
+      const options = [
+        {
+          prop: 'dip_quantity_before_offloading',
+          type: 'number',
+          placeholder: " dip quantity before offloading",
+        },
+        {
+          prop: 'sales_quantity_during_offloading',
+          type: 'number',
+          placeholder: "sales quantity during offloading",
+        },
+        {
+          prop: 'expected_quantity',
+          type: 'number',
+          placeholder: "expected quantity",
+        },
+        {
+          prop: 'actual_dip_quantity_after_offloading',
+          type: 'number',
+          placeholder: "actual dip quantity after offloading",
+        },
+      ];
+      setTankData(prev => prev = [...prev, <shared.components.NewConstruct options={options} />]);
+    }
+  }
 
+  const handleAddNewTaxData = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    if (event.type === 'click') {
+      const options = [
+        {
+          prop: 'quantity',
+          type: 'number',
+          placeholder: " quantity",
+        },
+        {
+          prop: 'price',
+          type: 'number',
+          placeholder: "price",
+        },
+        {
+          prop: 'gross_amount',
+          type: 'number',
+          placeholder: "gross amount",
+        },
+        {
+          prop: 'tax_rate',
+          type: 'number',
+          placeholder: "tax rate",
+        },
+        {
+          prop: 'tax_amount',
+          type: 'number',
+          placeholder: "tax amount",
+        },
+        {
+          prop: 'net_payable',
+          type: 'number',
+          placeholder: "net payable",
+        },
+      ];
+      setTaxData(prev => prev = [...prev, <shared.components.NewConstruct options={options} />]);
+    }
+  }
 
   return (
-    <section className="new_fuel_purchase">
-      <shared.components.SectionIntroduction text="New Fuel Purchase"/>
-      <div className="new_fuel_purchase_bill_info">
-        <div className="new_fuel_purchase_bill_info__billitem_1">
-          <div className="new_fuel_purchase_bill_info__billitem_1_left">
-            <label htmlFor="vendor" className ="label-required">Vendor</label>
-            <div className="add_item_placeholder">
-              <span>
-                    <MdPersonAdd size={20}/>
-              </span>
-              <span>
-                  Add a vendor
-              </span>
-            </div>
-            <div className="add_new_item_card">
-              <div className="add_new_item_card__search">
-                <span><MdOutlineSearch size={20} /></span>
-                <input type="search" name="vendor" id="vendor" />
-              </div>
-              <div>
-              </div>
-              <Button>
-                <span><MdAdd size={20} /></span>
-                <span>new vendor</span>
-              </Button>
-            </div>
+    <section className="newfuelpurchase">
+      <shared.components.SectionIntroduction text="New Fuel Purchase" />
+      <div className="newfuelpurchase_autofil">
+        <div className="">
+          <label htmlFor="vendor" className="label-required">Vendor</label>
+          <div className="add_item_placeholder">
+            <span>
+              <MdPersonAdd size={20} />
+            </span>
+            <span>
+              Add a vendor
+            </span>
           </div>
-          <div className="new_fuel_purchase_bill_info__billdate_right">
-            <div>
-              <InputComponent
-                prelabelText="Dip Quantity before offloading"
-                name="dip_quantity_before_offloading"
-              />
-              <InputComponent
-                prelabelText="sales quantity"
-                name="sales_quantity_during_offloading"
-              />
+          <div className="add_new_item_card">
+            <div className="add_new_item_card__search">
+              <span><MdOutlineSearch size={20} /></span>
+              <input type="search" name="vendor" id="vendor" />
             </div>
             <div>
-              <InputComponent
-                prelabelText="expected quantity"
-                name="expected_quantity"
-              />
-              <InputComponent
-                prelabelText="actual dip quantity after offloading"
-                name="actual_dip_quantity_after_offloading"
-              />
             </div>
+            <Button>
+              <span><MdAdd size={20} /></span>
+              <span>new vendor</span>
+            </Button>
           </div>
         </div>
       </div>
-      <div>
-        <div>
+      <div className="newfuelpurchase_tankentries">
+        <div className="newfuelpurchase_tankentries__headers">
+          <div style={{ width: '20%' }}><span>Dip Qnty Before offloading</span></div>
+          <div><span>sales Qnty</span></div>
+          <div><span>expected Qnty</span></div>
+          <div style={{ width: '20%' }}><span>Actual dip Qnty after offloading</span></div>
+        </div>
+        <div className="newfuelpurchase_tankentries__items">
+          {
+            tankData.length > 0 && tankData.map(t => t)
+          }
+          <div>
+            <Button onClick={handleAddNewTankentry} ><span><MdAdd size={20} /></span><span>add new tank entry</span></Button>
+          </div>
+        </div>
+      </div>
+      <div className="newfuelpurchase_taxdata">
+        <div className="newfuelpurchase_taxdata__headers">
+          <div><span>quantity</span></div>
+          <div><span>price</span></div>
+          <div><span>gross amount</span></div>
+          <div><span>tax rate</span></div>
+          <div><span>tax amount</span></div>
+          <div><span>net payable</span></div>
+        </div>
+        <div className="newfuelpurchase_taxdata__item">
+          {
+            taxData.length > 0 && taxData.map(nt => nt)
+          }
+          <div>
+            <Button onClick={handleAddNewTaxData} ><span><MdAdd size={20} /></span><span>add new tax</span></Button>
+          </div>
+        </div>
+        {/* <div>
           <div>
             <InputComponent
               prelabelText="transport name"
@@ -103,7 +180,7 @@ const NewFuelPurchase = () => {
               name="net_payable"
             />
           </div>
-        </div>
+        </div> */}
         <div>
           <label htmlFor="invoice">Invoice</label>
           <div>

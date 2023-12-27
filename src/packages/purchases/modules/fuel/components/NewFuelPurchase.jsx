@@ -1,15 +1,17 @@
-import { MdOutlineStarOutline, MdOutlineSearch, MdAdd, MdPersonAdd } from "react-icons/md";
+import { useState } from "react";
+import { MdOutlineSearch, MdAdd, MdPersonAdd } from "react-icons/md";
 import { Button, InputComponent } from "@/components";
+import shared from "../../../shared";
 
 const NewFuelPurchase = () => {
+
+  const [tankData, setTankData] = useState([]);
+
+
+
   return (
     <section className="new_fuel_purchase">
-      <div className="new_fuel_purchase_introduction">
-        <h2>New fuel Purchase</h2>
-        <Button>
-          <MdOutlineStarOutline size={20} />
-        </Button>
-      </div>
+      <shared.components.SectionIntroduction text="New Fuel Purchase"/>
       <div className="new_fuel_purchase_bill_info">
         <div className="new_fuel_purchase_bill_info__billitem_1">
           <div className="new_fuel_purchase_bill_info__billitem_1_left">
@@ -77,8 +79,28 @@ const NewFuelPurchase = () => {
               name="driver_name"
             />
             <InputComponent
-              prelabelText="actual dip quantity after offloading"
-              name="actual_dip_quantity_after_offloading"
+              prelabelText="quantity"
+              name="quantity"
+            />
+            <InputComponent
+              prelabelText="price"
+              name="price"
+            />
+            <InputComponent
+              prelabelText="gross amount"
+              name="gross_amount"
+            />
+            <InputComponent
+              prelabelText="tax rate"
+              name="tax_rate"
+            />
+            <InputComponent
+              prelabelText="tax amount"
+              name="tax_amount"
+            />
+            <InputComponent
+              prelabelText="net payable"
+              name="net_payable"
             />
           </div>
         </div>
@@ -92,6 +114,32 @@ const NewFuelPurchase = () => {
             <Button>
               <span><MdAdd size={20} /></span>
               <span>new invoice</span>
+            </Button>
+          </div>
+        </div>
+        <div>
+          <label htmlFor="invoice">officer</label>
+          <div>
+            <span><MdOutlineSearch size={20} /></span>
+            <input type="search" name="invoice" id="invoice" />
+          </div>
+          <div>
+            <Button>
+              <span><MdAdd size={20} /></span>
+              <span>new officer</span>
+            </Button>
+          </div>
+        </div>
+        <div>
+          <label htmlFor="invoice">product</label>
+          <div>
+            <span><MdOutlineSearch size={20} /></span>
+            <input type="search" name="invoice" id="invoice" />
+          </div>
+          <div>
+            <Button>
+              <span><MdAdd size={20} /></span>
+              <span>new product</span>
             </Button>
           </div>
         </div>

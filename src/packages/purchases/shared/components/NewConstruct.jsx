@@ -1,4 +1,4 @@
-export const ContactPerson = ({ options }) => {
+export const NewConstruct = ({ options }) => {
     return (
         <div style={{justifyContent: "space-between", paddingBottom: '1.2rem'}}>
             {

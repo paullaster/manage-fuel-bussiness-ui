@@ -1,9 +1,9 @@
 import { Button, InputComponent, } from "@/components";
 import { useState } from "react";
-import { MdOutlineStarOutline, MdAdd, MdDelete } from "react-icons/md";
+import { MdAdd, MdDelete } from "react-icons/md";
 import { Form } from "react-router-dom";
 import cardImage from "@/assets/images/card_image.svg";
-import { ContactPerson } from "../ContactPerson";
+import shared from "../../../shared";
 
 
 const NewVendor = () => {
@@ -26,19 +26,14 @@ const NewVendor = () => {
         event.preventDefault();
             if(event.type === 'click') {
                 const options = [{prop: 'name', type: 'text'}, {prop: 'email', type: 'email'}, {prop: 'phone', type: 'tel'}];
-                setContactPerson( prev => prev = [...prev, <ContactPerson options = {options} />]);
+                setContactPerson( prev => prev = [...prev, <shared.components.NewConstruct options = {options} />]);
             }
     };
 
     return (
         <section className="new_vendors">
             <div className="new_vendors__left">
-                <div className="new_vendors__left__introduction">
-                    <h2>New Vendor</h2>
-                    <Button>
-                        <MdOutlineStarOutline size={20} />
-                    </Button>
-                </div>
+                <shared.components.SectionIntroduction text="New Vendor"/>
                 <div className="new_vendors__left__dataentry">
                     <Form className="new_vendors__left__dataentry__form">
                         <div className="new_vendors__left__dataentry__form_vendorinfo">

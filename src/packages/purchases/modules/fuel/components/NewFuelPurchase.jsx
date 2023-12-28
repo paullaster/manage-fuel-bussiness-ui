@@ -77,7 +77,7 @@ const NewFuelPurchase = () => {
       
       const styleProp = {
           display: "grid",
-          gridTemplateColumns: "16% 16% 16% 16% 16% 16%",
+          gridTemplateColumns: "16% 16% 16% 16% 16% 12%",
           columnGap: "1.2rem",
       }
       setTaxData(prev => prev = [...prev, <shared.components.NewConstruct options={options} style={styleProp} />]);

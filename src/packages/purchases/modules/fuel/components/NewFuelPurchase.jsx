@@ -105,6 +105,19 @@ const NewFuelPurchase = () => {
             </Button>
           </div>
         </div>
+        <div>
+          <label htmlFor="invoice">product</label>
+          <div>
+            <span><MdOutlineSearch size={20} /></span>
+            <input type="search" name="invoice" id="invoice" />
+          </div>
+          <div>
+            <Button>
+              <span><MdAdd size={20} /></span>
+              <span>new product</span>
+            </Button>
+          </div>
+        </div>
       </div>
       <div className="newfuelpurchase_tankentries">
         <div className="newfuelpurchase_tankentries__headers">
@@ -121,6 +134,20 @@ const NewFuelPurchase = () => {
             <Button onClick={handleAddNewTankentry} ><span><MdAdd size={20} /></span><span>add new tank entry</span></Button>
           </div>
         </div>
+      </div>
+      <div className="newfuelpurchase_transport">
+            <InputComponent
+              prelabelText="transport name"
+              name="transport_name"
+            />
+            <InputComponent
+              prelabelText="vehicle registration"
+              name="vehicle_registration"
+            />
+            <InputComponent
+              prelabelText="driver name"
+              name="driver_name"
+            />
       </div>
       <div className="newfuelpurchase_taxdata">
         <div className="newfuelpurchase_taxdata__headers">
@@ -139,48 +166,6 @@ const NewFuelPurchase = () => {
             <Button onClick={handleAddNewTaxData} ><span><MdAdd size={20} /></span><span>add new tax</span></Button>
           </div>
         </div>
-        {/* <div>
-          <div>
-            <InputComponent
-              prelabelText="transport name"
-              name="transport_name"
-            />
-            <InputComponent
-              prelabelText="vehicle registration"
-              name="vehicle_registration"
-            />
-          </div>
-          <div>
-            <InputComponent
-              prelabelText="driver name"
-              name="driver_name"
-            />
-            <InputComponent
-              prelabelText="quantity"
-              name="quantity"
-            />
-            <InputComponent
-              prelabelText="price"
-              name="price"
-            />
-            <InputComponent
-              prelabelText="gross amount"
-              name="gross_amount"
-            />
-            <InputComponent
-              prelabelText="tax rate"
-              name="tax_rate"
-            />
-            <InputComponent
-              prelabelText="tax amount"
-              name="tax_amount"
-            />
-            <InputComponent
-              prelabelText="net payable"
-              name="net_payable"
-            />
-          </div>
-        </div> */}
         <div>
           <label htmlFor="invoice">Invoice</label>
           <div>
@@ -204,19 +189,6 @@ const NewFuelPurchase = () => {
             <Button>
               <span><MdAdd size={20} /></span>
               <span>new officer</span>
-            </Button>
-          </div>
-        </div>
-        <div>
-          <label htmlFor="invoice">product</label>
-          <div>
-            <span><MdOutlineSearch size={20} /></span>
-            <input type="search" name="invoice" id="invoice" />
-          </div>
-          <div>
-            <Button>
-              <span><MdAdd size={20} /></span>
-              <span>new product</span>
             </Button>
           </div>
         </div>

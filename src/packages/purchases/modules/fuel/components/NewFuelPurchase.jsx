@@ -74,7 +74,13 @@ const NewFuelPurchase = () => {
           placeholder: "net payable",
         },
       ];
-      setTaxData(prev => prev = [...prev, <shared.components.NewConstruct options={options} />]);
+      
+      const styleProp = {
+          display: "grid",
+          gridTemplateColumns: "16% 16% 16% 16% 16% 16%",
+          columnGap: "1.2rem",
+      }
+      setTaxData(prev => prev = [...prev, <shared.components.NewConstruct options={options} style={styleProp} />]);
     }
   }
 
@@ -121,10 +127,10 @@ const NewFuelPurchase = () => {
       </div>
       <div className="newfuelpurchase_tankentries">
         <div className="newfuelpurchase_tankentries__headers">
-          <div style={{ width: '20%' }}><span>Dip Qnty Before offloading</span></div>
+          <div ><span>Dip Qnty Before offloading</span></div>
           <div><span>sales Qnty</span></div>
           <div><span>expected Qnty</span></div>
-          <div style={{ width: '20%' }}><span>Actual dip Qnty after offloading</span></div>
+          <div ><span>Actual dip Qnty after offloading</span></div>
         </div>
         <div className="newfuelpurchase_tankentries__items">
           {

@@ -172,7 +172,7 @@ const NewVendor = () => {
                                 {
                                     contactPerson.length > 0 && contactPerson.map( p => p )
                                 }
-                                
+                                <shared.components.AddItemButton methodHandler ={handleCreateNewVendorColumn} btnCaption ={"add contact person"}/>
                             </div>
                         </div>
                     </Form>

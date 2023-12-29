@@ -136,9 +136,7 @@ const NewFuelPurchase = () => {
           {
             tankData.length > 0 && tankData.map(t => t)
           }
-          <div>
-            <Button onClick={handleAddNewTankentry} ><span><MdAdd size={20} /></span><span>add new tank entry</span></Button>
-          </div>
+          <shared.components.AddItemButton methodHandler={handleAddNewTankentry} btnCaption="add tank entry"/>
         </div>
       </div>
       <div className="newfuelpurchase_transport">
@@ -168,9 +166,7 @@ const NewFuelPurchase = () => {
           {
             taxData.length > 0 && taxData.map(nt => nt)
           }
-          <div>
-            <Button onClick={handleAddNewTaxData} ><span><MdAdd size={20} /></span><span>add new tax</span></Button>
-          </div>
+          <shared.components.AddItemButton methodHandler={handleAddNewTaxData} btnCaption="add tax"/>
         </div>
         <div>
           <label htmlFor="invoice">Invoice</label>

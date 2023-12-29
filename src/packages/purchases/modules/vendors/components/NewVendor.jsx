@@ -1,6 +1,6 @@
 import { Button, InputComponent, } from "@/components";
 import { useState } from "react";
-import { MdAdd, MdDelete } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 import { Form } from "react-router-dom";
 import cardImage from "@/assets/images/card_image.svg";
 import shared from "../../../shared";

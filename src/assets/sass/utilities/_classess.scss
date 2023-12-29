@@ -8,9 +8,11 @@
     @include m.boxshadow;
     text-transform: capitalize;
 }
+
 .btn_transparent {
     @include m.boxshadow_light;
 }
+
 .btn_primary {
     background-color: g.$color_primary !important;
     color: g.$color_tertiary;
@@ -30,6 +32,7 @@ button:disabled {
     background-color: transparent;
     color: g.$color_tertiary;
 }
+
 .stepper-btn {
     background-color: g.$color_default !important;
     color: g.$color_secondary;
@@ -70,7 +73,7 @@ button:disabled {
 }
 
 .add_item_placeholder {
-    border:  .1rem solid g.$color_active;
+    border: .1rem solid g.$color_active;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -79,12 +82,14 @@ button:disabled {
     height: 8rem !important;
     @include m.borderradius(.8rem);
     margin-top: .4rem;
-    & > * {
+
+    &>* {
         display: block;
     }
 }
+
 .add_new_item_card {
-    border:  .1rem solid g.$color_active;
+    border: .1rem solid g.$color_active;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -102,76 +107,85 @@ button:disabled {
         height: .2rem;
         margin-top: -.4rem;
         position: relative;
-        
-        & > * {
+
+        &>* {
             display: block;
             padding-top: -8.6rem;
         }
-        & > input {
+
+        &>input {
             position: absolute;
             top: 0;
             right: 0;
             width: 90%;
-             border: none !important;
-             outline: none !important;
-             background-color: transparent !important;
+            border: none !important;
+            outline: none !important;
+            background-color: transparent !important;
+
             //  height: 1.2rem !important;
-             &:focus {
+            &:focus {
                 outline: none !important;
                 border: none !important;
-             }
+            }
         }
-        & > span {
+
+        &>span {
             position: absolute;
             top: .9rem !important;
             left: .4rem !important;
         }
     }
 }
+
 .section_introduction {
     display: flex;
-            // flex-direction: column;
-            align-items: center;
-            margin-bottom: g.$msmall;
+    // flex-direction: column;
+    align-items: center;
+    margin-bottom: g.$msmall;
 
-            &>*:not(:first-child) {
-                margin-left: g.$small_font;
-            }
+    &>*:not(:first-child) {
+        margin-left: g.$small_font;
+    }
 
-            // &>*:last-child {
-            //     border-bottom: g.$default_border;
-            //     padding-bottom: g.$msmall_font;
-            // }
+    // &>*:last-child {
+    //     border-bottom: g.$default_border;
+    //     padding-bottom: g.$msmall_font;
+    // }
 
-            // &_heading {
-            display: flex;
-            align-items: center;
-            margin-bottom: g.$msmall;
+    // &_heading {
+    display: flex;
+    align-items: center;
+    margin-bottom: g.$msmall;
 
-            &>*:first-child {
-                margin-right: g.$small;
-            }
+    &>*:first-child {
+        margin-right: g.$small;
+    }
 
-            &>h2 {
-                font-size: g.$medium_font;
-                font-weight: 100;
-            }
+    &>h2 {
+        font-size: g.$medium_font;
+        font-weight: 100;
+    }
 
-            &>* {
-                display: block;
-            }
+    &>* {
+        display: block;
+    }
 }
 
-.newConstruct { 
-    & > * {
+.newConstruct {
+    &>* {
         display: block !important;
     }
 }
 
 .button_container {
+    display: flex !important;
     justify-content: center;
     align-items: center;
     padding-bottom: g.$small;
+    padding-top: g.$small;
+    border-top: g.$default_border;
+    border-bottom: g.$default_border;
+    margin:g.$msmall 0;
 
     &>button {
         display: flex;

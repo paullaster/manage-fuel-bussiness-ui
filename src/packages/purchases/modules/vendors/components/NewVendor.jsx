@@ -172,12 +172,7 @@ const NewVendor = () => {
                                 {
                                     contactPerson.length > 0 && contactPerson.map( p => p )
                                 }
-                                <div className="button_container">
-                                    <Button onClick={handleCreateNewVendorColumn}>
-                                        <span><MdAdd size={20} /></span>
-                                        <span>add a contact person</span>
-                                    </Button>
-                                </div>
+                                
                             </div>
                         </div>
                     </Form>

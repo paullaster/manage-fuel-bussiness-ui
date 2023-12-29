@@ -167,3 +167,24 @@ button:disabled {
         display: block !important;
     }
 }
+
+.button_container {
+    justify-content: center;
+    align-items: center;
+    padding-bottom: g.$small;
+
+    &>button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: g.$msmall_font;
+
+        &>* {
+            display: block;
+        }
+
+        &>*:not(:first-child) {
+            margin-left: g.$tiny;
+        }
+    }
+}

@@ -2,7 +2,7 @@ export const NewConstruct = ({ options,
     style = {
         display: "flex",
         justifyContent: "space-between",
-        paddingBottom: '1.2rem',
+        padding: '2.0rem 0',
         borderBottom: ".1rem solid #5f6c921e",
     }
 }) => {

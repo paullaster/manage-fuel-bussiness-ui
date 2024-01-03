@@ -1,0 +1,382 @@
+@use '../global/' as g;
+@use '../utilities/' as u;
+
+.new_vendors {
+    width: 80%;
+    display: grid;
+    grid-template-columns: 6.0fr 3.6fr;
+
+
+    &__left {
+        &__dataentry {
+            padding: g.$xsmall 0;
+
+            &__form {
+                display: flex;
+                flex-direction: column;
+
+                &>* {
+                    margin-bottom: g.$medium_font;
+                }
+
+                &_vendorinfo {
+                    // &_introduction {
+                    //     border-bottom: g.$default_border;
+                    //     padding-bottom: g.$msmall_font;
+
+                    //     &>h4 {
+                    //         font-weight: 300;
+                    //         font-size: g.$small_font;
+                    //     }
+                    // }
+
+                    &__vendorname {
+                        margin-bottom: g.$small_font;
+
+                        &>.input-group {
+                            display: flex;
+                            flex-direction: column;
+
+                            &>* {
+                                display: block;
+                            }
+
+                            &>*:first-child {
+                                margin-bottom: g.$tiny;
+                            }
+                        }
+                    }
+
+                    &__others {
+                        display: grid;
+                        grid-template-columns: 3.2fr 1.6fr;
+                        column-gap: 4%;
+                        margin-top: g.$small;
+
+                        &_left {
+
+                            &>.input-group {
+                                display: flex;
+                                flex-direction: column;
+                                margin-bottom: g.$small;
+
+                                &>* {
+                                    display: block;
+                                }
+
+                                &>*:first-child {
+                                    margin-bottom: g.$tiny;
+                                }
+                            }
+                        }
+
+                        &_right {
+                            margin-top: g.$small;
+
+                            &>.file_upload_container {
+                                position: relative;
+                                height: 50%;
+                                @include u.borderradius(g.$xsmall);
+                                border: u.rem(2) dotted g.$color_active;
+
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+
+                                &>* {
+                                    display: block;
+                                }
+
+                                &>label {
+                                    display: none;
+                                    width: 100%;
+                                    height: 100%;
+                                    padding: 50% 25%;
+                                }
+
+                                &>input {
+                                    width: 100%;
+                                    height: 100%;
+                                    border: none !important;
+                                    outline: none !important;
+                                    display: none !important;
+                                }
+
+                                &>img {
+                                    width: 100%;
+                                    height: 100%;
+                                    display: none;
+                                    @include u.borderradius(g.$xsmall);
+                                }
+
+                                &>span {
+                                    position: absolute;
+                                    right: 2%;
+                                    bottom: 2%;
+                                    display: none;
+                                    z-index: 1000;
+                                    color: red;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &_billinginfo {
+                    display: flex;
+                    flex-direction: column;
+
+                    &_dataentry {
+                        display: flex;
+                        flex-direction: column;
+
+                        &>* {
+                            margin-bottom: g.$msmall;
+                        }
+
+                        &_section-one {
+                            padding: g.$xsmall 0;
+                            display: flex;
+                            flex-direction: row;
+
+                            &>*:not(:first-child) {
+                                margin-left: g.$small;
+                            }
+
+                            &>.input-group {
+                                display: flex;
+                                flex-direction: column;
+                                flex: 1;
+
+                                &>* {
+                                    display: block;
+                                }
+
+                                &>*:first-child {
+                                    margin-bottom: g.$tiny;
+                                }
+                            }
+                        }
+
+                        &_section-two {
+                            display: flex;
+                            flex-direction: column;
+
+                            &>* {
+                                display: block;
+                            }
+
+                            &>label {
+                                text-transform: capitalize;
+                                margin-bottom: g.$tiny;
+                            }
+
+
+                        }
+                    }
+                }
+
+                &_addressinfo {
+                    &_datanetry {
+                        display: flex;
+                        flex-direction: column;
+                        margin-top: g.$msmall;
+
+                        &>* {
+                            margin-bottom: g.$small;
+                        }
+
+                        &__section-one {
+                            display: flex;
+                            flex-direction: column;
+
+                            &>*:not(:first-child) {
+                                margin-top: g.$msmall;
+                            }
+
+                            &>.input-group {
+                                &>* {
+                                    display: block;
+                                }
+
+                                &>*:first-child {
+                                    margin-bottom: g.$tiny;
+                                }
+
+                                &>input {
+                                    width: 60%;
+                                    max-width: 60%;
+                                }
+                            }
+
+                            &>.textarea_container {
+                                display: flex;
+                                flex-direction: column;
+                                text-transform: capitalize;
+
+                                &>* {
+                                    display: block;
+                                }
+
+                                &>*:first-child {
+                                    margin-bottom: g.$tiny;
+                                }
+                            }
+                        }
+
+                        &__section-two {
+                            display: grid;
+                            grid-template-columns: 6fr 6fr;
+                            column-gap: 4%;
+
+                            &>.input-group {
+                                margin-bottom: 8%;
+
+                                &>* {
+                                    display: block;
+                                }
+
+                                &>*:first-child {
+                                    margin-bottom: g.$tiny;
+                                }
+
+                                &>input {
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &_contactperson {
+
+                    &_datacolumns {
+                        &>*:not(:last-child) {
+                            margin-bottom: g.$small;
+                        }
+
+                        &>div {
+                            display: flex;
+                            border-bottom: g.$default_border;
+
+                            &>div:not(:first-child) {
+                                margin-left: g.$small;
+                            }
+
+                            &>div {
+                                padding-bottom: g.$tiny;
+                                flex: 1;
+                            }
+                        }
+
+                        // &>.button_container {
+                        //     justify-content: center;
+                        //     align-items: center;
+                        //     padding-bottom: g.$small;
+
+                        //     &>button {
+                        //         display: flex;
+                        //         justify-content: center;
+                        //         align-items: center;
+                        //         font-size: g.$msmall_font;
+
+                        //         &>* {
+                        //             display: block;
+                        //         }
+
+                        //         &>*:not(:first-child) {
+                        //             margin-left: g.$tiny;
+                        //         }
+                        //     }
+                        // }
+                    }
+                }
+            }
+        }
+    }
+
+    &__right {
+        position: relative;
+
+        &_container {
+            margin-top: g.$medium;
+            margin-left: g.$small;
+            perspective: u.rem(400);
+            transform: rotateY(15deg) rotateZ(-70deg);
+        }
+
+        &_text_div {
+            text-align: right;
+            font-weight: 100;
+            position: absolute;
+            right: -8%;
+            top: 24%;
+            width: 70%;
+            perspective: u.rem(400);
+            transform: rotateZ(10deg);
+            &>.customefields {
+                margin-bottom: g.$large;
+                display: flex;
+                justify-content: flex-end;
+
+                &>button {
+                    display: block;
+                    @include u.borderradius(g.$xsmall);
+                    background-color: #5f6c9227;
+                    padding: 2% 4%;
+                    transition: all .5s ease-in-out;
+
+                    &:hover {
+                        background-color: #5f6c924f;
+                    }
+                }
+            }
+
+            &>.payroll-hypertext {
+
+                &>p {
+                    font-weight: 100;
+                    font-size: g.$msmall_font;
+                    padding: 4% 0;
+                }
+
+                &>button {
+                    font-weight: 100;
+                    font-size: g.$msmall_font;
+                    transition: all .5s ease-in-out;
+
+                    &:hover {
+                        border-bottom: u.rem(1) solid #575bcf;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.form_section_introductions {
+    border-bottom: g.$default_border;
+    padding-bottom: g.$msmall_font;
+    margin-bottom: g.$small_font;
+
+    &>h4 {
+        font-weight: 300;
+        font-size: g.$small_font;
+    }
+}
+
+.info_textarea {
+    @include u.border(g.$valid_border);
+    padding: g.$tiny g.$tiny g.$tiny g.$small;
+    @include u.borderradius(g.$xsmall);
+}
+
+.info_textarea:focus {
+    // border: g.$color_primary !important;
+    outline: g.$color_primary !important;
+}
+
+.info_textarea:focus:invalid {
+    @include u.border(red);
+}

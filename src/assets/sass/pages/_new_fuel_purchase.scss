@@ -1,0 +1,41 @@
+@use '../global/' as g;
+@use '../utilities/' as u;
+
+.newfuelpurchase {
+    width: 80% !important;
+
+    &_tankentries {
+        &__headers {
+            display: flex;
+            justify-content: "space-between";
+            gap: g.$small;
+            border-bottom: .1rem solid #5f6c92;
+            margin: g.$msmall 0;
+
+            &>div {
+                flex-grow: 1;
+            }
+        }
+
+        margin: g.$msmall 0;
+
+    }
+
+    &_taxdata {
+        
+        margin: g.$msmall 0;
+
+        &__headers {
+            display: flex;
+            justify-content: center;
+            gap: g.$small;
+            border-bottom: .1rem solid #5f6c92;
+            margin: g.$msmall 0;
+
+            &>div {
+                flex-grow: 1;
+                text-align: center;
+            }
+        }
+    }
+}

@@ -8,9 +8,11 @@
     @include m.boxshadow;
     text-transform: capitalize;
 }
+
 .btn_transparent {
     @include m.boxshadow_light;
 }
+
 .btn_primary {
     background-color: g.$color_primary !important;
     color: g.$color_tertiary;
@@ -30,6 +32,7 @@ button:disabled {
     background-color: transparent;
     color: g.$color_tertiary;
 }
+
 .stepper-btn {
     background-color: g.$color_default !important;
     color: g.$color_secondary;
@@ -58,4 +61,142 @@ button:disabled {
 
 .show {
     display: block !important;
+}
+
+.label-required {
+
+    &::after {
+        content: '*';
+        color: red;
+        padding-left: .4rem !important;
+    }
+}
+
+.add_item_placeholder {
+    border: .1rem solid g.$color_active;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 16rem !important;
+    height: 8rem !important;
+    @include m.borderradius(.8rem);
+    margin-top: .4rem;
+
+    &>* {
+        display: block;
+    }
+}
+
+.add_new_item_card {
+    border: .1rem solid g.$color_active;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20rem !important;
+    height: 12rem !important;
+    @include m.borderradius(.8rem);
+
+    &__search {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-bottom: .1rem solid g.$color_active;
+        width: 100% !important;
+        height: .2rem;
+        margin-top: -.4rem;
+        position: relative;
+
+        &>* {
+            display: block;
+            padding-top: -8.6rem;
+        }
+
+        &>input {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 90%;
+            border: none !important;
+            outline: none !important;
+            background-color: transparent !important;
+
+            //  height: 1.2rem !important;
+            &:focus {
+                outline: none !important;
+                border: none !important;
+            }
+        }
+
+        &>span {
+            position: absolute;
+            top: .9rem !important;
+            left: .4rem !important;
+        }
+    }
+}
+
+.section_introduction {
+    display: flex;
+    // flex-direction: column;
+    align-items: center;
+    margin-bottom: g.$msmall;
+
+    &>*:not(:first-child) {
+        margin-left: g.$small_font;
+    }
+
+    // &>*:last-child {
+    //     border-bottom: g.$default_border;
+    //     padding-bottom: g.$msmall_font;
+    // }
+
+    // &_heading {
+    display: flex;
+    align-items: center;
+    margin-bottom: g.$msmall;
+
+    &>*:first-child {
+        margin-right: g.$small;
+    }
+
+    &>h2 {
+        font-size: g.$medium_font;
+        font-weight: 100;
+    }
+
+    &>* {
+        display: block;
+    }
+}
+
+.newConstruct {
+    &>* {
+        display: block !important;
+    }
+}
+
+.button_container {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: g.$small;
+    border-bottom: g.$default_border;
+    margin:g.$msmall 0;
+
+    &>button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: g.$msmall_font;
+
+        &>* {
+            display: block;
+        }
+
+        &>*:not(:first-child) {
+            margin-left: g.$tiny;
+        }
+    }
 }

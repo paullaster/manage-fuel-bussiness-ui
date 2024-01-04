@@ -26,59 +26,6 @@ export const TankAndPumpData = async ({ request }) => {
         company_name: data.company_name,
     };
     dataType(data, payload);
-
-    if (data.type === "pump_data") {
-        let pumps = [];
-        let number_of_valves = 0;
-        for (let prop in data) {
-            if (prop.includes('valve_')) {
-                let propArray = prop.split('_');
-                let pump_number = parseInt(propArray.slice(-1));
-
-                let valvesArray = [];
-                let pumpObject = {};
-                if (!pumps.length && !valvesArray.length) {
-                    console.log(data[prop]);
-                    data[prop] !== ''
-                        ? (number_of_valves++, valvesArray = [...valvesArray, { fuel_type: data[prop] }])
-                        :
-                        '';
-
-                    valvesArray.length ? pumpObject = {
-                        pump_number,
-                        valves: valvesArray
-                    } : '';
-                    Object.keys(pumpObject).length ? pumps = [...pumps, pumpObject] : '';
-
-                } else {
-                    const itemExist = pumps && pumps.findIndex((item) => {
-                        return item.pump_number === pump_number;
-                    });
-                    if (itemExist >= 0) {
-                        data[prop] !== '' && pumps[itemExist].valves
-                            ? (number_of_valves++, pumps[itemExist].valves = [...pumps[itemExist].valves, { fuel_type: data[prop] }])
-                            : '';
-                    } else {
-                        data[prop] !== ''
-                            ? (number_of_valves++, valvesArray = [...valvesArray, { fuel_type: data[prop] }])
-                            : '';
-                        valvesArray.length ? pumpObject = {
-                            pump_number,
-                            valves: valvesArray
-                        } : '';
-                        Object.keys(pumpObject).length ? pumps = [...pumps, pumpObject] : '';
-                    }
-                }
-            }
-        }
-        pumps.length && number_of_valves 
-        ? payload = {
-            ...payload,
-            number_of_pumps: data.number_of_pumps,
-            number_of_valves,
-            pumps,
-        } :(new Error('Invalid data!, Please add valves data properly!'), redirect(window.location));
-    }
     const response = await _request({
         method: 'PUT',
         url: constants.company,
@@ -135,7 +82,10 @@ const dataType = (data, payload) => {
                         number_of_valves,
                         pumps,
                     } : (new Error('Invalid data!, Please add valves data properly!'), redirect(window.location));
-            }
+            return payload;
+
+        default: new Error('unknown data type,  '+ data.type)
+            };
 }
 
 /**

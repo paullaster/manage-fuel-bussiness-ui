@@ -59,7 +59,7 @@ const Wizard = () => {
 
   const handleSkipNext = () => {
     setActiveStep((prev) => {
-      navigate(`/admin/:id/company/wizard/${prev + 1}${currentLocation.search}`, { replace: true });
+      navigate(`/dashboard/admin/:id/company/wizard/${prev + 1}${currentLocation.search}`, { replace: true });
       return prev + 1;
     });
   };
@@ -67,7 +67,7 @@ const Wizard = () => {
   const handlePreviouseClick = () => {
     setActiveStep((prev) => {
       if (prev < 1) return;
-      navigate(`/admin/:id/company/wizard/${prev - 1}${currentLocation.search}`, { replace: true });
+      navigate(`/dashboard/admin/:id/company/wizard/${prev - 1}${currentLocation.search}`, { replace: true });
       return prev - 1;
     });
   };
@@ -77,7 +77,7 @@ const Wizard = () => {
     !initPageResponse.number_of_tanks && 
     setActiveStep((prev) => {
       if (prev < 1) return;
-      navigate(`/admin/:id/company/wizard/${prev - 1}${currentLocation.search}`, { replace: true });
+      navigate(`/dashboard/admin/:id/company/wizard/${prev - 1}${currentLocation.search}`, { replace: true });
       return prev - 1;
     });
   }

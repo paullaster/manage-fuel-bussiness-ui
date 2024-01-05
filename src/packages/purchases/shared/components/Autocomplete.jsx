@@ -1,11 +1,17 @@
-import { ComboBox } from "react-aria-components";
+import { ComboBox, Label } from "react-aria-components";
 import CustomPopover from "./CustomPopover";
+import CustomAriaInput from "./CustomAriaInput";
 
+const label = " ";
 const Autocomplete = ({list}) => {
   return (
-    <ComboBox>
-        <CustomPopover items={ list }/>
-    </ComboBox>
+      <div className={'autocomplete'}>
+          <ComboBox >
+              <Label>{label}</Label>
+              <CustomAriaInput />
+              <CustomPopover items={list} />
+          </ComboBox>
+    </div>
   )
 }
 

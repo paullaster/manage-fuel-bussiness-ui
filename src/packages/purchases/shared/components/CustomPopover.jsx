@@ -6,6 +6,7 @@ import { ListBox, ListBoxItem, Popover } from "react-aria-components";
  */
 
 const CustomPopover = ({items}) => {
+    console.log(items);
   return (
       <Popover>
         {

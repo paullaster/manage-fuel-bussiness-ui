@@ -112,8 +112,8 @@ const NewFuelPurchase = () => {
             </div>
           </div>
           <Transport />
-          <div className="newfuelpurchase_taxdata">
-            <div className="newfuelpurchase_taxdata__headers">
+          <div className="taxdata">
+            <div className="headers">
               <div><span>quantity</span></div>
               <div><span>price</span></div>
               <div><span>gross amount</span></div>
@@ -121,7 +121,7 @@ const NewFuelPurchase = () => {
               <div><span>tax amount</span></div>
               <div><span>net payable</span></div>
             </div>
-            <div className="newfuelpurchase_taxdata__item">
+            <div className="item">
               {
                 taxData.length > 0 && taxData.map(nt => nt)
               }

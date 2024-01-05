@@ -14,6 +14,9 @@ const NewFuelPurchase = () => {
   const [tankData, setTankData] = useState([]);
   const [taxData, setTaxData] = useState([]);
 
+  const sharedstate = shared.useSharedState();
+  const sharedStateAction = shared.useSharedStateAction();
+
   const handleAddNewTankentry = (event) => {
     event.stopPropagation();
     event.preventDefault();

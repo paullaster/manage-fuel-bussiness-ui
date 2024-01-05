@@ -9,6 +9,14 @@
             & > * {
                 display: block;
             }
+            & > *:not(:last-child) {
+                margin-bottom: g.$xsmall;
+            }
+            & > textarea {
+                border: none !important;
+                outline: none !important;
+                padding-left: .8rem;
+            }
         }
         & > * {
             margin-bottom: g.$medium;
@@ -17,5 +25,6 @@
 }
 
 .customfielset {
-
+    height: 8rem;
+    border: g.$valid_border;
 }

@@ -3,7 +3,7 @@ import { Button } from "@/components";
 
 const AddVendor = () => {
   return (
-      <div className="">
+      <div className="addVendor">
           <label htmlFor="vendor" className="label-required">Vendor</label>
           <div className="add_item_placeholder">
               <span>

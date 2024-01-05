@@ -3,19 +3,19 @@ const SaleItem = () => {
   return (
     <div className='saleItems'>
       <InputComponent
-        prelabelText="Dip Qnty Before offloading"
+        prelabelText="Dip Quantity Before offloading"
         name="dip_quantity_before_offloading"
       />
       <InputComponent
-        prelabelText="texpected Qnty"
+        prelabelText="expected Quantity"
         name="expected_quantity"
       />
         <InputComponent
-          prelabelText="Actual dip Qnty after offloading"
+          prelabelText="Actual dip Quantity after offloading"
         name="tactual_dip_quantity_after_offloading"
         />
       <InputComponent
-        prelabelText="sales Qnty"
+        prelabelText="sales Qunatity"
         name="sales_quantity_during_offloading"
       />
     </div>

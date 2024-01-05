@@ -2,7 +2,7 @@ import { InputComponent } from "@/components";
 
 const TaxItem = () => {
     return (
-        <div className='saleItems'>
+        <div className='taxItems'>
             <InputComponent
                 prelabelText="quantity"
                 name="quantity"

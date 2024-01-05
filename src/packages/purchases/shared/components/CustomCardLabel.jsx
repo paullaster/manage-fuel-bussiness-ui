@@ -1,3 +1,4 @@
+import { useGlobalDispatcher, useGlobalState } from '@/store';
 
 const CustomCardLabel = ({ label, icon }) => {
 

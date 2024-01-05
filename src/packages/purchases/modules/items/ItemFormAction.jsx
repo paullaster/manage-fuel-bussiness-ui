@@ -1,3 +1,4 @@
-const saveNewPurchaseItem = ({request}) => {
-    const data = 
+const saveNewPurchaseItem = async({request}) => {
+    const data = Object.entries( await request.formData());
+    
 }

@@ -8,9 +8,10 @@ import { axiosInstance } from "./axios";
  * @returns 
  */
 export const _request = async (options) => {
-    return axiosInstance.request(options).catch((error) => {
+    return axiosInstance.request(options)
+    //.catch((error) => {
         //TODO: Logout user when error response has status code 401
-        console.log(error.toJSON());
-        return error.toJSON();
-    });
+    //    console.log(error.toJSON());
+   //     return error.toJSON();
+  //  });
 }

@@ -12,7 +12,9 @@ export const SharedStateProvider = ({children}) => {
   );
   return (
     <SharedStateContentxt.Provider value={sharedState}>
-        
+        <SharedStateActioncontext.Provider value={sharedStateAction}>
+            {children}
+        </SharedStateActioncontext.Provider>
     </SharedStateContentxt.Provider>
   ) 
 }

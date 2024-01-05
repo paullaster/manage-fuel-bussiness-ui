@@ -1,10 +1,10 @@
-
+import { ComboBox, ListBox, ListBoxItem, Popover } from "react-aria-components";
 
 const Autocomplete = () => {
   return (
-    <div>
-
-    </div>
+    <ComboBox>
+        
+    </ComboBox>
   )
 }
 

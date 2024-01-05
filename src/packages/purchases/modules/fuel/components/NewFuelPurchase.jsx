@@ -26,13 +26,16 @@ const NewFuelPurchase = () => {
       <shared.components.SectionIntroduction text="New Fuel Purchase" />
       <Form>
         <div className="form">
-          <div className="composableAutofils">
-            {
-              cardLabelView.length && cardLabelView.slice(0, 2).map((card) => {
-                return <shared.components.AddItem label={card.name} cardLabelIcon={card.CustomCardLabelIcon} key={card.card} cardView={card.cardView} addItemView={card.addItemView} id={card.card} />
-              })
-            }
-          </div>
+          <fieldset>
+            <legend>Vendor & product</legend>
+            <div className="composableAutofils">
+              {
+                cardLabelView.length && cardLabelView.slice(0, 2).map((card) => {
+                  return <shared.components.AddItem label={card.name} cardLabelIcon={card.CustomCardLabelIcon} key={card.card} cardView={card.cardView} addItemView={card.addItemView} id={card.card} />
+                })
+              }
+            </div>
+          </fieldset>
           <fieldset>
             <legend>Sales entry</legend>
             <SaleItem />
@@ -45,13 +48,16 @@ const NewFuelPurchase = () => {
             <legend>Add tax</legend>
             <TaxItem />
           </fieldset>
-          <div className="composableAutofils">
-            {
-              cardLabelView.length && cardLabelView.slice(2, 4).map((card) => {
-                return <shared.components.AddItem label={card.name} cardLabelIcon={card.CustomCardLabelIcon} key={card.card} cardView={card.cardView} addItemView={card.addItemView} id={card.card} />
-              })
-            }
-          </div>
+          <fieldset>
+            <legend>Invoice & officer</legend>
+            <div className="composableAutofils">
+              {
+                cardLabelView.length && cardLabelView.slice(2, 4).map((card) => {
+                  return <shared.components.AddItem label={card.name} cardLabelIcon={card.CustomCardLabelIcon} key={card.card} cardView={card.cardView} addItemView={card.addItemView} id={card.card} />
+                })
+              }
+            </div>
+          </fieldset>
           <div className="form_actions">
             <Button type="button" className={'btn-element'}> cancel </Button>
             <Button type="submit" className={'btn-element btn_primary'}> save </Button>

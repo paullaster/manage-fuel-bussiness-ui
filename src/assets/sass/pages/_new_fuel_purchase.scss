@@ -6,10 +6,12 @@
 
     &>form {
         &>.form {
-            &>.composableAutofils {
-                display: flex;
-                justify-content: space-between;
-                margin: 4% 0;
+            &>fieldset {
+                &>.composableAutofils {
+                    display: flex;
+                    justify-content: space-evenly;
+                    margin: 4% 0;
+                }
             }
         }
     }

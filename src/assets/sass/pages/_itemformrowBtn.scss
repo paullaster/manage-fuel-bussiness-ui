@@ -1,3 +1,14 @@
-.itemformrowBtn [
-    
-]
+.itemformrowBtn {
+    background-color: red;
+    width: 50%;
+    padding: 4% 0;
+    display: flex;
+
+    & > * {
+        display: block;
+        width: 12rem;
+    }
+    & > *:not(:last-child) {
+        margin-right: g.$small;
+    }
+}

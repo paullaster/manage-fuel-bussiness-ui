@@ -5,6 +5,7 @@ export default {
             cardView: true,
             addItem: '',
             addItemView: false,
-        }
-    }
+        },
+    },
+
 }

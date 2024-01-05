@@ -13,15 +13,17 @@ const list = [
     }
 ]
 
-const AddItem = ({label}) => {
-  return (
-      <div className="addItem">
-          <label htmlFor="vendor" className="label-required">{label}</label>
-          <CustomCardLabel label={"add vendor"}/>
-          <Autocomplete list={list}/>
-          <AddItemButton btnCaption="new vendor"/>
-      </div>
-  )
+const AddItem = ({ label }) => {
+    return (
+        <div className="addItem">
+            <label htmlFor="vendor" className="label-required">{label}</label>
+            <CustomCardLabel label={"add vendor"} />
+            <div>
+                <Autocomplete list={list} />
+                <AddItemButton btnCaption="new vendor" />
+            </div>
+        </div>
+    )
 }
 
 export default AddItem

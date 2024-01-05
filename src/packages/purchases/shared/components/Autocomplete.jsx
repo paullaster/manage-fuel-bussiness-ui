@@ -1,9 +1,10 @@
-import { ComboBox, ListBox, ListBoxItem, Popover } from "react-aria-components";
+import { ComboBox } from "react-aria-components";
+import CustomPopover from "./CustomPopover";
 
-const Autocomplete = () => {
+const Autocomplete = ({list}) => {
   return (
     <ComboBox>
-        
+        <CustomPopover items={ list }/>
     </ComboBox>
   )
 }

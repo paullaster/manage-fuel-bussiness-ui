@@ -1,18 +1,23 @@
-import { MdOutlineSearch, MdAdd, MdPersonAdd } from "react-icons/md";
-import { Button } from "@/components";
+import CustomCardLabel from "./CustomCardLabel";
+import Autocomplete from "./Autocomplete";
+
+const list = [
+    {
+        id: 1,
+        name: "vendor 1"
+    },
+    {
+        id: 2,
+        name: "vendor 2"
+    }
+]
 
 const AddVendor = () => {
   return (
       <div className="addVendor">
           <label htmlFor="vendor" className="label-required">Vendor</label>
-          <div className="add_item_placeholder">
-              <span>
-                  <MdPersonAdd size={20} />
-              </span>
-              <span>
-                  Add vendor
-              </span>
-          </div>
+          <CustomCardLabel label={"add vendor"}/>
+          <Autocomplete list={list}/>
       </div>
   )
 }

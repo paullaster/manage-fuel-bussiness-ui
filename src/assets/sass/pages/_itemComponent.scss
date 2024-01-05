@@ -1,7 +1,15 @@
+@use '../global/' as g;
 .itemComponent {
-    
+    padding: 4% 0;
+
+    & > .itemDetails {
+        background-color: red;
+        & > * {
+            margin-bottom: g.$medium;
+        }
+    }
 }
 
 .customfielset {
-    
+
 }

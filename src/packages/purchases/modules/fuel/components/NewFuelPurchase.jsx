@@ -18,7 +18,6 @@ const NewFuelPurchase = () => {
   const appStateDispatcher = useGlobalDispatcher();
   const { cardLabelView } = useGlobalState();
 
-
   useEffect(() => {
     appStateDispatcher({type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils});
   });
@@ -109,9 +108,9 @@ const NewFuelPurchase = () => {
         <div className="form">
           <div className="composableAutofils">
             {
-              // cardLabelView.length && cardLabelView.slice(0, 2).map( (card) => {
-              //   return <shared.components.AddItem label={card.name} key={card.card} />
-              // })
+              cardLabelView.length && cardLabelView.slice(0, 1).map( (card) => {
+                return <shared.components.AddItem label={card.name} key={card.card} />
+              })
             }
             
             <shared.components.AddItem label={'product'} />
@@ -149,9 +148,9 @@ const NewFuelPurchase = () => {
           </div>
           <div className="composableAutofils">
             {
-              // cardLabelView.length && cardLabelView.slice(2, 4).map((card) => {
-              //   return <shared.components.AddItem label={card.name} key={card.card} />
-              // })
+              cardLabelView.length && cardLabelView.slice(2, 4).map((card) => {
+                return <shared.components.AddItem label={card.name} key={card.card} />
+              })
             }
           </div>
         </div>

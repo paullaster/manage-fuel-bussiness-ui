@@ -9,7 +9,7 @@ const ItemComponent = () => {
                 />
                 <fieldset className="input-group customfielset">
                     <legend>Description</legend>
-                    <textarea name="description" id="description" cols="30" rows="5"></textarea>
+                    <textarea name="description" id="description" cols="30" rows="3"></textarea>
                 </fieldset>
             </div>
             <div>

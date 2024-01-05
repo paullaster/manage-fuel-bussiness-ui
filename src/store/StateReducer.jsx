@@ -46,8 +46,8 @@ export const StateReducer = (state, action) => {
             return state = {
                 ...state,
                 links: state.links.map((link) => {
-                    if(link.id === action.payload) {
-                        return link =  {
+                    if (link.id === action.payload) {
+                        return link = {
                             ...link,
                             showSubs: !link.showSubs,
                         };
@@ -57,6 +57,12 @@ export const StateReducer = (state, action) => {
                         showSubs: false,
                     };
                 }),
+            };
+        case 'CREATECOMPOSABLEAUTOFILS':
+            console.log("REDUCER ACTION ", state);
+            return state = {
+                ...state,
+                cardLabelView: action.payload,
             };
     }
 }

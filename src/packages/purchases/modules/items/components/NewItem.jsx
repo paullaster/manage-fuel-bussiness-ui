@@ -1,8 +1,10 @@
-import React from 'react'
+import { InputComponent } from "@/components";
 
 const NewItem = () => {
   return (
-    <div>NewItem</div>
+    <section className='purchaseItem'>
+
+    </section>
   )
 }
 

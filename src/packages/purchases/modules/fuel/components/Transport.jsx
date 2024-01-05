@@ -3,7 +3,7 @@ import { InputComponent } from "@/components";
 
 const Transport = () => {
   return (
-      <div className="newfuelpurchase_transport">
+      <div className="transport">
           <InputComponent
               prelabelText="transport name"
               name="transport_name"

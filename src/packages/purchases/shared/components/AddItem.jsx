@@ -11,7 +11,7 @@ const list = [
         id: 2,
         name: "vendor 2"
     }
-]
+];
 
 const AddItem = ({ label, cardLabelIcon }) => {
     return (

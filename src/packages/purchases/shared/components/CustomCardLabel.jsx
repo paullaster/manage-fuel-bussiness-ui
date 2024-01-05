@@ -1,10 +1,9 @@
 import { useGlobalDispatcher, useGlobalState } from '@/store';
 
 const CustomCardLabel = ({ label, icon }) => {
-
-
+    const setAction = useGlobalDispatcher();
     const handleClick = (event) => {
-        console.log(event.target.parentElement.getAttribute('data-id'));
+        setAction({ type: 'SETCARDLABELVIEW', payload: event.target.parentElement.getAttribute('data-id') });
     }
 
   return (

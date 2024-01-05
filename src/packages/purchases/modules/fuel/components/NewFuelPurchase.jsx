@@ -147,7 +147,7 @@ const NewFuelPurchase = () => {
           <div className="composableAutofils">
             {
               cardLabelView.length && cardLabelView.slice(2, 4).map((card) => {
-                return <shared.components.AddItem label={card.name} cardLabelIcon={card.CustomCardLabelIcon} key={card.card} cardView={card.cardView} addItemView={card.addItemView} />
+                return <shared.components.AddItem label={card.name} cardLabelIcon={card.CustomCardLabelIcon} key={card.card} cardView={card.cardView} addItemView={card.addItemView} id={card.card}  />
               })
             }
           </div>

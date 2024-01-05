@@ -75,13 +75,13 @@ const NewFuelPurchase = () => {
           placeholder: "net payable",
         },
       ];
-      
+
       const styleProp = {
-          display: "grid",
-          gridTemplateColumns: "16% 16% 16% 16% 16% 12%",
-          columnGap: "1.2rem",
-          padding: '2.0rem 0',
-          borderBottom: ".1rem solid #5f6c921e",
+        display: "grid",
+        gridTemplateColumns: "16% 16% 16% 16% 16% 12%",
+        columnGap: "1.2rem",
+        padding: '2.0rem 0',
+        borderBottom: ".1rem solid #5f6c921e",
       }
       setTaxData(prev => prev = [...prev, <shared.components.NewConstruct options={options} style={styleProp} />]);
     }
@@ -91,7 +91,7 @@ const NewFuelPurchase = () => {
     <section className="newfuelpurchase">
       <shared.components.SectionIntroduction text="New Fuel Purchase" />
       <div className="composableAutofils">
-        <shared.components.AddItem label ={'Vendor'}/>
+        <shared.components.AddItem label={'Vendor'} />
         <shared.components.AddItem label={'product'} />
       </div>
       <div className="newfuelpurchase_tankentries">
@@ -105,7 +105,7 @@ const NewFuelPurchase = () => {
           {
             tankData.length > 0 && tankData.map(t => t)
           }
-          <shared.components.AddItemButton methodHandler={handleAddNewTankentry} btnCaption="add tank entry"/>
+          <shared.components.AddItemButton methodHandler={handleAddNewTankentry} btnCaption="add tank entry" />
         </div>
       </div>
       <Transport />
@@ -122,8 +122,10 @@ const NewFuelPurchase = () => {
           {
             taxData.length > 0 && taxData.map(nt => nt)
           }
-          <shared.components.AddItemButton methodHandler={handleAddNewTaxData} btnCaption="add tax"/>
+          <shared.components.AddItemButton methodHandler={handleAddNewTaxData} btnCaption="add tax" />
         </div>
+      </div>
+      <div className="composableAutofils">
         <shared.components.AddItem label={'invoice'} />
         <shared.components.AddItem label={'officer'} />
       </div>

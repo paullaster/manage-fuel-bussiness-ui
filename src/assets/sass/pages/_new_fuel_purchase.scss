@@ -38,4 +38,9 @@
             }
         }
     }
+    & > .composableAutofils {
+        display: flex;
+        justify-content: space-between;
+        margin: 4% 0;
+    }
 }

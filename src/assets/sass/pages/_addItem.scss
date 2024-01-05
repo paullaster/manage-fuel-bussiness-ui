@@ -2,9 +2,9 @@
 
 .addItem {
     border-radius: .4rem;
-    width: 28rem;
+    width: 32rem;
     box-shadow: .2rem .2rem .4rem .8rem black;
-    padding-bottom: 2rem;
+    padding: 2rem;
 
     @include u.boxshadow
 }

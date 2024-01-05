@@ -1,9 +1,14 @@
 import { useState } from "react";
-import { MdOutlineSearch, MdAdd, MdPersonAdd } from "react-icons/md";
-import { Button, InputComponent } from "@/components";
+import { MdPersonAdd, MdProductionQuantityLimits, MdFactCheck } from "react-icons/md";
 import shared from "../../../shared";
 import Transport from "./Transport";
 import { Form } from "react-router-dom";
+
+
+
+
+
+
 
 const NewFuelPurchase = () => {
 
@@ -94,7 +99,7 @@ const NewFuelPurchase = () => {
       <Form>
         <div className="form">
           <div className="composableAutofils">
-            <shared.components.AddItem label={'Vendor'} />
+            <shared.components.AddItem label={'Vendor'}/>
             <shared.components.AddItem label={'product'} />
           </div>
           <div className="tankentries">

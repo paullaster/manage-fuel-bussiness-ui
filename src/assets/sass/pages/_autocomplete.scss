@@ -47,7 +47,7 @@
         min-height: unset;
         border: none;
         @include u.boxshadow;
-        background-color: red;
+        background-color: g.$color_active;
 
         .react-aria-Header {
             padding-left: 1.571rem;
@@ -56,6 +56,8 @@
 
     .react-aria-ListBoxItem {
         padding: 0.286rem 0.571rem 0.286rem 1.571rem;
+        color: g.$color_tertiary;
+        cursor: default;
 
         &[data-focus-visible] {
             outline: none;
@@ -64,7 +66,7 @@
         &[data-selected] {
             font-weight: 600;
             background: unset;
-            color: var(--text-color);
+            color: g.$color_primary;
 
             &::before {
                 content: '✓';
@@ -78,8 +80,8 @@
 
         &[data-focused],
         &[data-pressed] {
-            background: g.$color_primary;
-            color: #fff;
+            background: g.$color_default;
+            color: g.$color_tertiary;
         }
     }
 }

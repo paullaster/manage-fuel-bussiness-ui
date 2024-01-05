@@ -1,6 +1,9 @@
 import components from "./components";
-import SharedStateProvider from './Sharedcontenxt'
+import SharedStateProvider, { useSharedState, useSharedStateAction } from './Sharedcontenxt';
 
 export default {
     components,
+    SharedStateProvider,
+    useSharedState,
+    useSharedStateAction,
 }

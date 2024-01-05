@@ -18,3 +18,8 @@ export default SharedStateProvider = ({children}) => {
     </SharedStateContentxt.Provider>
   ) 
 }
+
+
+
+export const useSharedState = () => useContext(SharedStateContentxt);
+export const useSharedStateAction = () => useContext(SharedStateActioncontext);

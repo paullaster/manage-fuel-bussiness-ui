@@ -1,0 +1,52 @@
+@use '../global/' as g;
+
+.itemComponent {
+    padding: 4% 0;
+
+    &>.itemDetails {
+        &>.input-group {
+            display: flex;
+            flex-direction: column;
+
+            &>* {
+                display: block;
+            }
+
+            &>*:not(:last-child) {
+                margin-bottom: g.$xsmall;
+            }
+
+            &>textarea {
+                border: none !important;
+                outline: none !important;
+                padding-left: .8rem;
+            }
+        }
+
+        &>* {
+            margin-bottom: g.$medium;
+        }
+    }
+    & > .price {
+        display: grid;
+        grid-template-columns: 6fr 6fr;
+        column-gap: 4rem;
+
+        & > .input-group {
+            display: flex;
+            flex-direction: column;
+            & > * {
+                display: block;
+            }
+            & >*:not(:last-child) {
+                margin-bottom: g.$xsmall;
+            }
+        }
+
+    }
+}
+
+.customfielset {
+    height: 8rem;
+    border: g.$valid_border;
+}

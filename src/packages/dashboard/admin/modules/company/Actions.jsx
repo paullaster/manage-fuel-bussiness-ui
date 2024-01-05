@@ -25,75 +25,7 @@ export const TankAndPumpData = async ({ request }) => {
         brand_name: data.brand_name,
         company_name: data.company_name,
     };
-
-    if (data.type === "tank_data") {
-        let tank_data = [];
-        for (let prop in data) {
-            if (prop.includes("tank_capacity_for_tank")) {
-                const tankNumber = prop.split("_").slice(-1)[0];
-                tank_data = [...tank_data, { tank_number: parseInt(tankNumber), tank_capacity: parseInt(data[prop]) }];
-            }
-        }
-        payload = {
-            ...payload,
-            number_of_tanks: parseInt(data.number_of_tanks),
-            tank_data: tank_data
-        }
-    }
-
-    if (data.type === "pump_data") {
-        console.log(data.type);
-        let pumps = [];
-        let number_of_valves = 0;
-        for (let prop in data) {
-            if (prop.includes('valve_')) {
-                let propArray = prop.split('_');
-                let pump_number = parseInt(propArray.slice(-1));
-
-                let valvesArray = [];
-                let pumpObject = {};
-                if (!pumps.length && !valvesArray.length) {
-                    console.log(data[prop]);
-                    data[prop] !== ''
-                        ? (number_of_valves++, valvesArray = [...valvesArray, { fuel_type: data[prop] }])
-                        :
-                        '';
-
-                    valvesArray.length ? pumpObject = {
-                        pump_number,
-                        valves: valvesArray
-                    } : '';
-                    Object.keys(pumpObject).length ? pumps = [...pumps, pumpObject] : '';
-
-                } else {
-                    const itemExist = pumps && pumps.findIndex((item) => {
-                        return item.pump_number === pump_number;
-                    });
-                    if (itemExist >= 0) {
-                        data[prop] !== '' && pumps[itemExist].valves
-                            ? (number_of_valves++, pumps[itemExist].valves = [...pumps[itemExist].valves, { fuel_type: data[prop] }])
-                            : '';
-                    } else {
-                        data[prop] !== ''
-                            ? (number_of_valves++, valvesArray = [...valvesArray, { fuel_type: data[prop] }])
-                            : '';
-                        valvesArray.length ? pumpObject = {
-                            pump_number,
-                            valves: valvesArray
-                        } : '';
-                        Object.keys(pumpObject).length ? pumps = [...pumps, pumpObject] : '';
-                    }
-                }
-            }
-        }
-        pumps.length && number_of_valves 
-        ? payload = {
-            ...payload,
-            number_of_pumps: data.number_of_pumps,
-            number_of_valves,
-            pumps,
-        } :(new Error('Invalid data!, Please add valves data properly!'), redirect(window.location));
-    }
+    dataType(data, payload);
     const response = await _request({
         method: 'PUT',
         url: constants.company,
@@ -122,4 +54,105 @@ export const TankAndPumpData = async ({ request }) => {
         default: url = `/*`;
     }
     return redirect(url);
+}
+
+const dataType = (data, payload) => {
+    console.log(data.type);
+    switch(data.type) {
+        
+        case 'tank_data"':
+            let tank_data = [];
+            for (let prop in data) {
+                passedTankData(prop, data, tank_data);
+            }
+            return payload = {
+                ...payload,
+                number_of_tanks: parseInt(data.number_of_tanks),
+                tank_data: tank_data
+            };
+        case 'pump_data':
+                let pumps = [];
+                let number_of_valves = 0;
+                for (let prop in data) {
+                    passedPumpData(pumps, number_of_valves, prop, data);  
+                }
+                pumps.length && number_of_valves
+                    ? payload = {
+                        ...payload,
+                        number_of_pumps: data.number_of_pumps,
+                        number_of_valves,
+                        pumps,
+                    } : (new Error('Invalid data!, Please add valves data properly!'), redirect(window.location));
+            return payload;
+
+        default: new Error('unknown data type,  '+ data.type)
+            };
+}
+
+/**
+ * 
+ * @param {*} item 
+ * @param {*} object 
+ * @param {*} dataList 
+ * @returns 
+ */
+const passedTankData = (item, object, dataList) => {
+    if (item.includes("tank_capacity_for_tank")) {
+        const tankNumber = item.split("_").slice(-1)[0];
+        console.log(dataList);
+        return dataList = [...dataList, { tank_number: parseInt(tankNumber), tank_capacity: parseInt(object[prop]) }];
+    }
+}
+
+/**
+ * 
+ * @param {*} pump 
+ * @param {*} valve 
+ * @param {*} item 
+ * @param {*} obj 
+ */
+const passedPumpData = (pumps, valve, item, obj) => {
+    if (item.includes('valve_')) {
+        let propArray = item.split('_');
+        let pump_number = parseInt(propArray.slice(-1));
+
+        let valvesArray = [];
+        if (!pumps.length && !valvesArray.length) {
+            console.log(obj[item]);
+            return pushToArray(obj[item], valve, valvesArray, pump_number, pumps);
+
+        } else {
+            const itemExist = pumps && pumps.findIndex((item) => {
+                return item.pump_number === pump_number;
+            });
+            if (itemExist >= 0) {
+                return pumps[itemExist].valves ? pushToArray(data[prop], valve, valvesArray, pump_number, pumps, pumps[itemExist]) : '';
+            } else {
+                return pushToArray(obj[item], valve, valvesArray, pump_number, pumps);
+            }
+        }
+    }
+    return (valve, pumps);
+}
+
+const pushToArray = (propValue, valve, valvesArray, pump_number, pumps, pumpObject = {}) => {
+
+    propValue !== ''
+        ? !Object.keys(pumpObject).length 
+            ? (valve++, valvesArray = [...valvesArray, { fuel_type: propValue }], modifyingObject(pumpObject, valvesArray, pump_number))
+        :
+            (valve++, pumpObject.valves = [...pumpObject.valves, { fuel_type: propValue }]) :
+        '';
+    Object.keys(pumpObject).length ? pumps = [...pumps, pumpObject] : '';
+
+    return (valve, pumps);
+}
+
+const modifyingObject = (object, valvesArray, pumpNumber) => {
+
+    valvesArray.length ? object = {
+        pumpNumber,
+        valves: valvesArray
+    } : '';
+    return object;
 }

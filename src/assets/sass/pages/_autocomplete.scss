@@ -1,0 +1,87 @@
+@use '../global/' as g;
+@use '../utilities/' as u;
+
+.autocomplete {
+    padding: g.$small 0 ;
+
+    .react-aria-ComboBox {
+        
+        .react-aria-Input {
+            width: 28rem;
+            margin: 0;
+            font-size: 1.072rem;
+            border-radius: 6px;
+            padding: 0.286rem 2rem 0.286rem 3.571rem;
+            vertical-align: middle;
+
+            // &[data-focused] {
+            //     outline: none;
+            //     outline-offset: -1px;
+            // }
+        }
+
+        .react-aria-Button {
+            border-radius: 4px;
+            border: none;
+            margin-left: -1.714rem;
+            width: 1.429rem;
+            height: 1.429rem;
+            padding: 0;
+            font-size: 0.857rem;
+            cursor: default;
+
+            &[data-pressed] {
+                box-shadow: none;
+            }
+        }
+    }
+}
+
+.react-aria-Popover[data-trigger=ComboBox] {
+    width: var(--trigger-width);
+
+    .react-aria-ListBox {
+        display: block;
+        width: unset;
+        max-height: inherit;
+        min-height: unset;
+        border: none;
+        @include u.boxshadow;
+        background-color: g.$color_active;
+
+        .react-aria-Header {
+            padding-left: 1.571rem;
+        }
+    }
+
+    .react-aria-ListBoxItem {
+        padding: 0.286rem 0.571rem 0.286rem 1.571rem;
+        color: g.$color_tertiary;
+        cursor: default;
+
+        &[data-focus-visible] {
+            outline: none;
+        }
+
+        &[data-selected] {
+            font-weight: 600;
+            background: unset;
+            color: g.$color_primary;
+
+            &::before {
+                content: '✓';
+                content: '✓' / '';
+                alt: ' ';
+                position: absolute;
+                top: 4px;
+                left: 4px;
+            }
+        }
+
+        &[data-focused],
+        &[data-pressed] {
+            background: g.$color_default;
+            color: g.$color_tertiary;
+        }
+    }
+}

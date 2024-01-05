@@ -46,8 +46,8 @@ export const StateReducer = (state, action) => {
             return state = {
                 ...state,
                 links: state.links.map((link) => {
-                    if(link.id === action.payload) {
-                        return link =  {
+                    if (link.id === action.payload) {
+                        return link = {
                             ...link,
                             showSubs: !link.showSubs,
                         };
@@ -57,6 +57,29 @@ export const StateReducer = (state, action) => {
                         showSubs: false,
                     };
                 }),
+            };
+        case 'CREATECOMPOSABLEAUTOFILS':
+            return state = {
+                ...state,
+                cardLabelView: action.payload,
+            };
+        case 'SETCARDLABELVIEW':
+            return state = {
+                ...state,
+                cardLabelView: state.cardLabelView.map((card) => {
+                    if (card.card === action.payload) {
+                        return card = {
+                            ...card,
+                            cardView: !card.cardView,
+                            addItemView: !card.addItemView,
+                        };
+                    }
+                    return card = {
+                        ...card,
+                        cardView: true,
+                        addItemView: false,
+                    };
+                })
             };
     }
 }

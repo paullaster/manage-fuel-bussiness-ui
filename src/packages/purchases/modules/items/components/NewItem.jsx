@@ -1,8 +1,16 @@
-import React from 'react'
-
+import { Form } from "react-router-dom";
+import ItemComponent from "./ItemComponent";
+import FormButtonRow from "./FormButtonRow";
+import shared from "../../../shared";
 const NewItem = () => {
   return (
-    <div>NewItem</div>
+    <section className='purchaseItem'>
+      <shared.components.SectionIntroduction text="New purchase item" />
+      <Form method="post">
+        <ItemComponent />
+        <FormButtonRow />
+      </Form>
+    </section>
   )
 }
 

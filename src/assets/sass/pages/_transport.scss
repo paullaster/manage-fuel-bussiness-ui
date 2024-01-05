@@ -1,0 +1,23 @@
+@use '../global/' as g;
+
+.transport {
+    padding: 4% 0;
+    display: flex;
+
+    & > .input-group {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        & > * {
+            display: block;
+        }
+
+        & > *:not(:last-child) {
+            margin-bottom: g.$xsmall;
+        }
+    }
+
+    &>.input-group:not(:last-child) {
+        margin-right: g.$small;
+    }
+}

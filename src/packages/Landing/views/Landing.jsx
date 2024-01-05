@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import { Button, Logo } from '../../../components';
+import { Button, Logo } from '@/components';
 import { FaAngleRight } from "react-icons/fa6";
-import Landing_graphics from "../../../assets/images/Landing_graphics.svg";
+import Landing_graphics from "@/assets/images/landing_graphics.svg";
 
 const Landing = () => {
   return (

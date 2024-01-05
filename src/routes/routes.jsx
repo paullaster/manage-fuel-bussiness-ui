@@ -24,16 +24,21 @@ const router = createBrowserRouter(
                 <Route element={<User />} path='user/:id'></Route>
                 <Route element={<Purchases.Purchases />} path='purchases'>
                     {/* VENDORS */}
-                    <Route element={<Purchases.modules.vendors.Vendors />} path='vendor'/>
-                    <Route element={<Purchases.modules.vendors.components.NewVendor />} path='vendor/create'/>
+                    <Route element={<Purchases.modules.vendors.Vendors />} path='vendor' />
+                    <Route element={<Purchases.modules.vendors.components.NewVendor />} path='vendor/create' />
 
                     {/* FUEL */}
-                    <Route element={<Purchases.modules.fuel.FuelPurchase />} path='fuel'/>
-                    <Route element={<Purchases.modules.vendors.components.NewFuelPurchase />} path='fuel/create'/>
+                    <Route element={<Purchases.modules.fuel.FuelPurchase />} path='fuel' />
+                    <Route element={<Purchases.modules.fuel.components.NewFuelPurchase />} path='fuel/create' />
 
                     {/* ITEM */}
-                    <Route element={<Purchases.modules.items.Items />} path='item'/>
-                    <Route element={<Purchases.modules.vendors.components.NewItem />} path='item/create'/>
+                    <Route element={<Purchases.modules.items.Items />} path='item' />
+                    <Route
+                        element={<Purchases.modules.items.components.NewItem
+                        />}
+                        path='item/create'
+                        action={Purchases.modules.items.saveNewPurchaseItem}
+                    />
                 </Route>
             </Route>
         </Route>

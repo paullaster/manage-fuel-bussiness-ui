@@ -1,0 +1,11 @@
+@use '../global/' as g;
+
+.customAriaComponent {
+    position: relative;
+
+    & > span {
+        position: absolute;
+        top: g.$msmall;
+        left: g.$msmall;
+    }
+}

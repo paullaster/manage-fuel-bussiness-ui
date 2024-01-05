@@ -13,6 +13,12 @@ export const stateActions = (state, action) => {
                     }
                     return card;
                 })
+            };
+        case  'CREATECOMPOSABLEAUTOFILS':
+            return state = {
+                ...state,
+                cardLabelView: action.payload,
             }
+
     }
 }

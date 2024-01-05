@@ -10,5 +10,9 @@ export const SharedStateProvider = ({children}) => {
     stateActions,
     state
   );
-  return 
+  return (
+    <SharedStateContentxt.Provider value={sharedState}>
+        
+    </SharedStateContentxt.Provider>
+  ) 
 }

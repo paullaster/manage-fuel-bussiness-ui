@@ -14,8 +14,7 @@ const NewFuelPurchase = () => {
   const [tankData, setTankData] = useState([]);
   const [taxData, setTaxData] = useState([]);
 
-  // const { cardLabelView }  = shared.useSharedState();
-  const cardLabelView = [];
+  const { cardLabelView }  = shared.useSharedState();
   const sharedStateAction = shared.useSharedStateAction();
 
 

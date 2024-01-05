@@ -15,6 +15,7 @@ export const stateActions = (state, action) => {
                 })
             };
         case  'CREATECOMPOSABLEAUTOFILS':
+            console.log("REDUCER ACTION ", state);
             return state = {
                 ...state,
                 cardLabelView: action.payload,

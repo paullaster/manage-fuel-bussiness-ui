@@ -6,7 +6,7 @@ const NewItem = () => {
   return (
     <section className='purchaseItem'>
       <shared.components.SectionIntroduction text="New purcahse item" />
-      <Form>
+      <Form method="post">
         <ItemComponent />
         <FormButtonRow />
       </Form>

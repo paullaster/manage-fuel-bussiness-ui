@@ -27,6 +27,8 @@ const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id }) => {
 
     useEffect( () => {
         const handleClickOutsideAddItemCard = (event) => {
+            event.stopPropagation();
+            event.preventDefault();
             if (itemRef.current && !itemRef.current.contains(event.target)) {
                 handleOutsideClick();
             }

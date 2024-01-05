@@ -1,4 +1,13 @@
+import { _request } from "@/services";
+import constants from "../../constants";
+import { APPNAME } from "@/environments";
+
 const saveNewPurchaseItem = async({request}) => {
-    const data = Object.entries( await request.formData());
-    
+    let data = Object.entries( await request.formData());
+    data = {
+        ...data,
+        organization_id: getSessionUser(APPNAME).organization_id,
+    }
+    const response = await _request({ method: 'POST', url: constants.purchaseItem })
+
 }

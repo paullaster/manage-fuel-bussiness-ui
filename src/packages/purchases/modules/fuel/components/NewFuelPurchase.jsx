@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import shared from "../../../shared";
-import { useSharedState, useSharedStateAction } from "../../../shared/Sharedcontenxt";
+import { useGlobalDispatcher, useGlobalState } from '@/store';
 import Transport from "./Transport";
 import { Form } from "react-router-dom";
 import { composableAutofils } from "../setups";
@@ -15,13 +15,12 @@ const NewFuelPurchase = () => {
   const [tankData, setTankData] = useState([]);
   const [taxData, setTaxData] = useState([]);
 
-  const { cardLabelView } = useSharedState();
-  console.log(cardLabelView);
-  const sharedStateAction = shared.useSharedStateAction();
+  const appStateDispatcher = useGlobalDispatcher();
+  const { cardLabelView } = useGlobalState();
 
 
   useEffect(() => {
-    sharedStateAction({action: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils});
+    appStateDispatcher({type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils});
   });
 
 

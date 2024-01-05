@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { MdPersonAdd, MdProductionQuantityLimits, MdFactCheck, MdManageAccounts } from "react-icons/md";
+import { MdPersonAdd, MdAddShoppingCart, MdFactCheck, MdManageAccounts } from "react-icons/md";
 
 export default [
     {
@@ -12,7 +12,7 @@ export default [
     {
         card: uuidv4(),
         name: "product",
-        CustomCardLabelIcon: <MdProductionQuantityLimits size={20} />,
+        CustomCardLabelIcon: <MdAddShoppingCart size={20} />,
         cardView: true,
         addItemView: false,
     },

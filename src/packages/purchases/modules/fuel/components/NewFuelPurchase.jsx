@@ -20,7 +20,7 @@ const NewFuelPurchase = () => {
 
   useEffect(() => {
     appStateDispatcher({type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils});
-  });
+  }, []);
 
 
   const handleAddNewTankentry = (event) => {
@@ -108,12 +108,10 @@ const NewFuelPurchase = () => {
         <div className="form">
           <div className="composableAutofils">
             {
-              cardLabelView.length && cardLabelView.slice(0, 1).map( (card) => {
+              cardLabelView.length && cardLabelView.slice(0, 2).map( (card) => {
                 return <shared.components.AddItem label={card.name} cardLabelIcon={card.CustomCardLabelIcon} key={card.card} />
               })
             }
-            
-            <shared.components.AddItem label={'product'} />
           </div>
           <div className="tankentries">
             <div className="headers">
@@ -149,7 +147,7 @@ const NewFuelPurchase = () => {
           <div className="composableAutofils">
             {
               cardLabelView.length && cardLabelView.slice(2, 4).map((card) => {
-                return <shared.components.AddItem label={card.name} key={card.card} />
+                return <shared.components.AddItem label={card.name} cardLabelIcon={card.CustomCardLabelIcon}  key={card.card} />
               })
             }
           </div>

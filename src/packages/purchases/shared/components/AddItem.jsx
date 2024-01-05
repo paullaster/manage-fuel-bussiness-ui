@@ -1,5 +1,6 @@
 import CustomCardLabel from "./CustomCardLabel";
 import Autocomplete from "./Autocomplete";
+import AddItemButton from "./AddItemButton";
 
 const list = [
     {
@@ -18,6 +19,7 @@ const AddItem = ({label}) => {
           <label htmlFor="vendor" className="label-required">{label}</label>
           <CustomCardLabel label={"add vendor"}/>
           <Autocomplete list={list}/>
+          <AddItemButton btnCaption="new vendor"/>
       </div>
   )
 }

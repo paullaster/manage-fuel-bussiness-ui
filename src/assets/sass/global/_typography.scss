@@ -81,3 +81,9 @@ input:not([type="search"]):valid, input:read-only  {
 input:invalid {
     @include m.border(v.$error_border);
 }
+
+fieldset {
+    border: v.$default_border;
+    padding: 0 4% !important;
+    border-radius: 2%;
+}

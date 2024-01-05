@@ -5,6 +5,7 @@ import Transport from "./Transport";
 import { Form } from "react-router-dom";
 import { composableAutofils } from "../setups";
 import SaleItem from "./SaleItem";
+import { Button } from "react-aria-components";
 
 
 
@@ -19,7 +20,7 @@ const NewFuelPurchase = () => {
   const { cardLabelView } = useGlobalState();
 
   useEffect(() => {
-    appStateDispatcher({type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils});
+    appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });
   }, []);
 
   const handleAddNewTaxData = (event) => {
@@ -77,8 +78,8 @@ const NewFuelPurchase = () => {
         <div className="form">
           <div className="composableAutofils">
             {
-              cardLabelView.length && cardLabelView.slice(0, 2).map( (card) => {
-                return <shared.components.AddItem label={card.name} cardLabelIcon={card.CustomCardLabelIcon} key={card.card} cardView={card.cardView} addItemView={card.addItemView} id={card.card}/>
+              cardLabelView.length && cardLabelView.slice(0, 2).map((card) => {
+                return <shared.components.AddItem label={card.name} cardLabelIcon={card.CustomCardLabelIcon} key={card.card} cardView={card.cardView} addItemView={card.addItemView} id={card.card} />
               })
             }
           </div>
@@ -103,9 +104,12 @@ const NewFuelPurchase = () => {
           <div className="composableAutofils">
             {
               cardLabelView.length && cardLabelView.slice(2, 4).map((card) => {
-                return <shared.components.AddItem label={card.name} cardLabelIcon={card.CustomCardLabelIcon} key={card.card} cardView={card.cardView} addItemView={card.addItemView} id={card.card}  />
+                return <shared.components.AddItem label={card.name} cardLabelIcon={card.CustomCardLabelIcon} key={card.card} cardView={card.cardView} addItemView={card.addItemView} id={card.card} />
               })
             }
+          </div>
+          <div className="form_actions">
+            <Button type="submit" className={'btn-element btn_primary'}> save </Button>
           </div>
         </div>
       </Form>

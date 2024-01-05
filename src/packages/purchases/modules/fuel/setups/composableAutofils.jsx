@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { MdPersonAdd, MdProductionQuantityLimits, MdFactCheck } from "react-icons/md";
+import { MdPersonAdd, MdProductionQuantityLimits, MdFactCheck, MdManageAccounts } from "react-icons/md";
 
 export default [
     {

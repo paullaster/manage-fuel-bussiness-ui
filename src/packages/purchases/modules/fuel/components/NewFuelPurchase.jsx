@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import shared from "../../../shared";
 import Transport from "./Transport";
 import { Form } from "react-router-dom";
@@ -14,8 +14,14 @@ const NewFuelPurchase = () => {
   const [tankData, setTankData] = useState([]);
   const [taxData, setTaxData] = useState([]);
 
-  const sharedstate = shared.useSharedState();
+  const { cardLabelView } = shared.useSharedState();
   const sharedStateAction = shared.useSharedStateAction();
+
+
+  useEffect(() => {
+    sharedStateAction({action: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils});
+  });
+
 
   const handleAddNewTankentry = (event) => {
     event.stopPropagation();

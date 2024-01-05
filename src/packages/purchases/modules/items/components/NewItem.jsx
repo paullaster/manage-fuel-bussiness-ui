@@ -4,6 +4,7 @@ import FormButtonRow from "./FormButtonRow";
 const NewItem = () => {
   return (
     <section className='purchaseItem'>
+      
       <Form>
         <ItemComponent />
         <FormButtonRow />

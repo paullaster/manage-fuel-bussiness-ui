@@ -4,24 +4,14 @@ import purchseItemImage from "@/assets/images/purchase_item.svg";
 const Items = () => {
   const actionInfo = [
     {
-      caption: "new vendor",
-      link: "/dashboard/purchases/vendor/create",
-      description: "Enter the details and create your first vendor"
+      caption: "new item",
+      link: "/dashboard/purchases/item/create",
+      description: "Enter the details and create your new item"
     },
     {
-      caption: "import vendor",
+      caption: "import item",
       link: "",
       description: "Import your existing vendor with a single click"
-    },
-    {
-      caption: "Payroll",
-      link: "",
-      description: "Reduce time spent on employee payments, benefits, and deductions"
-    },
-    {
-      caption: "Payroll",
-      link: "",
-      description: "Reduce time spent on employee payments, benefits, and deductions"
     },
     {
       caption: "Payroll",

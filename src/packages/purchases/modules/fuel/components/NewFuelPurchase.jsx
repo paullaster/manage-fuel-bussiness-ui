@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MdOutlineSearch, MdAdd, MdPersonAdd } from "react-icons/md";
 import { Button, InputComponent } from "@/components";
 import shared from "../../../shared";
+import Transport from "./Transport";
 
 const NewFuelPurchase = () => {
 
@@ -141,20 +142,7 @@ const NewFuelPurchase = () => {
           <shared.components.AddItemButton methodHandler={handleAddNewTankentry} btnCaption="add tank entry"/>
         </div>
       </div>
-      <div className="newfuelpurchase_transport">
-            <InputComponent
-              prelabelText="transport name"
-              name="transport_name"
-            />
-            <InputComponent
-              prelabelText="vehicle registration"
-              name="vehicle_registration"
-            />
-            <InputComponent
-              prelabelText="driver name"
-              name="driver_name"
-            />
-      </div>
+      <Transport />
       <div className="newfuelpurchase_taxdata">
         <div className="newfuelpurchase_taxdata__headers">
           <div><span>quantity</span></div>

@@ -13,9 +13,9 @@ const list = [
     }
 ];
 
-const AddItem = ({ label, cardLabelIcon, cardView, addItemView }) => {
+const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id }) => {
     return (
-        <div className="addItem">
+        <div className="addItem" data-id = {id}>
             <label htmlFor={label} className="label-required">{label}</label>
             {
                 cardView ? <CustomCardLabel label={`add ${label}`} icon={cardLabelIcon} /> : ''

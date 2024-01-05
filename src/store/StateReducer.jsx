@@ -63,5 +63,19 @@ export const StateReducer = (state, action) => {
                 ...state,
                 cardLabelView: action.payload,
             };
+        case 'SETCARDLABELVIEW':
+            return state = {
+                ...state,
+                cardLabelView: state.cardLabelView.map((card) => {
+                    if (card.card === action.payload) {
+                        return card = {
+                            ...card,
+                            cardView: !card.cardView,
+                            addItemView: !card.addItemView,
+                        };
+                    }
+                    return card;
+                })
+            };
     }
 }

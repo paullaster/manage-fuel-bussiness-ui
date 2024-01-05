@@ -12,7 +12,7 @@ const ItemComponent = () => {
                     <textarea name="description" id="description" cols="30" rows="3"></textarea>
                 </fieldset>
             </div>
-            <div>
+            <div className="price">
                 <InputComponent
                     prelabelText="Buying price"
                     name="buying_price"

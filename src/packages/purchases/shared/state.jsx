@@ -1,11 +1,11 @@
 export default {
     state: {
-        cardLabelView: {
+        cardLabelView: [{
             card: '',
             cardView: true,
             addItem: '',
             addItemView: false,
-        },
+        }],
     },
 
 }

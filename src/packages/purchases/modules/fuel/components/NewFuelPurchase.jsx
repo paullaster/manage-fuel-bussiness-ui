@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import shared from "../../../shared";
+import { useSharedState, useSharedStateAction } from "../../../shared/Sharedcontenxt";
 import Transport from "./Transport";
 import { Form } from "react-router-dom";
 import { composableAutofils } from "../setups";
@@ -14,7 +15,8 @@ const NewFuelPurchase = () => {
   const [tankData, setTankData] = useState([]);
   const [taxData, setTaxData] = useState([]);
 
-  const { cardLabelView }  = shared.useSharedState();
+  const { cardLabelView } = useSharedState();
+  console.log(cardLabelView);
   const sharedStateAction = shared.useSharedStateAction();
 
 
@@ -108,9 +110,9 @@ const NewFuelPurchase = () => {
         <div className="form">
           <div className="composableAutofils">
             {
-              cardLabelView.slice(0, 2).map( (card) => {
-                return <shared.components.AddItem label={card.name} key={card.card} />
-              })
+              // cardLabelView.length && cardLabelView.slice(0, 2).map( (card) => {
+              //   return <shared.components.AddItem label={card.name} key={card.card} />
+              // })
             }
             
             <shared.components.AddItem label={'product'} />
@@ -147,8 +149,11 @@ const NewFuelPurchase = () => {
             </div>
           </div>
           <div className="composableAutofils">
-            <shared.components.AddItem label={'invoice'} />
-            <shared.components.AddItem label={'officer'} />
+            {
+              // cardLabelView.length && cardLabelView.slice(2, 4).map((card) => {
+              //   return <shared.components.AddItem label={card.name} key={card.card} />
+              // })
+            }
           </div>
         </div>
       </Form>

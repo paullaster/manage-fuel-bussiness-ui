@@ -5,7 +5,7 @@ import { stateActions } from "./StateActions";
 const SharedStateContentxt = createContext(null);
 const SharedStateActioncontext = createContext(null);
 
-export const SharedStateProvider = ({children}) => {
+export default SharedStateProvider = ({children}) => {
   const [sharedState, sharedStateAction] = useReducer(
     stateActions,
     state

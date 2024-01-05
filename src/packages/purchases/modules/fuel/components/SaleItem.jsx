@@ -2,22 +2,22 @@ import React from 'react'
 
 const SaleItem = () => {
   return (
-    <div>
+    <div className='saleItems'>
       <InputComponent
         prelabelText="Dip Qnty Before offloading"
-        name="transport_name"
+        name="dip_quantity_before_offloading"
       />
       <InputComponent
         prelabelText="texpected Qnty"
-        name="transport_name"
+        name="expected_quantity"
       />
         <InputComponent
           prelabelText="Actual dip Qnty after offloading"
-          name="transport_name"
+        name="tactual_dip_quantity_after_offloading"
         />
       <InputComponent
         prelabelText="sales Qnty"
-        name="transport_name"
+        name="sales_quantity_during_offloading"
       />
     </div>
   )

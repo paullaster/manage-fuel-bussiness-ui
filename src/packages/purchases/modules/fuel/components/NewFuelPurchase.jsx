@@ -22,37 +22,6 @@ const NewFuelPurchase = () => {
     appStateDispatcher({type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils});
   }, []);
 
-
-  const handleAddNewTankentry = (event) => {
-    event.stopPropagation();
-    event.preventDefault();
-    if (event.type === 'click') {
-      const options = [
-        {
-          prop: 'dip_quantity_before_offloading',
-          type: 'number',
-          placeholder: " dip quantity before offloading",
-        },
-        {
-          prop: 'sales_quantity_during_offloading',
-          type: 'number',
-          placeholder: "sales quantity during offloading",
-        },
-        {
-          prop: 'expected_quantity',
-          type: 'number',
-          placeholder: "expected quantity",
-        },
-        {
-          prop: 'actual_dip_quantity_after_offloading',
-          type: 'number',
-          placeholder: "actual dip quantity after offloading",
-        },
-      ];
-      setTankData(prev => prev = [...prev, <shared.components.NewConstruct options={options} />]);
-    }
-  }
-
   const handleAddNewTaxData = (event) => {
     event.stopPropagation();
     event.preventDefault();
@@ -113,20 +82,7 @@ const NewFuelPurchase = () => {
               })
             }
           </div>
-          <div className="tankentries">
-            <div className="headers">
-              <div ><span></span></div>
-              <div><span></span></div>
-              <div><span></span></div>
-              <div ><span></span></div>
-            </div>
-            <div className="items">
-              {
-                tankData.length > 0 && tankData.map(t => t)
-              }
-              <shared.components.AddItemButton methodHandler={handleAddNewTankentry} btnCaption="add tank entry" />
-            </div>
-          </div>
+          
           <Transport />
           <div className="taxdata">
             <div className="headers">

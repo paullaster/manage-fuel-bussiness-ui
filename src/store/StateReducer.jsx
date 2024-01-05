@@ -74,7 +74,11 @@ export const StateReducer = (state, action) => {
                             addItemView: !card.addItemView,
                         };
                     }
-                    return card;
+                    return card = {
+                        ...card,
+                        cardView: true,
+                        addItemView: false,
+                    };
                 })
             };
     }

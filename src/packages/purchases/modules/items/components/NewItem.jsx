@@ -5,7 +5,7 @@ import shared from "../../../shared";
 const NewItem = () => {
   return (
     <section className='purchaseItem'>
-      <shared.components.SectionIntroduction text="New purcahse item" />
+      <shared.components.SectionIntroduction text="New purchase item" />
       <Form method="post">
         <ItemComponent />
         <FormButtonRow />

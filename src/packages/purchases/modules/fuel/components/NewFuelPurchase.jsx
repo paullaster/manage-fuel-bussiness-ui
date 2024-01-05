@@ -26,7 +26,7 @@ const NewFuelPurchase = () => {
       <shared.components.SectionIntroduction text="New Fuel Purchase" />
       <Form>
         <div className="form">
-          <fieldset>
+          <fieldset className="fuelPurchaseFieldSet">
             <legend>Vendor & product</legend>
             <div className="composableAutofils">
               {
@@ -36,19 +36,19 @@ const NewFuelPurchase = () => {
               }
             </div>
           </fieldset>
-          <fieldset>
+          <fieldset className="fuelPurchaseFieldSet">
             <legend>Sales entry</legend>
             <SaleItem />
           </fieldset>
-          <fieldset>
+          <fieldset className="fuelPurchaseFieldSet">
             <legend>Transportation</legend>
             <Transport />
           </fieldset>
-          <fieldset>
+          <fieldset className="fuelPurchaseFieldSet">
             <legend>Add tax</legend>
             <TaxItem />
           </fieldset>
-          <fieldset>
+          <fieldset className="fuelPurchaseFieldSet">
             <legend>Invoice & officer</legend>
             <div className="composableAutofils">
               {

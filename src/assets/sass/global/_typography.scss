@@ -84,7 +84,6 @@ input:invalid {
 
 fieldset {
     border: v.$default_border;
-    padding: 0 4% !important;
     border-radius: 2rem;
 
     &:not(:last-child) {

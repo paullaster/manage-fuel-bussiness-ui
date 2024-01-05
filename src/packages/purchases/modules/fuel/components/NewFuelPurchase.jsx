@@ -82,7 +82,7 @@ const NewFuelPurchase = () => {
               })
             }
           </div>
-          
+          <SaleItem />
           <Transport />
           <div className="taxdata">
             <div className="headers">

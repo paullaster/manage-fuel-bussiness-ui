@@ -1,4 +1,3 @@
-import React from 'react';
 import { InputComponent } from "@/components";
 
 const Transport = () => {

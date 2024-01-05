@@ -18,7 +18,7 @@ const list = [
 const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id }) => {
 
     const handleOutsideClick = () => {
-
+        setAction({ type: 'SETCARDLABELVIEW', payload: '' });
     };
 
     const itemRef = useRef(null);

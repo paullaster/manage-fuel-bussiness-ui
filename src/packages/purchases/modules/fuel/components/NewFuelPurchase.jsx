@@ -91,7 +91,7 @@ const NewFuelPurchase = () => {
     <section className="newfuelpurchase">
       <shared.components.SectionIntroduction text="New Fuel Purchase" />
       <div className="newfuelpurchase_autofil">
-        
+        <shared.components.AddVendor />
         <div>
           <label htmlFor="invoice">product</label>
           <div>

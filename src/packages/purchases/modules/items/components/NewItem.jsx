@@ -1,11 +1,12 @@
 import { Form } from "react-router-dom";
-
+import ItemComponent from "./ItemComponent";
+import FormButtonRow from "./FormButtonRow";
 const NewItem = () => {
   return (
     <section className='purchaseItem'>
       <Form>
-        <Item />
-        
+        <ItemComponent />
+        <FormButtonRow />
       </Form>
     </section>
   )

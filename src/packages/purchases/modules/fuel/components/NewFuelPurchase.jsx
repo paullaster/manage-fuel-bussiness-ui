@@ -14,7 +14,8 @@ const NewFuelPurchase = () => {
   const [tankData, setTankData] = useState([]);
   const [taxData, setTaxData] = useState([]);
 
-  const cardLabelView  = shared.useSharedState();
+  // const { cardLabelView }  = shared.useSharedState();
+  const cardLabelView = [];
   const sharedStateAction = shared.useSharedStateAction();
 
 
@@ -107,7 +108,12 @@ const NewFuelPurchase = () => {
       <Form>
         <div className="form">
           <div className="composableAutofils">
-            <shared.components.AddItem label={'Vendor'}/>
+            {
+              cardLabelView.slice(0, 2).map( (card) => {
+                return <shared.components.AddItem label={card.name} key={card.card} />
+              })
+            }
+            
             <shared.components.AddItem label={'product'} />
           </div>
           <div className="tankentries">

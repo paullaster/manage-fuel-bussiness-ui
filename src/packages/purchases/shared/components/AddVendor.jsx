@@ -1,4 +1,5 @@
-import React from 'react'
+import { MdOutlineSearch, MdAdd, MdPersonAdd } from "react-icons/md";
+import { Button } from "@/components";
 
 const AddVendor = () => {
   return (

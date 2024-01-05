@@ -3,7 +3,7 @@ import constants from "../../constants";
 import { APPNAME } from "@/environments";
 import AuthUtils from "@/utils/AuthUtils";
 
-const saveNewPurchaseItem = async({request}) => {
+export const saveNewPurchaseItem = async({request}) => {
     let data = Object.entries( await request.formData());
     let sessionUser = AuthUtils.getItemFromStorage(`${APPNAME}_user`);
     let orgId = sessionUser ? sessionUser.organization_id : new Error("The is no exsting session user!");

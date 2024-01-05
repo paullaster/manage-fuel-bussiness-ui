@@ -4,46 +4,47 @@
 .newfuelpurchase {
     width: 80% !important;
 
-    & > form {
-        &_tankentries {
-                &__headers {
+    &>form {
+        &>.form {
+            .tankentries {
+                .headers {
                     display: flex;
                     justify-content: "space-between";
                     gap: g.$small;
                     border-bottom: .1rem solid #5f6c92;
                     margin: g.$msmall 0;
-        
+
                     &>div {
                         flex-grow: 1;
                     }
                 }
-        
+
                 margin: g.$msmall 0;
-        
+
             }
-        
-            &_taxdata {
-        
+
+            .taxdata {
+
                 margin: g.$msmall 0;
-        
-                &__headers {
+                .headers {
                     display: flex;
                     justify-content: center;
                     gap: g.$small;
                     border-bottom: .1rem solid #5f6c92;
                     margin: g.$msmall 0;
-        
+
                     &>div {
                         flex-grow: 1;
                         text-align: center;
                     }
                 }
             }
-        
+
             &>.composableAutofils {
                 display: flex;
                 justify-content: space-between;
                 margin: 4% 0;
             }
+        }
     }
 }

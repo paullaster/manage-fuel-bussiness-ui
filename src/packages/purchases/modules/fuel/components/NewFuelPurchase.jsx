@@ -33,9 +33,18 @@ const NewFuelPurchase = () => {
               })
             }
           </div>
-          <SaleItem />
-          <Transport />
-          <TaxItem />
+          <fieldset>
+            <legend>Sales entry</legend>
+            <SaleItem />
+          </fieldset>
+          <fieldset>
+            <legend>Transportation</legend>
+            <Transport />
+          </fieldset>
+          <fieldset>
+            <legend>Add tax</legend>
+            <TaxItem />
+          </fieldset>
           <div className="composableAutofils">
             {
               cardLabelView.length && cardLabelView.slice(2, 4).map((card) => {

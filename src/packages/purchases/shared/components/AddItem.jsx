@@ -16,11 +16,11 @@ const list = [
 const AddItem = ({ label }) => {
     return (
         <div className="addItem">
-            <label htmlFor="vendor" className="label-required">{label}</label>
-            <CustomCardLabel label={"add vendor"} />
+            <label htmlFor={label} className="label-required">{label}</label>
+            <CustomCardLabel label={`add ${label}`} />
             <div>
                 <Autocomplete list={list} />
-                <AddItemButton btnCaption="new vendor" />
+                <AddItemButton btnCaption={`new ${label}`} />
             </div>
         </div>
     )

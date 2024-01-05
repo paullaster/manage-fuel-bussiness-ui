@@ -90,21 +90,9 @@ const NewFuelPurchase = () => {
   return (
     <section className="newfuelpurchase">
       <shared.components.SectionIntroduction text="New Fuel Purchase" />
-      <div className="newfuelpurchase_autofil">
+      <div className="composableAutofils">
         <shared.components.AddItem label ={'Vendor'}/>
-        <div>
-          <label htmlFor="invoice">product</label>
-          <div>
-            <span><MdOutlineSearch size={20} /></span>
-            <input type="search" name="invoice" id="invoice" />
-          </div>
-          <div>
-            <Button>
-              <span><MdAdd size={20} /></span>
-              <span>new product</span>
-            </Button>
-          </div>
-        </div>
+        <shared.components.AddItem label={'product'} />
       </div>
       <div className="newfuelpurchase_tankentries">
         <div className="newfuelpurchase_tankentries__headers">
@@ -136,35 +124,11 @@ const NewFuelPurchase = () => {
           }
           <shared.components.AddItemButton methodHandler={handleAddNewTaxData} btnCaption="add tax"/>
         </div>
-        <div>
-          <label htmlFor="invoice">Invoice</label>
-          <div>
-            <span><MdOutlineSearch size={20} /></span>
-            <input type="search" name="invoice" id="invoice" />
-          </div>
-          <div>
-            <Button>
-              <span><MdAdd size={20} /></span>
-              <span>new invoice</span>
-            </Button>
-          </div>
-        </div>
-        <div>
-          <label htmlFor="invoice">officer</label>
-          <div>
-            <span><MdOutlineSearch size={20} /></span>
-            <input type="search" name="invoice" id="invoice" />
-          </div>
-          <div>
-            <Button>
-              <span><MdAdd size={20} /></span>
-              <span>new officer</span>
-            </Button>
-          </div>
-        </div>
+        <shared.components.AddItem label={'invoice'} />
+        <shared.components.AddItem label={'officer'} />
       </div>
     </section>
   )
 }
 
-export default NewFuelPurchase
+export default NewFuelPurchase;

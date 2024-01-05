@@ -1,8 +1,12 @@
 import { Outlet } from "react-router-dom";
+import shared from "../shared";
+
 
 const Purchases = () => {
   return (
-    <Outlet />
+    <shared.SharedStateProvider>
+      <Outlet />
+    </shared.SharedStateProvider>
   )
 }
 

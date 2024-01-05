@@ -115,10 +115,10 @@ const NewFuelPurchase = () => {
           </div>
           <div className="tankentries">
             <div className="headers">
-              <div ><span>Dip Qnty Before offloading</span></div>
-              <div><span>sales Qnty</span></div>
-              <div><span>expected Qnty</span></div>
-              <div ><span>Actual dip Qnty after offloading</span></div>
+              <div ><span></span></div>
+              <div><span></span></div>
+              <div><span></span></div>
+              <div ><span></span></div>
             </div>
             <div className="items">
               {

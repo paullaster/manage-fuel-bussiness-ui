@@ -116,6 +116,7 @@ section.account {
 
                 .account_options {
                     padding-top: g.$small;
+                    width: 80%;
 
                     &>div {
                         form {
@@ -176,39 +177,6 @@ section.account {
                                     }
                                 }
 
-                            }
-                        }
-
-                        .idp_providers {
-                            @include u.borderradius (u.rem(8));
-                            @include u.border(g.$default_border);
-                            margin-bottom: g.$msmall;
-                            width: 100%;
-
-                            & > button {
-                                display: flex !important;
-                                justify-content: center !important;
-                                align-items: center !important;
-                                width: 100%;
-                                border: none !important;
-                                @include u.borderradius (u.rem(8));
-                                
-                                & > span {
-                                    text-transform: lowercase !important;
-
-                                    &::first-letter {
-                                        text-transform: uppercase !important;
-                                    }
-                                }
-
-                                &>.idp_provider_icon {
-                                    width: 8%;
-                                    margin-right: g.$xsmall;
-                                }
-
-                                &>* {
-                                    display: block;
-                                }
                             }
                         }
                     }

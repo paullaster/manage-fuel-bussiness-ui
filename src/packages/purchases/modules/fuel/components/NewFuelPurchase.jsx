@@ -3,6 +3,7 @@ import { MdOutlineSearch, MdAdd, MdPersonAdd } from "react-icons/md";
 import { Button, InputComponent } from "@/components";
 import shared from "../../../shared";
 import Transport from "./Transport";
+import { Form } from "react-router-dom";
 
 const NewFuelPurchase = () => {
 
@@ -90,45 +91,47 @@ const NewFuelPurchase = () => {
   return (
     <section className="newfuelpurchase">
       <shared.components.SectionIntroduction text="New Fuel Purchase" />
-      <div className="composableAutofils">
-        <shared.components.AddItem label={'Vendor'} />
-        <shared.components.AddItem label={'product'} />
-      </div>
-      <div className="newfuelpurchase_tankentries">
-        <div className="newfuelpurchase_tankentries__headers">
-          <div ><span>Dip Qnty Before offloading</span></div>
-          <div><span>sales Qnty</span></div>
-          <div><span>expected Qnty</span></div>
-          <div ><span>Actual dip Qnty after offloading</span></div>
+      <Form>
+        <div className="composableAutofils">
+          <shared.components.AddItem label={'Vendor'} />
+          <shared.components.AddItem label={'product'} />
         </div>
-        <div className="newfuelpurchase_tankentries__items">
-          {
-            tankData.length > 0 && tankData.map(t => t)
-          }
-          <shared.components.AddItemButton methodHandler={handleAddNewTankentry} btnCaption="add tank entry" />
+        <div className="newfuelpurchase_tankentries">
+          <div className="newfuelpurchase_tankentries__headers">
+            <div ><span>Dip Qnty Before offloading</span></div>
+            <div><span>sales Qnty</span></div>
+            <div><span>expected Qnty</span></div>
+            <div ><span>Actual dip Qnty after offloading</span></div>
+          </div>
+          <div className="newfuelpurchase_tankentries__items">
+            {
+              tankData.length > 0 && tankData.map(t => t)
+            }
+            <shared.components.AddItemButton methodHandler={handleAddNewTankentry} btnCaption="add tank entry" />
+          </div>
         </div>
-      </div>
-      <Transport />
-      <div className="newfuelpurchase_taxdata">
-        <div className="newfuelpurchase_taxdata__headers">
-          <div><span>quantity</span></div>
-          <div><span>price</span></div>
-          <div><span>gross amount</span></div>
-          <div><span>tax rate</span></div>
-          <div><span>tax amount</span></div>
-          <div><span>net payable</span></div>
+        <Transport />
+        <div className="newfuelpurchase_taxdata">
+          <div className="newfuelpurchase_taxdata__headers">
+            <div><span>quantity</span></div>
+            <div><span>price</span></div>
+            <div><span>gross amount</span></div>
+            <div><span>tax rate</span></div>
+            <div><span>tax amount</span></div>
+            <div><span>net payable</span></div>
+          </div>
+          <div className="newfuelpurchase_taxdata__item">
+            {
+              taxData.length > 0 && taxData.map(nt => nt)
+            }
+            <shared.components.AddItemButton methodHandler={handleAddNewTaxData} btnCaption="add tax" />
+          </div>
         </div>
-        <div className="newfuelpurchase_taxdata__item">
-          {
-            taxData.length > 0 && taxData.map(nt => nt)
-          }
-          <shared.components.AddItemButton methodHandler={handleAddNewTaxData} btnCaption="add tax" />
+        <div className="composableAutofils">
+          <shared.components.AddItem label={'invoice'} />
+          <shared.components.AddItem label={'officer'} />
         </div>
-      </div>
-      <div className="composableAutofils">
-        <shared.components.AddItem label={'invoice'} />
-        <shared.components.AddItem label={'officer'} />
-      </div>
+      </Form>
     </section>
   )
 }

@@ -10,9 +10,9 @@ const CustomPopover = ({items}) => {
   return (
       <Popover>
         {
-            items.map((item) => {
+            items.length ? items.map((item) => {
                 return <CustomList key={item.id} item={item} />
-            })
+            }) : "No data"
         }
       </Popover>
   )

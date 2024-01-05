@@ -12,7 +12,7 @@ const list = [
     }
 ]
 
-const AddVendor = () => {
+const AddItem = () => {
   return (
       <div className="addVendor">
           <label htmlFor="vendor" className="label-required">Vendor</label>
@@ -22,4 +22,4 @@ const AddVendor = () => {
   )
 }
 
-export default AddVendor
+export default AddItem

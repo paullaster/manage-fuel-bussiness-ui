@@ -2,6 +2,7 @@ import { useRef, useEffect } from "react";
 import CustomCardLabel from "./CustomCardLabel";
 import Autocomplete from "./Autocomplete";
 import AddItemButton from "./AddItemButton";
+import { useGlobalDispatcher } from '@/store';
 
 const list = [
     {
@@ -16,6 +17,7 @@ const list = [
 
 
 const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id }) => {
+    const setAction = useGlobalDispatcher();
 
     const handleOutsideClick = () => {
         setAction({ type: 'SETCARDLABELVIEW', payload: '' });

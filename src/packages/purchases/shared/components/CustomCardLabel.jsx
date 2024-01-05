@@ -1,4 +1,4 @@
-import { useGlobalDispatcher, useGlobalState } from '@/store';
+import { useGlobalDispatcher, } from '@/store';
 
 const CustomCardLabel = ({ label, icon }) => {
     const setAction = useGlobalDispatcher();

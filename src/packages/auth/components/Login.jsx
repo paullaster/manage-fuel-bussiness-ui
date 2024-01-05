@@ -37,12 +37,6 @@ const Login = () => {
             <Button className={'btn-element btn_primary'}>Login</Button>
           </div>
         </Form>
-        <div className='idp_providers'>
-          <Button className={'btn-element btn_transparent'}>
-            <span className='idp_provider_icon'><img src={keycloak} alt='keycloack logo ' /></span>
-            <span>Sign up with keycloak</span>
-          </Button>
-        </div>
       </div>
     </>
   )

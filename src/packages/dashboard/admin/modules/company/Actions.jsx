@@ -57,8 +57,9 @@ export const TankAndPumpData = async ({ request }) => {
 }
 
 const dataType = (data, payload) => {
+    console.log(data.type);
     switch(data.type) {
-
+        
         case 'tank_data"':
             let tank_data = [];
             for (let prop in data) {
@@ -98,6 +99,7 @@ const dataType = (data, payload) => {
 const passedTankData = (item, object, dataList) => {
     if (item.includes("tank_capacity_for_tank")) {
         const tankNumber = item.split("_").slice(-1)[0];
+        console.log(dataList);
         return dataList = [...dataList, { tank_number: parseInt(tankNumber), tank_capacity: parseInt(object[prop]) }];
     }
 }

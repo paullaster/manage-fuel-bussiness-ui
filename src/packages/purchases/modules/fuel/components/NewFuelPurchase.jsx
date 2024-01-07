@@ -5,7 +5,6 @@ import Transport from "./Transport";
 import { Form } from "react-router-dom";
 import { composableAutofils } from "../setups";
 import { Button } from "@/components";
-import TaxItem from "./TaxItem";
 import InvoiceDetails from "./InvoiceDetails";
 import FuelPurchaseEntry from "./FuelPurchaseEntry";
 

@@ -1,26 +1,32 @@
 export default [
     {
+        field: 'tank',
+        headerName: 'Tank',
+        width: 80,
+        editable: true,
+    },
+    {
         field: 'dip_quantity_before_offloading',
         headerName: 'Dip quantity before offloading',
-        width: 250,
+        width: 200,
         editable: true,
     },
     {
         field: 'sales_quantity_during_offloading',
         headerName: 'Sales quantity during offloading',
-        width: 250,
+        width: 200,
         editable: true,
     },
     {
         field: 'actual_dip_quantity_after_offloading',
         headerName: 'Actual dip quantity after offloading',
-        width: 250,
+        width: 200,
         editable: true,
     },
     {
         field: 'expected_quantity',
         headerName: 'Expected quantity',
-        width: 250,
+        width: 200,
         editable: true,
     },
     {
@@ -62,4 +68,4 @@ export default [
             return Number(params.row.expected_quantity)  || 0 * Number(params.row.price) || 0;
         }
     }
-]
+];

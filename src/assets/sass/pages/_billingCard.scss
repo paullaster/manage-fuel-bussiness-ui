@@ -1,5 +1,9 @@
 .billingCard {
     background-color: red;
+    & > div:first-child {
+        padding-bottom: .8rem;
+        margin-bottom: 2rem;
+    }
     .billing {
             display: flex;
             align-items: center;

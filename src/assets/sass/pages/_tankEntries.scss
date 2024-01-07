@@ -3,13 +3,21 @@
 
 .tankEntries {
     margin-top: 4rem;
-    & > div:first-child {
+
+    &>div:first-child {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        & > div {
+        flex-direction: column;
+
+        &>h2 {
+            margin-bottom: 2rem;
+            padding-bottom: .8rem;
+            border-bottom: g.$default_border;
+        }
+
+        &>div {
             padding-bottom: 0 !important;
-            & > button {
+
+            &>button {
                 background-color: g.$color_primary;
                 padding: .8rem 1.6rem;
                 border-radius: .4rem;

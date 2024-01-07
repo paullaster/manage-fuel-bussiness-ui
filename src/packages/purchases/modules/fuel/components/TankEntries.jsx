@@ -5,7 +5,7 @@ import DivisionTopBar from "./DivisionTopBar"
 const TankEntries = () => {
     return (
         <div className="tankEntries">
-            <DivisionTopBar sectionTitle="Tank Entries">
+            <DivisionTopBar sectionTitle="Tank entry information">
                 <AddItemButton btnCaption="Add Tank Entry"/>
             </DivisionTopBar>
             <div>

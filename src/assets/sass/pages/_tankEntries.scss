@@ -1,3 +1,15 @@
+@use '../global/' as g;
+
 .tankEntries {
-    background-color: green;
+    & > div:first-child {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        & > div {
+            padding-bottom: 0 !important;
+            & > button {
+                background-color: g.$color_primary;
+            }
+        }
+    }
 }

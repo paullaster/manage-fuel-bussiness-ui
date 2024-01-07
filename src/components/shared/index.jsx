@@ -8,3 +8,4 @@ export { default as PaginatorComponent } from './PaginatorComponent';
 export { default as InputComponent } from './InputComponent';
 export { default as Stepper} from './Stepper';
 export { default as DatePickerComponent } from './DatePickerComponent';
+export { default as DataTable } from './DataTable';

@@ -7,12 +7,10 @@
 
     &>form {
         &>.form {
-            &>fieldset {
-                &>.composableAutofils {
-                    display: flex;
-                    justify-content: space-evenly;
-                    margin: 4% 0;
-                }
+            .vendor_and_billing {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
             }
         }
     }

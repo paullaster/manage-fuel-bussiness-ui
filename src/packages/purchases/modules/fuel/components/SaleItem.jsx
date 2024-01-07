@@ -19,6 +19,10 @@ const SaleItem = () => {
         name="tactual_dip_quantity_after_offloading"
         />
       <InputComponent
+        prelabelText="Variance"
+        name="variance"
+      />
+      <InputComponent
         prelabelText="sales quantity during offloading"
         name="sales_quantity_during_offloading"
       />

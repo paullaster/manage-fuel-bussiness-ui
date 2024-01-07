@@ -3,7 +3,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-const DatePicker = () => {
+const DatePickerComponent = () => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DemoContainer component={'DatePicker'}>
@@ -13,4 +13,4 @@ const DatePicker = () => {
   )
 }
 
-export default DatePicker
+export default DatePickerComponent

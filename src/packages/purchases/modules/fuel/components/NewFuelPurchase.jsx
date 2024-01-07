@@ -8,6 +8,7 @@ import { Button } from "@/components";
 import InvoiceDetails from "./InvoiceDetails";
 import TankEntries from "./TankEntries";
 import BillingComponent from "./BillingComponent";
+import TransportationAndOfficer from "./TransportationAndOfficer";
 
 
 
@@ -28,20 +29,7 @@ const NewFuelPurchase = () => {
         <div className="form">
           <BillingComponent cardLabelView={cardLabelView}/>
           <TankEntries />
-          <fieldset className="fuelPurchaseFieldSet">
-            <legend>Transportation</legend>
-            <Transport />
-          </fieldset>
-          <fieldset className="fuelPurchaseFieldSet">
-            <legend>Invoice & officer</legend>
-            <div className="composableAutofils">
-              {
-                cardLabelView.length && cardLabelView.slice(1, 2).map((card) => {
-                  return <shared.components.AddItem label={card.name} cardLabelIcon={card.CustomCardLabelIcon} key={card.card} cardView={card.cardView} addItemView={card.addItemView} id={card.card} />
-                })
-              }
-            </div>
-          </fieldset>
+          <TransportationAndOfficer cardLabelView={cardLabelView} />
           <div className="form_actions">
             <Button type="button" className={'btn-element'}> cancel </Button>
             <Button type="submit" className={'btn-element btn_primary'}> save </Button>

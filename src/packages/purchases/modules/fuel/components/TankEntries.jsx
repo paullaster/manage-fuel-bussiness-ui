@@ -5,10 +5,6 @@ const TankEntries = () => {
     return (
         <div>
             <div>
-                <div>Tank Entries</div>
-                <AddItemButton btnCaption="Add Tank Entry"/>
-            </div>
-            <div>
                 <FuelPurchaseEntry />
             </div>
         </div>

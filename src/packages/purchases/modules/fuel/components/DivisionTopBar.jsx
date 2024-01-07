@@ -1,7 +1,7 @@
 const DivisionTopBar = ({sectionTitle = 'Section title', children, style = {}}) => {
     return (
         <div className='divisionTopBar' style={style}>
-            <div>{sectionTitle}</div>
+            <h2>{sectionTitle}</h2>
             {children}
         </div>
     )

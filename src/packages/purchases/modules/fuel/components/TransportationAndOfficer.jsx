@@ -1,8 +1,13 @@
 import React from 'react'
+import DivisionTopBar from './DivisionTopBar'
 
-const TransportationAndOfficer = () => {
+const TransportationAndOfficer = ({cardLabelView}) => {
   return (
-    <div>TransportationAndOfficer</div>
+    <div>
+        <DivisionTopBar sectionTitle='Tranposrt and Officer Information'>
+        </DivisionTopBar> 
+        
+    </div>
   )
 }
 

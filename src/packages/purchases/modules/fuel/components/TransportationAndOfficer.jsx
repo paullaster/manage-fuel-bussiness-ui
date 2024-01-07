@@ -4,7 +4,7 @@ import Transport from './Transport'
 
 const TransportationAndOfficer = ({ cardLabelView }) => {
     return (
-        <div>
+        <div className="TransportationAndOfficerCard">
             <DivisionTopBar sectionTitle='Tranposrt and Officer Information'>
             </DivisionTopBar>
             <div className='transport_and_officer'>

@@ -12,7 +12,6 @@ import InvoiceDetails from "./InvoiceDetails";
 
 
 
-
 const NewFuelPurchase = () => {
 
   const appStateDispatcher = useGlobalDispatcher();

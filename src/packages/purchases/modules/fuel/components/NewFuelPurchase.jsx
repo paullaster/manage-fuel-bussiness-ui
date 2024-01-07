@@ -8,6 +8,7 @@ import SaleItem from "./SaleItem";
 import { Button } from "@/components";
 import TaxItem from "./TaxItem";
 import InvoiceDetails from "./InvoiceDetails";
+import FuelPurchaseEntry from "./FuelPurchaseEntry";
 
 
 
@@ -36,6 +37,7 @@ const NewFuelPurchase = () => {
               }
             </div>
           </fieldset>
+          <FuelPurchaseEntry />
           <fieldset className="fuelPurchaseFieldSet">
             <legend>Sales entry</legend>
             <SaleItem />

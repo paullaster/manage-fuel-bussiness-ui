@@ -5,7 +5,6 @@ const DivisionTopBar = ({sectionTitle = 'Section title', children, style = {}}) 
         <div className='divisionTopBar' style={style}>
             <div>{sectionTitle}</div>
             {children}
-            <AddItemButton btnCaption="Add Tank Entry" />
         </div>
     )
 }

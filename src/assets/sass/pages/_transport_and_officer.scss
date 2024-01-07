@@ -1,7 +1,16 @@
+@use '../global/' as g;
+
 .TransportationAndOfficerCard {
+    margin: 4rem 0;
     .transport_and_officer {
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
+
+    & > div:first-child {
+        background-color: green;
+        margin-bottom: 2rem;
+        border: g.$default_border;
     }
 }

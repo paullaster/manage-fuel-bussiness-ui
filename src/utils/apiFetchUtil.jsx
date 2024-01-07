@@ -1,3 +1,3 @@
 export const apiFetchUtil = (options) => {
 
-}
+};

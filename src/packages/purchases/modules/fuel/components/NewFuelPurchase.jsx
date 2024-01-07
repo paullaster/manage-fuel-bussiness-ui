@@ -25,16 +25,14 @@ const NewFuelPurchase = () => {
       <shared.components.SectionIntroduction text="New Fuel Purchase" />
       <Form>
         <div className="form">
-          <fieldset className="fuelPurchaseFieldSet">
-            <legend>Vendor & product</legend>
-            <div className="composableAutofils">
-              {
+          <div>
+          {
                 cardLabelView.length && cardLabelView.slice(0, 1).map((card) => {
                   return <shared.components.AddItem label={card.name} cardLabelIcon={card.CustomCardLabelIcon} key={card.card} cardView={card.cardView} addItemView={card.addItemView} id={card.card} />
                 })
               }
-            </div>
-          </fieldset>
+              <InvoiceDetails />
+          </div>
           <TankEntries />
           <fieldset className="fuelPurchaseFieldSet">
             <legend>Transportation</legend>
@@ -50,7 +48,6 @@ const NewFuelPurchase = () => {
               }
             </div>
           </fieldset>
-          <InvoiceDetails />
           <div className="form_actions">
             <Button type="button" className={'btn-element'}> cancel </Button>
             <Button type="submit" className={'btn-element btn_primary'}> save </Button>

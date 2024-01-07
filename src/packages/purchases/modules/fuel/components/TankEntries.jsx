@@ -6,7 +6,7 @@ const TankEntries = () => {
 
             </div>
             <div>
-            <FuelPurchaseEntry />
+                <FuelPurchaseEntry />
             </div>
         </div>
     )

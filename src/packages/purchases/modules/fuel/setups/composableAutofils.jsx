@@ -4,14 +4,14 @@ import { MdPersonAdd, MdManageAccounts } from "react-icons/md";
 export default [
     {
         card: uuidv4(),
-        name: "vendor",
+        name: "Vendor",
         CustomCardLabelIcon: <MdPersonAdd size={20} />,
         cardView: true,
         addItemView: false,
     },
     {
         card: uuidv4(),
-        name: "officer",
+        name: "Officer",
         CustomCardLabelIcon: <MdManageAccounts size={20} />,
         cardView: true,
         addItemView: false,

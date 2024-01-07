@@ -1,4 +1,4 @@
-import { apiFetchUtil } from '@/utils';
+import { apiFetchUtil } from "@/utils";
 
 export default [
     {

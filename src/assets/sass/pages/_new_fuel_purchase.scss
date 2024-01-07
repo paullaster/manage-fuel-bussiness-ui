@@ -6,8 +6,8 @@
     margin-left: -4em !important;
 
     &>form {
-        &>.form {
-
+        & > .form_actions {
+            background-color: green;
         }
     }
 }

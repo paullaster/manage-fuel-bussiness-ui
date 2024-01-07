@@ -26,7 +26,6 @@ const NewFuelPurchase = () => {
     <section className="newfuelpurchase">
       <shared.components.SectionIntroduction text="New Fuel Purchase" />
       <Form>
-        <div className="form">
           <BillingComponent cardLabelView={cardLabelView}/>
           <TransportationAndOfficer cardLabelView={cardLabelView} />
           <TankEntries />
@@ -34,7 +33,6 @@ const NewFuelPurchase = () => {
             <Button type="button" className={'btn-element'}> cancel </Button>
             <Button type="submit" className={'btn-element btn_primary'}> save </Button>
           </div>
-        </div>
       </Form>
     </section>
   )

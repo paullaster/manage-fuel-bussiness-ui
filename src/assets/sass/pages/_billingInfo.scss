@@ -1,6 +1,9 @@
 @use '../global/' as g;
 
 .billingInfo {
+    display: grid;
+    grid-template-columns: 3fr 3fr;
+    gap: 1.2rem;
     .input-group {
         & > * {
             display: block;

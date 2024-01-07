@@ -10,7 +10,7 @@ export default [
     {
         field: 'fuel_type',
         headerName: 'Fuel Type',
-        width: 150,
+        width: 120,
         editable: false,
         sortable: false,
         valueGetter: (params) => {
@@ -20,25 +20,25 @@ export default [
     {
         field: 'dip_quantity_before_offloading',
         headerName: 'Dip quantity before offloading',
-        width: 210,
+        width: 250,
         editable: true,
     },
     {
         field: 'sales_quantity_during_offloading',
         headerName: 'Sales quantity during offloading',
-        width: 210,
+        width: 250,
         editable: true,
     },
     {
         field: 'actual_dip_quantity_after_offloading',
         headerName: 'Actual dip quantity after offloading',
-        width: 210,
+        width: 250,
         editable: true,
     },
     {
         field: 'expected_quantity',
         headerName: 'Expected quantity',
-        width: 210,
+        width: 130,
         editable: true,
     },
     {

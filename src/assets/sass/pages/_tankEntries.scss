@@ -1,4 +1,5 @@
 @use '../global/' as g;
+@use '../utilities/' as u;
 
 .tankEntries {
     & > div:first-child {
@@ -12,6 +13,7 @@
                 padding: .8rem 1.6rem;
                 border-radius: .4rem;
                 color: g.$color_primary_light;
+                @include u.boxshadow
             }
         }
     }

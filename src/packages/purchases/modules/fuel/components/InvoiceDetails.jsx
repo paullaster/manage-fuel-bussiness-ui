@@ -7,12 +7,12 @@ const InvoiceDetails = () => {
                 prelabelText="Invoice number"
                 name="invoice_number"
             />
-            <DatePickerComponent />
+            <DatePickerComponent label="Invoice date"/>
             <InputComponent
                 prelabelText="Purchase order number"
                 name="purchase_order_number"
             />
-            <DatePickerComponent />
+            <DatePickerComponent label="Purchase order date"/>
         </div>
     )
 }

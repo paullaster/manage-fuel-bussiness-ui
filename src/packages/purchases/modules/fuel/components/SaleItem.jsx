@@ -14,10 +14,10 @@ const SaleItem = () => {
         prelabelText="expected Quantity"
         name="expected_quantity"
       />
-        <InputComponent
-          prelabelText="Actual dip Quantity after offloading"
+      <InputComponent
+        prelabelText="Actual dip Quantity after offloading"
         name="tactual_dip_quantity_after_offloading"
-        />
+      />
       <InputComponent
         prelabelText="Variance"
         name="variance"
@@ -26,7 +26,7 @@ const SaleItem = () => {
         prelabelText="sales quantity during offloading"
         name="sales_quantity_during_offloading"
       />
-      <Autocomplete list={list} label = {'tanks'} />
+      <Autocomplete list={list} label={'tanks'} />
     </div>
   )
 }

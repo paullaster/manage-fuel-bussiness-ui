@@ -4,10 +4,6 @@ const TaxItem = () => {
     return (
         <div className='taxItems'>
             <InputComponent
-                prelabelText="quantity"
-                name="quantity"
-            />
-            <InputComponent
                 prelabelText="price"
                 name="price"
             />

@@ -2,7 +2,7 @@ import { InputComponent, DatePickerComponent } from "@/components";
 
 const InvoiceDetails = () => {
     return (
-        <div>
+        <div className="billingInfo">
             <InputComponent
                 prelabelText="Invoice number"
                 name="invoice_number"

@@ -1,3 +1,18 @@
+@use '../global/' as g;
+
 .billingInfo {
-    background-color: red;
+    .input-group {
+        & > * {
+            display: block;
+        }
+        & > *:not(:last-child) {
+            margin-bottom: g.$xsmall;
+        }
+    }
+
+    .MuiInputBase-input {
+        border: none !important;
+        outline: none !important;
+        height: fit-content !important;
+    }
 }

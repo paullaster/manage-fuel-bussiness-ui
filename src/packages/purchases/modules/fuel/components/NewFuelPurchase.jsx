@@ -28,8 +28,8 @@ const NewFuelPurchase = () => {
       <Form>
         <div className="form">
           <BillingComponent cardLabelView={cardLabelView}/>
-          <TankEntries />
           <TransportationAndOfficer cardLabelView={cardLabelView} />
+          <TankEntries />
           <div className="form_actions">
             <Button type="button" className={'btn-element'}> cancel </Button>
             <Button type="submit" className={'btn-element btn_primary'}> save </Button>

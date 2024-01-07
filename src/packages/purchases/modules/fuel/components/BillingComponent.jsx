@@ -4,7 +4,7 @@ import DivisionTopBar from "./DivisionTopBar";
 
 const BillingComponent = ({ cardLabelView }) => {
     return (
-        <div>
+        <div className="billingCard">
             <DivisionTopBar sectionTitle="Billing "/>
             <div className="billing">
                 {

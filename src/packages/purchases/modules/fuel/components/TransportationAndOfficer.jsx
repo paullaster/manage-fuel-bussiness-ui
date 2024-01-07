@@ -1,4 +1,4 @@
-import React from 'react'
+import shared from "../../../shared";
 import DivisionTopBar from './DivisionTopBar'
 import Transport from './Transport'
 

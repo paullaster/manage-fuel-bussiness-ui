@@ -1,10 +1,13 @@
 import { purchaseEntryColumns } from "../setups";
-import 
+import { DataTable } from "@/components";
 const FuelPurchaseEntry = () => {
   return (
-    <div>
-        
-    </div>
+    <DataTable
+      style={{ height: auto, width: '100%' }}
+      columns={purchaseEntryColumns}
+      rows={[]}
+
+    />
   )
 }
 

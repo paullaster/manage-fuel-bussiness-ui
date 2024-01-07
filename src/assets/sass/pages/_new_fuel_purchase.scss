@@ -12,9 +12,18 @@
             display: flex;
             justify-content: space-between;
              & > button {
-                display: block;
+                display: flex;
+                justify-content: center;
+                align-items: center;
                  width: 16rem;
                  border-radius: .8rem !important;
+
+                 & > span {
+                    display: block;
+                 }
+                 & > span:first-child {
+                    margin-right: .4rem;
+                 }
              }
         }
     }

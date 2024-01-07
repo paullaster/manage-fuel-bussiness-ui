@@ -4,7 +4,7 @@ import AddItemButton from "../../../shared/components/AddItemButton"
 import DivisionTopBar from "./DivisionTopBar"
 const TankEntries = () => {
     return (
-        <div>
+        <div className="tankEntries">
             <DivisionTopBar sectionTitle="Tank Entries">
                 <AddItemButton btnCaption="Add Tank Entry"/>
             </DivisionTopBar>

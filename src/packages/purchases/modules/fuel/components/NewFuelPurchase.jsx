@@ -7,6 +7,7 @@ import { composableAutofils } from "../setups";
 import { Button } from "@/components";
 import InvoiceDetails from "./InvoiceDetails";
 import FuelPurchaseEntry from "./FuelPurchaseEntry";
+import TankEntries from "./TankEntries";
 
 
 
@@ -35,6 +36,7 @@ const NewFuelPurchase = () => {
               }
             </div>
           </fieldset>
+          <TankEntries />
           <FuelPurchaseEntry />
           <fieldset className="fuelPurchaseFieldSet">
             <legend>Transportation</legend>

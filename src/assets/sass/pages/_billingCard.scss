@@ -1,7 +1,6 @@
 @use '../global/' as g;
 
 .billingCard {
-    background-color: red;
     & > div:first-child {
         padding-bottom: .8rem;
         margin-bottom: 2rem;

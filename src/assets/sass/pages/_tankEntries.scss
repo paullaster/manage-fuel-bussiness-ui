@@ -16,6 +16,8 @@
 
         &>div {
             padding-bottom: 0 !important;
+            display: flex;
+            justify-content: end;
 
             &>button {
                 background-color: g.$color_primary;

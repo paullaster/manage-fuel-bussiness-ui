@@ -13,6 +13,11 @@ const InvoiceDetails = () => {
                 name="po_number"
             />
             <DatePickerComponent label="Purchase order date"/>
+            <InputComponent
+                prelabelText="Delivery note number"
+                name="delivery_note_number"
+            />
+            <DatePickerComponent label="Delivery note date"/>
         </div>
     )
 }

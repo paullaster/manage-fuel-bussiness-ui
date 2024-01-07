@@ -1,11 +1,11 @@
-import { Button } from "@/components"
+
 import FuelPurchaseEntry from "./FuelPurchaseEntry"
 import AddItemButton from "../../../shared/components/AddItemButton"
 import DivisionTopBar from "./DivisionTopBar"
 const TankEntries = () => {
     return (
         <div>
-            <DivisionTopBar>
+            <DivisionTopBar sectionTitle="Tank Entries">
                 <AddItemButton btnCaption="Add Tank Entry"/>
             </DivisionTopBar>
             <div>

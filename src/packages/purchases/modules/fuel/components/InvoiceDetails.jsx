@@ -1,4 +1,4 @@
-import React from 'react'
+import { InputComponent } from "@/components";
 
 const InvoiceDetails = () => {
     return (

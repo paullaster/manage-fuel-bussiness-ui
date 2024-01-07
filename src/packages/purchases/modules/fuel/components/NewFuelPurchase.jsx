@@ -7,6 +7,7 @@ import { composableAutofils } from "../setups";
 import SaleItem from "./SaleItem";
 import { Button } from "@/components";
 import TaxItem from "./TaxItem";
+import InvoiceDetails from "./InvoiceDetails";
 
 
 
@@ -52,12 +53,13 @@ const NewFuelPurchase = () => {
             <legend>Invoice & officer</legend>
             <div className="composableAutofils">
               {
-                cardLabelView.length && cardLabelView.slice(2, 4).map((card) => {
+                cardLabelView.length && cardLabelView.slice(3, 4).map((card) => {
                   return <shared.components.AddItem label={card.name} cardLabelIcon={card.CustomCardLabelIcon} key={card.card} cardView={card.cardView} addItemView={card.addItemView} id={card.card} />
                 })
               }
             </div>
           </fieldset>
+          <InvoiceDetails />
           <div className="form_actions">
             <Button type="button" className={'btn-element'}> cancel </Button>
             <Button type="submit" className={'btn-element btn_primary'}> save </Button>

@@ -1,0 +1,20 @@
+@use '../global/' as g;
+
+.TransportationAndOfficerCard {
+    margin-top: 4rem;
+    .transport_and_officer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    & > div:first-child {
+        margin-bottom: 2rem;
+        padding-bottom: .8rem ;
+        border-bottom: g.$default_border;
+    }
+
+    input {
+        height: 3.4rem;
+    }
+}

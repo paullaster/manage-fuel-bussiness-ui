@@ -1,18 +1,21 @@
 @use '../global/' as g;
 
 .transport {
-    padding: 4% 0;
-    display: flex;
+    // padding: 4% 0;
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    width: 50rem;
 
-    & > .input-group {
+    &>.input-group {
         flex-grow: 1;
         display: flex;
         flex-direction: column;
-        & > * {
+
+        &>* {
             display: block;
         }
 
-        & > *:not(:last-child) {
+        &>*:not(:last-child) {
             margin-bottom: g.$xsmall;
         }
     }

@@ -1,10 +1,12 @@
 @use '../utilities/' as u;
 
 .addItem {
-    border-radius: .4rem;
-    width: max-content;
-    box-shadow: .2rem .2rem .4rem .8rem black;
-    padding: 2rem;
-    @include u.boxshadow;
-    cursor: default;
+    // border-radius: .4rem;
+    // width: max-content;
+    // box-shadow: .2rem .2rem .4rem .8rem black;
+    // padding: 2rem;
+    // @include u.boxshadow;
+    // cursor: default;
+    // background-color: green;
+    width: 40rem;
 }

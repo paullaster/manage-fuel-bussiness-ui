@@ -3,7 +3,7 @@ import CustomPopover from "./CustomPopover";
 import CustomAriaInput from "./CustomAriaInput";
 
 const label = " ";
-const Autocomplete = ({list}) => {
+const Autocomplete = ({list, label}) => {
   return (
       <div className={'autocomplete'}>
           <ComboBox >

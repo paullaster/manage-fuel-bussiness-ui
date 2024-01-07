@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import shared from "../../../shared";
 import { useGlobalDispatcher, useGlobalState } from '@/store';
-import Transport from "./Transport";
 import { Form } from "react-router-dom";
 import { composableAutofils } from "../setups";
-import SaleItem from "./SaleItem";
 import { Button } from "@/components";
-import TaxItem from "./TaxItem";
-
+import TankEntries from "./TankEntries";
+import BillingComponent from "./BillingComponent";
+import TransportationAndOfficer from "./TransportationAndOfficer";
+import { MdOutlineSimCardDownload, MdClear } from "react-icons/md";
 
 
 
@@ -25,43 +25,12 @@ const NewFuelPurchase = () => {
     <section className="newfuelpurchase">
       <shared.components.SectionIntroduction text="New Fuel Purchase" />
       <Form>
-        <div className="form">
-          <fieldset className="fuelPurchaseFieldSet">
-            <legend>Vendor & product</legend>
-            <div className="composableAutofils">
-              {
-                cardLabelView.length && cardLabelView.slice(0, 2).map((card) => {
-                  return <shared.components.AddItem label={card.name} cardLabelIcon={card.CustomCardLabelIcon} key={card.card} cardView={card.cardView} addItemView={card.addItemView} id={card.card} />
-                })
-              }
-            </div>
-          </fieldset>
-          <fieldset className="fuelPurchaseFieldSet">
-            <legend>Sales entry</legend>
-            <SaleItem />
-          </fieldset>
-          <fieldset className="fuelPurchaseFieldSet">
-            <legend>Transportation</legend>
-            <Transport />
-          </fieldset>
-          <fieldset className="fuelPurchaseFieldSet">
-            <legend>Add tax</legend>
-            <TaxItem />
-          </fieldset>
-          <fieldset className="fuelPurchaseFieldSet">
-            <legend>Invoice & officer</legend>
-            <div className="composableAutofils">
-              {
-                cardLabelView.length && cardLabelView.slice(2, 4).map((card) => {
-                  return <shared.components.AddItem label={card.name} cardLabelIcon={card.CustomCardLabelIcon} key={card.card} cardView={card.cardView} addItemView={card.addItemView} id={card.card} />
-                })
-              }
-            </div>
-          </fieldset>
-          <div className="form_actions">
-            <Button type="button" className={'btn-element'}> cancel </Button>
-            <Button type="submit" className={'btn-element btn_primary'}> save </Button>
-          </div>
+        <BillingComponent cardLabelView={cardLabelView} />
+        <TransportationAndOfficer cardLabelView={cardLabelView} />
+        <TankEntries />
+        <div className="form_actions">
+          <Button type="button" className={'btn-element'}><span><MdClear size={20}/> </span> <span>cancel</span></Button>
+          <Button type="submit" className={'btn-element btn_primary'}> <span><MdOutlineSimCardDownload size={20} /></span> <span>save</span></Button>
         </div>
       </Form>
     </section>

@@ -1,0 +1,32 @@
+@use '../global/' as g;
+@use '../utilities/' as u;
+
+.tankEntries {
+    margin-top: 4rem;
+
+    &>div:first-child {
+        display: flex;
+        flex-direction: column;
+
+        &>h2 {
+            margin-bottom: 2rem;
+            padding-bottom: .8rem;
+            border-bottom: g.$default_border;
+        }
+
+        &>div {
+            padding-bottom: 0 !important;
+            display: flex;
+            justify-content: end;
+            border-bottom: none !important;
+
+            &>button {
+                background-color: g.$color_primary;
+                padding: .8rem 1.6rem;
+                border-radius: .4rem;
+                color: g.$color_primary_light;
+                @include u.boxshadow_light;
+            }
+        }
+    }
+}

@@ -2,6 +2,8 @@
 @forward './addItem';
 @forward './admin';
 @forward './autocomplete';
+@forward './billingCard';
+@forward './billingInfo';
 @forward './company';
 @forward './customAriaAutompleteInput';
 @forward './datatable';
@@ -17,6 +19,7 @@
 @forward './stepper';
 @forward './purchase_items_index';
 @forward './purchaseItem';
-@forward './taxItems';
+@forward './tankEntries';
 @forward './transport';
+@forward './transport_and_officer';
 @forward './wizard';

@@ -1,0 +1,26 @@
+@use '../global/' as g;
+
+.billingInfo {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    gap: 1.2rem;
+    .input-group {
+        & > * {
+            display: block;
+        }
+        & > *:not(:last-child) {
+            margin-bottom: g.$xsmall;
+        }
+        & > input {
+            width: 17.6rem;
+            border-radius: .4rem !important;
+            height: 3.4rem;
+        }
+    }
+
+    .MuiInputBase-input {
+        border: none !important;
+        outline: none !important;
+        height: fit-content !important;
+    }
+}

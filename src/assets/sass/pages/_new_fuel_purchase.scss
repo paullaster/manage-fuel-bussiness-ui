@@ -2,17 +2,29 @@
 @use '../utilities/' as u;
 
 .newfuelpurchase {
-    width: 80% !important;
+    width: 100% !important;
+    margin-left: -4em !important;
 
     &>form {
-        &>.form {
-            &>fieldset {
-                &>.composableAutofils {
-                    display: flex;
-                    justify-content: space-evenly;
-                    margin: 4% 0;
-                }
-            }
+        & > .form_actions {
+            width: 30%;
+            margin: 4rem 0;
+            display: flex;
+            justify-content: space-between;
+             & > button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                 width: 12rem;
+                 border-radius: .8rem !important;
+
+                 & > span {
+                    display: block;
+                 }
+                 & > span:first-child {
+                    margin-right: .4rem;
+                 }
+             }
         }
     }
 }

@@ -1,4 +1,4 @@
-import { InputComponent, DatePicker } from "@/components";
+import { InputComponent, DatePickerComponent } from "@/components";
 
 const InvoiceDetails = () => {
     return (
@@ -7,11 +7,12 @@ const InvoiceDetails = () => {
                 prelabelText="Invoice number"
                 name="invoice_number"
             />
-            <DatePicker />
+            <DatePickerComponent />
             <InputComponent
                 prelabelText="Purchase order number"
                 name="purchase_order_number"
             />
+            <DatePickerComponent />
         </div>
     )
 }

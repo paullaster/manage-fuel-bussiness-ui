@@ -3,11 +3,11 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-const DatePickerComponent = () => {
+const DatePickerComponent = ({ label = 'mm/dd/yyyy' }) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DemoContainer component={'DatePicker'}>
-            <DatePicker label={'mm/dd/yyyy'}/>
+      <DemoContainer components={['DatePicker']}>
+            <DatePicker label={label}/>
         </DemoContainer>
     </LocalizationProvider>
   )

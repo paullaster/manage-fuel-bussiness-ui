@@ -7,8 +7,15 @@
 
     &>form {
         & > .form_actions {
-            background-color: green;
+            width: 40%;
             margin: 4rem 0;
+            display: flex;
+            justify-content: space-between;
+             & > button {
+                display: block;
+                 width: 16rem;
+                 border-radius: .8rem !important;
+             }
         }
     }
 }

@@ -1,3 +1,5 @@
+@use '../global/' as g;
+
 .billingCard {
     background-color: red;
     & > div:first-child {

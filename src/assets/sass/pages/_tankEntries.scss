@@ -9,6 +9,9 @@
             padding-bottom: 0 !important;
             & > button {
                 background-color: g.$color_primary;
+                padding: .8rem 1.6rem;
+                border-radius: .4rem;
+                color: g.$color_primary_light;
             }
         }
     }

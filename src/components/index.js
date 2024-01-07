@@ -2,7 +2,7 @@ import { ErrorComponent } from "./Error";
 import {
     Footer, Navigation, Sidebar, Button,
     SearchComponent, TableComponent, PaginatorComponent,
-    InputComponent, Stepper, DatePicker
+    InputComponent, Stepper, DatePickerComponent
 } from './shared';
 
 
@@ -10,5 +10,5 @@ export { default as Logo } from './Logo';
 export {
     ErrorComponent, Footer, Navigation,
     Sidebar, Button, SearchComponent, TableComponent,
-    PaginatorComponent, InputComponent, Stepper, DatePicker
+    PaginatorComponent, InputComponent, Stepper, DatePickerComponent
 };

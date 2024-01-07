@@ -1,3 +1,5 @@
+import { apiFetchUtil } from '@/utils';
+
 export default [
     {
         field: 'tank',
@@ -12,7 +14,7 @@ export default [
         editable: false,
         sortable: false,
         valueGetter: (params) => {
-            
+            return params.row.tank === '' || undefined || null ? 'No tank selected' : apiFetchUtil(params.row)
         }
     },
     {

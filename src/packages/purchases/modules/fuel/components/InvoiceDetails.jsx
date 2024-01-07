@@ -16,8 +16,8 @@ const InvoiceDetails = () => {
                 name="delivery_note_number"
             />
             <DatePickerComponent label="Invoice date"/>
-            <DatePickerComponent label="Delivery note date"/>
             <DatePickerComponent label="Purchase order date"/>
+            <DatePickerComponent label="Delivery note date"/>
         </div>
     )
 }

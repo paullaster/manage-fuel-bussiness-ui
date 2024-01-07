@@ -18,6 +18,7 @@
             padding-bottom: 0 !important;
             display: flex;
             justify-content: end;
+            border-bottom: none !important;
 
             &>button {
                 background-color: g.$color_primary;

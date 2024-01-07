@@ -1,6 +1,7 @@
 import { DataGrid } from '@mui/x-data-grid';
 
 const DataTable = ({
+    style = { height: 400, width: '100%' },
     rows,
     columns,
     initialState = { pagination: { paginationModel: { page: 0, pageSize: 5 }, } },
@@ -8,7 +9,7 @@ const DataTable = ({
     ...args
 }) => {
     return (
-        <div>
+        <div style={style}>
             <DataGrid
                 rows={rows}
                 columns={columns}

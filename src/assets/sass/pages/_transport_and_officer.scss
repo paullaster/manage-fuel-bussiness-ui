@@ -9,8 +9,8 @@
     }
 
     & > div:first-child {
-        background-color: green;
         margin-bottom: 2rem;
-        border: g.$default_border;
+        padding-bottom: .8rem ;
+        border-bottom: g.$default_border;
     }
 }

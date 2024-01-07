@@ -1,5 +1,5 @@
 import { InputComponent } from "@/components";
-import Autocomplete from "../../../shared/components/Autocomplete";
+// import Autocomplete from "../../../shared/components/Autocomplete";
 const SaleItem = () => {
 
   const list = [];
@@ -26,7 +26,7 @@ const SaleItem = () => {
         prelabelText="sales quantity during offloading"
         name="sales_quantity_during_offloading"
       />
-      <Autocomplete list={list} label={'tanks'} />
+      {/* <Autocomplete list={list} label={'tanks'} /> */}
     </div>
   )
 }

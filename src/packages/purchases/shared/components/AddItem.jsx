@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import CustomCardLabel from "./CustomCardLabel";
-import Autocomplete from "./Autocomplete";
+// import Autocomplete from "./Autocomplete";
 import AddItemButton from "./AddItemButton";
 import { useGlobalDispatcher } from '@/store';
 
@@ -51,7 +51,7 @@ const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id }) => {
              {
                 addItemView ? 
                 <div>
-                    <Autocomplete list={list} />
+                    {/* <Autocomplete list={list} /> */}
                     <AddItemButton btnCaption={`new ${label}`} />
                 </div>
                 : ''

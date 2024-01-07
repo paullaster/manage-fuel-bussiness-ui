@@ -8,6 +8,10 @@ import { ItemAndMaximumItemsPerPage } from "./Item-MaximumITemsPerPage";
 import { getStepClass } from "./GetStepClass";
 import { generator } from "./Generator";
 
+
+
+export * from './apiFetchUtil';
+
 export {
     Hide,
     NavigationAside,

@@ -2,6 +2,7 @@
 @use '../utilities/' as u;
 
 .tankEntries {
+    margin-top: 4rem;
     & > div:first-child {
         display: flex;
         justify-content: space-between;
@@ -13,7 +14,7 @@
                 padding: .8rem 1.6rem;
                 border-radius: .4rem;
                 color: g.$color_primary_light;
-                @include u.boxshadow
+                @include u.boxshadow_light;
             }
         }
     }

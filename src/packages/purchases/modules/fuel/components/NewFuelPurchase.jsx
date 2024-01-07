@@ -4,7 +4,6 @@ import { useGlobalDispatcher, useGlobalState } from '@/store';
 import Transport from "./Transport";
 import { Form } from "react-router-dom";
 import { composableAutofils } from "../setups";
-import SaleItem from "./SaleItem";
 import { Button } from "@/components";
 import TaxItem from "./TaxItem";
 import InvoiceDetails from "./InvoiceDetails";
@@ -39,16 +38,8 @@ const NewFuelPurchase = () => {
           </fieldset>
           <FuelPurchaseEntry />
           <fieldset className="fuelPurchaseFieldSet">
-            <legend>Sales entry</legend>
-            <SaleItem />
-          </fieldset>
-          <fieldset className="fuelPurchaseFieldSet">
             <legend>Transportation</legend>
             <Transport />
-          </fieldset>
-          <fieldset className="fuelPurchaseFieldSet">
-            <legend>Add tax</legend>
-            <TaxItem />
           </fieldset>
           <fieldset className="fuelPurchaseFieldSet">
             <legend>Invoice & officer</legend>

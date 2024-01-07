@@ -7,7 +7,7 @@ import { Button } from "@/components";
 import TankEntries from "./TankEntries";
 import BillingComponent from "./BillingComponent";
 import TransportationAndOfficer from "./TransportationAndOfficer";
-import { MdOutlineSimCardDownload } from "react-icons/md";
+import { MdOutlineSimCardDownload, MdClear } from "react-icons/md";
 
 
 
@@ -29,7 +29,7 @@ const NewFuelPurchase = () => {
         <TransportationAndOfficer cardLabelView={cardLabelView} />
         <TankEntries />
         <div className="form_actions">
-          <Button type="button" className={'btn-element'}> cancel </Button>
+          <Button type="button" className={'btn-element'}><span><MdClear size={20}/> </span> <span>cancel</span></Button>
           <Button type="submit" className={'btn-element btn_primary'}> <span><MdOutlineSimCardDownload size={20} /></span> <span>save</span></Button>
         </div>
       </Form>

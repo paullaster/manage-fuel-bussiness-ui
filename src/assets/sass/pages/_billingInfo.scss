@@ -8,6 +8,10 @@
         & > *:not(:last-child) {
             margin-bottom: g.$xsmall;
         }
+        & > input {
+            width: 17.6rem;
+            border-radius: .4rem !important;
+        }
     }
 
     .MuiInputBase-input {

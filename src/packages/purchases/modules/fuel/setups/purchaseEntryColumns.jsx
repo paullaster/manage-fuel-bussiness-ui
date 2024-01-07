@@ -13,8 +13,10 @@ export default [
         width: 120,
         editable: false,
         sortable: false,
-        valueGetter: (params) => {
-            return params.row.tank === '' || undefined || null ? 'No tank selected' : apiFetchUtil(params.row)
+        valueGetter: async (params) => {
+            if(params.row.tank === '' || undefined || null) return 'No tank selected';
+            let tank = await apiFetchUtil(params.row)
+            return tank.fuel_type;
         }
     },
     {

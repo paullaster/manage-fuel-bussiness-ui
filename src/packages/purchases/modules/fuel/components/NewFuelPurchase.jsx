@@ -29,7 +29,7 @@ const NewFuelPurchase = () => {
             <legend>Vendor & product</legend>
             <div className="composableAutofils">
               {
-                cardLabelView.length && cardLabelView.slice(0, 2).map((card) => {
+                cardLabelView.length && cardLabelView.slice(0, 1).map((card) => {
                   return <shared.components.AddItem label={card.name} cardLabelIcon={card.CustomCardLabelIcon} key={card.card} cardView={card.cardView} addItemView={card.addItemView} id={card.card} />
                 })
               }
@@ -44,7 +44,7 @@ const NewFuelPurchase = () => {
             <legend>Invoice & officer</legend>
             <div className="composableAutofils">
               {
-                cardLabelView.length && cardLabelView.slice(3, 4).map((card) => {
+                cardLabelView.length && cardLabelView.slice(1, 2).map((card) => {
                   return <shared.components.AddItem label={card.name} cardLabelIcon={card.CustomCardLabelIcon} key={card.card} cardView={card.cardView} addItemView={card.addItemView} id={card.card} />
                 })
               }

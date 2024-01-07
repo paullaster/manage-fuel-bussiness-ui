@@ -4,11 +4,11 @@
     & > div:first-child {
         padding-bottom: .8rem;
         margin-bottom: 2rem;
+        border-bottom: g.$default_border;
     }
     .billing {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: g.$default_border;;
     }
 }

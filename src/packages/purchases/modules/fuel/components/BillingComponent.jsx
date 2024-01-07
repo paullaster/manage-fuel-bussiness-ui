@@ -2,8 +2,8 @@ import InvoiceDetails from "./InvoiceDetails"
 
 const BillingComponent = () => {
   return (
-    <div>
-        
+    <div className="billing">
+
         <InvoiceDetails />
     </div>
   )

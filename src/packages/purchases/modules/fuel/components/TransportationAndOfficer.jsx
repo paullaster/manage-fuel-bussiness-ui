@@ -1,5 +1,5 @@
 import shared from "../../../shared";
-import DivisionTopBar from './DivisionTopBar'
+import DivisionTopBar from '../../../shared/components/DivisionTopBar'
 import Transport from './Transport'
 
 const TransportationAndOfficer = ({ cardLabelView }) => {

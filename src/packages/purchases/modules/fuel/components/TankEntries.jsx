@@ -1,7 +1,7 @@
 
 import FuelPurchaseEntry from "./FuelPurchaseEntry"
 import AddItemButton from "../../../shared/components/AddItemButton"
-import DivisionTopBar from "./DivisionTopBar"
+import DivisionTopBar from "../../../shared/components/DivisionTopBar"
 const TankEntries = () => {
     return (
         <div className="tankEntries">

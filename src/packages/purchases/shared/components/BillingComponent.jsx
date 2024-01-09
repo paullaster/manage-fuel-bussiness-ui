@@ -1,6 +1,6 @@
 import InvoiceDetails from "./InvoiceDetails";
 import shared from "..";
-import DivisionTopBar from "../../modules/fuel/components/DivisionTopBar";
+import DivisionTopBar from "./DivisionTopBar";
 
 const BillingComponent = ({ cardLabelView = [] }) => {
     return (

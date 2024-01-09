@@ -19,6 +19,7 @@ const NewItem = () => {
       <shared.components.SectionIntroduction text="New purchase item" />
       <Form method="post">
         <shared.components.BillingComponent cardLabelView={cardLabelView} />
+        
         <FormButtonRow />
       </Form>
     </section>

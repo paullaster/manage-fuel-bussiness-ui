@@ -5,8 +5,8 @@ import DivisionTopBar from "../../../shared/components/DivisionTopBar"
 const PurchaseItemEntry = () => {
   return (
         <div className="tankEntries">
-            <DivisionTopBar sectionTitle="Tank entry information">
-                <AddItemButton btnCaption="Add Tank Entry"/>
+            <DivisionTopBar sectionTitle="Purcahse item details">
+                <AddItemButton btnCaption="Add item"/>
             </DivisionTopBar>
             <div>
                 <FuelPurchaseEntry />

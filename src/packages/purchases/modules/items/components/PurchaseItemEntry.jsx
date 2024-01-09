@@ -1,6 +1,6 @@
-import FuelPurchaseEntry from "./FuelPurchaseEntry"
 import AddItemButton from "../../../shared/components/AddItemButton"
 import DivisionTopBar from "../../../shared/components/DivisionTopBar"
+import ItemData from "./ItemData"
 
 const PurchaseItemEntry = () => {
   return (
@@ -9,7 +9,7 @@ const PurchaseItemEntry = () => {
                 <AddItemButton btnCaption="Add item"/>
             </DivisionTopBar>
             <div>
-                <FuelPurchaseEntry />
+                <ItemData />
             </div>
         </div>
     )

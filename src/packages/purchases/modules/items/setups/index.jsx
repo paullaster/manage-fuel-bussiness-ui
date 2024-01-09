@@ -1,3 +1,7 @@
-import  composableAutofils from './composableAutofils';
+import composableAutofils from "./composableAutofils";
+import purchaseEntryColumns from "./purchaseEntryColumns";
 
-export { composableAutofils}
+export {
+    composableAutofils,
+    purchaseEntryColumns
+};

@@ -5,7 +5,6 @@ import { Form } from "react-router-dom";
 import { composableAutofils } from "../setups";
 import { Button } from "@/components";
 import TankEntries from "./TankEntries";
-import BillingComponent from "./BillingComponent";
 import TransportationAndOfficer from "./TransportationAndOfficer";
 import { MdOutlineSimCardDownload, MdClear } from "react-icons/md";
 
@@ -25,7 +24,7 @@ const NewFuelPurchase = () => {
     <section className="newfuelpurchase">
       <shared.components.SectionIntroduction text="New Fuel Purchase" />
       <Form>
-        <BillingComponent cardLabelView={cardLabelView} />
+        <shared.components.BillingComponent cardLabelView={cardLabelView} />
         <TransportationAndOfficer cardLabelView={cardLabelView} />
         <TankEntries />
         <div className="form_actions">

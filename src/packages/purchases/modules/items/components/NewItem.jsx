@@ -1,5 +1,4 @@
 import { Form } from "react-router-dom";
-import ItemComponent from "./ItemComponent";
 import FormButtonRow from "./FormButtonRow";
 import shared from "../../../shared";
 const NewItem = () => {
@@ -7,7 +6,7 @@ const NewItem = () => {
     <section className='purchaseItem'>
       <shared.components.SectionIntroduction text="New purchase item" />
       <Form method="post">
-        <ItemComponent />
+        
         <FormButtonRow />
       </Form>
     </section>

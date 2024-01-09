@@ -1,6 +1,6 @@
-import InvoiceDetails from "./InvoiceDetails";
-import shared from "../../../shared";
-import DivisionTopBar from "./DivisionTopBar";
+import InvoiceDetails from "../../modules/fuel/components/InvoiceDetails";
+import shared from "..";
+import DivisionTopBar from "../../modules/fuel/components/DivisionTopBar";
 
 const BillingComponent = ({ cardLabelView }) => {
     return (

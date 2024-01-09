@@ -2,7 +2,7 @@ import InvoiceDetails from "../../modules/fuel/components/InvoiceDetails";
 import shared from "..";
 import DivisionTopBar from "../../modules/fuel/components/DivisionTopBar";
 
-const BillingComponent = ({ cardLabelView }) => {
+const BillingComponent = ({ cardLabelView = [] }) => {
     return (
         <div className="billingCard">
             <DivisionTopBar sectionTitle="Billing details that appear in your bill "/>

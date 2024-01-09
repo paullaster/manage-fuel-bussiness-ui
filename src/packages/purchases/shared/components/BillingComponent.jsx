@@ -1,8 +1,8 @@
 import InvoiceDetails from "./InvoiceDetails";
-import shared from "../../../shared";
+import shared from "..";
 import DivisionTopBar from "./DivisionTopBar";
 
-const BillingComponent = ({ cardLabelView }) => {
+const BillingComponent = ({ cardLabelView = [] }) => {
     return (
         <div className="billingCard">
             <DivisionTopBar sectionTitle="Billing details that appear in your bill "/>

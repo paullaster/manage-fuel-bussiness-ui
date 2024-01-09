@@ -3,6 +3,7 @@ import { NewConstruct } from "./NewConstruct";
 import SectionIntroduction from "./SectionIntroduction";
 import AddItemButton from "./AddItemButton";
 import AddItem from "./AddItem";
+import BillingComponent from "./BillingComponent";
 
 export default {
     PurchasesItemsIndex,
@@ -10,4 +11,5 @@ export default {
     SectionIntroduction,
     AddItemButton,
     AddItem,
+    BillingComponent
 }

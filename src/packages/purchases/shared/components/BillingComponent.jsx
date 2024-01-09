@@ -1,4 +1,4 @@
-import InvoiceDetails from "../../modules/fuel/components/InvoiceDetails";
+import InvoiceDetails from "./InvoiceDetails";
 import shared from "..";
 import DivisionTopBar from "../../modules/fuel/components/DivisionTopBar";
 

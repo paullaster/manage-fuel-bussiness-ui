@@ -8,8 +8,8 @@ export default [
         editable: true,
     },
     {
-        field: 'expected_quantity',
-        headerName: 'Expected quantity',
+        field: 'quantity',
+        headerName: 'Quantity',
         width: 200,
         editable: true,
     },

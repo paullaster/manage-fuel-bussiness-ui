@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Form } from "react-router-dom";
-import FormButtonRow from "./FormButtonRow";
+import FormButtonRow from "../../../shared/components/FormButtonRow";
 import shared from "../../../shared";
 import { useGlobalDispatcher, useGlobalState } from '@/store';
 import { composableAutofils } from "../setups";

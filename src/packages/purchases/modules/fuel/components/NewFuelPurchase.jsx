@@ -3,9 +3,9 @@ import shared from "../../../shared";
 import { useGlobalDispatcher, useGlobalState } from '@/store';
 import { Form } from "react-router-dom";
 import { composableAutofils } from "../setups";
-import { Button } from "@/components";
 import TankEntries from "./TankEntries";
 import TransportationAndOfficer from "./TransportationAndOfficer";
+import FormButtonRow from "../../../shared/components/FormButtonRow";
 
 
 
@@ -26,7 +26,7 @@ const NewFuelPurchase = () => {
         <shared.components.BillingComponent cardLabelView={cardLabelView} />
         <TransportationAndOfficer cardLabelView={cardLabelView} />
         <TankEntries />
-        
+        <FormButtonRow />
       </Form>
     </section>
   )

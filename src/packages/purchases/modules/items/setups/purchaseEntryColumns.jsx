@@ -21,7 +21,7 @@ export default [
     },
     
     {
-        field: 'tax_rate',
+        field: 'vat_rate',
         headerName: 'Tax rate',
         width: 200,
         editable: true,

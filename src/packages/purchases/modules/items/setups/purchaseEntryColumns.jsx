@@ -5,6 +5,8 @@ export default [
         field: 'item',
         headerName: 'Item',
         width: 200,
+        type: 'singleSelect',
+        valueOptions: ['fuel', 'tico'],
         editable: true,
     },
     {

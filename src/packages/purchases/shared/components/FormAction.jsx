@@ -3,7 +3,7 @@ import { Button } from "@/components";
 
 const FormAction = ({ item, onDelete }) => {
     return (
-        <Button onClick ={onDelete}>
+        <Button onClick ={(event) => onDelete(event, item)}>
             <MdDelete size={25} />
         </Button>
     )

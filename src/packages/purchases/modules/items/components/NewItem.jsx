@@ -31,6 +31,7 @@ const NewItem = () => {
   };
 
   const handleDeletingLineItem = (event, item) => {
+    console.log(item)
     event.stopPropagation();
     event.preventDefault();
     setTableDataRows((prev) => prev.filter((line) => line.id !== item.id));
@@ -44,8 +45,9 @@ const NewItem = () => {
       arrKey: 'field', 
       itemKey: 'field', 
       item: {field: 'action'}, 
-      propToUpdate: 'renderCell', 
-      update: (params)=> <shared.components.FormAction row = {params} onDelete = {handleDeletingLineItem} />,
+      propToUpdate: 'renderCell',
+      op: 'equal',
+      update: (params) => <shared.components.FormAction row = {params.row} onDelete = {handleDeletingLineItem} />,
       type: 'map',
     }, purchaseEntryColumns))
   }, []);

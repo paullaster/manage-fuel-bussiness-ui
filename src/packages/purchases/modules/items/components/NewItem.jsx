@@ -18,15 +18,6 @@ const NewItem = () => {
     price: 'Price',
   };
 
-  const itemsEntryObject = {
-    purchase_date: '',
-    invoice_number: '',
-    delivery_note_number: '',
-    vat_rate: '',
-    quantity: '',
-    price: '',
-  };
-
   const handleAddNewItem = (event) => {
     event.preventDefault();
     event.stopPropagation();

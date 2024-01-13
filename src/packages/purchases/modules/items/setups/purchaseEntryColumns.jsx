@@ -54,6 +54,5 @@ export default [
         description: 'user action',
         sortable: false,
         width: 100,
-        renderCell: (params) =>  <shared.components.FormAction row = {params} />
     }
 ];

@@ -6,6 +6,7 @@ import { useGlobalDispatcher, useGlobalState } from '@/store';
 import { composableAutofils } from "../setups";
 import PurchaseItemEntry from "./PurchaseItemEntry";
 import {v4 as uuidv4 } from 'uuid';
+import {purchaseEntryColumns} from "../setups";
 
 const NewItem = () => {
   const appStateDispatcher = useGlobalDispatcher();
@@ -38,8 +39,7 @@ const NewItem = () => {
   useEffect(() => {
     appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });
   }, []);
-
-
+  const columns = 
   return (
     <section className='purchaseItem'>
       <shared.components.SectionIntroduction text="New purchase item" />

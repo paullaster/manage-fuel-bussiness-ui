@@ -1,4 +1,3 @@
-import { purchaseEntryColumns } from "../setups";
 import { DataTable } from "@/components";
 
 const ItemData = ({columns, rows}) => {

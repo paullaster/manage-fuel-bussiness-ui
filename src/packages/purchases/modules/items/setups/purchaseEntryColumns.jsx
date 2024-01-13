@@ -1,4 +1,5 @@
-import { apiFetchUtil } from "@/utils";
+import { apiFetchUtil, GetGross } from "@/utils";
+import shared from "../../../shared";
 
 export default [
     {
@@ -34,18 +35,25 @@ export default [
         description: 'Derived amount',
         sortable: false,
         width: 200,
-        valueGetter: (params) => {
-            return Number(params.row.expected_quantity)  || 0 * Number(params.row.price) || 0;
+        renderCell: (params) => {
+            return (Number(params.row.quantity)  || 0) * (Number(params.row.price) || 0);
         }
     },
+    {
+        field: 'gross_amount',
+        headerName: 'Gross amount',
+        description: 'Derived amount',
+        sortable: false,
+        width: 200,
+        renderCell: (params) => GetGross(params),
+    },
+
     {
         field: 'action',
         headerName: 'Action',
         description: 'user action',
         sortable: false,
-        width: 200,
-        valueGetter: (params) => {
-            return Number(params.row.expected_quantity)  || 0 * Number(params.row.price) || 0;
-        }
+        width: 100,
+        renderCell: (params) =>  <shared.components.FormAction row = {params} />
     }
 ];

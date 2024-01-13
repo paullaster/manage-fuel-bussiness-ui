@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Form } from "react-router-dom";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
 import shared from "../../../shared";
@@ -18,11 +18,22 @@ const NewItem = () => {
     price: 'Price',
   };
 
+  useMemo(() =>{
+
+  }, [tableDataRows])
+
   const handleAddNewItem = (event) => {
     event.preventDefault();
     event.stopPropagation();
     setTableDataRows((prev) => [...prev, {id: uuidv4(), ...tableRowInitialValues}]);
   };
+
+  const handleDeletingLineItem = (event, item) => {
+    event.stopPropagation();
+    event.preventDefault();
+    setTableDataRows((prev) => prev.filter((line) => line.id !== item.id));
+  }
+
 
   useEffect(() => {
     appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });

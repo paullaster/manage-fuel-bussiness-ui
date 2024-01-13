@@ -1,9 +1,9 @@
 import { MdDelete } from "react-icons/md";
 import { Button } from "@/components";
 
-const FormAction = ({ item }) => {
+const FormAction = ({ item, onDelete }) => {
     return (
-        <Button onClick ={}>
+        <Button onClick ={onDelete}>
             <MdDelete size={25} />
         </Button>
     )

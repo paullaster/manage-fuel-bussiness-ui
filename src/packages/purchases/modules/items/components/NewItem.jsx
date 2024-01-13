@@ -3,15 +3,16 @@ import { Form } from "react-router-dom";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
 import shared from "../../../shared";
 import { useGlobalDispatcher, useGlobalState } from '@/store';
-import { composableAutofils } from "../setups";
+import { composableAutofils, purchaseEntryColumns } from "../setups";
 import PurchaseItemEntry from "./PurchaseItemEntry";
 import {v4 as uuidv4 } from 'uuid';
-import {purchaseEntryColumns} from "../setups";
+import { ArrayFunctions } from "@/utils";
 
 const NewItem = () => {
   const appStateDispatcher = useGlobalDispatcher();
   const { cardLabelView } = useGlobalState();
   const [tableDataRows, setTableDataRows] = useState([]);
+  const [columns, setColumns] = useState([]);
 
   const tableRowInitialValues = {
     vat_rate: 'VAT rate',
@@ -38,14 +39,23 @@ const NewItem = () => {
 
   useEffect(() => {
     appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });
+    setColumns(
+      ArrayFunctions({
+      arrKey: 'field', 
+      itemKey: 'field', 
+      item: {field: 'action'}, 
+      propToUpdate: 'renderCell', 
+      update: (params)=> <shared.components.FormAction row = {params} onDelete = {handleDeletingLineItem} />,
+      type: 'map',
+    }, purchaseEntryColumns))
   }, []);
-  const columns = 
+
   return (
     <section className='purchaseItem'>
       <shared.components.SectionIntroduction text="New purchase item" />
       <Form method="post">
         <shared.components.BillingComponent cardLabelView={cardLabelView} />
-        <PurchaseItemEntry rows={tableDataRows} handleAddNewItem={handleAddNewItem}/>
+        <PurchaseItemEntry  columns = {columns} rows={tableDataRows} handleAddNewItem={handleAddNewItem}/>
         <FormButtonRow />
       </Form>
     </section>

@@ -7,6 +7,7 @@ import { NumberOfPages } from "./NumberOfPages";
 import { ItemAndMaximumItemsPerPage } from "./Item-MaximumITemsPerPage";
 import { getStepClass } from "./GetStepClass";
 import { generator } from "./Generator";
+import GetGross from "./GetGross";
 
 
 
@@ -21,5 +22,6 @@ export {
     NumberOfPages,
     ItemAndMaximumItemsPerPage,
     getStepClass,
-    generator
+    generator,
+    GetGross,
 };

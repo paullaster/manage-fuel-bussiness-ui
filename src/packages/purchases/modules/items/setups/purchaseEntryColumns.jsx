@@ -45,7 +45,7 @@ export default [
         description: 'Derived amount',
         sortable: false,
         width: 200,
-        renderCell: (params) => GetGross(params),
+        renderCell: (params) => GetGross(params.row),
     },
 
     {

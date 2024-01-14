@@ -6,6 +6,7 @@ import { composableAutofils } from "../setups";
 import TankEntries from "./TankEntries";
 import TransportationAndOfficer from "./TransportationAndOfficer";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
+import NewVendor from "../../vendors/components/NewVendor";
 
 
 
@@ -23,7 +24,9 @@ const NewFuelPurchase = () => {
     <section className="newfuelpurchase">
       <shared.components.SectionIntroduction text="New Fuel Purchase" />
       <Form>
-        <shared.components.BillingComponent cardLabelView={cardLabelView} />
+        <shared.components.BillingComponent cardLabelView={cardLabelView} >
+          <NewVendor />
+        </shared.components.BillingComponent>
         <TransportationAndOfficer cardLabelView={cardLabelView} />
         <TankEntries />
         <FormButtonRow />

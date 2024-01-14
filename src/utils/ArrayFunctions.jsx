@@ -8,6 +8,7 @@ export const ArrayFunctions = (obj, arr) => {
     const keyInItem = obj.itemKey;
     const proptoUpdate = obj.propToUpdate;
     const update = obj.update;
+    console.log(update);
     switch(obj.type) {
         case 'map':
             return arr.map((i) => {

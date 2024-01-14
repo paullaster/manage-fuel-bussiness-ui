@@ -9,18 +9,21 @@ export default [
         type: 'singleSelect',
         valueOptions: ['fuel', 'tico'],
         editable: true,
+        headerAligne: 'center,'
     },
     {
         field: 'quantity',
         headerName: 'Quantity',
         width: 200,
         editable: true,
+        type: 'string',
     },
     {
         field: 'price',
         headerName: 'Price',
         width: 200,
         editable: true,
+        type: 'string'
     },
     
     {
@@ -28,6 +31,7 @@ export default [
         headerName: 'Tax rate',
         width: 200,
         editable: true,
+        type: 'string',
     },
     {
         field: 'amount',
@@ -35,7 +39,8 @@ export default [
         description: 'Derived amount',
         sortable: false,
         width: 200,
-        renderCell: (params) => {
+        type: 'number',
+        valueGetter: (params) => {
             return (Number(params.row.quantity)  || 0) * (Number(params.row.price) || 0);
         }
     },
@@ -45,7 +50,8 @@ export default [
         description: 'Derived amount',
         sortable: false,
         width: 200,
-        renderCell: (params) => GetGross(params.row),
+        type: 'number',
+        valueGetter: (params) => GetGross(params.row),
     },
 
     {
@@ -54,5 +60,6 @@ export default [
         description: 'user action',
         sortable: false,
         width: 100,
+        type: 'actions',
     }
 ];

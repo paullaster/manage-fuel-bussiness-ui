@@ -1,8 +1,12 @@
-import { InputComponent, DatePickerComponent } from "@/components";
+import { InputComponent } from "@/components";
 
 const InvoiceDetails = () => {
     return (
         <div className="billingInfo">
+            <InputComponent
+                prelabelText="Purchase entry"
+                name="purchase_entry_code"
+            />
             <InputComponent
                 prelabelText="Invoice number"
                 name="invoice_number"
@@ -15,9 +19,6 @@ const InvoiceDetails = () => {
                 prelabelText="Delivery note number"
                 name="delivery_note_number"
             />
-            <DatePickerComponent label="Invoice date"/>
-            <DatePickerComponent label="Purchase order date"/>
-            <DatePickerComponent label="Delivery note date"/>
         </div>
     )
 }

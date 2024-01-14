@@ -91,7 +91,7 @@ const NewVendor = () => {
                                         <label htmlFor="vendor_logo" className={upload ? '' : 'show'}>upload picture</label>
                                         <input type="file" id="vendor_logo" accept=".ico, .svg, .jpg, .jpeg, .png, .gif, .webp" name="vendor_image" onChange={handleUploadChange} />
                                         <img src={upload} alt="preview" className={upload ? 'show' : ''} />
-                                        <button onClick={handleDeleteImage} className={upload ? 'show' : ''} role="icon"> <MdDelete size={25} /></button>
+                                        <button onClick={handleDeleteImage} className={upload ? 'show' : ''} > <MdDelete size={25} /></button>
                                     </div>
                                 </div>
                             </div>
@@ -181,7 +181,7 @@ const NewVendor = () => {
             </div>
             <div className="new_vendors__right">
                 <div className="new_vendors__right_container">
-                    <img src={cardImage} alt=" card image" />
+                    <img src={cardImage} alt="card" />
                 </div>
                 <div className="new_vendors__right_text_div">
                     <div className="customefields">

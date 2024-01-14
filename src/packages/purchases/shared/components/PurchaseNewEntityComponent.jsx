@@ -1,8 +1,10 @@
 
-import { Dialog}
+import { DialogComponent } from "@/components"
 const PurchaseNewEntityComponent = () => {
   return (
-    <div>PurchaseNewEntityComponent</div>
+    <>
+    
+    </>
   )
 }
 

@@ -12,5 +12,5 @@ export {
     ErrorComponent, Footer, Navigation,
     Sidebar, Button, SearchComponent, TableComponent,
     PaginatorComponent, InputComponent, Stepper, DatePickerComponent,
-    DataTable, AutocompleteComponent
+    DataTable, AutocompleteComponent,
 };

@@ -16,7 +16,7 @@ const list = [
 ];
 
 
-const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id, keyField, dialogTitle = '', children, }) => {
+const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id, keyField, dialogTitle = '', maxWidth = '',  children, }) => {
     const setAction = useGlobalDispatcher();
 
     const handleOutsideClick = () => {
@@ -55,6 +55,7 @@ const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id, keyField, di
                     <PurchaseNewEntityComponent
                     label={label}
                     dialogTitle={dialogTitle}
+                    maxWidth={maxWidth}
                     >
                         {children}
                     </PurchaseNewEntityComponent>

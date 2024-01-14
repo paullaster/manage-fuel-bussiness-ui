@@ -6,16 +6,27 @@ import { useState } from "react";
 
 const PurchaseNewEntityComponent = ({label}) => {
   const [open, setOpen] = useState(false);
-  const handleClose = () => {
+
+
+  const handleCloseDialog = () => {
     setOpen(false);
-  }
+  };
+
+  const handleOpenDialog = () => {
+    setOpen(true);
+  };
+
   return (
     <>
-    <AddItemButton btnCaption={`new ${label}`} />
+    <AddItemButton 
+    btnCaption={`new ${label}`}
+    methodHandler={handleOpenDialog} 
+    />
     <DialogComponent
         open={open}
-        handleClose={handleClose}
-        
+        handleClose={handleCloseDialog}
+        dialogTitle={'Add new vendor'}
+
     >
 
     </DialogComponent>

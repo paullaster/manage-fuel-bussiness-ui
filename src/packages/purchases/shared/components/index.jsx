@@ -5,6 +5,7 @@ import AddItemButton from "./AddItemButton";
 import AddItem from "./AddItem";
 import BillingComponent from "./BillingComponent";
 import FormAction from "./FormAction";
+import PurchaseNewEntityComponent from './PurchaseNewEntityComponent';
 
 export default {
     PurchasesItemsIndex,
@@ -14,4 +15,5 @@ export default {
     AddItem,
     BillingComponent,
     FormAction,
+    PurchaseNewEntityComponent
 }

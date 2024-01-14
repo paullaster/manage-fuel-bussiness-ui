@@ -4,7 +4,7 @@ import AddItemButton from "./AddItemButton";
 import { useState } from "react";
 
 
-const PurchaseNewEntityComponent = ({label}) => {
+const PurchaseNewEntityComponent = ({label, children}) => {
   const [open, setOpen] = useState(false);
 
 
@@ -28,7 +28,7 @@ const PurchaseNewEntityComponent = ({label}) => {
         dialogTitle={'Add new vendor'}
 
     >
-
+        {children}
     </DialogComponent>
     </>
   )

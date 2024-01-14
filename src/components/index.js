@@ -2,7 +2,8 @@ import { ErrorComponent } from "./Error";
 import {
     Footer, Navigation, Sidebar, Button,
     SearchComponent, TableComponent, PaginatorComponent,
-    InputComponent, Stepper, DatePickerComponent, DataTable
+    InputComponent, Stepper, DatePickerComponent, DataTable,
+    AutocompleteComponent,
 } from './shared';
 
 
@@ -11,5 +12,5 @@ export {
     ErrorComponent, Footer, Navigation,
     Sidebar, Button, SearchComponent, TableComponent,
     PaginatorComponent, InputComponent, Stepper, DatePickerComponent,
-    DataTable,
+    DataTable, AutocompleteComponent
 };

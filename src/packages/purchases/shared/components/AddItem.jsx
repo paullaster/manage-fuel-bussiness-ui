@@ -55,7 +55,7 @@ const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id, keyField, ch
                     <AutocompleteComponent list={list} keyField={keyField} />
                     <PurchaseNewEntityComponent
                     label={label}
-                    dialogTitle={`add new ${label} `}
+                    dialogTitle={`add new ${label}`}
                     >
                         {children}
                     </PurchaseNewEntityComponent>

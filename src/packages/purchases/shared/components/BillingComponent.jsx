@@ -2,7 +2,7 @@ import InvoiceDetails from "./InvoiceDetails";
 import shared from "..";
 import DivisionTopBar from "./DivisionTopBar";
 
-const BillingComponent = ({ cardLabelView = [] }) => {
+const BillingComponent = ({ cardLabelView = [], children }) => {
     return (
         <div className="billingCard">
             <DivisionTopBar sectionTitle="Billing details that appear in your bill " />
@@ -20,7 +20,7 @@ const BillingComponent = ({ cardLabelView = [] }) => {
                                 addItemView={card.addItemView}
                                 id={card.card}
                             >
-
+                                {children}
                             </shared.components.AddItem>
                         )
                     }) : ''

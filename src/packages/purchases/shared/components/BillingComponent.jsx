@@ -8,7 +8,8 @@ const BillingComponent = ({ cardLabelView = [] }) => {
             <DivisionTopBar sectionTitle="Billing details that appear in your bill " />
             <div className="billing">
                 {
-                    cardLabelView.length && cardLabelView.slice(0, 1).map((card) => {
+                    cardLabelView.length ? 
+                    cardLabelView.slice(0, 1).map((card) => {
                         return (
                             <shared.components.AddItem
                                 keyField='name'
@@ -22,7 +23,7 @@ const BillingComponent = ({ cardLabelView = [] }) => {
 
                             </shared.components.AddItem>
                         )
-                    })
+                    }) : ''
                 }
                 <InvoiceDetails />
             </div>

@@ -5,7 +5,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from '@mui/material/DialogActions';
 
-const DialogComponent = ({dialogTitle = '', dialogContentText = '', }) => {
+const DialogComponent = ({dialogTitle = '', dialogContentText = '', children}) => {
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
@@ -23,9 +23,9 @@ const DialogComponent = ({dialogTitle = '', dialogContentText = '', }) => {
         <DialogContentText>
           {dialogContentText}
         </DialogContentText>
-
+        {children}
       </DialogContent>
-
+      
     </Dialog>
   )
 }

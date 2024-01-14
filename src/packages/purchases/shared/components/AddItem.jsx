@@ -16,7 +16,7 @@ const list = [
 ];
 
 
-const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id }) => {
+const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id, key }) => {
     const setAction = useGlobalDispatcher();
 
     const handleOutsideClick = () => {
@@ -51,7 +51,7 @@ const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id }) => {
              {
                 addItemView ? 
                 <div>
-                    <AutocompleteComponent list={list} />
+                    <AutocompleteComponent list={list} key={key} />
                     <AddItemButton btnCaption={`new ${label}`} />
                 </div>
                 : ''

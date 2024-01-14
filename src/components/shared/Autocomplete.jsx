@@ -1,5 +1,5 @@
 import Autocomplete from '@mui/material/Autocomplete';
-import { InputComponent } from "@/component";
+import { InputComponent } from '..';
 
 const label = " ";
 const AutocompleteComponent = ({list, label}) => {

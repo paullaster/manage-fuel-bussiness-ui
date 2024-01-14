@@ -6,12 +6,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 
-const DialogComponent = ({dialogTitle = '', dialogContentText = '', cancelLabel = 'Close', dialogActionButtonLabelType = 'submit', dialogActionButtonLabel = 'Save', children}) => {
-  const [open, setOpen] = useState(false);
-
-  const handleClose = () => {
-    setOpen(false);
-  }
+const DialogComponent = ({open, handleClose, dialogTitle = '', dialogContentText = '', cancelLabel = 'Close', dialogActionButtonLabelType = 'submit', dialogActionButtonLabel = 'Save', children}) => {
   return (
     <Dialog
     open={open}

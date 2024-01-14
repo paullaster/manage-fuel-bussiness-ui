@@ -4,11 +4,21 @@ import AddItemButton from "./AddItemButton";
 import { useState } from "react";
 
 
-const PurchaseNewEntityComponent = () => {
-  const [open, setOpen] = useState
+const PurchaseNewEntityComponent = ({label}) => {
+  const [open, setOpen] = useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  }
   return (
     <>
+    <AddItemButton btnCaption={`new ${label}`} />
+    <DialogComponent
+        open={open}
+        handleClose={handleClose}
+        
+    >
 
+    </DialogComponent>
     </>
   )
 }

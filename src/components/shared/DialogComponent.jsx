@@ -5,15 +5,12 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 
-const DialogComponent = ({open, handleClose, maxWidth = 'sm', fullWidth= true,  dialogTitle = '', dialogContentText = '', cancelLabel = 'Close', dialogActionButtonLabelType = 'submit', dialogActionButtonLabel = 'Save', children}) => {
+const DialogComponent = ({open, handleClose,  dialogTitle = '', dialogContentText = '', cancelLabel = 'Close', dialogActionButtonLabelType = 'submit', dialogActionButtonLabel = 'Save', children}) => {
   return (
     <Dialog
     open={open}
     onClose={handleClose}
     PaperProps={{}}
-    maxWidth={maxWidth}
-    fullWidth={fullWidth}
-
     >
       <DialogTitle>{dialogTitle}</DialogTitle>
       <DialogContent>

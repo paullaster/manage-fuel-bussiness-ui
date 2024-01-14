@@ -3,6 +3,7 @@ import CustomCardLabel from "./CustomCardLabel";
 import { AutocompleteComponent } from '@/components'
 import AddItemButton from "./AddItemButton";
 import { useGlobalDispatcher } from '@/store';
+import PurchaseNewEntityComponent from "./PurchaseNewEntityComponent";
 
 const list = [
     {
@@ -16,7 +17,7 @@ const list = [
 ];
 
 
-const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id, keyField }) => {
+const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id, keyField, children }) => {
     const setAction = useGlobalDispatcher();
 
     const handleOutsideClick = () => {
@@ -52,7 +53,11 @@ const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id, keyField }) 
                 addItemView ? 
                 <div>
                     <AutocompleteComponent list={list} keyField={keyField} />
-                    <AddItemButton btnCaption={`new ${label}`} />
+                    <PurchaseNewEntityComponent
+                    label={label}
+                    >
+                        {children}
+                    </PurchaseNewEntityComponent>
                 </div>
                 : ''
              }

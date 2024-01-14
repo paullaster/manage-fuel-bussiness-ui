@@ -4,7 +4,7 @@ import AddItemButton from "./AddItemButton";
 import { useState } from "react";
 
 
-const PurchaseNewEntityComponent = ({label, children}) => {
+const PurchaseNewEntityComponent = ({label, dialogTitle = '', children}) => {
   const [open, setOpen] = useState(false);
 
 
@@ -25,7 +25,7 @@ const PurchaseNewEntityComponent = ({label, children}) => {
     <DialogComponent
         open={open}
         handleClose={handleCloseDialog}
-        dialogTitle={'Add new vendor'}
+        dialogTitle={dialogTitle}
 
     >
         {children}

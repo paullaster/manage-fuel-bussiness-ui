@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from '@mui/material/DialogActions';
+import Button from '@mui/material/Button';
 
-const DialogComponent = ({dialogTitle = '', dialogContentText = '', children}) => {
+const DialogComponent = ({dialogTitle = '', dialogContentText = '', cancelLabel = 'Close', dialogActionButtonLabelType = 'submit', dialogActionButtonLabel = 'Save', children}) => {
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
@@ -25,7 +26,10 @@ const DialogComponent = ({dialogTitle = '', dialogContentText = '', children}) =
         </DialogContentText>
         {children}
       </DialogContent>
-      
+      <DialogActions>
+        <Button onClick={handleClose}>{cancelLabel}</Button>
+        <Button type={dialogActionButtonLabelType} onClick={handleClose}>{dialogActionButtonLabel}</Button>
+      </DialogActions>
     </Dialog>
   )
 }

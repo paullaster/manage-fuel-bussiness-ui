@@ -2,7 +2,7 @@ import shared from "../../../shared";
 import DivisionTopBar from '../../../shared/components/DivisionTopBar'
 import Transport from './Transport'
 
-const TransportationAndOfficer = ({ cardLabelView }) => {
+const TransportationAndOfficer = ({ cardLabelView = [], children}) => {
     return (
         <div className="TransportationAndOfficerCard">
             <DivisionTopBar sectionTitle='Tranposrt and Officer Information'>

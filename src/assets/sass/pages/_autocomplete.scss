@@ -3,7 +3,10 @@
 
 .autocomplete {
     padding: g.$small 0;
+    .MuiInputBase-root {
+        height: fit-content !important;
 
+    }
     .MuiInputBase-input {
         border: none !important;
         outline: none !important;

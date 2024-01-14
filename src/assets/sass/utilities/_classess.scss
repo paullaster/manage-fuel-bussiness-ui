@@ -183,7 +183,7 @@ button:disabled {
     align-items: center;
     padding-bottom: g.$small;
     border-bottom: g.$default_border;
-    margin:g.$msmall 0;
+    margin: g.$msmall 0;
 
     &>button {
         display: flex;
@@ -204,4 +204,27 @@ button:disabled {
 .fuelPurchaseFieldSet {
     padding: 0 4% !important;
     border: g.$default_border !important;
+}
+
+.form_actions {
+    width: 30%;
+    margin: 4rem 0;
+    display: flex;
+    justify-content: space-between;
+
+    &>button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 12rem;
+        border-radius: .8rem !important;
+
+        &>span {
+            display: block;
+        }
+
+        &>span:first-child {
+            margin-right: .4rem;
+        }
+    }
 }

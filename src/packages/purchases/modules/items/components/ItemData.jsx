@@ -1,11 +1,10 @@
-import { purchaseEntryColumns } from "../setups";
 import { DataTable } from "@/components";
 
-const ItemData = () => {
+const ItemData = ({columns, rows}) => {
   return (
     <DataTable
-    columns={purchaseEntryColumns}
-    rows={[]}
+    columns={columns}
+    rows={rows}
 
   />
   )

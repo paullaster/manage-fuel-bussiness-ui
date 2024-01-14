@@ -4,21 +4,22 @@ import { MdDelete } from "react-icons/md";
 import { Form } from "react-router-dom";
 import cardImage from "@/assets/images/card_image.svg";
 import shared from "../../../shared";
+import { v4 as uuidv4 } from 'uuid';
 
 
 const NewVendor = () => {
 
-    const [upload, uploadPreview] = useState(null);
+    const [upload, setUpload] = useState(null);
     const [contactPerson, setContactPerson] = useState([]);
 
     const handleUploadChange = (event) => {
-        uploadPreview(URL.createObjectURL(event.target.files[0]));
+        setUpload(URL.createObjectURL(event.target.files[0]));
     };
 
     const handleDeleteImage = (event) => {
         event.stopPropagation();
         event.preventDefault();
-        uploadPreview(null);
+        setUpload(null);
     };
 
     const handleCreateNewVendorColumn = (event) => {
@@ -30,7 +31,7 @@ const NewVendor = () => {
                     {prop: 'email', type: 'email', placeholder: "email",}, 
                     {prop: 'phone', type: 'tel', placeholder: "phone",}, 
                 ];
-                setContactPerson( prev => prev = [...prev, <shared.components.NewConstruct options = {options} />]);
+                setContactPerson( prev => [...prev, <shared.components.NewConstruct options = {options} key={uuidv4()} />]);
             }
     };
 
@@ -89,8 +90,8 @@ const NewVendor = () => {
                                     <div className="file_upload_container">
                                         <label htmlFor="vendor_logo" className={upload ? '' : 'show'}>upload picture</label>
                                         <input type="file" id="vendor_logo" accept=".ico, .svg, .jpg, .jpeg, .png, .gif, .webp" name="vendor_image" onChange={handleUploadChange} />
-                                        <img src={upload} alt="image preview" className={upload ? 'show' : ''} />
-                                        <span onClick={handleDeleteImage} className={upload ? 'show' : ''}> <MdDelete size={25} /></span>
+                                        <img src={upload} alt="preview" className={upload ? 'show' : ''} />
+                                        <button onClick={handleDeleteImage} className={upload ? 'show' : ''} > <MdDelete size={25} /></button>
                                     </div>
                                 </div>
                             </div>
@@ -180,7 +181,7 @@ const NewVendor = () => {
             </div>
             <div className="new_vendors__right">
                 <div className="new_vendors__right_container">
-                    <img src={cardImage} alt=" card image" />
+                    <img src={cardImage} alt="card" />
                 </div>
                 <div className="new_vendors__right_text_div">
                     <div className="customefields">

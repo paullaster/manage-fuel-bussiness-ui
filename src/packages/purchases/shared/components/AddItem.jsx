@@ -1,8 +1,8 @@
 import { useRef, useEffect } from "react";
 import CustomCardLabel from "./CustomCardLabel";
-// import Autocomplete from "./Autocomplete";
-import AddItemButton from "./AddItemButton";
+import { AutocompleteComponent } from '@/components'
 import { useGlobalDispatcher } from '@/store';
+import PurchaseNewEntityComponent from "./PurchaseNewEntityComponent";
 
 const list = [
     {
@@ -16,7 +16,7 @@ const list = [
 ];
 
 
-const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id }) => {
+const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id, keyField, dialogTitle = '', maxWidth = '',  children, }) => {
     const setAction = useGlobalDispatcher();
 
     const handleOutsideClick = () => {
@@ -51,8 +51,14 @@ const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id }) => {
              {
                 addItemView ? 
                 <div>
-                    {/* <Autocomplete list={list} /> */}
-                    <AddItemButton btnCaption={`new ${label}`} />
+                    <AutocompleteComponent list={list} keyField={keyField} />
+                    <PurchaseNewEntityComponent
+                    label={label}
+                    dialogTitle={dialogTitle}
+                    maxWidth={maxWidth}
+                    >
+                        {children}
+                    </PurchaseNewEntityComponent>
                 </div>
                 : ''
              }

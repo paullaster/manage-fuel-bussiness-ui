@@ -4,21 +4,22 @@ import { MdDelete } from "react-icons/md";
 import { Form } from "react-router-dom";
 import cardImage from "@/assets/images/card_image.svg";
 import shared from "../../../shared";
+import { v4 as uuidv4 } from 'uuid';
 
 
 const NewVendor = () => {
 
-    const [upload, uploadPreview] = useState(null);
+    const [upload, setUpload] = useState(null);
     const [contactPerson, setContactPerson] = useState([]);
 
     const handleUploadChange = (event) => {
-        uploadPreview(URL.createObjectURL(event.target.files[0]));
+        setUpload(URL.createObjectURL(event.target.files[0]));
     };
 
     const handleDeleteImage = (event) => {
         event.stopPropagation();
         event.preventDefault();
-        uploadPreview(null);
+        setUpload(null);
     };
 
     const handleCreateNewVendorColumn = (event) => {
@@ -30,7 +31,7 @@ const NewVendor = () => {
                     {prop: 'email', type: 'email', placeholder: "email",}, 
                     {prop: 'phone', type: 'tel', placeholder: "phone",}, 
                 ];
-                setContactPerson( prev => prev = [...prev, <shared.components.NewConstruct options = {options} />]);
+                setContactPerson( prev => [...prev, <shared.components.NewConstruct options = {options} key={uuidv4()} />]);
             }
     };
 

@@ -1,6 +1,9 @@
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
-const digits = 1234567890;
+const digits = '0123456789';
 
 const RandomCodeGenerator = () => {
+    const alphabetArray = alphabet.toUpperCase().split('');
+    const digitArray = 
+    const incrementalCode = 
 
 }

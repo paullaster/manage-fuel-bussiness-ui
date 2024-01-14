@@ -10,3 +10,4 @@ export { default as Stepper} from './Stepper';
 export { default as DatePickerComponent } from './DatePickerComponent';
 export { default as DataTable } from './DataTable';
 export { default as AutocompleteComponent } from './Autocomplete';
+export { default as DialogComponent } from './DialogComponent';

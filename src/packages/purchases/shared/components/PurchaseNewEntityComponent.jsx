@@ -4,7 +4,7 @@ import AddItemButton from "./AddItemButton";
 import { useState } from "react";
 
 
-const PurchaseNewEntityComponent = ({label, dialogTitle = '', children}) => {
+const PurchaseNewEntityComponent = ({label, dialogTitle = '', maxWidth = '', children}) => {
   const [open, setOpen] = useState(false);
 
 
@@ -26,7 +26,7 @@ const PurchaseNewEntityComponent = ({label, dialogTitle = '', children}) => {
         open={open}
         handleClose={handleCloseDialog}
         dialogTitle={dialogTitle}
-
+        maxWidth={maxWidth}
     >
         {children}
     </DialogComponent>

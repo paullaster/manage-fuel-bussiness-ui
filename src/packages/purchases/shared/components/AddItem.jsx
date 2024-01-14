@@ -51,7 +51,7 @@ const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id, keyField }) 
              {
                 addItemView ? 
                 <div>
-                    <AutocompleteComponent list={list} key={keyField} />
+                    <AutocompleteComponent list={list} keyField={keyField} />
                     <AddItemButton btnCaption={`new ${label}`} />
                 </div>
                 : ''

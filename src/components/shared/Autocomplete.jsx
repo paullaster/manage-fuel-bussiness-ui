@@ -1,14 +1,14 @@
 import Autocomplete from '@mui/material/Autocomplete';
-import { InputComponent } from '..';
+import TextField from '@mui/material/TextField';
 
-const AutocompleteComponent = ({list, label, key}) => {
+const AutocompleteComponent = ({list, label, keyField}) => {
   return (
       <div className={'autocomplete'}>
           <Autocomplete 
           id={label}
           freeSolo
-          options={list.map((option) => option[key])}
-          renderInput = { (params) => <InputComponent {...params} prelabelText={label}/>}
+          options={list.map((option) => option[keyField])}
+          renderInput={(params) => <TextField {...params} label={label} />}
           />
     </div>
   )

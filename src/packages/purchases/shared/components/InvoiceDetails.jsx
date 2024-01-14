@@ -6,7 +6,7 @@ const InvoiceDetails = () => {
             <InputComponent
                 prelabelText="Purchase entry"
                 name="purchase_entry_code"
-                disabled='true'
+                disabled={true}
                 value='CODEHERE'
             />
             <InputComponent

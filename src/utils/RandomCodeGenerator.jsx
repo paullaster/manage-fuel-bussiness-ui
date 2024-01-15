@@ -1,5 +1,3 @@
-const alphabet = 'abcdefghijklmnopqrstuvwxyz';
-const digits = '0123456789';
 
 const RandomCodeGenerator = () => {
     const generatedCodes = new Set();
@@ -10,7 +8,9 @@ const RandomCodeGenerator = () => {
 
 
     while(true) {
-        
+        let remainingChars = 7;
+        let availableChars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        const randomChars = [];
     }
 
 }

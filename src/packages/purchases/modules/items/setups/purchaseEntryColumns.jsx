@@ -1,5 +1,6 @@
 import { apiFetchUtil, GetGross } from "@/utils";
 import WebStorage from "@/utils/WebStorage";
+import { AppName}
 
 let tanks = WebStorage.GetFromWebStorage('session', )
 

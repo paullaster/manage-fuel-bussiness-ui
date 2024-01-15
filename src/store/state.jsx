@@ -5,5 +5,6 @@ export default {
     itemsCount: 0,
     previousSearchItem: null,
     nextSearchItem: null,
-    cardLabelView: []
+    cardLabelView: [],
+    transactionCode: '',
 }

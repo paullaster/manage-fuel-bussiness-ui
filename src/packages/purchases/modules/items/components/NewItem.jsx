@@ -14,9 +14,9 @@ const NewItem = () => {
   const [tableDataRows, setTableDataRows] = useState([]);
 
   const tableRowInitialValues = {
-    vat_rate: 'VAT rate',
-    quantity: 'Quantity',
-    price: 'Price',
+    vat_rate: '0',
+    quantity: '0',
+    price: '0',
   };
 
   const columns = useMemo(() => {

@@ -1,21 +1,34 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import purchases from "../../purchases";
 import { useGlobalDispatcher, useGlobalState } from "@/store";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { Navigation, Footer } from "@/components";
-// import { _request } from "@/services";
+import { RandomCodeGenerator } from "@/utils";
 
 const Dashboard = () => {
 
    const appStateDispatcher = useGlobalDispatcher();
    const appState = useGlobalState();
+   const location = useLocation();
+
+   const transactionCode  = useMemo(() => {
+    const locationArray = location.pathname.split('/');
+    if(locationArray.includes('purchases') && (locationArray.includes('fuel') || locationArray.includes('item')) && locationArray.includes('create')) {
+      return RandomCodeGenerator();
+    }
+   }, [location])
 
    useEffect(() => {
+      appStateDispatcher({
+        type: "PURCHASE_CODE",
+        payload: transactionCode,
+      })
       appStateDispatcher({
         type: "LINKS",
         payload: purchases.links
       });
-   },[]);
+   },[transactionCode]);
+
 
 
   return (

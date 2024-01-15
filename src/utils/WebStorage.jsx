@@ -10,7 +10,10 @@ class WebStorage {
                 break;
             case 'cookie':
                 const cookies = document.cookie;
-                CheckItemIfExist()
+                if(!CheckItemIfExist(cookies.split(';'), `${resourceName}=`)) {
+                    document.cookie = `${resourceName}=${resource}`
+                }
+                
                 
         }
     }

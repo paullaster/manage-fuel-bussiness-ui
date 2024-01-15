@@ -62,3 +62,5 @@ class WebStorage {
     }
 
 }
+
+export default new WebStorage();

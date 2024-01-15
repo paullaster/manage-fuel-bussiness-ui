@@ -1,4 +1,8 @@
 import { apiFetchUtil, GetGross } from "@/utils";
+import WebStorage from "@/utils/WebStorage";
+
+let tanks = WebStorage.GetFromWebStorage('session', )
+
 
 export default [
     {

@@ -1,9 +1,9 @@
 class WebStorage {
- 
+
     storeToWebDB(storageType, resourceName, resource) {
         let cookies = document.cookie;
         let foundResource = '';
-        switch(storageType) {
+        switch (storageType) {
             case 'local':
                 localStorage.setItem(resourceName, JSON.stringify(resource));
                 break;
@@ -12,28 +12,28 @@ class WebStorage {
                 break;
             case 'cookie':
                 foundResource = this.CheckItemIfExist(cookies.split(';'), `${resourceName}=`, 'array', '', true);
-                if(!foundResource) {
+                if (!foundResource) {
                     document.cookie = `${resourceName}=${resource}`
                 }
                 cookies = cookies.filter((ft) => {
                     return `${ft}=` !== `${resourceName}=`;
                 });
-                cookies +=`${resourceName}=${resource}`;
+                cookies += `${resourceName}=${resource}`;
                 document.cookie = cookies;
                 break;
 
-            default: return new Error("Unknown Web storage");   
+            default: return new Error("Unknown Web storage");
         }
     }
-    CheckItemIfExist(tray, item, typeOfTray, keyInTrayItem =  '', isCookie = false) {
+    CheckItemIfExist(tray, item, typeOfTray, keyInTrayItem = '', isCookie = false) {
         let obj = {}
-        switch(typeOfTray) {
+        switch (typeOfTray) {
             case 'array':
                 obj = tray.find((i) => {
                     if (keyInTrayItem !== '') {
                         return i[keyInTrayItem] === item;
                     }
-                    if(isCookie) {
+                    if (isCookie) {
                         return `${i}=` === item;
                     }
                     return i === item;
@@ -45,8 +45,8 @@ class WebStorage {
         }
     }
     GetFromWebStorage(storageType, resourceName) {
-        let resource
-        switch(storageType) {
+        let resource = '';
+        switch (storageType) {
             case 'local':
                 resource = localStorage.getItem(resourceName) || '[]';
                 resource = JSON.parse(resource);
@@ -55,6 +55,17 @@ class WebStorage {
                 resource = sessionStorage.getItem(resourceName) || '[]';
                 resource = JSON.parse(resource);
                 return resource;
+            case 'cookie':
+                resource = this.CheckItemIfExist(cookies.split(';'), `${resourceName}=`, 'array', '', true);
+                if (!resource) {
+                    document.cookie = `${resourceName}=${resource}`
+                }
+                cookies = cookies.filter((ft) => {
+                    return `${ft}=` !== `${resourceName}=`;
+                });
+                cookies += `${resourceName}=${resource}`;
+                document.cookie = cookies;
+                break;
         }
     }
 

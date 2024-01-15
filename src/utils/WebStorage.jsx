@@ -18,7 +18,8 @@ class WebStorage {
                 cookies = cookies.filter((ft) => {
                     return `${ft}=` !== `${resourceName}=`;
                 });
-                cookies +=``
+                cookies +=`${resourceName}=${resource}`;
+                document.cookie = cookies;
 
                 
         }

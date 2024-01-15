@@ -1,5 +1,4 @@
 import { apiFetchUtil, GetGross } from "@/utils";
-import shared from "../../../shared";
 
 export default [
     {
@@ -7,7 +6,7 @@ export default [
         headerName: 'Item',
         width: 200,
         type: 'singleSelect',
-        valueOptions: ['fuel', 'tico'],
+        valueOptions: () => apiFetchUtil(),
         editable: true,
         headerAligne: 'center,'
     },

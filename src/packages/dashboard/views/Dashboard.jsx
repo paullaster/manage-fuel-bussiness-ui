@@ -10,10 +10,10 @@ const Dashboard = () => {
    const appStateDispatcher = useGlobalDispatcher();
    const appState = useGlobalState();
    const location = useLocation();
-
+   console.log(location);
    useEffect(() => {
 
-     const locationArray = location.split('/');
+     const locationArray = location.pathname.split('/');
      if(locationArray.includes('purchases') && locationArray.includes('create')) {
       const code = RandomCodeGenerator()
       appStateDispatcher({

@@ -11,7 +11,7 @@ class WebStorage {
                 sessionStorage.setItem(resourceName, JSON.stringify(resource));
                 break;
             case 'cookie':
-                foundResource = this.CheckItemIfExist(cookies.split(';'), `${resourceName}=`, 'array', keyInTrayItem = '', true);
+                foundResource = this.CheckItemIfExist(cookies.split(';'), `${resourceName}=`, 'array', '', true);
                 if(!foundResource) {
                     document.cookie = `${resourceName}=${resource}`
                 }
@@ -20,6 +20,7 @@ class WebStorage {
                 });
                 cookies +=`${resourceName}=${resource}`;
                 document.cookie = cookies;
+                break;
 
             default: return new Error("Unknown Web storage");   
         }

@@ -11,7 +11,7 @@ class WebStorage {
                 sessionStorage.setItem(resourceName, JSON.stringify(resource));
                 break;
             case 'cookie':
-                foundResource = this.CheckItemIfExist(cookies.split(';'), `${resourceName}=`, 'array');
+                foundResource = this.CheckItemIfExist(cookies.split(';'), `${resourceName}=`, 'array', keyInTrayItem = '', true);
                 if(!foundResource) {
                     document.cookie = `${resourceName}=${resource}`
                 }
@@ -23,13 +23,16 @@ class WebStorage {
                 
         }
     }
-    CheckItemIfExist(tray, item, typeOfTray, keyInTrayItem =  '') {
+    CheckItemIfExist(tray, item, typeOfTray, keyInTrayItem =  '', isCookie = false) {
         let obj = {}
         switch(typeOfTray) {
             case 'array':
                 obj = tray.find((i) => {
                     if (keyInTrayItem !== '') {
                         return i[keyInTrayItem] === item;
+                    }
+                    if(isCookie) {
+                        return `${i}=` === item;
                     }
                     return i === item;
                 });

@@ -21,7 +21,7 @@ class WebStorage {
                 cookies +=`${resourceName}=${resource}`;
                 document.cookie = cookies;
 
-                
+            default: return new Error("Unknown Web storage");   
         }
     }
     CheckItemIfExist(tray, item, typeOfTray, keyInTrayItem =  '', isCookie = false) {

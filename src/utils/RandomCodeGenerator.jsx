@@ -1,5 +1,5 @@
 
-const RandomCodeGenerator = () => {
+export const RandomCodeGenerator = () => {
     const generatedCodes = new Set();
     let prefix = 'aaa';
 

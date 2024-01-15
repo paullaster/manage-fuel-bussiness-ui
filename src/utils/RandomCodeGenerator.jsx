@@ -2,10 +2,6 @@
 const RandomCodeGenerator = () => {
     const generatedCodes = new Set();
     let prefix = 'aaa';
-    const alphabetArray = alphabet.toUpperCase().split('');
-    const digitArray = digits.split('');
-    const incrementalCode = '';
-
 
     while(true) {
         let remainingChars = 7;

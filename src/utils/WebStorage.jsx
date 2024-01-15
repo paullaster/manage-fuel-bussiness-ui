@@ -10,6 +10,7 @@ class WebStorage {
                 break;
             case 'cookie':
                 const cookies = document.cookie;
+                CheckItemIfExist()
                 
         }
     }
@@ -24,6 +25,8 @@ class WebStorage {
                     return i === item;
                 });
                 return obj;
+            case 'object':
+                return tray[item];
         }
     }
 

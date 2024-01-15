@@ -19,7 +19,7 @@ const BillingComponent = ({ cardLabelView = [], children }) => {
                                 cardView={card.cardView}
                                 addItemView={card.addItemView}
                                 id={card.card}
-                                maxWidth='200'
+                                
                             >
                                 {children}
                             </shared.components.AddItem>

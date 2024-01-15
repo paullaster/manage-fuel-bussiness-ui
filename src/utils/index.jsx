@@ -9,6 +9,7 @@ import { getStepClass } from "./GetStepClass";
 import { generator } from "./Generator";
 import GetGross from "./GetGross";
 import { ArrayFunctions } from "./ArrayFunctions";
+import { RandomCodeGenerator } from "./RandomCodeGenerator";
 
 
 
@@ -26,4 +27,5 @@ export {
     generator,
     GetGross,
     ArrayFunctions,
+    RandomCodeGenerator,
 };

@@ -2,7 +2,7 @@ import shared from "../../../shared";
 import DivisionTopBar from '../../../shared/components/DivisionTopBar'
 import Transport from './Transport'
 
-const TransportationAndOfficer = ({ cardLabelView }) => {
+const TransportationAndOfficer = ({ cardLabelView = [], children}) => {
     return (
         <div className="TransportationAndOfficerCard">
             <DivisionTopBar sectionTitle='Tranposrt and Officer Information'>
@@ -10,9 +10,23 @@ const TransportationAndOfficer = ({ cardLabelView }) => {
             <div className='transport_and_officer'>
                 <Transport />
                 {
-                    cardLabelView.length && cardLabelView.slice(1, 2).map((card) => {
-                        return <shared.components.AddItem label={card.name} cardLabelIcon={card.CustomCardLabelIcon} key={card.card} cardView={card.cardView} addItemView={card.addItemView} id={card.card} />
-                    })
+                    cardLabelView.length ? 
+                    cardLabelView.slice(0, 1).map((card) => {
+                        return (
+                            <shared.components.AddItem
+                                keyField='name'
+                                label={card.name}
+                                cardLabelIcon={card.CustomCardLabelIcon}
+                                key={card.card}
+                                cardView={card.cardView}
+                                addItemView={card.addItemView}
+                                id={card.card}
+                                
+                            >
+                                {children}
+                            </shared.components.AddItem>
+                        )
+                    }) : ''
                 }
             </div>
         </div>

@@ -26,7 +26,7 @@ const PurchasesItemsIndex = (
                 <div className="purchase_items_action_link">
 
                     {
-                        actionInformation.map((action, index) => {
+                        actionInformation.map((action) => {
                             return (
                                 <div key={action.caption}>
                                     <NavLink to={action.link} >
@@ -41,29 +41,10 @@ const PurchasesItemsIndex = (
                             )
                         })
                     }
-
-                    {/* <div>
-                        <NavLink>
-                            <span className="action_name_and_description">
-                                <span className="action_name">import vendor</span>
-                                <span className="action_description">Import your existing vendor with a single click</span>
-                            </span>
-                            <span className="action_graphic"><MdChevronRight size={30} /></span>
-                        </NavLink>
-                    </div>
-                    <div>
-                        <NavLink>
-                            <span className="action_name_and_description">
-                                <span className="action_name">Payroll</span>
-                                <span className="action_description">Reduce time spent on employee payments, benefits, and deductions</span>
-                            </span>
-                            <span className="action_graphic"><MdChevronRight size={30} /></span>
-                        </NavLink>
-                    </div> */}
                 </div>
             </div>
             <div className="purchase_items_graphics">
-                <img src={componentImage} alt="Component image" />
+                <img src={componentImage} alt="Component" />
             </div>
         </section>
     )

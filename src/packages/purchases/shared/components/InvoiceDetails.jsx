@@ -2,8 +2,7 @@ import { InputComponent } from "@/components";
 import { useGlobalState } from "@/store";
 
 const InvoiceDetails = () => {
-    const { }
-
+    const { transactionCode } = useGlobalState();
 
     return (
         <div className="billingInfo">
@@ -11,7 +10,7 @@ const InvoiceDetails = () => {
                 prelabelText="Purchase entry"
                 name="purchase_entry_code"
                 disabled={true}
-                value='CODEHERE'
+                value={transactionCode}
             />
             <InputComponent
                 prelabelText="Invoice number"

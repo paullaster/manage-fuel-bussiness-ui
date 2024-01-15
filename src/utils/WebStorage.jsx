@@ -17,7 +17,7 @@ class WebStorage {
         let obj = {}
         switch(typeOfTray) {
             case 'array':
-                const obj = tray.find((i) => {
+                obj = tray.find((i) => {
                     if (keyInTrayItem !== '') {
                         return i[keyInTrayItem] === item;
                     }

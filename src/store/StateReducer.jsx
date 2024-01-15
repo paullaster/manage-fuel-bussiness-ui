@@ -81,5 +81,10 @@ export const StateReducer = (state, action) => {
                     };
                 })
             };
+        case 'PURCHASE_CODE':
+            return state = {
+                ...state,
+                transactionCode: action.payload,
+            };
     }
 }

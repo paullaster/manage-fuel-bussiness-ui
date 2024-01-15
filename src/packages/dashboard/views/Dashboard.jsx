@@ -1,21 +1,32 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import purchases from "../../purchases";
 import { useGlobalDispatcher, useGlobalState } from "@/store";
 import { useEffect } from "react";
 import { Navigation, Footer } from "@/components";
-// import { _request } from "@/services";
+import { RandomCodeGenerator } from "@/utils";
 
 const Dashboard = () => {
 
    const appStateDispatcher = useGlobalDispatcher();
    const appState = useGlobalState();
+   const location = useLocation();
 
    useEffect(() => {
+
+     const locationArray = location.split('/');
+     if(locationArray.includes('purchases') && locationArray.includes('create')) {
+      const code = RandomCodeGenerator()
+      appStateDispatcher({
+        type: "PURCHASE_CODE",
+        payload: code,
+      })
+     }
       appStateDispatcher({
         type: "LINKS",
         payload: purchases.links
       });
    },[]);
+
 
 
   return (

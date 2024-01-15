@@ -14,13 +14,16 @@ class WebStorage {
         }
     }
     CheckItemIfExist(tray, item, typeOfTray, keyInTrayItem =  '') {
+        let obj = {}
         switch(typeOfTray) {
             case 'array':
                 const obj = tray.find((i) => {
                     if (keyInTrayItem !== '') {
                         return i[keyInTrayItem] === item;
                     }
-                })
+                    return i === item;
+                });
+                return obj;
         }
     }
 

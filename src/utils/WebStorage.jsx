@@ -57,15 +57,7 @@ class WebStorage {
                 return resource;
             case 'cookie':
                 resource = this.CheckItemIfExist(cookies.split(';'), `${resourceName}=`, 'array', '', true);
-                if (!resource) {
-                    document.cookie = `${resourceName}=${resource}`
-                }
-                cookies = cookies.filter((ft) => {
-                    return `${ft}=` !== `${resourceName}=`;
-                });
-                cookies += `${resourceName}=${resource}`;
-                document.cookie = cookies;
-                break;
+                return resource;
         }
     }
 

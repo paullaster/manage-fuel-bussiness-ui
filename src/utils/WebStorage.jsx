@@ -44,5 +44,18 @@ class WebStorage {
             default: return new Error("Undefied Type");
         }
     }
+    GetFromWebStorage(storageType, resourceName) {
+        let resource
+        switch(storageType) {
+            case 'local':
+                resource = localStorage.getItem(resourceName) || '[]';
+                resource = JSON.parse(resource);
+                return resource;
+            case 'session':
+                resource = sessionStorage.getItem(resourceName) || '[]';
+                resource = JSON.parse(resource);
+                return resource;
+        }
+    }
 
 }

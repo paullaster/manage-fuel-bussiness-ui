@@ -2,8 +2,7 @@ import { apiFetchUtil, GetGross } from "@/utils";
 import WebStorage from "@/utils/WebStorage";
 import { APPNAME } from "@/environments";
 
-let tanks = WebStorage.GetFromWebStorage('session', APPNAME);
-
+const tanks = WebStorage.GetFromWebStorage('session', APPNAME).tanks;
 
 
 export default [
@@ -12,7 +11,9 @@ export default [
         headerName: 'Item',
         width: 200,
         type: 'singleSelect',
-        valueOptions: () => apiFetchUtil(),
+        valueOptions: () => tanks.map((tank) => {
+            return `tank ${tank.tank_number}`
+        }),
         editable: true,
         headerAligne: 'center,'
     },

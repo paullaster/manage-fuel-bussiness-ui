@@ -45,5 +45,15 @@ const RandomCodeGenerator = () => {
 }
 
 const incrementPrefix = (prefix) => {
-    
+    const lastCharCode = prefix.charCodeAt(2) + 1;
+    if(lastCharCode <= 122) {
+        return prefix.slice(0, 2) + String.fromCharCode(lastCharCode);
+    }else {
+        const secondCharCode = prefix.charCodeAt(1) + 1;
+        if(secondCharCode <= 122) {
+            return prefix[0] + String.fromCharCode(secondCharCode) + 'a';
+        }else {
+            return String.fromCharCode(prefix.charCodeAt(0) + 1) + "aa";
+        }
+    }
 }

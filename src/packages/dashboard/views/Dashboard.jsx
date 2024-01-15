@@ -27,7 +27,7 @@ const Dashboard = () => {
         type: "LINKS",
         payload: purchases.links
       });
-   },[]);
+   },[transactionCode]);
 
 
 

@@ -1,6 +1,10 @@
 import { InputComponent } from "@/components";
+import { useGlobalState } from "@/store";
 
 const InvoiceDetails = () => {
+    const { }
+
+
     return (
         <div className="billingInfo">
             <InputComponent

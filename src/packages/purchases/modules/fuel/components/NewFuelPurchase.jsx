@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import shared from "../../../shared";
 import { useGlobalDispatcher, useGlobalState } from '@/store';
 import { Form } from "react-router-dom";
-import { composableAutofils } from "../setups";
+import { composableAutofils, purchaseEntryColumns} from "../setups";
 import TankEntries from "./TankEntries";
 import TransportationAndOfficer from "./TransportationAndOfficer";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
@@ -12,7 +12,7 @@ import NewVendor from "../../vendors/components/NewVendor";
 
 
 const NewFuelPurchase = () => {
-
+  const [tableDataRows, setTableDataRows] = useState([]);
   const appStateDispatcher = useGlobalDispatcher();
   const { cardLabelView } = useGlobalState();
 

@@ -30,7 +30,7 @@ const NewItem = () => {
       type: 'map',
     }, purchaseEntryColumns);
 
-  }, [])
+  }, []);
 
   const handleAddNewItem = (event) => {
     event.preventDefault();

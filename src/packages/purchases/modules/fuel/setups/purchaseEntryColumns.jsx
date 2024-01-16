@@ -86,7 +86,7 @@ export default [
         sortable: false,
         width: 80,
         valueGetter: (params) => {
-            return (Number(params.row.quantity)  || 0) * (Number(params.row.price) || 0);
+            return (Number(params.row.expected_quantity)  || 0) * (Number(params.row.price) || 0);
         },
         type: 'number',
     },

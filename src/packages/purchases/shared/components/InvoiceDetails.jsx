@@ -7,8 +7,8 @@ const InvoiceDetails = () => {
     return (
         <div className="billingInfo">
             <InputComponent
-                prelabelText="Purchase entry"
-                name="purchase_entry_code"
+                prelabelText="Bill number"
+                name="Bill_number"
                 disabled={true}
                 value={transactionCode}
             />

@@ -82,7 +82,8 @@ export default [
         width: 80,
         valueGetter: (params) => {
             return (Number(params.row.quantity)  || 0) * (Number(params.row.price) || 0);
-        }
+        },
+        type: 'number',
     },
     {
         field: 'gross_amount',
@@ -90,9 +91,8 @@ export default [
         description: 'gross amount',
         sortable: false,
         width: 80,
-        valueGetter: (params) => {
-            return (Number(params.row.quantity)  || 0) * (Number(params.row.price) || 0);
-        }
+        valueGetter: (params) => GetGross(params.row),
+        type: 'number',
     },
     {
         field: 'action',

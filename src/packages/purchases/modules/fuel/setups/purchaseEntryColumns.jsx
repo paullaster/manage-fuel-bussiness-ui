@@ -14,6 +14,7 @@ export default [
         valueOptions: () => tanks.map((tank) => {
             return `tank ${tank.tank_number}`
         }),
+        sortable: false,
     },
     {
         field: 'fuel_type',
@@ -21,6 +22,7 @@ export default [
         width: 120,
         editable: false,
         sortable: false,
+        type: 'singleSelect',
         valueGetter: async (params) => {
             if(params.row.tank === '' || undefined || null) return 'No tank selected';
             let tank = await apiFetchUtil(params.row)

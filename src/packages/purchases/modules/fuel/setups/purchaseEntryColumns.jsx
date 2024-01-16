@@ -9,7 +9,7 @@ export default [
     {
         field: 'tank',
         headerName: 'Tank',
-        width: 80,
+        width: 150,
         editable: true,
         type: 'singleSelect',
         valueOptions: () => tanks.map((tank) => {
@@ -20,15 +20,12 @@ export default [
     {
         field: 'fuel_type',
         headerName: 'Fuel Type',
-        width: 100,
+        width: 150,
         editable: false,
         sortable: false,
         type: 'string',
-        valueGetter: async (params) => {
-            if(params.row.tank === '' || undefined || null) return 'No tank selected';
-            let tank = await apiFetchUtil(params.row)
-            return tank.fuel_type;
-        }
+        valueGetter: (params) => (params.row.tank === '' || undefined || null || 'select tank') ? 'No tank selected' : apiFetchUtil(params.row)
+
     },
     {
         field: 'dip_quantity_before_offloading',

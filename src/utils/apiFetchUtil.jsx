@@ -1,3 +1,7 @@
-export const apiFetchUtil = async (options, type) => {
+export const apiFetchUtil = async (options = [], type = '') => {
   console.log(options)
+  switch(type) {
+    case 'fuel_type':
+        
+  }
 };

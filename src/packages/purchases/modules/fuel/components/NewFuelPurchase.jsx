@@ -7,6 +7,7 @@ import TankEntries from "./TankEntries";
 import TransportationAndOfficer from "./TransportationAndOfficer";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
 import NewVendor from "../../vendors/components/NewVendor";
+import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -33,7 +34,7 @@ const NewFuelPurchase = () => {
   const handleAddNewItem = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    setTableDataRows((prev) => [...prev, { id: uuidv4(), ...tableRowInitialValues }]);
+    setTableDataRows((prev) => [...prev, { id: uuidv4(), ...NewFuelPurchaseInitialValues }]);
   };
 
   const handleDeletingLineItem = (event, item) => {

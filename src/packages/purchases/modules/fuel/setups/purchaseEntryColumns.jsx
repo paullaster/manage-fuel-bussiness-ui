@@ -39,19 +39,19 @@ export default [
     {
         field: 'dip_quantity_before_offloading',
         headerName: 'Dip quantity before offloading',
-        width: 250,
+        width: 230,
         editable: true,
     },
     {
         field: 'sales_quantity_during_offloading',
         headerName: 'Sales quantity during offloading',
-        width: 250,
+        width: 230,
         editable: true,
     },
     {
         field: 'actual_dip_quantity_after_offloading',
         headerName: 'Actual dip quantity after offloading',
-        width: 250,
+        width: 230,
         editable: true,
     },
     {

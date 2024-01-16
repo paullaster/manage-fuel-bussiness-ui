@@ -16,6 +16,33 @@ const NewFuelPurchase = () => {
   const appStateDispatcher = useGlobalDispatcher();
   const { cardLabelView } = useGlobalState();
 
+
+  const columns = useMemo(() => {
+    return ArrayFunctions({
+      arrKey: 'field',
+      itemKey: 'field',
+      item: { field: 'action' },
+      propToUpdate: 'renderCell',
+      op: 'equal',
+      update: (params) => <shared.components.FormAction row={params.row} onDelete={handleDeletingLineItem} />,
+      type: 'map',
+    }, purchaseEntryColumns);
+
+  }, []);
+
+  const handleAddNewItem = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setTableDataRows((prev) => [...prev, { id: uuidv4(), ...tableRowInitialValues }]);
+  };
+
+  const handleDeletingLineItem = (event, item) => {
+    console.log(item)
+    event.stopPropagation();
+    event.preventDefault();
+    setTableDataRows((prev) => prev.filter((line) => line.id !== item.id));
+  };
+  
   useEffect(() => {
     appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });
   }, []);

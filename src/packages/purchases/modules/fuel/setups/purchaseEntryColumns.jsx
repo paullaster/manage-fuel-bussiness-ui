@@ -20,11 +20,10 @@ export default [
     {
         field: 'fuel_type',
         headerName: 'Fuel Type',
-        width: 120,
+        width: 100,
         editable: false,
         sortable: false,
-        type: 'singleSelect',
-        valueOptions: [],
+        type: 'string',
         valueGetter: async (params) => {
             if(params.row.tank === '' || undefined || null) return 'No tank selected';
             let tank = await apiFetchUtil(params.row)

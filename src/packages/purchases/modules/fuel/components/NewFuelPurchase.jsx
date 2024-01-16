@@ -56,7 +56,7 @@ const NewFuelPurchase = () => {
           <NewVendor />
         </shared.components.BillingComponent>
         <TransportationAndOfficer cardLabelView={cardLabelView} />
-        <TankEntries />
+        <TankEntries columns={columns} rows={tableDataRows} handleAddNewItem={handleAddNewItem} />
         <FormButtonRow />
       </Form>
     </section>

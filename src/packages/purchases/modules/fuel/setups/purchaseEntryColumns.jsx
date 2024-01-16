@@ -23,6 +23,7 @@ export default [
         editable: false,
         sortable: false,
         type: 'singleSelect',
+        valueOptions: [],
         valueGetter: async (params) => {
             if(params.row.tank === '' || undefined || null) return 'No tank selected';
             let tank = await apiFetchUtil(params.row)

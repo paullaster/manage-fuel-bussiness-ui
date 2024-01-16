@@ -39,25 +39,25 @@ export default [
     {
         field: 'dip_quantity_before_offloading',
         headerName: 'Dip quantity before offloading',
-        width: 230,
+        width: 240,
         editable: true,
     },
     {
         field: 'sales_quantity_during_offloading',
         headerName: 'Sales quantity during offloading',
-        width: 230,
+        width: 240,
         editable: true,
     },
     {
         field: 'actual_dip_quantity_after_offloading',
         headerName: 'Actual dip quantity after offloading',
-        width: 230,
+        width: 240,
         editable: true,
     },
     {
         field: 'expected_quantity',
         headerName: 'Expected quantity',
-        width: 100,
+        width: 130,
         editable: true,
     },
     {
@@ -91,7 +91,7 @@ export default [
         headerName: 'Amount',
         description: 'amount',
         sortable: false,
-        width: 80,
+        width: 100,
         editable: false,
         valueGetter: (params) => {
             return (Number(params.row.expected_quantity)  || 0) * (Number(params.row.price) || 0);

@@ -9,7 +9,7 @@ const GetGross = (item, taxField, quantityField, priceField, type) => {
     case 'gross_amount':
       amount = (Number(item[quantityField]) || 0) * (Number(item[priceField]) || 0);
       return amount + tax_amount || 0;
-    default: return new Error('Undefined type');
+    // default: return new Error('Undefined type');
   }
 }
 

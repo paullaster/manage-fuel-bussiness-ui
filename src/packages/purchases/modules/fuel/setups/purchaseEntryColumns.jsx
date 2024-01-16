@@ -77,7 +77,7 @@ export default [
         headerName: 'Tax rate',
         width: 80,
         editable: true,
-        valueFormatter: (params) => `${params.value}%`;
+        valueFormatter: (params) => `${params.value}%`,
     },
     {
         field: 'tax_amount',

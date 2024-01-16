@@ -81,7 +81,7 @@ export default [
         headerName: 'Amount',
         description: 'amount',
         sortable: false,
-        width: 80,
+        width: 120,
         valueGetter: (params) => {
             return (Number(params.row.quantity)  || 0) * (Number(params.row.price) || 0);
         },

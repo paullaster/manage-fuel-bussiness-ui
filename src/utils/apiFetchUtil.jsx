@@ -11,7 +11,8 @@ export const apiFetchUtil = async (options = [], type = '') => {
             params: {
                 fuel_type_id: options.values,
             },
-            url: 
+            url: constants.fuelType,
         })
+        console.log(response);
   }
 };

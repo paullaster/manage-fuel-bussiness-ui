@@ -6,6 +6,5 @@ export default {
     tank: 'select tank',
     variance: "0",
     price: "0",
-    gross_amount: "string",
     tax_rate: "0",
 }

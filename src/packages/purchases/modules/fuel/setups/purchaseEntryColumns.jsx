@@ -13,8 +13,13 @@ export default [
         editable: true,
         type: 'singleSelect',
         valueOptions: () => tanks.map((tank) => {
-            return `tank ${tank.tank_number}`
+            return ank.tank_number
         }),
+        valueFormatter: (params) => {
+            if(!params.value) {
+                return params.value
+            }
+        },
         sortable: false,
     },
     {

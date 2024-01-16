@@ -17,8 +17,9 @@ export default [
         }),
         valueFormatter: (params) => {
             if(!params.value) {
-                return params.value
+                return 'select tank'
             }
+            return `Tank ${params.value}`
         },
         sortable: false,
     },

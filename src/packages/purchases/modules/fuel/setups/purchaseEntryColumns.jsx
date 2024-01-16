@@ -52,7 +52,7 @@ export default [
     {
         field: 'expected_quantity',
         headerName: 'Expected quantity',
-        width: 130,
+        width: 100,
         editable: true,
     },
     {
@@ -71,17 +71,27 @@ export default [
     {
         field: 'tax_rate',
         headerName: 'Tax rate',
-        width: 100,
+        width: 80,
         editable: true,
     },
     {
         field: 'amount',
         headerName: 'Amount',
-        description: 'Derived amount',
+        description: 'amount',
         sortable: false,
-        width: 100,
+        width: 80,
         valueGetter: (params) => {
-            return Number(params.row.expected_quantity)  || 0 * Number(params.row.price) || 0;
+            return (Number(params.row.quantity)  || 0) * (Number(params.row.price) || 0);
+        }
+    },
+    {
+        field: 'gross_amount',
+        headerName: 'Gross amount',
+        description: 'gross amount',
+        sortable: false,
+        width: 80,
+        valueGetter: (params) => {
+            return (Number(params.row.quantity)  || 0) * (Number(params.row.price) || 0);
         }
     },
     {
@@ -89,9 +99,7 @@ export default [
         headerName: 'Action',
         description: 'user action',
         sortable: false,
-        width: 100,
-        valueGetter: (params) => {
-            return Number(params.row.expected_quantity)  || 0 * Number(params.row.price) || 0;
-        }
+        width: 80,
+        type: 'actions',
     }
 ];

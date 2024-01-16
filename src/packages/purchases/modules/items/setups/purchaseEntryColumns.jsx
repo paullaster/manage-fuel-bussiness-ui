@@ -57,7 +57,7 @@ export default [
         sortable: false,
         width: 200,
         type: 'number',
-        valueGetter: (params) => GetGross(params.row, 'vat_rate'),
+        valueGetter: (params) => GetGross(params.row, 'vat_rate', 'quantity', 'price'),
     },
 
     {

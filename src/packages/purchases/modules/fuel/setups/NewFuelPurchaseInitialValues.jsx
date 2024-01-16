@@ -4,8 +4,8 @@ export default {
     expected_quantity: "0",
     actual_dip_quantity_after_offloading: "0",
     tank: 'select tank',
-    variance: "string",
-    price: "string",
+    variance: "0",
+    price: "0",
     gross_amount: "string",
-    tax_rate: "string",
+    tax_rate: "0",
 }

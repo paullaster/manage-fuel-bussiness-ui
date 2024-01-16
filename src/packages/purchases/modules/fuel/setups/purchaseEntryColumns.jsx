@@ -1,23 +1,40 @@
-import { apiFetchUtil } from "@/utils";
+import { apiFetchUtil, GetGross } from "@/utils";
+import WebStorage from "@/utils/WebStorage";
+import { APPNAME } from "@/environments";
+
+
+const tanks = WebStorage.GetFromWebStorage('session', APPNAME).tanks;
+let fueType = '';
 
 export default [
     {
         field: 'tank',
         headerName: 'Tank',
-        width: 80,
+        width: 150,
         editable: true,
+        type: 'singleSelect',
+        valueOptions: () => tanks.map((tank) => {
+            return tank.tank_number
+        }),
+        valueFormatter: (params) => {
+            if(!params.value) {
+                return 'select tank'
+            }
+            apiFetchUtil(params, 'fuel_type')
+            .then((res) => fueType = res);
+            return `Tank  ${params.value}`
+        },
+        sortable: false,
     },
     {
         field: 'fuel_type',
         headerName: 'Fuel Type',
-        width: 120,
+        width: 150,
         editable: false,
         sortable: false,
-        valueGetter: async (params) => {
-            if(params.row.tank === '' || undefined || null) return 'No tank selected';
-            let tank = await apiFetchUtil(params.row)
-            return tank.fuel_type;
-        }
+        type: 'string',
+        valueGetter: (params) => (params.row.tank === '' || undefined || null) ? 'No tank selected' : fueType
+
     },
     {
         field: 'dip_quantity_before_offloading',
@@ -40,7 +57,7 @@ export default [
     {
         field: 'expected_quantity',
         headerName: 'Expected quantity',
-        width: 130,
+        width: 100,
         editable: true,
     },
     {
@@ -59,27 +76,35 @@ export default [
     {
         field: 'tax_rate',
         headerName: 'Tax rate',
-        width: 100,
+        width: 80,
         editable: true,
     },
     {
         field: 'amount',
         headerName: 'Amount',
-        description: 'Derived amount',
+        description: 'amount',
         sortable: false,
-        width: 100,
+        width: 80,
         valueGetter: (params) => {
-            return Number(params.row.expected_quantity)  || 0 * Number(params.row.price) || 0;
-        }
+            return (Number(params.row.quantity)  || 0) * (Number(params.row.price) || 0);
+        },
+        type: 'number',
+    },
+    {
+        field: 'gross_amount',
+        headerName: 'Gross amount',
+        description: 'gross amount',
+        sortable: false,
+        width: 150,
+        valueGetter: (params) => GetGross(params.row, 'tax_rate'),
+        type: 'number',
     },
     {
         field: 'action',
         headerName: 'Action',
         description: 'user action',
         sortable: false,
-        width: 100,
-        valueGetter: (params) => {
-            return Number(params.row.expected_quantity)  || 0 * Number(params.row.price) || 0;
-        }
+        width: 80,
+        type: 'actions',
     }
 ];

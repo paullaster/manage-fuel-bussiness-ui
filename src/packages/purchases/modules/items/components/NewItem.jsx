@@ -30,7 +30,7 @@ const NewItem = () => {
       type: 'map',
     }, purchaseEntryColumns);
 
-  }, [])
+  }, []);
 
   const handleAddNewItem = (event) => {
     event.preventDefault();
@@ -43,7 +43,7 @@ const NewItem = () => {
     event.stopPropagation();
     event.preventDefault();
     setTableDataRows((prev) => prev.filter((line) => line.id !== item.id));
-  }
+  };
 
 
   useEffect(() => {

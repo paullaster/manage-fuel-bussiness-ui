@@ -1,10 +1,9 @@
-import { purchaseEntryColumns } from "../setups";
 import { DataTable } from "@/components";
-const FuelPurchaseEntry = () => {
+const FuelPurchaseEntry = ({columns, rows}) => {
   return (
     <DataTable
-      columns={purchaseEntryColumns}
-      rows={[]}
+      columns={columns}
+      rows={rows}
 
     />
   )

@@ -1,7 +1,7 @@
 import { _request } from '@/services';
 import constants from '../packages/purchases/constants';
 
-export const apiFetchUtil = async (options = [], type = '', setVar = '') => {
+export const apiFetchUtil = async (options = [], type = '') => {
   console.log(options)
   let response = '';
   switch(type) {
@@ -14,7 +14,7 @@ export const apiFetchUtil = async (options = [], type = '', setVar = '') => {
             url: constants.fuelType,
         })
         if (response) {
-            setVar = response.type;
+            return response.type;
         }
   }
 };

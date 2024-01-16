@@ -32,7 +32,7 @@ export default [
         editable: false,
         sortable: false,
         type: 'string',
-        valueGetter: (params) => (params.row.tank === '' || undefined || null || 'select tank') ? 'No tank selected' : fueType
+        valueGetter: (params) => (params.row.tank === '' || undefined || null) ? 'No tank selected' : fueType
 
     },
     {

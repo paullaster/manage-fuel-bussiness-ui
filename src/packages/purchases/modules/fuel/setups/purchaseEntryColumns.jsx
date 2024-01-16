@@ -1,4 +1,8 @@
 import { apiFetchUtil } from "@/utils";
+import WebStorage from "@/utils/WebStorage";
+
+
+const tanks = WebStorage.GetFromWebStorage('session', APPNAME).tanks;
 
 export default [
     {
@@ -6,6 +10,10 @@ export default [
         headerName: 'Tank',
         width: 80,
         editable: true,
+        type: 'singleSelect',
+        valueOptions: () => tanks.map((tank) => {
+            return `tank ${tank.tank_number}`
+        }),
     },
     {
         field: 'fuel_type',

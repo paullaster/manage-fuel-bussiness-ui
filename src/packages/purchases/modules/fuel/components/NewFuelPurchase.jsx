@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import shared from "../../../shared";
 import { useGlobalDispatcher, useGlobalState } from '@/store';
 import { Form } from "react-router-dom";
-import { composableAutofils, purchaseEntryColumns} from "../setups";
+import { composableAutofils, purchaseEntryColumns, NewFuelPurchaseInitialValues} from "../setups";
 import TankEntries from "./TankEntries";
 import TransportationAndOfficer from "./TransportationAndOfficer";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
@@ -42,7 +42,7 @@ const NewFuelPurchase = () => {
     event.preventDefault();
     setTableDataRows((prev) => prev.filter((line) => line.id !== item.id));
   };
-  
+
   useEffect(() => {
     appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });
   }, []);

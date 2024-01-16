@@ -4,6 +4,7 @@ import { APPNAME } from "@/environments";
 
 
 const tanks = WebStorage.GetFromWebStorage('session', APPNAME).tanks;
+let fueType = '';
 
 export default [
     {
@@ -19,7 +20,7 @@ export default [
             if(!params.value) {
                 return 'select tank'
             }
-            apiFetchUtil(params, 'fuel_type');
+            apiFetchUtil(params, 'fuel_type', fueType);
             return `Tank  ${params.value}`
         },
         sortable: false,
@@ -31,7 +32,7 @@ export default [
         editable: false,
         sortable: false,
         type: 'string',
-        valueGetter: (params) => (params.row.tank === '' || undefined || null || 'select tank') ? 'No tank selected' : apiFetchUtil(params.row, 'fuel_type')
+        valueGetter: (params) => (params.row.tank === '' || undefined || null || 'select tank') ? 'No tank selected' : fueType
 
     },
     {

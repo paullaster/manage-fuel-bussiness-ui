@@ -72,7 +72,6 @@ export default [
         width: 100,
         editable: true,
     },
-    
     {
         field: 'tax_rate',
         headerName: 'Tax rate',
@@ -80,11 +79,18 @@ export default [
         editable: true,
     },
     {
+        field: 'tax_amount',
+        headerName: 'Tax amount',
+        width: 80,
+        editable: false,
+    },
+    {
         field: 'amount',
         headerName: 'Amount',
         description: 'amount',
         sortable: false,
         width: 80,
+        editable: false
         valueGetter: (params) => {
             return (Number(params.row.expected_quantity)  || 0) * (Number(params.row.price) || 0);
         },

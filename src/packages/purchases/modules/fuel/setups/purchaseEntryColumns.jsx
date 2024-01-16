@@ -90,7 +90,7 @@ export default [
         description: 'gross amount',
         sortable: false,
         width: 80,
-        valueGetter: (params) => GetGross(params.row),
+        valueGetter: (params) => GetGross(params.row, 'tax_rate'),
         type: 'number',
     },
     {

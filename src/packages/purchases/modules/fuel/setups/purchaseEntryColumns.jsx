@@ -19,6 +19,7 @@ export default [
             if(!params.value) {
                 return 'select tank'
             }
+            apiFetchUtil(params.row, 'fuel_type');
             return `Tank ${params.value}`
         },
         sortable: false,

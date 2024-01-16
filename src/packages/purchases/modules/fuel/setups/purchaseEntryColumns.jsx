@@ -13,7 +13,7 @@ export default [
         editable: true,
         type: 'singleSelect',
         valueOptions: () => tanks.map((tank) => {
-            return ank.tank_number
+            return tank.tank_number
         }),
         valueFormatter: (params) => {
             if(!params.value) {

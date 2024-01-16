@@ -2,14 +2,14 @@
 import FuelPurchaseEntry from "./FuelPurchaseEntry"
 import AddItemButton from "../../../shared/components/AddItemButton"
 import DivisionTopBar from "../../../shared/components/DivisionTopBar"
-const TankEntries = () => {
+const TankEntries = ({columns, rows, handleAddNewItem}) => {
     return (
         <div className="tankEntries">
             <DivisionTopBar sectionTitle="Tank entry information">
-                <AddItemButton btnCaption="Add Tank Entry"/>
+                <AddItemButton btnCaption="Add Entry" methodHandler={handleAddNewItem}/>
             </DivisionTopBar>
             <div>
-                <FuelPurchaseEntry />
+                <FuelPurchaseEntry columns={columns} rows ={rows} />
             </div>
         </div>
     )

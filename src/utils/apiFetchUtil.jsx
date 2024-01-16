@@ -1,3 +1,3 @@
-export const apiFetchUtil = (options) => {
+export const apiFetchUtil = async (options, type) => {
 
 };

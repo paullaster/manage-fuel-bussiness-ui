@@ -24,7 +24,7 @@ export default [
         editable: false,
         sortable: false,
         type: 'string',
-        valueGetter: (params) => (params.row.tank === '' || undefined || null || 'select tank') ? 'No tank selected' : apiFetchUtil(params.row)
+        valueGetter: (params) => (params.row.tank === '' || undefined || null || 'select tank') ? 'No tank selected' : apiFetchUtil(params.row, 'fuel_type')
 
     },
     {

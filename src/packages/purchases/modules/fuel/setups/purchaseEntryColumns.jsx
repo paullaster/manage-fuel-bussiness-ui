@@ -77,13 +77,14 @@ export default [
         headerName: 'Tax rate',
         width: 80,
         editable: true,
+        valueFormatter: (params) => `${params.value}%`;
     },
     {
         field: 'tax_amount',
         headerName: 'Tax amount',
-        width: 80,
+        width: 150,
         editable: false,
-        valueGetter: () => GetGross(params.row, 'tax_rate', 'expected_quantity', 'price', 'tax_amount')
+        valueGetter: (params) => GetGross(params.row, 'tax_rate', 'expected_quantity', 'price', 'tax_amount')
     },
     {
         field: 'amount',

@@ -81,7 +81,7 @@ export default [
         headerName: 'Amount',
         description: 'amount',
         sortable: false,
-        width: 120,
+        width: 80,
         valueGetter: (params) => {
             return (Number(params.row.quantity)  || 0) * (Number(params.row.price) || 0);
         },
@@ -92,7 +92,7 @@ export default [
         headerName: 'Gross amount',
         description: 'gross amount',
         sortable: false,
-        width: 80,
+        width: 150,
         valueGetter: (params) => GetGross(params.row, 'tax_rate'),
         type: 'number',
     },

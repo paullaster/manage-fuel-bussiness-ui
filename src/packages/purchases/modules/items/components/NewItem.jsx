@@ -20,7 +20,8 @@ const NewItem = () => {
     quantity: '0',
     price: '0',
   };
-
+  
+  const tanks = WebStorage.GetFromWebStorage('session', APPNAME).tanks;
 
   const deleteItem = useCallback(
     (id) => () => {

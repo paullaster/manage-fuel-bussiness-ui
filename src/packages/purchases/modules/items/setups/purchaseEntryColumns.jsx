@@ -1,6 +1,6 @@
 
 
-const tanks = WebStorage.GetFromWebStorage('session', APPNAME).tanks;
+
 
 
 export default [

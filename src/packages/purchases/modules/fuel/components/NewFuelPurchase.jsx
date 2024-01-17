@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo, useCallback } from "react";
 import shared from "../../../shared";
 import { useGlobalDispatcher, useGlobalState } from '@/store';
 import { Form } from "react-router-dom";
-import { composableAutofils, purchaseEntryColumns, NewFuelPurchaseInitialValues } from "../setups";
+import { composableAutofils, NewFuelPurchaseInitialValues } from "../setups";
 import TankEntries from "./TankEntries";
 import TransportationAndOfficer from "./TransportationAndOfficer";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
@@ -30,6 +30,7 @@ const NewFuelPurchase = () => {
     },
     [],
   );
+  
   const columns = useMemo(
     () => [
       {

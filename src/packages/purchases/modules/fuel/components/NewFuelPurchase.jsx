@@ -8,45 +8,20 @@ import TransportationAndOfficer from "./TransportationAndOfficer";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
 import NewVendor from "../../vendors/components/NewVendor";
 import { v4 as uuidv4 } from 'uuid';
-import { ArrayFunctions } from "@/utils";
 import { GridActionsCellItem } from '@mui/x-data-grid';
 import { MdDelete } from "react-icons/md";
-import DeleteIcon from '@mui/icons-material/Delete';
-import SecurityIcon from '@mui/icons-material/Security';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
 import { apiFetchUtil, GetGross } from "@/utils";
 import WebStorage from "@/utils/WebStorage";
 import { APPNAME } from "@/environments";
 
-const tanks = WebStorage.GetFromWebStorage('session', APPNAME).tanks;
-let fueType = '';
 
 const NewFuelPurchase = () => {
   const [rows, setRows] = useState([]);
   const appStateDispatcher = useGlobalDispatcher();
   const { cardLabelView } = useGlobalState();
-  // const handleDeletingLineItem = useCallback((item) => {
-  //   setTableDataRows((prev) => prev.filter((line) => line.id !== item.id));
-  // }, []);
-
-
-  // const columns = useMemo(() => {
-  //   return ArrayFunctions({
-  //     arrKey: 'field',
-  //     itemKey: 'field',
-  //     item: { field: 'action' },
-  //     propToUpdate: 'getActions',
-  //     op: 'equal',
-  //     update: (params) => 
-  //       <GridActionsCellItem 
-  //        icon={<MdDelete />}
-  //        label="Delete"
-  //        onClick={handleDeletingLineItem(params)}
-  //       />,
-  //     type: 'map',
-  //   }, purchaseEntryColumns);
-
-  // }, []);
+  
+  const tanks = WebStorage.GetFromWebStorage('session', APPNAME).tanks;
+  let fueType = '';
   const deleteItem = useCallback(
     (id) => () => {
       setTimeout(() => {

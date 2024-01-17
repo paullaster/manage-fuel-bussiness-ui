@@ -26,7 +26,11 @@
                 border-radius: .4rem;
                 color: g.$color_primary_light;
                 @include u.boxshadow_light;
+                
             }
         }
+    }
+    & ~ button >span {
+        text-transform: uppercase !important;
     }
 }

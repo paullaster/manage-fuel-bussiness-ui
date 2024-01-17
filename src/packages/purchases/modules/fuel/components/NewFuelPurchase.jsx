@@ -25,7 +25,7 @@ const NewFuelPurchase = () => {
       item: { field: 'action' },
       propToUpdate: 'renderCell',
       op: 'equal',
-      update: (params) => <shared.components.FormAction row={params.row} onDelete={handleDeletingLineItem} />,
+      update: (params) => <shared.components.FormAction row={params} onDelete={handleDeletingLineItem} />,
       type: 'map',
     }, purchaseEntryColumns);
 

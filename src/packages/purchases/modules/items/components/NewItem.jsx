@@ -9,6 +9,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { apiFetchUtil, GetGross } from "@/utils";
 import WebStorage from "@/utils/WebStorage";
 import { APPNAME } from "@/environments";
+import { GridActionsCellItem } from '@mui/x-data-grid';
+import { MdDelete } from "react-icons/md";
 
 const NewItem = () => {
   const appStateDispatcher = useGlobalDispatcher();
@@ -20,7 +22,7 @@ const NewItem = () => {
     quantity: '0',
     price: '0',
   };
-  
+
   const tanks = WebStorage.GetFromWebStorage('session', APPNAME).tanks;
 
   const deleteItem = useCallback(
@@ -35,104 +37,57 @@ const NewItem = () => {
   const columns = useMemo(
     () => [
       {
-        field: 'tank',
-        headerName: 'Tank',
-        width: 150,
-        editable: true,
+        field: 'item',
+        headerName: 'Item',
+        width: 200,
         type: 'singleSelect',
         valueOptions: () => tanks.map((tank) => {
-          return tank.tank_number
+          return `tank ${tank.tank_number}`
         }),
-        valueFormatter: (params) => {
-          if (!params.value) {
-            return 'select tank'
-          }
-          apiFetchUtil(params, 'fuel_type')
-            .then((res) => fueType = res);
-          return `Tank  ${params.value}`
-        },
-        sortable: false,
+        editable: true,
+        headerAligne: 'center,'
       },
       {
-        field: 'fuel_type',
-        headerName: 'Fuel Type',
-        width: 150,
-        editable: false,
-        sortable: false,
+        field: 'quantity',
+        headerName: 'Quantity',
+        width: 200,
+        editable: true,
         type: 'string',
-        valueGetter: (params) => (params.row.tank === '' || undefined || null) ? 'No tank selected' : fueType
-
-      },
-      {
-        field: 'dip_quantity_before_offloading',
-        headerName: 'Dip quantity before offloading',
-        width: 240,
-        editable: true,
-      },
-      {
-        field: 'sales_quantity_during_offloading',
-        headerName: 'Sales quantity during offloading',
-        width: 240,
-        editable: true,
-      },
-      {
-        field: 'actual_dip_quantity_after_offloading',
-        headerName: 'Actual dip quantity after offloading',
-        width: 240,
-        editable: true,
-      },
-      {
-        field: 'expected_quantity',
-        headerName: 'Expected quantity',
-        width: 130,
-        editable: true,
-      },
-      {
-        field: 'variance',
-        headerName: 'Variance',
-        width: 100,
-        editable: true,
       },
       {
         field: 'price',
         headerName: 'Price',
-        width: 100,
+        width: 200,
         editable: true,
+        type: 'string'
       },
+
       {
-        field: 'tax_rate',
+        field: 'vat_rate',
         headerName: 'Tax rate',
-        width: 80,
+        width: 200,
         editable: true,
-        valueFormatter: (params) => `${params.value}%`,
-      },
-      {
-        field: 'tax_amount',
-        headerName: 'Tax amount',
-        width: 120,
-        editable: false,
-        valueGetter: (params) => GetGross(params.row, 'tax_rate', 'expected_quantity', 'price', 'tax_amount')
+        type: 'string',
       },
       {
         field: 'amount',
         headerName: 'Amount',
-        description: 'amount',
+        description: 'Derived amount',
         sortable: false,
-        width: 100,
-        editable: false,
-        valueGetter: (params) => {
-          return (Number(params.row.expected_quantity) || 0) * (Number(params.row.price) || 0);
-        },
+        width: 200,
         type: 'number',
+        valueGetter: (params) => {
+          return (Number(params.row.quantity) || 0) * (Number(params.row.price) || 0);
+        }
       },
       {
         field: 'gross_amount',
         headerName: 'Gross amount',
-        description: 'gross amount',
+        description: 'Derived amount',
         sortable: false,
-        width: 150,
-        valueGetter: (params) => GetGross(params.row, 'tax_rate', 'expected_quantity', 'price', 'gross_amount'),
+        width: 200,
         type: 'number',
+        valueGetter: (params) => GetGross(params.row, 'vat_rate', 'quantity', 'price', 'gross_amount'),
       },
       {
         field: 'actions',
@@ -141,7 +96,7 @@ const NewItem = () => {
         getActions: (params) => [
           <GridActionsCellItem
             key={uuidv4()}
-            icon={<MdDelete  size={25}/>}
+            icon={<MdDelete size={25} />}
             label="Delete"
             onClick={deleteItem(params.id)}
           />,
@@ -156,14 +111,6 @@ const NewItem = () => {
     event.stopPropagation();
     setRows((prev) => [...prev, { id: uuidv4(), ...tableRowInitialValues }]);
   };
-
-  const handleDeletingLineItem = (event, item) => {
-    console.log(item)
-    event.stopPropagation();
-    event.preventDefault();
-    setRows((prev) => prev.filter((line) => line.id !== item.id));
-  };
-
 
   useEffect(() => {
     appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });

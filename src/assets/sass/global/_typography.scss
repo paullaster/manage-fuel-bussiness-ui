@@ -60,9 +60,9 @@ input[type="search"]:focus{
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
-// span {
-//     text-transform: capitalize !important;
-// }
+span {
+    text-transform: capitalize;
+}
 span.error_span {
     color: v.$color_error;
 }

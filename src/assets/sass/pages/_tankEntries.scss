@@ -27,10 +27,11 @@
                 color: g.$color_primary_light;
                 @include u.boxshadow_light;
                 
+                & > span {
+                    text-transform: uppercase !important;
+                    font-weight: 800;
+                }
             }
         }
-    }
-    & ~ button >span {
-        text-transform: uppercase !important;
     }
 }

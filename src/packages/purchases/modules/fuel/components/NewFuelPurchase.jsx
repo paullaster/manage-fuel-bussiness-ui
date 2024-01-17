@@ -30,7 +30,7 @@ const NewFuelPurchase = () => {
     },
     [],
   );
-  
+
   const columns = useMemo(
     () => [
       {
@@ -149,8 +149,6 @@ const NewFuelPurchase = () => {
     ],
     [deleteItem],
   );
-
-  console.log(columns);
   const handleAddNewItem = (event) => {
     event.preventDefault();
     event.stopPropagation();

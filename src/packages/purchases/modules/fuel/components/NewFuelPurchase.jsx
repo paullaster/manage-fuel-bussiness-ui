@@ -118,7 +118,8 @@ const NewFuelPurchase = () => {
         headerName: 'Tax amount',
         width: 120,
         editable: false,
-        valueGetter: (params) => GetGross(params.row, 'tax_rate', 'expected_quantity', 'price', 'tax_amount')
+        valueGetter: (params) => GetGross(params.row, 'tax_rate', 'expected_quantity', 'price', 'tax_amount'),
+        hideable: false,
       },
       {
         field: 'amount',
@@ -131,6 +132,7 @@ const NewFuelPurchase = () => {
           return (Number(params.row.expected_quantity) || 0) * (Number(params.row.price) || 0);
         },
         type: 'number',
+        hideable: false,
       },
       {
         field: 'gross_amount',
@@ -140,6 +142,7 @@ const NewFuelPurchase = () => {
         width: 150,
         valueGetter: (params) => GetGross(params.row, 'tax_rate', 'expected_quantity', 'price', 'gross_amount'),
         type: 'number',
+        hideable: false,
       },
       {
         field: 'actions',
@@ -153,6 +156,7 @@ const NewFuelPurchase = () => {
             onClick={deleteItem(params.id)}
           />,
         ],
+        hideable: false,
       },
     ],
     [deleteItem],

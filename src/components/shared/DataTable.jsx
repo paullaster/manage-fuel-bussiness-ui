@@ -20,6 +20,7 @@ const DataTable = ({
                 {...args}
                 editMode='row'
                 slots={slots}
+                slotProps={slotProps}
             />
         </div>
     )

@@ -23,6 +23,9 @@ import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 
 const NewFuelPurchase = () => {
   const [rows, setRows] = useState([]);
+  const [rowModesModel, setRowModesModel] = useState({})
+
+
   const appStateDispatcher = useGlobalDispatcher();
   const { cardLabelView } = useGlobalState();
   

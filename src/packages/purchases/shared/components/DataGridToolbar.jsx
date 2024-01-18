@@ -25,7 +25,7 @@ const DataGridToolbar = ({ setRows, setRowModesModel, buttonLabel }) => {
     setRowModesModel(
       (oldRowModel) => ({
         ...oldRowModel,
-        [id]: {mode: GridRowModes.Edit, FieldToFocus: 'item'}
+        [id]: {mode: GridRowModes.Edit, FieldToFocus: 'item'},
       })
     );
   }

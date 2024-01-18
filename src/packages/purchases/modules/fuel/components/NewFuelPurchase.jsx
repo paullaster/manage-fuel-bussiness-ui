@@ -51,6 +51,7 @@ const NewFuelPurchase = () => {
           return `Tank  ${params.value}`
         },
         sortable: false,
+        hideable: false,
       },
       {
         field: 'fuel_type',
@@ -59,7 +60,8 @@ const NewFuelPurchase = () => {
         editable: false,
         sortable: false,
         type: 'string',
-        valueGetter: (params) => (params.row.tank === '' || undefined || null) ? 'No tank selected' : fueType
+        valueGetter: (params) => (params.row.tank === '' || undefined || null) ? 'No tank selected' : fueType,
+        hideable: false,
 
       },
       {
@@ -67,30 +69,35 @@ const NewFuelPurchase = () => {
         headerName: 'Dip quantity before offloading',
         width: 240,
         editable: true,
+        hideable: false,
       },
       {
         field: 'sales_quantity_during_offloading',
         headerName: 'Sales quantity during offloading',
         width: 240,
         editable: true,
+        hideable: false,
       },
       {
         field: 'actual_dip_quantity_after_offloading',
         headerName: 'Actual dip quantity after offloading',
         width: 240,
         editable: true,
+        hideable: false,
       },
       {
         field: 'expected_quantity',
         headerName: 'Expected quantity',
         width: 130,
         editable: true,
+        hideable: false,
       },
       {
         field: 'variance',
         headerName: 'Variance',
         width: 100,
         editable: true,
+        hideable: false,
       },
       {
         field: 'price',
@@ -104,6 +111,7 @@ const NewFuelPurchase = () => {
         width: 80,
         editable: true,
         valueFormatter: (params) => `${params.value}%`,
+        hideable: false,
       },
       {
         field: 'tax_amount',

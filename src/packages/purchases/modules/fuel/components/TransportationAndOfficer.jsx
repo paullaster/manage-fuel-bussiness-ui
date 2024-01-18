@@ -11,7 +11,7 @@ const TransportationAndOfficer = ({ cardLabelView = [], children}) => {
                 <Transport />
                 {
                     cardLabelView.length ? 
-                    cardLabelView.slice(0, 1).map((card) => {
+                    cardLabelView.slice(1, 2).map((card) => {
                         return (
                             <shared.components.AddItem
                                 keyField='name'

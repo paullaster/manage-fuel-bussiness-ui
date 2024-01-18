@@ -22,6 +22,9 @@ const DataGridToolbar = ({ setRows, setRowModesModel, buttonLabel }) => {
     setRows(
       (oldRows) => [...oldRows, {id, ...tableRowInitialValues, isNew: true }]
     );
+    setRowModesModel(
+
+    );
   }
 
   return (

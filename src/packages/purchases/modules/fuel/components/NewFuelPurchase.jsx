@@ -188,6 +188,7 @@ const NewFuelPurchase = () => {
         type: 'actions',
         width: 80,
         hideable: false,
+        cellClassName: 'actions',
         getActions: (params) => {
           const isInEditMode = rowModesModel[params.id]?.mode === GridRowModes.Edit;
 

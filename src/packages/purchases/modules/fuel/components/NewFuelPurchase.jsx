@@ -98,6 +98,7 @@ const NewFuelPurchase = () => {
         width: 100,
         editable: true,
         hideable: false,
+        headerAlign: 'center'
       },
       {
         field: 'price',

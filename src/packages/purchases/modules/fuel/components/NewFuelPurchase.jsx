@@ -199,12 +199,6 @@ const NewFuelPurchase = () => {
     ],
     [deleteItem],
   );
-  // const handleAddNewItem = (event) => {
-  //   event.preventDefault();
-  //   event.stopPropagation();
-  //   setRows((prev) => [...prev, { id: uuidv4(), ...NewFuelPurchaseInitialValues }]);
-  // };
-
 
   useEffect(() => {
     appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });

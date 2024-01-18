@@ -248,6 +248,7 @@ const NewFuelPurchase = () => {
         <TankEntries
           columns={columns}
           rows={rows}
+          rowModesModel={rowModesModel}
           slots={{ toolbar: DataGridToolbar }}
           slotProps={{ toolbar: { setRows, setRowModesModel } }}
         />

@@ -23,6 +23,8 @@ const DataTable = ({
                 editMode='row'
                 rowModesModel={rowModesModel}
                 onRowModesModelChange={handleRowModesModelChange}
+                onRowEditStop={handleRowEditStop}
+                processRowUpdate={processRowUpdate}
                 slots={slots}
                 slotProps={slotProps}
             />

@@ -5,13 +5,12 @@ import {
   GridRowEditStopReasons
 } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
-const DataGridToolbar = ({ setRows, setRowModesModel, methodHandler = () => {} }) => {
-  const { } = prop;
+const DataGridToolbar = ({ setRows, setRowModesModel, methodHandler = () => {}, buttonLabel }) => {
 
   return (
     <GridToolbarContainer>
       <Button color="primary" startIcon={<AddIcon />} onClick={methodHandler}>
-        Add record
+        {buttonLabel}
       </Button>
     </GridToolbarContainer>
   )

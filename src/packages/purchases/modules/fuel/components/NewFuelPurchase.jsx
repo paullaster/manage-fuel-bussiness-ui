@@ -8,12 +8,12 @@ import TransportationAndOfficer from "./TransportationAndOfficer";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
 import NewVendor from "../../vendors/components/NewVendor";
 import { v4 as uuidv4 } from 'uuid';
-import { 
+import {
   GridActionsCellItem,
   GridRowModes,
   GridToolbarContainer,
   GridRowEditStopReasons
- } from '@mui/x-data-grid';
+} from '@mui/x-data-grid';
 import { MdDelete } from "react-icons/md";
 import { apiFetchUtil, GetGross } from "@/utils";
 import WebStorage from "@/utils/WebStorage";
@@ -28,7 +28,7 @@ const NewFuelPurchase = () => {
 
   const appStateDispatcher = useGlobalDispatcher();
   const { cardLabelView } = useGlobalState();
-  
+
   const tanks = WebStorage.GetFromWebStorage('session', APPNAME).tanks;
   let fueType = '';
   const deleteItem = useCallback(
@@ -189,7 +189,7 @@ const NewFuelPurchase = () => {
         getActions: (params) => [
           <GridActionsCellItem
             key={uuidv4()}
-            icon={<MdDelete  size={25}/>}
+            icon={<MdDelete size={25} />}
             label="Delete"
             onClick={deleteItem(params.id)}
           />,
@@ -218,7 +218,12 @@ const NewFuelPurchase = () => {
           <NewVendor />
         </shared.components.BillingComponent>
         <TransportationAndOfficer cardLabelView={cardLabelView} />
-        <TankEntries columns={columns} rows={rows} slots={{toolbar: DataGridToolbar}} slotProps={{toolbar: {setRows, setRowModesModel}}} handleAddNewItem={handleAddNewItem} />
+        <TankEntries
+          columns={columns}
+          rows={rows}
+          slots={{ toolbar: DataGridToolbar }}
+          slotProps={{ toolbar: { setRows, setRowModesModel } }}
+        />
         <FormButtonRow />
       </Form>
     </section>

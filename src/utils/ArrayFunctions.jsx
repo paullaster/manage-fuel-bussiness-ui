@@ -13,6 +13,10 @@ export const ArrayFunctions = (obj, arr) => {
         case 'map':
             return arr.map((i) => {
                 if (comparisonOp(i[keyInArr], obj.item[keyInItem])) {
+                    console.log({ 
+                        ...i,
+                        [proptoUpdate]: update
+                    });
                     return { 
                         ...i,
                         [proptoUpdate]: update

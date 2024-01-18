@@ -6,6 +6,8 @@ const DataTable = ({
     style = { height: 400, width: '100%' },
     initialState = { pagination: { paginationModel: { page: 0, pageSize: 5 }, } },
     pageSizeOptions = [5, 10],
+    rowModesModel = {},
+    handleRowModesModelChange = () => {},
     slots = { },
     slotProps = {},
     ...args
@@ -19,6 +21,8 @@ const DataTable = ({
                 pageSizeOptions={pageSizeOptions}
                 {...args}
                 editMode='row'
+                rowModesModel={rowModesModel}
+                onRowModesModelChange={handleRowModesModelChange}
                 slots={slots}
                 slotProps={slotProps}
             />

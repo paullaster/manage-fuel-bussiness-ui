@@ -70,6 +70,8 @@ const NewFuelPurchase = () => {
         width: 240,
         editable: true,
         hideable: false,
+        type: 'number',
+        headerAlign: 'center',
       },
       {
         field: 'sales_quantity_during_offloading',

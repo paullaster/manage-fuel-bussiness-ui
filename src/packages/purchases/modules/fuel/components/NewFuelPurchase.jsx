@@ -19,7 +19,7 @@ import { apiFetchUtil, GetGross } from "@/utils";
 import WebStorage from "@/utils/WebStorage";
 import { APPNAME } from "@/environments";
 import DataGridToolbar from "../../../shared/components/DataGridToolbar";
-import { MdOutlineSaveAlt } from "react-icons/md";
+import { MdOutlineSaveAlt, MdCreate, MdCancel } from "react-icons/md";
 
 
 const NewFuelPurchase = () => {
@@ -201,10 +201,24 @@ const NewFuelPurchase = () => {
                 color: 'primary.main',
               }}
               onClick={handleSaveClick(params.id)}
-              />
+              />,
+              <GridActionsCellItem
+              key={uuidv4()}
+              icon={<MdCancel />}
+              label="Cancel"
+              className="textPrimary"
+              onClick={handleCancelClick(params.id)}
+              color="inherit"
+            />,
             ]
           }
-          [
+          return[
+            <GridActionsCellItem
+              key={uuidv4()}
+              icon={<MdCreate size={25} />}
+              label="Edit"
+              onClick={handleEditClick(params.id)}
+            />,
             <GridActionsCellItem
               key={uuidv4()}
               icon={<MdDelete size={25} />}

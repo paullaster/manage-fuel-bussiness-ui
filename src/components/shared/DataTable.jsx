@@ -16,6 +16,7 @@ const DataTable = ({
                 initialState={initialState}
                 pageSizeOptions={pageSizeOptions}
                 {...args}
+                editMode='row'
             />
         </div>
     )

@@ -1,4 +1,4 @@
-import { MdAdd } from "react-icons/md";
+import Button from '@mui/material/Button';
 import { Button, } from "@/components";
 
 const AddItemButton = ({ methodHandler = () => console.log("create new item"), btnCaption = "caption" }) => {

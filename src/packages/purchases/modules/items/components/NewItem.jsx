@@ -5,7 +5,6 @@ import shared from "../../../shared";
 import { useGlobalDispatcher, useGlobalState } from '@/store';
 import { composableAutofils } from "../setups";
 import PurchaseItemEntry from "./PurchaseItemEntry";
-import { v4 as uuidv4 } from 'uuid';
 import { apiFetchUtil, GetGross } from "@/utils";
 import WebStorage from "@/utils/WebStorage";
 import { APPNAME } from "@/environments";

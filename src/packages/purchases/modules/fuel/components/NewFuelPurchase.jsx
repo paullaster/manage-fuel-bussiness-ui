@@ -77,6 +77,8 @@ const NewFuelPurchase = () => {
         width: 240,
         editable: true,
         hideable: false,
+        type: 'number',
+        headerAlign: 'center',
       },
       {
         field: 'actual_dip_quantity_after_offloading',

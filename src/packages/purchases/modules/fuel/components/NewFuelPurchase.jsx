@@ -91,6 +91,8 @@ const NewFuelPurchase = () => {
         width: 130,
         editable: true,
         hideable: false,
+        type: 'number',
+        headerAlign: 'center',
       },
       {
         field: 'variance',
@@ -98,7 +100,8 @@ const NewFuelPurchase = () => {
         width: 100,
         editable: true,
         hideable: false,
-        headerAlign: 'center'
+        type: 'number',
+        headerAlign: 'center',
       },
       {
         field: 'price',

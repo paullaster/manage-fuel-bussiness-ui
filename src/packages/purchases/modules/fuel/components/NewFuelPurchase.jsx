@@ -133,6 +133,7 @@ const NewFuelPurchase = () => {
         },
         type: 'number',
         hideable: false,
+        headerAlign: 'center',
       },
       {
         field: 'gross_amount',

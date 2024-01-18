@@ -6,6 +6,8 @@ import {
 } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 const DataGridToolbar = ({ methodHandler }) => {
+  const { setRows, setRowModesModel} = prop;
+
   return (
     <GridToolbarContainer>
       <Button color="primary" startIcon={<AddIcon />} onClick={methodHandler}>

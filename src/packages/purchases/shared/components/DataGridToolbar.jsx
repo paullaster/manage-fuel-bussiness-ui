@@ -8,9 +8,9 @@ import { MdAdd } from "react-icons/md";
 
 
 const tableRowInitialValues = {
-  vat_rate: '0',
-  quantity: '0',
-  price: '0',
+  vat_rate: 0,
+  quantity: 0,
+  price: 0,
 };
 
 

@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 const DataGridToolbar = ({ setRows, setRowModesModel, buttonLabel }) => {
 
   const handleClick = () => {
-
+    const id = uuidv4();
   }
 
   return (

@@ -11,11 +11,7 @@ import { APPNAME } from "@/environments";
 import { GridActionsCellItem } from '@mui/x-data-grid';
 import { MdDelete } from "react-icons/md";
 
-const tableRowInitialValues = {
-  vat_rate: '0',
-  quantity: '0',
-  price: '0',
-};
+
 const NewItem = () => {
   const appStateDispatcher = useGlobalDispatcher();
   const { cardLabelView } = useGlobalState();
@@ -125,7 +121,7 @@ const NewItem = () => {
   const handleAddNewItem = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    setRows((prev) => [...prev, { id: uuidv4(), ...tableRowInitialValues }]);
+    setRows((prev) => [...prev, { id: uuidv4(), }]);
   };
 
   useEffect(() => {

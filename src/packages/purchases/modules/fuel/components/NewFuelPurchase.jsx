@@ -120,6 +120,8 @@ const NewFuelPurchase = () => {
         editable: false,
         valueGetter: (params) => GetGross(params.row, 'tax_rate', 'expected_quantity', 'price', 'tax_amount'),
         hideable: false,
+        type: 'number',
+        headerAlign: 'center',
       },
       {
         field: 'amount',
@@ -144,6 +146,7 @@ const NewFuelPurchase = () => {
         valueGetter: (params) => GetGross(params.row, 'tax_rate', 'expected_quantity', 'price', 'gross_amount'),
         type: 'number',
         hideable: false,
+        headerAlign: 'center'
       },
       {
         field: 'actions',

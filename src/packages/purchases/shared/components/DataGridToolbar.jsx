@@ -4,6 +4,7 @@ import {
 } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import { v4 as uuidv4 } from 'uuid';
+import { MdAdd } from "react-icons/md";
 
 
 const tableRowInitialValues = {
@@ -30,7 +31,7 @@ const DataGridToolbar = ({ setRows, setRowModesModel }) => {
 
   return (
     <GridToolbarContainer>
-      <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
+      <Button color="primary" startIcon={<MdAdd size={25} />} onClick={handleClick}>
         Add Record
       </Button>
     </GridToolbarContainer>

@@ -218,7 +218,7 @@ const NewFuelPurchase = () => {
           <NewVendor />
         </shared.components.BillingComponent>
         <TransportationAndOfficer cardLabelView={cardLabelView} />
-        <TankEntries columns={columns} rows={rows} slots={{toolbar: DataGridToolbar}} handleAddNewItem={handleAddNewItem} />
+        <TankEntries columns={columns} rows={rows} slots={{toolbar: DataGridToolbar}} slotProps={{toolbar: {setRows, setRowModesModel}}} handleAddNewItem={handleAddNewItem} />
         <FormButtonRow />
       </Form>
     </section>

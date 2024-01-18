@@ -7,7 +7,7 @@ import {
 import Button from './Button';
 import { MdAdd } from "react-icons/md";
 
-const DataGridToolbar = () => {
+const DataGridToolbar = ({methodHandler}) => {
   return (
     <GridToolbarContainer>
         <Button onClick={methodHandler}>

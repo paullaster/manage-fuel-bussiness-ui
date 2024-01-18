@@ -1,11 +1,12 @@
-import Button from '@mui/material/Button';
+import { MdAdd } from "react-icons/md";
 import { Button, } from "@/components";
 
-const AddItemButton = ({ methodHandler = () => console.log("create new item"), btnCaption = "caption" }) => {
+const AddItemButton = ({methodHandler = () =>console.log("create new item"), btnCaption = "caption"}) => {
     return (
         <div className="button_container">
-            <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
-                Add record
+            <Button onClick={methodHandler}>
+                <span><MdAdd size={20} /></span>
+                <span>{btnCaption}</span>
             </Button>
         </div>
     )

@@ -4,16 +4,13 @@ import {
     GridToolbarContainer,
     GridRowEditStopReasons
    } from '@mui/x-data-grid';
-import Button from './Button';
-import { MdAdd } from "react-icons/md";
-
+   import Button from '@mui/material/Button';
 const DataGridToolbar = ({methodHandler}) => {
   return (
     <GridToolbarContainer>
-        <Button onClick={methodHandler}>
-                <span><MdAdd size={20} /></span>
-                <span>{btnCaption}</span>
-            </Button>
+        <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
+        Add record
+      </Button>
     </GridToolbarContainer>
   )
 }

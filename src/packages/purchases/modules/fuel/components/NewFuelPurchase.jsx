@@ -72,6 +72,7 @@ const NewFuelPurchase = () => {
         hideable: false,
         type: 'number',
         headerAlign: 'center',
+        align: 'center',
       },
       {
         field: 'sales_quantity_during_offloading',
@@ -81,6 +82,7 @@ const NewFuelPurchase = () => {
         hideable: false,
         type: 'number',
         headerAlign: 'center',
+        align: 'center',
       },
       {
         field: 'actual_dip_quantity_after_offloading',
@@ -90,6 +92,7 @@ const NewFuelPurchase = () => {
         hideable: false,
         type: 'number',
         headerAlign: 'center',
+        align: 'center',
       },
       {
         field: 'expected_quantity',
@@ -99,6 +102,7 @@ const NewFuelPurchase = () => {
         hideable: false,
         type: 'number',
         headerAlign: 'center',
+        align: 'center',
       },
       {
         field: 'variance',
@@ -108,6 +112,7 @@ const NewFuelPurchase = () => {
         hideable: false,
         type: 'number',
         headerAlign: 'center',
+        align: 'center',
       },
       {
         field: 'price',
@@ -117,6 +122,7 @@ const NewFuelPurchase = () => {
         hideable: false,
         headerAlign: 'center',
         type: 'number',
+        align: 'center',
       },
       {
         field: 'tax_rate',
@@ -125,6 +131,9 @@ const NewFuelPurchase = () => {
         editable: true,
         valueFormatter: (params) => `${params.value}%`,
         hideable: false,
+        headerAlign: 'center',
+        type: 'number',
+        align: 'center',
       },
       {
         field: 'tax_amount',
@@ -135,6 +144,7 @@ const NewFuelPurchase = () => {
         hideable: false,
         type: 'number',
         headerAlign: 'center',
+        align: 'center',
       },
       {
         field: 'amount',
@@ -149,6 +159,7 @@ const NewFuelPurchase = () => {
         type: 'number',
         hideable: false,
         headerAlign: 'center',
+        align: 'center',
       },
       {
         field: 'gross_amount',
@@ -159,7 +170,8 @@ const NewFuelPurchase = () => {
         valueGetter: (params) => GetGross(params.row, 'tax_rate', 'expected_quantity', 'price', 'gross_amount'),
         type: 'number',
         hideable: false,
-        headerAlign: 'center'
+        headerAlign: 'center',
+        align: 'center',
       },
       {
         field: 'actions',

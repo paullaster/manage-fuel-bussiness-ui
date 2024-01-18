@@ -45,7 +45,8 @@ const NewItem = () => {
           return `tank ${tank.tank_number}`
         }),
         editable: true,
-        headerAligne: 'center,'
+        headerAligne: 'center',
+        hideable: false,
       },
       {
         field: 'quantity',
@@ -53,13 +54,15 @@ const NewItem = () => {
         width: 200,
         editable: true,
         type: 'string',
+        hideable: false,
       },
       {
         field: 'price',
         headerName: 'Price',
         width: 200,
         editable: true,
-        type: 'string'
+        type: 'string',
+        hideable: false,
       },
 
       {
@@ -68,6 +71,7 @@ const NewItem = () => {
         width: 200,
         editable: true,
         type: 'string',
+        hideable: false,
       },
       {
         field: 'amount',
@@ -78,7 +82,8 @@ const NewItem = () => {
         type: 'number',
         valueGetter: (params) => {
           return (Number(params.row.quantity) || 0) * (Number(params.row.price) || 0);
-        }
+        },
+        hideable: false,
       },
       {
         field: 'gross_amount',
@@ -88,6 +93,7 @@ const NewItem = () => {
         width: 200,
         type: 'number',
         valueGetter: (params) => GetGross(params.row, 'vat_rate', 'quantity', 'price', 'gross_amount'),
+        hideable: false,
       },
       {
         field: 'actions',
@@ -101,6 +107,7 @@ const NewItem = () => {
             onClick={deleteItem(params.id)}
           />,
         ],
+        hideable: false,
       },
     ],
     [deleteItem],

@@ -30,7 +30,7 @@ const DataGridToolbar = ({ setRows, setRowModesModel }) => {
     setRowModesModel(
       (oldRowModel) => ({
         ...oldRowModel,
-        [id]: {mode: GridRowModes.Edit, FieldToFocus: 'price'},
+        [id]: {mode: GridRowModes.Edit, fieldToFocus: 'price'},
       })
     );
   }

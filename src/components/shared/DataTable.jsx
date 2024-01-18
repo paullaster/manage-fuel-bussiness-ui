@@ -6,6 +6,7 @@ const DataTable = ({
     style = { height: 400, width: '100%' },
     initialState = { pagination: { paginationModel: { page: 0, pageSize: 5 }, } },
     pageSizeOptions = [5, 10],
+    slots = { },
     ...args
 }) => {
     return (
@@ -17,6 +18,7 @@ const DataTable = ({
                 pageSizeOptions={pageSizeOptions}
                 {...args}
                 editMode='row'
+                slots={slots}
             />
         </div>
     )

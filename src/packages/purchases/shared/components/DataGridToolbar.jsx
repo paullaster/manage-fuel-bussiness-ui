@@ -13,7 +13,7 @@ const tableRowInitialValues = {
 };
 
 
-const DataGridToolbar = ({ setRows, setRowModesModel, buttonLabel }) => {
+const DataGridToolbar = ({ setRows, setRowModesModel }) => {
 
   const handleClick = () => {
     const id = uuidv4();
@@ -31,7 +31,7 @@ const DataGridToolbar = ({ setRows, setRowModesModel, buttonLabel }) => {
   return (
     <GridToolbarContainer>
       <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
-        {buttonLabel}
+        Add Record
       </Button>
     </GridToolbarContainer>
   )

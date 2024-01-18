@@ -104,6 +104,9 @@ const NewFuelPurchase = () => {
         headerName: 'Price',
         width: 100,
         editable: true,
+        hideable: false,
+        headerAlign: 'center',
+        type: 'number',
       },
       {
         field: 'tax_rate',

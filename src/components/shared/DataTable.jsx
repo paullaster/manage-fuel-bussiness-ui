@@ -3,13 +3,15 @@ import { DataGrid } from '@mui/x-data-grid';
 const DataTable = ({
     rows,
     columns,
+    rowModesModel = {},
+    handleRowModesModelChange = () => {},
+    handleRowEditStop = () => {},
+    processRowUpdate = () => {},
+    slots = { },
+    slotProps = {},
     style = { height: 400, width: '100%' },
     initialState = { pagination: { paginationModel: { page: 0, pageSize: 5 }, } },
     pageSizeOptions = [5, 10],
-    rowModesModel = {},
-    handleRowModesModelChange = () => {},
-    slots = { },
-    slotProps = {},
     ...args
 }) => {
     return (

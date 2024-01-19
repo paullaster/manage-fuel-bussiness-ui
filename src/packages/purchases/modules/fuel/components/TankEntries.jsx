@@ -12,6 +12,8 @@ const TankEntries = ({columns, rows, rowModesModel = {}, handleRowModesModelChan
                 rows ={rows} 
                 rowModesModel={rowModesModel}
                 handleRowModesModelChange={handleRowModesModelChange}
+                handleRowEditStop={handleRowEditStop}
+                processRowUpdate={processRowUpdate}
                 slots = {slots} 
                 slotProps = {slotProps}
                 />

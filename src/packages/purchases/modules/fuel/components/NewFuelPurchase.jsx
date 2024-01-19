@@ -13,7 +13,6 @@ import {
   GridRowModes,
   GridRowEditStopReasons
 } from '@mui/x-data-grid';
-import { MdDelete } from "react-icons/md";
 import { apiFetchUtil, GetGross } from "@/utils";
 import WebStorage from "@/utils/WebStorage";
 import { APPNAME } from "@/environments";
@@ -244,7 +243,7 @@ const NewFuelPurchase = () => {
               onClick={handleCancelClick(params.id)}
               color="inherit"
             />,
-            ]
+            ];
           }
           return[
             <GridActionsCellItem

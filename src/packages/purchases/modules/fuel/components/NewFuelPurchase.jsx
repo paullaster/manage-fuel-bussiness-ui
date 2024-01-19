@@ -31,14 +31,10 @@ const NewFuelPurchase = () => {
   const appStateDispatcher = useGlobalDispatcher();
   const { cardLabelView } = useGlobalState();
 
-  const deleteItem = useCallback(
-    (id) => () => {
-      setTimeout(() => {
+  const deleteItem = (id) => {
         setRows((prevRows) => prevRows.filter((row) => row.id !== id));
-      });
-    },
-    [],
-  );
+    };
+   
 
   const handleEditClick = (id) => {
     setRowModesModel({...rowModesModel, [id]: { mode: GridRowModes.Edit}});
@@ -266,7 +262,7 @@ const NewFuelPurchase = () => {
           ]
         },
       },
-    ],
+    ];
 
   useEffect(() => {
     appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });

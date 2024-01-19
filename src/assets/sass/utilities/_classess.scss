@@ -228,3 +228,8 @@ button:disabled {
         }
     }
 }
+
+.MuiInputBase-input {
+    border: none !important;
+    outline: none !important;
+}

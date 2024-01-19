@@ -67,6 +67,20 @@ const NewFuelPurchase = () => {
     }
   };
 
+
+  const processRowUpdate = (newRow) => {
+    const updatedRow = {...newRow, isNew: false};
+    setRows(rows.map((row) => row.id === newRow.id ? updatedRow : row));
+    return updatedRow;
+  };
+
+
+
+  const handleRowModesModelChange = (newRowModesModel) => {
+    setRowModesModel(newRowModesModel);
+  };
+
+
   const columns = useMemo(
     () => [
       {

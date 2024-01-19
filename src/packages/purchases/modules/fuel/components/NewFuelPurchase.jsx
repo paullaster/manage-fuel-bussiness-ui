@@ -290,7 +290,8 @@ const NewFuelPurchase = () => {
           rows={rows}
           rowModesModel={rowModesModel}
           handleRowModesModelChange={handleRowModesModelChange}
-          
+          handleRowEditStop={handleRowEditStop}
+          processRowUpdate={processRowUpdate}
           slots={{ toolbar: DataGridToolbar }}
           slotProps={{ toolbar: { setRows, setRowModesModel } }}
         />

@@ -17,7 +17,7 @@ import { apiFetchUtil, GetGross } from "@/utils";
 import WebStorage from "@/utils/WebStorage";
 import { APPNAME } from "@/environments";
 import DataGridToolbar from "../../../shared/components/DataGridToolbar";
-import { MdOutlineSaveAlt, MdCreate, MdCancel } from "react-icons/md";
+import { MdOutlineSaveAlt, MdCreate, MdCancel, MdDelete } from "react-icons/md";
 
 
 const tanks = WebStorage.GetFromWebStorage('session', APPNAME).tanks;
@@ -215,52 +215,52 @@ const NewFuelPurchase = () => {
         headerAlign: 'center',
         align: 'center',
       },
-      {
-        field: 'actions',
-        type: 'actions',
-        width: 80,
-        hideable: false,
-        cellClassName: 'actions',
-        getActions: (params) => {
-          const isInEditMode = rowModesModel[params.id]?.mode === GridRowModes.Edit;
+      // {
+      //   field: 'actions',
+      //   type: 'actions',
+      //   width: 80,
+      //   hideable: false,
+      //   cellClassName: 'actions',
+      //   // getActions: (params) => {
+      //   //   const isInEditMode = rowModesModel[params.id]?.mode === GridRowModes.Edit;
 
-          if (isInEditMode) {
-            return [
-              <GridActionsCellItem 
-              key={uuidv4()}
-              icon={<MdOutlineSaveAlt />}
-              label="Save"
-              sx={{
-                color: 'primary.main',
-              }}
-              onClick={handleSaveClick(params.id)}
-              />,
-              <GridActionsCellItem
-              key={uuidv4()}
-              icon={<MdCancel />}
-              label="Cancel"
-              className="textPrimary"
-              onClick={handleCancelClick(params.id)}
-              color="inherit"
-            />,
-            ];
-          }
-          return[
-            <GridActionsCellItem
-              key={uuidv4()}
-              icon={<MdCreate size={25} />}
-              label="Edit"
-              onClick={handleEditClick(params.id)}
-            />,
-            <GridActionsCellItem
-              key={uuidv4()}
-              icon={<MdDelete size={25} />}
-              label="Delete"
-              onClick={deleteItem(params.id)}
-            />,
-          ]
-        },
-      },
+      //   //   // if (isInEditMode) {
+      //   //   //   return [
+      //   //   //     <GridActionsCellItem 
+      //   //   //     key={uuidv4()}
+      //   //   //     icon={<MdOutlineSaveAlt />}
+      //   //   //     label="Save"
+      //   //   //     sx={{
+      //   //   //       color: 'primary.main',
+      //   //   //     }}
+      //   //   //     onClick={handleSaveClick(params.id)}
+      //   //   //     />,
+      //   //   //     <GridActionsCellItem
+      //   //   //     key={uuidv4()}
+      //   //   //     icon={<MdCancel />}
+      //   //   //     label="Cancel"
+      //   //   //     className="textPrimary"
+      //   //   //     onClick={handleCancelClick(params.id)}
+      //   //   //     color="inherit"
+      //   //   //   />,
+      //   //   //   ];
+      //   //   // }
+      //   //   // return[
+      //   //   //   <GridActionsCellItem
+      //   //   //     key={uuidv4()}
+      //   //   //     icon={<MdCreate size={25} />}
+      //   //   //     label="Edit"
+      //   //   //     onClick={handleEditClick(params.id)}
+      //   //   //   />,
+      //   //   //   <GridActionsCellItem
+      //   //   //     key={uuidv4()}
+      //   //   //     icon={<MdDelete size={25} />}
+      //   //   //     label="Delete"
+      //   //   //     onClick={deleteItem(params.id)}
+      //   //   //   />,
+      //   //   // ]
+      //   // },
+      // },
     ];
 
   useEffect(() => {

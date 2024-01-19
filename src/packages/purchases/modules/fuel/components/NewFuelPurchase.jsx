@@ -80,9 +80,7 @@ const NewFuelPurchase = () => {
   };
 
 
-  const columns = useMemo(
-    () => [
-      {
+  const columns =[{
         field: 'tank',
         headerName: 'Tank',
         width: 150,
@@ -269,8 +267,6 @@ const NewFuelPurchase = () => {
         },
       },
     ],
-    [deleteItem],
-  );
 
   useEffect(() => {
     appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });

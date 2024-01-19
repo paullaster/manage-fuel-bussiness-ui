@@ -41,6 +41,12 @@ const NewFuelPurchase = () => {
     [],
   );
 
+  const handleEditClick = (id) => {
+    
+  }
+
+
+
   const columns = useMemo(
     () => [
       {

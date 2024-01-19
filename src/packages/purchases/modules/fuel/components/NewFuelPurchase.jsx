@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo, useCallback } from "react";
 import shared from "../../../shared";
 import { useGlobalDispatcher, useGlobalState } from '@/store';
 import { Form } from "react-router-dom";
-import { composableAutofils, NewFuelPurchaseInitialValues } from "../setups";
+import { composableAutofils} from "../setups";
 import TankEntries from "./TankEntries";
 import TransportationAndOfficer from "./TransportationAndOfficer";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
@@ -11,7 +11,6 @@ import { v4 as uuidv4 } from 'uuid';
 import {
   GridActionsCellItem,
   GridRowModes,
-  GridToolbarContainer,
   GridRowEditStopReasons
 } from '@mui/x-data-grid';
 import { MdDelete } from "react-icons/md";

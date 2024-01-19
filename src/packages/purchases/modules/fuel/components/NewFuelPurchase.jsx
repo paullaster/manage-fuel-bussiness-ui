@@ -61,6 +61,12 @@ const NewFuelPurchase = () => {
     }
   };
 
+  const handleRowEditStop = (params, event) => {
+    if(params.reason == GridRowEditStopReasons.rowFocusOut) {
+      event.defaultMuiPrevented = true;
+    }
+  };
+
   const columns = useMemo(
     () => [
       {

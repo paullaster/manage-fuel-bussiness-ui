@@ -21,6 +21,8 @@ import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 import { MdOutlineSaveAlt, MdCreate, MdCancel } from "react-icons/md";
 
 
+const tanks = WebStorage.GetFromWebStorage('session', APPNAME).tanks;
+let fueType = '';
 const NewFuelPurchase = () => {
   const [rows, setRows] = useState([]);
   const [rowModesModel, setRowModesModel] = useState({});
@@ -29,8 +31,6 @@ const NewFuelPurchase = () => {
   const appStateDispatcher = useGlobalDispatcher();
   const { cardLabelView } = useGlobalState();
 
-  const tanks = WebStorage.GetFromWebStorage('session', APPNAME).tanks;
-  let fueType = '';
   const deleteItem = useCallback(
     (id) => () => {
       setTimeout(() => {

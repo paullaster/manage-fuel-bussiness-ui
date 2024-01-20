@@ -196,7 +196,8 @@ const NewFuelPurchase = () => {
         width: 100,
         editable: false,
         valueGetter: (params) => {
-          return (Number(params.row.expected_quantity) || 0) * (Number(params.row.price) || 0);
+          console.log(params);
+          return params.row.expected_quantity * params.row.price;
         },
         type: 'number',
         hideable: false,

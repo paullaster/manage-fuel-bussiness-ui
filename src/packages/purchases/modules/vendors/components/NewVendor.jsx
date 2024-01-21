@@ -80,24 +80,24 @@ const NewVendor = () => {
         };
         console.log("onClick");
         console.log(billinObject);
-        // const addressObject = {
-        //     address: addressRef.current.value,
-        //     city: cityRef.current.value,
-        //     zip_code: zipCodeRef.current.value,
-        //     state: stateRef.current.value,
-        //     country: countryRef.current.value,
-        // };
-        // for (let prop in addressObject) {
-        //     if (!addressObject[prop]) {
-        //         validRef.current = false;
-        //         return new Error(`${prop} is a required field`);
-        //     }
-        // }
+        const addressObject = {
+            address: addressRef.current.value,
+            city: cityRef.current.value,
+            zip_code: zipCodeRef.current.value,
+            state: stateRef.current.value,
+            country: countryRef.current.value,
+        };
+        for (let prop in addressObject) {
+            if (!addressObject[prop]) {
+                validRef.current = false;
+                return new Error(`${prop} is a required field`);
+            }
+        }
         
-        // if (!validRef.current) {
-        //     return new Error("Invalid request");
-        // };
-        // postAddress(addressObject);
+        if (!validRef.current) {
+            return new Error("Invalid request");
+        };
+        postAddress(addressObject);
 
         console.log(addressObject);
 }

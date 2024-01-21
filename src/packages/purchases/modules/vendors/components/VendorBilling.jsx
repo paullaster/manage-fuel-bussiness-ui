@@ -3,7 +3,7 @@ import { AutocompleteComponent, InputComponent } from '@/components';
 
 const VendorBilling = forwardRef((props, ref)=>{
     const { handleSelectedPaymentMethod } = props;
-    const [paymentMethods, setPaymentMethods] = useState([{ method: 'MPESA' }]);
+    const [paymentMethods, setPaymentMethods] = useState([{ method: 'Mpesa' }]);
     return (
         <div className="billinginfo_dataentry">
             <AutocompleteComponent

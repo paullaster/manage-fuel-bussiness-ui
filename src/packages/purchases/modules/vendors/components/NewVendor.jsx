@@ -5,7 +5,7 @@ import { Form } from "react-router-dom";
 import cardImage from "@/assets/images/card_image.svg";
 import shared from "../../../shared";
 import { v4 as uuidv4 } from 'uuid';
-import { postAddress } from "../../../actions";
+import { postAddress, postBillingInformation } from "../../../actions";
 import VendorBilling from "./VendorBilling";
 
 
@@ -78,8 +78,10 @@ const NewVendor = () => {
             bank_name: bankNameRef.current.value,
             bank_account_number: accountNumberRef.current.value,
         };
-        
+
         console.log(billinObject);
+        postBillingInformation(billinObject);
+
         const addressObject = {
             address: addressRef.current.value,
             city: cityRef.current.value,

@@ -5,6 +5,24 @@ import  constants from './constants';
 const { address, billing } = constants;
 const idObject = {};
 
+export const postBillingInformation = (payload) => {
+    const data = {
+        ...payload,
+        organization_id: "1",
+    };
+    _request({
+        method: 'POST',
+        data: data,
+        url: billing,
+    })
+    .then((res) => {
+        console.log(res);
+        idObject.billing_id = res?.billing_id
+    })
+    .catch((err) => {
+        return new Error(err.message);
+    })
+}
 export const postAddress = (payload) => {
     const data = {
         ...payload,
@@ -24,21 +42,3 @@ export const postAddress = (payload) => {
     });
 }
 
-export const postBillingInformation = (payload) => {
-    const data = {
-        ...payload,
-        organization_id: "1",
-    };
-    _request({
-        method: 'POST',
-        data: data,
-        url: billing,
-    })
-    .then((res) => {
-        console.log(res);
-        idObject.billing_id = res?.billing_id
-    })
-    .catch((err) => {
-        return new Error(err.message);
-    })
-}

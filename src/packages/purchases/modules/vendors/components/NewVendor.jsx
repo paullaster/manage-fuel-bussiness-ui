@@ -66,24 +66,33 @@ const NewVendor = () => {
         event.preventDefault();
         event.stopPropagation();
 
-        const addressObject = {
-            address: addressRef.current.value,
-            city: cityRef.current.value,
-            zip_code: zipCodeRef.current.value,
-            state: stateRef.current.value,
-            country: countryRef.current.value,
+        const billinObject = {
+            payment_method: paymentMethodRef.current.value,
+            mpesa_phone_number: phoneNumberRef.current.value,
+            mpesa_till_number: tillNumberRef.current.value,
+            mpesa_paybill_number: paybillNumberRef.current.value,
+            bank_name: bankNameRef.current.value,
+            bank_account_number: accountNumberRef.current.value,
         };
-        for (let prop in addressObject) {
-            if (!addressObject[prop]) {
-                validRef.current = false;
-                return new Error(`${prop} is a required field`);
-            }
-        }
+        console.log(billinObject);
+        // const addressObject = {
+        //     address: addressRef.current.value,
+        //     city: cityRef.current.value,
+        //     zip_code: zipCodeRef.current.value,
+        //     state: stateRef.current.value,
+        //     country: countryRef.current.value,
+        // };
+        // for (let prop in addressObject) {
+        //     if (!addressObject[prop]) {
+        //         validRef.current = false;
+        //         return new Error(`${prop} is a required field`);
+        //     }
+        // }
         
-        if (!validRef.current) {
-            return new Error("Invalid request");
-        };
-        postAddress(addressObject);
+        // if (!validRef.current) {
+        //     return new Error("Invalid request");
+        // };
+        // postAddress(addressObject);
 
         console.log(addressObject);
 }

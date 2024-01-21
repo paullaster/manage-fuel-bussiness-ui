@@ -1,7 +1,7 @@
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
-const AutocompleteComponent = ({list, label, keyField}) => {
+const AutocompleteComponent = ({list, label, keyField, }) => {
   return (
       <div className={'autocomplete'}>
           <Autocomplete 

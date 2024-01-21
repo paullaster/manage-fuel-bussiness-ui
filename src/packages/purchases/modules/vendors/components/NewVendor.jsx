@@ -13,6 +13,7 @@ const NewVendor = () => {
 
     const [upload, setUpload] = useState(null);
     const [contactPerson, setContactPerson] = useState([]);
+    const [paymentMethod, setPaymentMethod] = useState(null);
 
     const addressRef = useRef(null);
     const cityRef = useRef(null);
@@ -21,7 +22,6 @@ const NewVendor = () => {
     const countryRef = useRef(null);
     const validRef = useRef(true);
 
-    const paymentMethodRef = useRef(null);
     const phoneNumberRef = useRef(null);
     const tillNumberRef = useRef(null);
     const paybillNumberRef = useRef(null);
@@ -30,7 +30,6 @@ const NewVendor = () => {
 
 
     const billingInfo = {
-        paymentMethodRef,
         phoneNumberRef,
         tillNumberRef,
         paybillNumberRef,
@@ -38,6 +37,11 @@ const NewVendor = () => {
         accountNumberRef,
     };
 
+    const handleSelectedPaymentMethod = (event, newValue) => {
+        event.preventDefault();
+        event.stopPropagation();
+        setPaymentMethod(newValue);
+    }
 
     const handleUploadChange = (event) => {
         setUpload(URL.createObjectURL(event.target.files[0]));
@@ -67,7 +71,7 @@ const NewVendor = () => {
         event.stopPropagation();
 
         const billinObject = {
-            // payment_method: paymentMethodRef.current.value,
+            payment_method: paymentMethod,
             mpesa_phone_number: phoneNumberRef.current.value,
             mpesa_till_number: tillNumberRef.current.value,
             mpesa_paybill_number: paybillNumberRef.current.value,
@@ -173,7 +177,7 @@ return (
                             <h4>Billing</h4>
                             <p>The tax number appears in every bill issued to you. The selected currency becomes the default currency for this vendor.</p>
                         </div>
-                        <VendorBilling ref={billingInfo}/>
+                        <VendorBilling ref={billingInfo} handleSelectedPaymentMethod={handleSelectedPaymentMethod}/>
                     </div>
                     <div className="new_vendors__left__dataentry__form_addressinfo">
                         <div className="new_vendors__left__dataentry__form_addressinfo_introduction form_section_introductions">

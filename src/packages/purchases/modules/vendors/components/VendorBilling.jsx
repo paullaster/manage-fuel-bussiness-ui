@@ -2,7 +2,7 @@ import React, { forwardRef, useState } from 'react'
 import { AutocompleteComponent, InputComponent } from '@/components';
 
 const VendorBilling = forwardRef((props, ref)=>{
-    // const { refs } = props;
+    const { handleSelectedPaymentMethod } = props;
     const [paymentMethods, setPaymentMethods] = useState([{ method: 'MPESA' }]);
     return (
         <div className="billinginfo_dataentry">
@@ -10,7 +10,7 @@ const VendorBilling = forwardRef((props, ref)=>{
                 list={paymentMethods}
                 label={'Payment methods'}
                 keyField={'method'}
-                ref={ref.paymentMethodRef}
+                handleOnchange={handleSelectedPaymentMethod}
             />
             <InputComponent
                 type="text"

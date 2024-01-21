@@ -38,7 +38,7 @@ export const postBillingInformation = (payload) => {
         console.log(res);
         idObject.billing_id = res?.billing_id
     })
-    .catch((error) => {
+    .catch((err) => {
         return new Error(err.message);
     })
 }

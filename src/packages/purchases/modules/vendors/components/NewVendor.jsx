@@ -14,6 +14,9 @@ const NewVendor = () => {
 
     const addressRef = useRef(null);
     const cityRef = useRef(null);
+    const zipCodeRef = useRef(null);
+    const stateRef = useRef(null);
+    const countryRef = useRef(null);
 
     const handleUploadChange = (event) => {
         setUpload(URL.createObjectURL(event.target.files[0]));
@@ -42,7 +45,24 @@ const NewVendor = () => {
     const SetPayload = (event) => {
         event.preventDefault();
         event.stopPropagation();
-        console.log(addressRef.current.value);
+
+        let addressObject = {};
+        if (
+            addressRef.current.value &&
+            cityRef.current.value &&
+            zipCodeRef.current.value &&
+            stateRef.current.value &&
+            countryRef.current.value
+            ) {
+            addressObject = {
+                address: addressRef.current.value,
+                city: cityRef.current.value,
+                zip_code: zipCodeRef.current.value,
+                state: stateRef.current.value,
+                country: countryRef.current.value,
+            };
+        }
+        console.log(addressObject);
     }
 
     return (
@@ -150,21 +170,25 @@ const NewVendor = () => {
                                         type="text"
                                         prelabelText={"town / city"}
                                         name="city"
+                                        ref={cityRef}
                                     />
                                     <InputComponent
                                         type="text"
                                         prelabelText={"postal / zip code"}
                                         name="zip_code"
+                                        ref={zipCodeRef}
                                     />
                                     <InputComponent
                                         type="text"
                                         prelabelText={"province / state"}
                                         name="state"
+                                        ref={stateRef}
                                     />
                                     <InputComponent
                                         type="text"
                                         prelabelText={"country"}
                                         name="country"
+                                        ref={countryRef}
                                     />
                                 </div>
                             </div>

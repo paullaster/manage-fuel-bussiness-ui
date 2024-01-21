@@ -28,7 +28,17 @@ const NewVendor = () => {
     const bankNameRef = useRef(null);
     const accountNumberRef = useRef(null);
 
-    
+
+    const billingInfo = {
+        paymentMethodRef,
+        phoneNumberRef,
+        tillNumberRef,
+        paybillNumberRef,
+        bankNameRef,
+        accountNumberRef,
+    };
+
+
     const handleUploadChange = (event) => {
         setUpload(URL.createObjectURL(event.target.files[0]));
     };
@@ -153,7 +163,7 @@ return (
                             <h4>Billing</h4>
                             <p>The tax number appears in every bill issued to you. The selected currency becomes the default currency for this vendor.</p>
                         </div>
-                        <VendorBilling/>
+                        <VendorBilling />
                     </div>
                     <div className="new_vendors__left__dataentry__form_addressinfo">
                         <div className="new_vendors__left__dataentry__form_addressinfo_introduction form_section_introductions">

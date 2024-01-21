@@ -78,7 +78,7 @@ const NewVendor = () => {
             bank_name: bankNameRef.current.value,
             bank_account_number: accountNumberRef.current.value,
         };
-        console.log("onClick");
+        
         console.log(billinObject);
         const addressObject = {
             address: addressRef.current.value,

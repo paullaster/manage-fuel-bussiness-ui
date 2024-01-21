@@ -6,6 +6,7 @@ import cardImage from "@/assets/images/card_image.svg";
 import shared from "../../../shared";
 import { v4 as uuidv4 } from 'uuid';
 import { postAddress } from "../../../actions";
+import { create } from "lodash";
 
 
 const NewVendor = () => {
@@ -35,8 +36,8 @@ const NewVendor = () => {
         event.stopPropagation();
         event.preventDefault();
         if (event.type === 'click') {
-            const newRef = contactPerson.current.length;
-            contactPerson.current.push(useRef(null));
+            const newRef = createRef({name: '', email: '', phone: ''});
+            contactPersonRef.current.push(newRef);
             console.log(contactPerson);
             const options = [
                 { prop: 'name', type: 'text', placeholder: "name",},
@@ -45,7 +46,7 @@ const NewVendor = () => {
             ];
             setContactPerson(prev => [...prev, <shared.components.NewConstruct options={options} key={uuidv4()} />]);
         }
-        console.log(contactPerson);
+        console.log(contactPersonRef);
     };
 
     const SetPayload = (event) => {

@@ -11,7 +11,9 @@ const NewVendor = () => {
 
     const [upload, setUpload] = useState(null);
     const [contactPerson, setContactPerson] = useState([]);
+
     const addressRef = useRef(null);
+    const cityRef = useRef(null);
 
     const handleUploadChange = (event) => {
         setUpload(URL.createObjectURL(event.target.files[0]));

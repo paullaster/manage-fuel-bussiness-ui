@@ -5,6 +5,7 @@ import { Form } from "react-router-dom";
 import cardImage from "@/assets/images/card_image.svg";
 import shared from "../../../shared";
 import { v4 as uuidv4 } from 'uuid';
+import { postAddress } from "../../../actions";
 
 
 const NewVendor = () => {
@@ -64,6 +65,7 @@ const NewVendor = () => {
         if (!validRef.current) {
             return new Error("Invalid request");
         };
+        postAddress(addressObject);
         console.log(addressObject);
 }
 

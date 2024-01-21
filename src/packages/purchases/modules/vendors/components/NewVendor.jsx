@@ -1,5 +1,5 @@
 import { Button, InputComponent, } from "@/components";
-import { useRef, useState } from "react";
+import { createRef, useRef, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { Form } from "react-router-dom";
 import cardImage from "@/assets/images/card_image.svg";
@@ -19,6 +19,7 @@ const NewVendor = () => {
     const stateRef = useRef(null);
     const countryRef = useRef(null);
     const validRef = useRef(true);
+    const contactPersonRef = useRef([]);
 
     const handleUploadChange = (event) => {
         setUpload(URL.createObjectURL(event.target.files[0]));
@@ -34,15 +35,18 @@ const NewVendor = () => {
         event.stopPropagation();
         event.preventDefault();
         if (event.type === 'click') {
+            const newRef = contactPerson.current.length;
+            contactPerson.current.push(useRef(null));
+            console.log(contactPerson);
             const options = [
-                { prop: 'name', type: 'text', placeholder: "name", },
+                { prop: 'name', type: 'text', placeholder: "name",},
                 { prop: 'email', type: 'email', placeholder: "email", },
                 { prop: 'phone', type: 'tel', placeholder: "phone", },
             ];
             setContactPerson(prev => [...prev, <shared.components.NewConstruct options={options} key={uuidv4()} />]);
         }
+        console.log(contactPerson);
     };
-
 
     const SetPayload = (event) => {
         event.preventDefault();
@@ -69,7 +73,7 @@ const NewVendor = () => {
         if(!address_id) {
             return new Error("Erros");
         }
-        
+
         console.log(addressObject);
 }
 

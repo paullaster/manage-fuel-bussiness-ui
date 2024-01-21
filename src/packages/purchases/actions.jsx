@@ -1,7 +1,8 @@
 import { _request } from '@/services';
-import  { address } from './constants';
+import  constants from './constants';
 
 
+const { address } = constants;
 
 export const postAddress = (payload) => {
     _request({

@@ -26,7 +26,7 @@ export const postAddress = (payload) => {
 
 export const postBillingInformation = (payload) => {
     const data = {
-        ...data,
+        ...payload,
         organization_id: "1",
     };
     _request({
@@ -35,6 +35,7 @@ export const postBillingInformation = (payload) => {
         url: billing,
     })
     .then((res) => {
-
+        console.log(res);
+        idObject.billing_id = res?.billing_id
     })
 }

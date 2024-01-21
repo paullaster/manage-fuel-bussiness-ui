@@ -20,7 +20,6 @@ const NewVendor = () => {
     const stateRef = useRef(null);
     const countryRef = useRef(null);
     const validRef = useRef(true);
-    const contactPersonRef = useRef([]);
 
     const handleUploadChange = (event) => {
         setUpload(URL.createObjectURL(event.target.files[0]));
@@ -36,9 +35,6 @@ const NewVendor = () => {
         event.stopPropagation();
         event.preventDefault();
         if (event.type === 'click') {
-            const newRef = createRef({name: '', email: '', phone: ''});
-            contactPersonRef.current.push(newRef);
-            console.log(contactPerson);
             const options = [
                 { prop: 'name', type: 'text', placeholder: "name",},
                 { prop: 'email', type: 'email', placeholder: "email", },
@@ -46,7 +42,6 @@ const NewVendor = () => {
             ];
             setContactPerson(prev => [...prev, <shared.components.NewConstruct options={options} key={uuidv4()} />]);
         }
-        console.log(contactPersonRef);
     };
 
     const SetPayload = (event) => {
@@ -128,6 +123,15 @@ return (
                                     prelabelText={"reference"}
                                     name="vendor_reference"
                                 />
+                                <InputComponent
+                                    type="text"
+                                    prelabelText={"Tax number"}
+                                    name="kra_pin"
+                                />
+                                <div className="new_vendors__left__dataentry__form_billinginfo_dataentry_section-two">
+                                <label htmlFor="product_description">product description</label>
+                                <textarea name="product_description" id="product_description" cols="30" rows="4" className="info_textarea"></textarea>
+                            </div>
                             </div>
                             <div className="new_vendors__left__dataentry__form_vendorinfo__others_right">
                                 <div className="file_upload_container">
@@ -143,24 +147,6 @@ return (
                         <div className="new_vendors__left__dataentry__form_billinginfo_introduction form_section_introductions">
                             <h4>Billing</h4>
                             <p>The tax number appears in every bill issued to you. The selected currency becomes the default currency for this vendor.</p>
-                        </div>
-                        <div className="new_vendors__left__dataentry__form_billinginfo_dataentry">
-                            <div className="new_vendors__left__dataentry__form_billinginfo_dataentry_section-one">
-                                <InputComponent
-                                    type="text"
-                                    prelabelText={"Tax number"}
-                                    name="kra_pin"
-                                />
-                                <InputComponent
-                                    type="text"
-                                    prelabelText={"currency"}
-                                    name="currency"
-                                />
-                            </div>
-                            <div className="new_vendors__left__dataentry__form_billinginfo_dataentry_section-two">
-                                <label htmlFor="product_description">product description</label>
-                                <textarea name="product_description" id="product_description" cols="30" rows="4" className="info_textarea"></textarea>
-                            </div>
                         </div>
                     </div>
                     <div className="new_vendors__left__dataentry__form_addressinfo">

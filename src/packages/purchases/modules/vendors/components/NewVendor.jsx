@@ -45,16 +45,9 @@ const NewVendor = () => {
     const SetPayload = (event) => {
         event.preventDefault();
         event.stopPropagation();
-
-        let addressObject = {};
-        if (
-            addressRef.current.value &&
-            cityRef.current.value &&
-            zipCodeRef.current.value &&
-            stateRef.current.value &&
-            countryRef.current.value
-            ) {
-            addressObject = {
+        
+        let valid = true;
+        const addressObject = {
                 address: addressRef.current.value,
                 city: cityRef.current.value,
                 zip_code: zipCodeRef.current.value,
@@ -62,7 +55,18 @@ const NewVendor = () => {
                 country: countryRef.current.value,
             };
         }
-        console.log(addressObject);
+        for( let prop in addressObject) {
+            if (!addressObject[prop]) {
+                valid = false;
+                return new Error( `${prop} is a required field`);
+            }
+        }
+
+
+
+
+        
+        if(!valid) return new Error("Invalid request");
     }
 
     return (

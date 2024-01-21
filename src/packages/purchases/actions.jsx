@@ -17,9 +17,9 @@ export const postAddress = (payload) => {
     })
     .then((res) => {
         console.log(res);
-        address_id = res?.address_id;
+        return res?.address_id;
     })
     .catch((err) => {
-        new Error(err.message);
+        return new Error(err.message);
     });
 }

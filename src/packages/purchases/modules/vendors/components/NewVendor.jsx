@@ -65,7 +65,11 @@ const NewVendor = () => {
         if (!validRef.current) {
             return new Error("Invalid request");
         };
-        postAddress(addressObject);
+        const address_id = postAddress(addressObject);
+        if(!address_id) {
+            return new Error("Erros");
+        }
+        
         console.log(addressObject);
 }
 

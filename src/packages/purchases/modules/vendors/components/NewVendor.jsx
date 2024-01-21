@@ -7,6 +7,7 @@ import shared from "../../../shared";
 import { v4 as uuidv4 } from 'uuid';
 import { postAddress } from "../../../actions";
 import { create } from "lodash";
+import VendorBilling from "./VendorBilling";
 
 
 const NewVendor = () => {
@@ -65,10 +66,7 @@ const NewVendor = () => {
         if (!validRef.current) {
             return new Error("Invalid request");
         };
-        const address_id = postAddress(addressObject);
-        if(!address_id) {
-            return new Error("Erros");
-        }
+        postAddress(addressObject);
 
         console.log(addressObject);
 }
@@ -148,6 +146,7 @@ return (
                             <h4>Billing</h4>
                             <p>The tax number appears in every bill issued to you. The selected currency becomes the default currency for this vendor.</p>
                         </div>
+                        <VendorBilling/>
                     </div>
                     <div className="new_vendors__left__dataentry__form_addressinfo">
                         <div className="new_vendors__left__dataentry__form_addressinfo_introduction form_section_introductions">

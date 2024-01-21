@@ -67,7 +67,7 @@ const NewVendor = () => {
         event.stopPropagation();
 
         const billinObject = {
-            payment_method: paymentMethodRef.current.value,
+            // payment_method: paymentMethodRef.current.value,
             mpesa_phone_number: phoneNumberRef.current.value,
             mpesa_till_number: tillNumberRef.current.value,
             mpesa_paybill_number: paybillNumberRef.current.value,

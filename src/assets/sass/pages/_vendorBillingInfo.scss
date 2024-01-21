@@ -1,0 +1,14 @@
+.billinginfo_dataentry {
+    background-color: green;
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    gap: 2.4rem;
+    & > div.input-group {
+        display: flex;
+        flex-direction: column;
+
+        & > * {
+            display: block;
+        }
+    }
+}

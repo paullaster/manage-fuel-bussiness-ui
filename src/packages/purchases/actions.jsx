@@ -2,14 +2,14 @@ import { _request } from '@/services';
 import  constants from './constants';
 
 
-const { address } = constants;
-let address_id = '';
+const { address, billing } = constants;
+const idObject = {};
 
 export const postAddress = (payload) => {
     const data = {
         ...payload,
         organization_id: "1",
-    }
+    };
     _request({
         method: 'POST',
         data: data,
@@ -17,11 +17,24 @@ export const postAddress = (payload) => {
     })
     .then((res) => {
         console.log(res);
-        return res?.address_id;
+        idObject.address_id = res?.address_id;
     })
     .catch((err) => {
         return new Error(err.message);
     });
 }
 
-export const 
+export const postBillingInformation = (payload) => {
+    const data = {
+        ...data,
+        organization_id: "1",
+    };
+    _request({
+        method: 'POST',
+        data: data,
+        url: billing,
+    })
+    .then((res) => {
+
+    })
+}

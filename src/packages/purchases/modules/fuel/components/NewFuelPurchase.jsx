@@ -65,6 +65,7 @@ const NewFuelPurchase = () => {
   const processRowUpdate = (newRow) => {
     const updatedRow = {...newRow, isNew: false};
     setRows(rows.map((row) => row.id === newRow.id ? updatedRow : row));
+    console.log({rows: rows});
     return updatedRow;
   };
 
@@ -75,7 +76,8 @@ const NewFuelPurchase = () => {
   };
 
 
-  const columns =[{
+  const columns = useMemo( () =>[
+    {
         field: 'tank',
         headerName: 'Tank',
         width: 150,
@@ -85,9 +87,7 @@ const NewFuelPurchase = () => {
           return tank.tank_number
         }),
         valueFormatter: (params) => {
-          if (!params.value) {
-            return 'select tank'
-          }
+          console.log(params);
           apiFetchUtil(params, 'fuel_type')
             .then((res) => fueType = res);
           return `Tank  ${params.value}`
@@ -172,7 +172,12 @@ const NewFuelPurchase = () => {
         type: 'number',
         width: 80,
         editable: true,
-        valueFormatter: (params) => `${params.value}%`,
+        valueFormatter: (params) => {
+          if (!params.value) {
+            return '0%';
+          }
+          return `${params.value.toLocaleString()}%`
+        },
         hideable: false,
         headerAlign: 'center',
         align: 'center',
@@ -263,7 +268,7 @@ const NewFuelPurchase = () => {
       //   //   // ]
       //   // },
       // },
-    ];
+    ]);
 
   useEffect(() => {
     appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });
@@ -273,10 +278,10 @@ const NewFuelPurchase = () => {
     <section className="newfuelpurchase">
       <shared.components.SectionIntroduction text="New Fuel Purchase" />
       <Form>
-        <shared.components.BillingComponent cardLabelView={cardLabelView} >
+        {/* <shared.components.BillingComponent cardLabelView={cardLabelView} >
           <NewVendor />
         </shared.components.BillingComponent>
-        <TransportationAndOfficer cardLabelView={cardLabelView} />
+        <TransportationAndOfficer cardLabelView={cardLabelView} /> */}
         <TankEntries
           columns={columns}
           rows={rows}

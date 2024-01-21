@@ -17,6 +17,7 @@ const tableRowInitialValues = {
   actual_dip_quantity_after_offloading: 0,
   variance: 0,
   tax_rate: 0,
+  tank: 'select tank',
 };
 
 
@@ -45,3 +46,7 @@ const DataGridToolbar = ({ setRows, setRowModesModel }) => {
 }
 
 export default DataGridToolbar
+
+const focusField = (name) => {
+  return name;
+}

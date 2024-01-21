@@ -1,5 +1,5 @@
 import { Button, InputComponent, } from "@/components";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { Form } from "react-router-dom";
 import cardImage from "@/assets/images/card_image.svg";
@@ -11,6 +11,7 @@ const NewVendor = () => {
 
     const [upload, setUpload] = useState(null);
     const [contactPerson, setContactPerson] = useState([]);
+    const addressRef = useRef(null);
 
     const handleUploadChange = (event) => {
         setUpload(URL.createObjectURL(event.target.files[0]));
@@ -35,12 +36,19 @@ const NewVendor = () => {
             }
     };
 
+
+    const SetPayload = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        console.log(addressRef.current.value);
+    }
+
     return (
         <section className="new_vendors">
             <div className="new_vendors__left">
                 <shared.components.SectionIntroduction text="New Vendor"/>
                 <div className="new_vendors__left__dataentry">
-                    <Form className="new_vendors__left__dataentry__form" method="post">
+                    <Form className="new_vendors__left__dataentry__form">
                         <div className="new_vendors__left__dataentry__form_vendorinfo">
                             <div className="new_vendors__left__dataentry__form_vendorinfo_introduction form_section_introductions">
                                 <h4>General</h4>
@@ -132,7 +140,7 @@ const NewVendor = () => {
                                     />
                                     <div className="textarea_container">
                                         <label htmlFor="address">address</label>
-                                        <textarea name="address" id="address" cols="30" rows="4" className="info_textarea"></textarea>
+                                        <textarea name="address" id="address" cols="30" rows="4" className="info_textarea" ref={addressRef}></textarea>
                                     </div>
                                 </div>
                                 <div className="new_vendors__left__dataentry__form_addressinfo_datanetry__section-two">
@@ -176,6 +184,7 @@ const NewVendor = () => {
                                 <shared.components.AddItemButton methodHandler ={handleCreateNewVendorColumn} btnCaption ={"add contact person"}/>
                             </div>
                         </div>
+                        <Button type='button' className='btn-element' onClick={SetPayload}>Save</Button>
                     </Form>
                 </div>
             </div>

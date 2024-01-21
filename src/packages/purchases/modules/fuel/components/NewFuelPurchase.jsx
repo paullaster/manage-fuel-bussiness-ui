@@ -169,12 +169,12 @@ const NewFuelPurchase = () => {
       {
         field: 'tax_rate',
         headerName: 'Tax rate',
+        type: 'number',
         width: 80,
         editable: true,
         valueFormatter: (params) => `${params.value}%`,
         hideable: false,
         headerAlign: 'center',
-        type: 'number',
         align: 'center',
       },
       {
@@ -196,6 +196,7 @@ const NewFuelPurchase = () => {
         width: 100,
         editable: false,
         valueGetter: (params) => {
+          console.log(params.row.expected_quantity * params.row.price);
           console.log(params);
           return params.row.expected_quantity * params.row.price;
         },

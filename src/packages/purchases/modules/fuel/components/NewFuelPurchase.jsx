@@ -87,7 +87,9 @@ const NewFuelPurchase = () => {
           return tank.tank_number
         }),
         valueFormatter: (params) => {
-          console.log(params);
+          if(!params.value) {
+            return 'Select tank'
+          }
           apiFetchUtil(params, 'fuel_type')
             .then((res) => fueType = res);
           return `Tank  ${params.value}`

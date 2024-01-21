@@ -1,12 +1,11 @@
 import { Button, InputComponent, } from "@/components";
-import { createRef, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { Form } from "react-router-dom";
 import cardImage from "@/assets/images/card_image.svg";
 import shared from "../../../shared";
 import { v4 as uuidv4 } from 'uuid';
 import { postAddress } from "../../../actions";
-import { create } from "lodash";
 import VendorBilling from "./VendorBilling";
 
 
@@ -22,6 +21,14 @@ const NewVendor = () => {
     const countryRef = useRef(null);
     const validRef = useRef(true);
 
+    const paymentMethodRef = useRef(null);
+    const phoneNumberRef = useRef(null);
+    const tillNumberRef = useRef(null);
+    const paybillNumberRef = useRef(null);
+    const bankNameRef = useRef(null);
+    const accountNumberRef = useRef(null);
+
+    
     const handleUploadChange = (event) => {
         setUpload(URL.createObjectURL(event.target.files[0]));
     };

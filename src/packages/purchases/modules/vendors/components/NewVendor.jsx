@@ -40,7 +40,7 @@ const NewVendor = () => {
             <div className="new_vendors__left">
                 <shared.components.SectionIntroduction text="New Vendor"/>
                 <div className="new_vendors__left__dataentry">
-                    <Form className="new_vendors__left__dataentry__form">
+                    <Form className="new_vendors__left__dataentry__form" method="post">
                         <div className="new_vendors__left__dataentry__form_vendorinfo">
                             <div className="new_vendors__left__dataentry__form_vendorinfo_introduction form_section_introductions">
                                 <h4>General</h4>

@@ -4,7 +4,7 @@ const InputComponent = forwardRef(({prelabelText = null, prelabelIcon = null , p
   return (
     <div className="input-group">
         <label htmlFor={id}><span>{prelabelText}</span><span>{prelabelIcon}</span></label>
-        {/* <input {...arg} ref={ref} id={id ||''}/> */}
+        <input {...arg} ref={ref} id={id ||''}/>
         {children}
         <label htmlFor={id}>{postlabel}</label>
 

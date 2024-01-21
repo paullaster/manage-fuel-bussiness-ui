@@ -224,52 +224,52 @@ const NewFuelPurchase = () => {
         headerAlign: 'center',
         align: 'center',
       },
-      // {
-      //   field: 'actions',
-      //   type: 'actions',
-      //   width: 80,
-      //   hideable: false,
-      //   cellClassName: 'actions',
-      //   // getActions: (params) => {
-      //   //   const isInEditMode = rowModesModel[params.id]?.mode === GridRowModes.Edit;
+      {
+        field: 'actions',
+        type: 'actions',
+        width: 80,
+        hideable: false,
+        cellClassName: 'actions',
+        getActions: (params) => {
+          const isInEditMode = rowModesModel[params.id]?.mode === GridRowModes.Edit;
 
-      //   //   // if (isInEditMode) {
-      //   //   //   return [
-      //   //   //     <GridActionsCellItem 
-      //   //   //     key={uuidv4()}
-      //   //   //     icon={<MdOutlineSaveAlt />}
-      //   //   //     label="Save"
-      //   //   //     sx={{
-      //   //   //       color: 'primary.main',
-      //   //   //     }}
-      //   //   //     onClick={handleSaveClick(params.id)}
-      //   //   //     />,
-      //   //   //     <GridActionsCellItem
-      //   //   //     key={uuidv4()}
-      //   //   //     icon={<MdCancel />}
-      //   //   //     label="Cancel"
-      //   //   //     className="textPrimary"
-      //   //   //     onClick={handleCancelClick(params.id)}
-      //   //   //     color="inherit"
-      //   //   //   />,
-      //   //   //   ];
-      //   //   // }
-      //   //   // return[
-      //   //   //   <GridActionsCellItem
-      //   //   //     key={uuidv4()}
-      //   //   //     icon={<MdCreate size={25} />}
-      //   //   //     label="Edit"
-      //   //   //     onClick={handleEditClick(params.id)}
-      //   //   //   />,
-      //   //   //   <GridActionsCellItem
-      //   //   //     key={uuidv4()}
-      //   //   //     icon={<MdDelete size={25} />}
-      //   //   //     label="Delete"
-      //   //   //     onClick={deleteItem(params.id)}
-      //   //   //   />,
-      //   //   // ]
-      //   // },
-      // },
+          if (isInEditMode) {
+            return [
+              <GridActionsCellItem 
+              key={uuidv4()}
+              icon={<MdOutlineSaveAlt />}
+              label="Save"
+              sx={{
+                color: 'primary.main',
+              }}
+              onClick={handleSaveClick(params.id)}
+              />,
+              <GridActionsCellItem
+              key={uuidv4()}
+              icon={<MdCancel />}
+              label="Cancel"
+              className="textPrimary"
+              onClick={handleCancelClick(params.id)}
+              color="inherit"
+            />,
+            ];
+          }
+          return[
+            <GridActionsCellItem
+              key={uuidv4()}
+              icon={<MdCreate size={25} />}
+              label="Edit"
+              onClick={handleEditClick(params.id)}
+            />,
+            <GridActionsCellItem
+              key={uuidv4()}
+              icon={<MdDelete size={25} />}
+              label="Delete"
+              onClick={deleteItem(params.id)}
+            />,
+          ]
+        },
+      },
     ]);
 
   useEffect(() => {
@@ -280,10 +280,10 @@ const NewFuelPurchase = () => {
     <section className="newfuelpurchase">
       <shared.components.SectionIntroduction text="New Fuel Purchase" />
       <Form>
-        {/* <shared.components.BillingComponent cardLabelView={cardLabelView} >
+        <shared.components.BillingComponent cardLabelView={cardLabelView} >
           <NewVendor />
         </shared.components.BillingComponent>
-        <TransportationAndOfficer cardLabelView={cardLabelView} /> */}
+        <TransportationAndOfficer cardLabelView={cardLabelView} />
         <TankEntries
           columns={columns}
           rows={rows}

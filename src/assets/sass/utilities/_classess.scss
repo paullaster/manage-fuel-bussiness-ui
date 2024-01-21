@@ -233,3 +233,12 @@ button:disabled {
     border: none !important;
     outline: none !important;
 }
+
+.MuiAutocomplete-root {
+    background-color: red !important;
+    height: fit-content 6px;
+    border: 2px solid green;
+}
+.MuiAutocomplete-input {
+height: 1.6rem !important;
+}

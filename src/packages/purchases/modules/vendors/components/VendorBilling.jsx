@@ -4,7 +4,7 @@ import { AutocompleteComponent, InputComponent } from '@/components';
 const VendorBilling = () => {
     const [paymentMethods, setPaymentMethods] = useState([{method: 'MPESA'}]);
     return (
-        <div className="new_vendors__left__dataentry__form_billinginfo_dataentry">
+        <div className="billinginfo_dataentry">
             <div className="new_vendors__left__dataentry__form_billinginfo_dataentry_section-one">
             <AutocompleteComponent 
             list={paymentMethods}

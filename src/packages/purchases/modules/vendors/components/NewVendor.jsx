@@ -74,6 +74,7 @@ const NewVendor = () => {
             bank_name: bankNameRef.current.value,
             bank_account_number: accountNumberRef.current.value,
         };
+        console.log("onClick");
         console.log(billinObject);
         // const addressObject = {
         //     address: addressRef.current.value,
@@ -172,7 +173,7 @@ return (
                             <h4>Billing</h4>
                             <p>The tax number appears in every bill issued to you. The selected currency becomes the default currency for this vendor.</p>
                         </div>
-                        <VendorBilling refs={billingInfo}/>
+                        <VendorBilling ref={billingInfo}/>
                     </div>
                     <div className="new_vendors__left__dataentry__form_addressinfo">
                         <div className="new_vendors__left__dataentry__form_addressinfo_introduction form_section_introductions">

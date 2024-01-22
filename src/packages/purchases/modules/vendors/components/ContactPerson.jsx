@@ -131,14 +131,18 @@ const ContactPerson = () => {
                                     }, [id])
                                 }}
                             />,
-                            // <GridActionsCellItem
-                            //     key={uuidv4()}
-                            //     icon={<MdCancel />}
-                            //     label="Cancel"
-                            //     className="textPrimary"
-                            //     onClick={handleCancelClick(params.id)}
-                            //     color="inherit"
-                            // />,
+                            <GridActionsCellItem
+                                key={uuidv4()}
+                                icon={<MdCancel />}
+                                label="Cancel"
+                                className="textPrimary"
+                                onClick={() => {
+                                    useEffect( () => {
+                                        handleCancelClick(id)
+                                    }, [id])
+                                }}
+                                color="inherit"
+                            />,
                         ];
                     }
                     // return [

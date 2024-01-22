@@ -54,7 +54,7 @@ const ContactPerson = () => {
     };
 
     const handleSaveClick = (item) => {
-        setRowModesModel({ ...rowModesModel, [itme.id]: { mode: GridRowModes.View } });
+        setRowModesModel({ ...rowModesModel, [item.id]: { mode: GridRowModes.View } });
     };
 
     const handleCancelClick = (item) => {

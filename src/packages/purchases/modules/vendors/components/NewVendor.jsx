@@ -222,10 +222,12 @@ const NewVendor = () => {
 
         console.log(addressObject);
 
-        const completeContact = rows.filter((contact) => {
-            for (let prop in contact) {
-                if(contact[prop]) {
-                    const { id, isNew, ...contactFields} = contact;
+        const completeContact = rows.filter((contact, pos) => {
+            const c = row[pos];
+            console.log(c)
+            for (let prop in c) {
+                if(c[prop]) {
+                    const { id, isNew, ...contactFields} = c;
                     return contactFields;
                 }
             }

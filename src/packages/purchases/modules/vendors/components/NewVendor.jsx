@@ -7,12 +7,12 @@ import shared from "../../../shared";
 import { v4 as uuidv4 } from 'uuid';
 import { postAddress, postBillingInformation } from "../../../actions";
 import VendorBilling from "./VendorBilling";
+import ContactPerson from "./ContactPerson";
 
 
 const NewVendor = () => {
 
     const [upload, setUpload] = useState(null);
-    const [contactPerson, setContactPerson] = useState([]);
     const [paymentMethod, setPaymentMethod] = useState(null);
 
     const addressRef = useRef(null);
@@ -53,18 +53,6 @@ const NewVendor = () => {
         setUpload(null);
     };
 
-    const handleCreateNewVendorColumn = (event) => {
-        event.stopPropagation();
-        event.preventDefault();
-        if (event.type === 'click') {
-            const options = [
-                { prop: 'name', type: 'text', placeholder: "name",},
-                { prop: 'email', type: 'email', placeholder: "email", },
-                { prop: 'phone', type: 'tel', placeholder: "phone", },
-            ];
-            setContactPerson(prev => [...prev, <shared.components.NewConstruct options={options} key={uuidv4()} />]);
-        }
-    };
 
     const SetPayload = (event) => {
         event.preventDefault();
@@ -230,15 +218,7 @@ return (
                             <p>To include additional recipients in an email as CC, add them as contact persons.</p>
                         </div>
                         <div className="new_vendors__left__dataentry__form_contactperson_datacolumns">
-                            <div>
-                                <div>Name</div>
-                                <div>Email</div>
-                                <div>Phone</div>
-                            </div>
-                            {
-                                contactPerson.length > 0 && contactPerson.map(p => p)
-                            }
-                            <shared.components.AddItemButton methodHandler={handleCreateNewVendorColumn} btnCaption={"add contact person"} />
+                            <ContactPerson />
                         </div>
                     </div>
                     <Button type='button' className='btn-element btn_primary' onClick={SetPayload}>Save</Button>

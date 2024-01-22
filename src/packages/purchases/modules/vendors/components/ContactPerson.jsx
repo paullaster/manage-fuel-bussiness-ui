@@ -1,27 +1,53 @@
-import React, { useMemo, useState } from 'react';
-import { DataTable } from '@/components'
+import { useMemo, useState } from 'react';
+import { DataTable } from '@/components';
+import { GridToolbarContainer, GridRowModes } from '@mui/x-data-grid';
+import Button from '@mui/material/Button';
+
+
+const GridTableToolbar = () => {
+    return (
+        <GridToolbarContainer>
+            <Button>
+                Add contact
+            </Button>
+        </GridToolbarContainer>
+    )
+}
+
+
+
 
 const ContactPerson = () => {
   const [rows, setRows] = useState([]);
+  const [rowModesModel, setRowModesModel] = useState({});
+
+
+
   const contactColumns = useMemo(() => {
     return [
         {
-            field: 'name',
+            field: 'contact_name',
             headerName: 'Name',
             type: 'string',
-            width: 150,
+            width: 250,
+            headerAlign: 'center',
+            editable: true,
         },
         {
-            field: 'email',
+            field: 'contact_email',
             headerName: 'Email',
             type: 'string',
-            width: 150,
+            width: 250,
+            headerAlign: 'center',
+            editable: true,
         },
         {
-            field: 'phone',
+            field: 'contact_phone_number',
             headerName: 'Phone',
             type: 'string',
-            width: 150,
+            width: 250,
+            headerAlign: 'center',
+            editable: true
         }
     ]
   })  
@@ -29,6 +55,12 @@ const ContactPerson = () => {
     <DataTable 
      columns={contactColumns}
      rows={rows}
+     slots={
+        {toolbar: GridTableToolbar}
+     }
+     slotProps={{
+        toolbar: {setRows, setRowModesModel}
+     }}
     />
   )
 }

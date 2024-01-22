@@ -3,7 +3,7 @@ import { DataTable } from '@/components';
 import { GridToolbarContainer, GridRowModes, GridActionsCellItem } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import { v4 as uuidv4 } from 'uuid';
-import { MdOutlineSaveAlt, MdCancel, MdCreate } from 'react-icons/md';
+import { MdOutlineSaveAlt, MdCancel, MdCreate, MdDelete } from 'react-icons/md';
 
 const rowInitialValues = {
     contact_name: '',
@@ -41,6 +41,50 @@ const ContactPerson = () => {
     const [rowModesModel, setRowModesModel] = useState({});
 
 
+    const deleteItem = (id) => {
+        setRows((prevRows) => prevRows.filter((row) => row.id !== id));
+    };
+
+
+    const handleEditClick = (id) => {
+        setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.Edit } });
+    };
+
+    const handleSaveClick = (id) => {
+        setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
+    };
+
+    const handleCancelClick = (id) => {
+        setRowModesModel({
+            ...rowModesModel,
+            [id]: { mode: GridRowModes.View, ignoreModifications: true }
+        });
+
+        const editedRow = rows.find((row) => row.id === id);
+        if (editedRow.isNew) {
+            setRows(rows.filter((row) => row.id !== id));
+        }
+    };
+
+    const handleRowEditStop = (params, event) => {
+        if (params.reason == GridRowEditStopReasons.rowFocusOut) {
+            event.defaultMuiPrevented = true;
+        }
+    };
+
+
+    const processRowUpdate = (newRow) => {
+        const updatedRow = { ...newRow, isNew: false };
+        setRows(rows.map((row) => row.id === newRow.id ? updatedRow : row));
+        console.log({ rows: rows });
+        return updatedRow;
+    };
+
+
+
+    const handleRowModesModelChange = (newRowModesModel) => {
+        setRowModesModel(newRowModesModel);
+    };
 
     const contactColumns = useMemo(() => {
         return [

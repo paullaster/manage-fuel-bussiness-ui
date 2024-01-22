@@ -50,6 +50,7 @@ const ContactPerson = () => {
     const handleEditClick = (item) => {
         console.log(item);
         setRowModesModel({ ...rowModesModel, [item.id]: { mode: GridRowModes.Edit } });
+        console.log(rowModesModel);
     };
 
     const handleSaveClick = (item) => {
@@ -164,7 +165,11 @@ const ContactPerson = () => {
                 }
             }
         ]
-    }, []);
+    }, [handleEditClick]);
+
+    useEffect(() =>{
+
+    }, [contactColumns]);
     return (
         <DataTable
             columns={contactColumns}

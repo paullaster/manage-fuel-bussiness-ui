@@ -42,3 +42,30 @@ export const postAddress = (payload) => {
     });
 }
 
+export const postContactPerson = (rows) => {
+    const contacts = rows.map((row) => {
+        const { id, isNew, ...payloadFields}  = row;
+        console.log("mapped row", payloadFields);
+        return {
+            ...payloadFields
+        }
+
+    })
+    // const data = {
+    //     ...payload,
+    //     organization_id: "1",
+    // };
+    // _request({
+    //     method: 'POST',
+    //     data: data,
+    //     url: address,
+    // })
+    // .then((res) => {
+    //     console.log(res);
+    //     idObject.address_id = res?.address_id;
+    // })
+    // .catch((err) => {
+    //     return new Error(err.message);
+    // });
+
+}

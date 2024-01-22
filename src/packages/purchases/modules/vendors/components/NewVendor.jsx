@@ -3,7 +3,7 @@ import { useRef, useState, useMemo, useEffect } from "react";
 import { Form } from "react-router-dom";
 import cardImage from "@/assets/images/card_image.svg";
 import shared from "../../../shared";
-import { postAddress, postBillingInformation } from "../../../actions";
+import { postAddress, postBillingInformation, postContactPerson } from "../../../actions";
 import VendorBilling from "./VendorBilling";
 import ContactPerson from "./ContactPerson";
 import { GridRowModes, GridActionsCellItem } from '@mui/x-data-grid';
@@ -189,6 +189,10 @@ const NewVendor = () => {
         event.preventDefault();
         event.stopPropagation();
 
+        if(!rows.length) {
+            return;
+        }
+
         const billinObject = {
             payment_method: paymentMethod,
             mpesa_phone_number: phoneNumberRef.current.value,
@@ -199,7 +203,7 @@ const NewVendor = () => {
         };
 
         console.log(billinObject);
-        postBillingInformation(billinObject);
+        // postBillingInformation(billinObject);
 
         const addressObject = {
             address: addressRef.current.value,
@@ -218,21 +222,11 @@ const NewVendor = () => {
         if (!validRef.current) {
             return new Error("Invalid request");
         };
-        postAddress(addressObject);
+        // postAddress(addressObject);
+        postContactPerson(rows);
 
         console.log(addressObject);
 
-        const completeContact = rows.filter((contact, pos) => {
-            const c = row[pos];
-            console.log(c)
-            for (let prop in c) {
-                if(c[prop]) {
-                    const { id, isNew, ...contactFields} = c;
-                    return contactFields;
-                }
-            }
-        });
-        console.log(completeContact);
 }
 
 return (

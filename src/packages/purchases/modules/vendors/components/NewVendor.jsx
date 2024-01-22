@@ -1,12 +1,14 @@
 import { Button, InputComponent, } from "@/components";
-import { useRef, useState } from "react";
-import { MdDelete } from "react-icons/md";
+import { useRef, useState, useMemo, useEffect } from "react";
 import { Form } from "react-router-dom";
 import cardImage from "@/assets/images/card_image.svg";
 import shared from "../../../shared";
 import { postAddress, postBillingInformation } from "../../../actions";
 import VendorBilling from "./VendorBilling";
 import ContactPerson from "./ContactPerson";
+import { GridRowModes, GridActionsCellItem } from '@mui/x-data-grid';
+import {MdOutlineSaveAlt, MdCancel, MdCreate, MdDelete } from 'react-icons/md';
+import { v4 as uuidv4 } from 'uuid';
 
 
 const NewVendor = () => {
@@ -183,48 +185,6 @@ const NewVendor = () => {
 
     }, [contactColumns]);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     const SetPayload = (event) => {
         event.preventDefault();
         event.stopPropagation();
@@ -264,7 +224,10 @@ const NewVendor = () => {
 
         const completeContact = rows.filter((contact) => {
             for (let prop in contact) {
-                return !!contact[prop]
+                if(contact[prop]) {
+                    const { id, isNew, ...contactFields} = contact;
+                    return contactFields;
+                }
             }
         });
         console.log(completeContact);

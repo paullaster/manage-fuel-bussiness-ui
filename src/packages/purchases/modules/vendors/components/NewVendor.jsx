@@ -241,7 +241,7 @@ return (
                             <shared.components.AddItemButton methodHandler={handleCreateNewVendorColumn} btnCaption={"add contact person"} />
                         </div>
                     </div>
-                    <Button type='button' className='btn-element' onClick={SetPayload}>Save</Button>
+                    <Button type='button' className='btn-element btn_primary' onClick={SetPayload}>Save</Button>
                 </Form>
             </div>
         </div>

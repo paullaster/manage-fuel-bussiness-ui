@@ -170,10 +170,12 @@ const ContactPerson = () => {
                 field: 'actions',
                 headerName: 'Action',
                 type: 'actions',
-                getActions: ({ id }) => getActions(id)
+                getActions: (params) => {
+                    return getActions(params.id);
+                  }
             }
         ]
-    })
+    }, []);
     return (
         <DataTable
             columns={contactColumns}

@@ -42,6 +42,7 @@ const ContactPerson = () => {
 
 
     const deleteItem = (id) => {
+        console.log(id);
         setRows((prevRows) => prevRows.filter((row) => row.id !== id));
     };
 
@@ -86,6 +87,59 @@ const ContactPerson = () => {
         setRowModesModel(newRowModesModel);
     };
 
+    const getActions = (id ) => {
+        const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
+
+        if (isInEditMode) {
+            return [
+                <GridActionsCellItem
+                    key={uuidv4()}
+                    icon={<MdOutlineSaveAlt />}
+                    label="Save"
+                    onClick={() => {
+                        useEffect(() => {
+                            handleSaveClick(id)
+                        }, [id])
+                    }}
+                />,
+                <GridActionsCellItem
+                    key={uuidv4()}
+                    icon={<MdCancel />}
+                    label="Cancel"
+                    className="textPrimary"
+                    onClick={() => {
+                        useEffect(() => {
+                            handleCancelClick(id)
+                        }, [id])
+                    }}
+                    color="inherit"
+                />,
+            ];
+        }
+        return [
+            <GridActionsCellItem
+                key={uuidv4()}
+                icon={<MdCreate size={25} />}
+                label="Edit"
+                onClick={() => {
+                    useEffect(() => {
+                        handleEditClick(id)
+                    }, [id])
+                }}
+            />,
+            <GridActionsCellItem
+                key={uuidv4()}
+                icon={<MdDelete size={25} />}
+                label="Delete"
+                onClick={() => {
+                    useEffect(() => {
+                        deleteItem(id)
+                    }, [id])
+                }}
+            />,
+        ]
+    }
+
     const contactColumns = useMemo(() => {
         return [
             {
@@ -116,58 +170,7 @@ const ContactPerson = () => {
                 field: 'actions',
                 headerName: 'Action',
                 type: 'actions',
-                getActions: ({ id }) => {
-                    const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
-
-                    if (isInEditMode) {
-                        return [
-                            <GridActionsCellItem
-                                key={uuidv4()}
-                                icon={<MdOutlineSaveAlt />}
-                                label="Save"
-                                onClick={() => {
-                                    useEffect(() => {
-                                        handleSaveClick(id)
-                                    }, [id])
-                                }}
-                            />,
-                            <GridActionsCellItem
-                                key={uuidv4()}
-                                icon={<MdCancel />}
-                                label="Cancel"
-                                className="textPrimary"
-                                onClick={() => {
-                                    useEffect(() => {
-                                        handleCancelClick(id)
-                                    }, [id])
-                                }}
-                                color="inherit"
-                            />,
-                        ];
-                    }
-                    return [
-                        <GridActionsCellItem
-                            key={uuidv4()}
-                            icon={<MdCreate size={25} />}
-                            label="Edit"
-                            onClick={() => {
-                                useEffect(() => {
-                                    handleEditClick(id)
-                                }, [id])
-                            }}
-                        />,
-                        <GridActionsCellItem
-                            key={uuidv4()}
-                            icon={<MdDelete size={25} />}
-                            label="Delete"
-                            onClick={() => {
-                                useEffect(() => {
-                                    deleteItem(id)
-                                }, [id])
-                            }}
-                        />,
-                    ]
-                }
+                getActions: ({ id }) => getActions(id)
             }
         ]
     })

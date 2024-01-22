@@ -165,7 +165,7 @@ const ContactPerson = () => {
                 }
             }
         ]
-    }, [handleEditClick]);
+    }, [handleEditClick, handleSaveClick]);
 
     useEffect(() =>{
 

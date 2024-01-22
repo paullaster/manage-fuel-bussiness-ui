@@ -55,6 +55,7 @@ const ContactPerson = () => {
     <DataTable 
      columns={contactColumns}
      rows={rows}
+     rowModesModel={rowModesModel}
      slots={
         {toolbar: GridTableToolbar}
      }

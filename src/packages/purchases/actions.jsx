@@ -51,27 +51,42 @@ export const postContactPerson = (rows) => {
         }
 
     });
-    const contactLen = contacts?.length;
-   contacts.foEeach((item, index) => {
-    if(contactLen -1 ===  index) {  
-        _request({
-            method: 'POST',
-            data: item,
-            url: contact,
-        })
-        .then((res) => {
-            console.log(res);
-            idObject.contact_id = res?.contact_id;
-        })
-        .catch((err) => {
-            return new Error(err.message);
-        });
-    }
-    _request({
-        method: 'POST',
-        data: item,
-        url: contact,
-    });
-   })
+//     const contactLen = contacts?.length;
+//     console.log("HITIT")
+//    contacts.foEeach((item, index) => {
+//     if(contactLen - 1  ===  index) {  
+//         console.log("HITIT")
+//         _request({
+//             method: 'POST',
+//             data: item,
+//             url: contact,
+//         })
+//         .then((res) => {
+//             console.log(res);
+//             idObject.contact_id = res?.contact_id;
+//         })
+//         .catch((err) => {
+//             return new Error(err.message);
+//         });
+//     }
+
+//     _request({
+//         method: 'POST',
+//         data: item,
+//         url: contact,
+//     });
+//    })
+_request({
+    method: 'POST',
+    data: contacts,
+    url: contact,
+})
+.then((res) => {
+    console.log(res);
+    idObject.contact_id = res?.contact_id;
+})
+.catch((err) => {
+    return new Error(err.message);
+});
 
 }

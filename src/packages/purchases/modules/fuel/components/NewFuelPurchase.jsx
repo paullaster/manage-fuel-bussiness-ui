@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo, useCallback } from "react";
 import shared from "../../../shared";
 import { useGlobalDispatcher, useGlobalState } from '@/store';
 import { Form } from "react-router-dom";
-import { composableAutofils, NewFuelPurchaseInitialValues } from "../setups";
+import { composableAutofils} from "../setups";
 import TankEntries from "./TankEntries";
 import TransportationAndOfficer from "./TransportationAndOfficer";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
@@ -11,17 +11,17 @@ import { v4 as uuidv4 } from 'uuid';
 import {
   GridActionsCellItem,
   GridRowModes,
-  GridToolbarContainer,
   GridRowEditStopReasons
 } from '@mui/x-data-grid';
-import { MdDelete } from "react-icons/md";
 import { apiFetchUtil, GetGross } from "@/utils";
 import WebStorage from "@/utils/WebStorage";
 import { APPNAME } from "@/environments";
 import DataGridToolbar from "../../../shared/components/DataGridToolbar";
-import { MdOutlineSaveAlt, MdCreate, MdCancel } from "react-icons/md";
+import { MdOutlineSaveAlt, MdCreate, MdCancel, MdDelete } from "react-icons/md";
 
 
+const tanks = WebStorage.GetFromWebStorage('session', APPNAME).tanks;
+let fueType = '';
 const NewFuelPurchase = () => {
   const [rows, setRows] = useState([]);
   const [rowModesModel, setRowModesModel] = useState({});
@@ -30,20 +30,54 @@ const NewFuelPurchase = () => {
   const appStateDispatcher = useGlobalDispatcher();
   const { cardLabelView } = useGlobalState();
 
-  const tanks = WebStorage.GetFromWebStorage('session', APPNAME).tanks;
-  let fueType = '';
-  const deleteItem = useCallback(
-    (id) => () => {
-      setTimeout(() => {
+  const deleteItem = (id) => {
         setRows((prevRows) => prevRows.filter((row) => row.id !== id));
-      });
-    },
-    [],
-  );
+    };
+   
 
-  const columns = useMemo(
-    () => [
-      {
+  const handleEditClick = (id) => {
+    setRowModesModel({...rowModesModel, [id]: { mode: GridRowModes.Edit}});
+  };
+
+  const handleSaveClick = (id) => {
+    setRowModesModel({...rowModesModel, [id]: { mode: GridRowModes.View}});
+  };
+
+  const handleCancelClick = (id) => {
+    setRowModesModel({
+      ...rowModesModel,
+      [id]: {mode: GridRowModes.View, ignoreModifications: true}
+    });
+
+    const editedRow = rows.find((row) => row.id === id );
+    if(editedRow.isNew) {
+      setRows(rows.filter((row) => row.id !== id));
+    }
+  };
+
+  const handleRowEditStop = (params, event) => {
+    if(params.reason == GridRowEditStopReasons.rowFocusOut) {
+      event.defaultMuiPrevented = true;
+    }
+  };
+
+
+  const processRowUpdate = (newRow) => {
+    const updatedRow = {...newRow, isNew: false};
+    setRows(rows.map((row) => row.id === newRow.id ? updatedRow : row));
+    console.log({rows: rows});
+    return updatedRow;
+  };
+
+
+
+  const handleRowModesModelChange = (newRowModesModel) => {
+    setRowModesModel(newRowModesModel);
+  };
+
+
+  const columns = useMemo( () =>[
+    {
         field: 'tank',
         headerName: 'Tank',
         width: 150,
@@ -53,8 +87,8 @@ const NewFuelPurchase = () => {
           return tank.tank_number
         }),
         valueFormatter: (params) => {
-          if (!params.value) {
-            return 'select tank'
+          if(!params.value) {
+            return 'Select tank'
           }
           apiFetchUtil(params, 'fuel_type')
             .then((res) => fueType = res);
@@ -137,12 +171,17 @@ const NewFuelPurchase = () => {
       {
         field: 'tax_rate',
         headerName: 'Tax rate',
+        type: 'number',
         width: 80,
         editable: true,
-        valueFormatter: (params) => `${params.value}%`,
+        valueFormatter: (params) => {
+          if (!params.value) {
+            return '0%';
+          }
+          return `${params.value.toLocaleString()}%`
+        },
         hideable: false,
         headerAlign: 'center',
-        type: 'number',
         align: 'center',
       },
       {
@@ -164,7 +203,9 @@ const NewFuelPurchase = () => {
         width: 100,
         editable: false,
         valueGetter: (params) => {
-          return (Number(params.row.expected_quantity) || 0) * (Number(params.row.price) || 0);
+          console.log(params.row.expected_quantity * params.row.price);
+          console.log(params);
+          return params.row.expected_quantity * params.row.price;
         },
         type: 'number',
         hideable: false,
@@ -211,7 +252,7 @@ const NewFuelPurchase = () => {
               onClick={handleCancelClick(params.id)}
               color="inherit"
             />,
-            ]
+            ];
           }
           return[
             <GridActionsCellItem
@@ -229,9 +270,7 @@ const NewFuelPurchase = () => {
           ]
         },
       },
-    ],
-    [deleteItem],
-  );
+    ]);
 
   useEffect(() => {
     appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });
@@ -249,6 +288,9 @@ const NewFuelPurchase = () => {
           columns={columns}
           rows={rows}
           rowModesModel={rowModesModel}
+          handleRowModesModelChange={handleRowModesModelChange}
+          handleRowEditStop={handleRowEditStop}
+          processRowUpdate={processRowUpdate}
           slots={{ toolbar: DataGridToolbar }}
           slotProps={{ toolbar: { setRows, setRowModesModel } }}
         />

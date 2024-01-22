@@ -45,3 +45,7 @@ const DataGridToolbar = ({ setRows, setRowModesModel }) => {
 }
 
 export default DataGridToolbar
+
+const focusField = (name) => {
+  return name;
+}

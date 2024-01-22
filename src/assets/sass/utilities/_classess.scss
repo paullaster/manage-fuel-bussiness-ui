@@ -228,3 +228,11 @@ button:disabled {
         }
     }
 }
+
+.MuiInputBase-input {
+    border: none !important;
+    outline: none !important;
+}
+.MuiAutocomplete-input {
+height: 1.6rem !important;
+}

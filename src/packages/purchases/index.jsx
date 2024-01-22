@@ -18,4 +18,8 @@ export default {
      * MODULES
      */
     modules,
+
+    /*
+    *ACTIONS
+    **/
 }

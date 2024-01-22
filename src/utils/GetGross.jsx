@@ -1,4 +1,5 @@
 const GetGross = (item, taxField, quantityField, priceField, type) => {
+  
   let vatRate = item[taxField]
   const tax_amount = ((Number(vatRate || 0) / 100) * (Number(item[priceField]) || 0)) * (Number(item[quantityField]) || 0);
   let amount = 0;

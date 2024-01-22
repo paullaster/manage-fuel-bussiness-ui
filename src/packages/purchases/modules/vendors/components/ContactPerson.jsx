@@ -2,9 +2,18 @@ import { useMemo, useState } from 'react';
 import { DataTable } from '@/components';
 import { GridToolbarContainer, GridRowModes } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
+import { v4 as uuidv4 } from 'uuid';
 
+const rowInitialValues = {
+    contact_name: '',
+    contact_email: '',
+    contact_phone_number: '',
+};
 
-const GridTableToolbar = () => {
+const GridTableToolbar = ({setRows, setRowModesModel}) => {
+    const handleAddcontact = () => {
+
+    }
     return (
         <GridToolbarContainer>
             <Button>

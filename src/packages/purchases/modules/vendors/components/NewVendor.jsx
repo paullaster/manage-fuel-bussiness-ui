@@ -203,7 +203,7 @@ const NewVendor = () => {
         };
 
         console.log(billinObject);
-        // postBillingInformation(billinObject);
+        postBillingInformation(billinObject);
 
         const addressObject = {
             address: addressRef.current.value,
@@ -222,7 +222,7 @@ const NewVendor = () => {
         if (!validRef.current) {
             return new Error("Invalid request");
         };
-        // postAddress(addressObject);
+        postAddress(addressObject);
         postContactPerson(rows);
 
         console.log(addressObject);

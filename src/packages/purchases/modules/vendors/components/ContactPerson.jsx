@@ -12,11 +12,20 @@ const rowInitialValues = {
 
 const GridTableToolbar = ({setRows, setRowModesModel}) => {
     const handleAddcontact = () => {
-
+        const id = uuidv4();
+        setRows(
+            (rows) => [...rows, {id, ...rowInitialValues, isNew: true}]
+        );
+        setRowModesModel(
+            (rowModesModel) => ({ 
+                ...rowModesModel,
+                [id]: { mode: GridRowModes.Edit, fieldToFocus: 'contact_name'}
+            })
+        );
     }
     return (
         <GridToolbarContainer>
-            <Button>
+            <Button onClick={handleAddcontact}>
                 Add contact
             </Button>
         </GridToolbarContainer>

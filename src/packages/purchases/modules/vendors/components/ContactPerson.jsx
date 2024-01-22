@@ -116,7 +116,7 @@ const ContactPerson = () => {
                 field: 'actions',
                 headerName: 'Action',
                 type: 'actions',
-                getActions: ({id}) => {
+                getActions: ({ id }) => {
                     const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
 
                     if (isInEditMode) {
@@ -125,7 +125,7 @@ const ContactPerson = () => {
                                 key={uuidv4()}
                                 icon={<MdOutlineSaveAlt />}
                                 label="Save"
-                                onClick={ () => {
+                                onClick={() => {
                                     useEffect(() => {
                                         handleSaveClick(id)
                                     }, [id])
@@ -137,7 +137,7 @@ const ContactPerson = () => {
                                 label="Cancel"
                                 className="textPrimary"
                                 onClick={() => {
-                                    useEffect( () => {
+                                    useEffect(() => {
                                         handleCancelClick(id)
                                     }, [id])
                                 }}
@@ -150,8 +150,8 @@ const ContactPerson = () => {
                             key={uuidv4()}
                             icon={<MdCreate size={25} />}
                             label="Edit"
-                            onClick={()=> {
-                                useEffect( () => {
+                            onClick={() => {
+                                useEffect(() => {
                                     handleEditClick(id)
                                 }, [id])
                             }}
@@ -161,7 +161,7 @@ const ContactPerson = () => {
                             icon={<MdDelete size={25} />}
                             label="Delete"
                             onClick={() => {
-                                useEffect(()=> {
+                                useEffect(() => {
                                     deleteItem(id)
                                 }, [id])
                             }}

@@ -45,12 +45,13 @@ export const postAddress = (payload) => {
 export const postContactPerson = (rows) => {
     const contacts = rows.map((row) => {
         const { id, isNew, ...payloadFields}  = row;
-        console.log("mapped row", payloadFields);
         return {
-            ...payloadFields
+            ...payloadFields,
+            organization_id: '1',
         }
 
-    })
+    });
+    console.log(contacts)
     // const data = {
     //     ...payload,
     //     organization_id: "1",

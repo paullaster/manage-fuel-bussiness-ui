@@ -66,6 +66,14 @@ const ContactPerson = () => {
             width: 250,
             headerAlign: 'center',
             editable: true
+        },
+        {
+            field: 'actions',
+            headerName: 'Action',
+            type: 'actions',
+            getActions: (params) => {
+                
+            }
         }
     ]
   })  

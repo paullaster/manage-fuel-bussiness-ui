@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { DataTable } from '@/components';
-import { GridToolbarContainer, GridRowModes } from '@mui/x-data-grid';
+import { GridToolbarContainer, GridRowModes, GridActionsCellItem } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -72,7 +72,43 @@ const ContactPerson = () => {
             headerName: 'Action',
             type: 'actions',
             getActions: (params) => {
-                
+                const isInEditMode = rowModesModel[params.id]?.mode === GridRowModes.Edit;
+
+          if (isInEditMode) {
+            return [
+              <GridActionsCellItem 
+              key={uuidv4()}
+              icon={<MdOutlineSaveAlt />}
+              label="Save"
+              sx={{
+                color: 'primary.main',
+              }}
+              onClick={handleSaveClick(params.id)}
+              />,
+              <GridActionsCellItem
+              key={uuidv4()}
+              icon={<MdCancel />}
+              label="Cancel"
+              className="textPrimary"
+              onClick={handleCancelClick(params.id)}
+              color="inherit"
+            />,
+            ];
+          }
+          return[
+            <GridActionsCellItem
+              key={uuidv4()}
+              icon={<MdCreate size={25} />}
+              label="Edit"
+              onClick={handleEditClick(params.id)}
+            />,
+            <GridActionsCellItem
+              key={uuidv4()}
+              icon={<MdDelete size={25} />}
+              label="Delete"
+              onClick={deleteItem(params.id)}
+            />,
+          ]
             }
         }
     ]

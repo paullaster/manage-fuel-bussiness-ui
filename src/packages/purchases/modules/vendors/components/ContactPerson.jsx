@@ -145,20 +145,28 @@ const ContactPerson = () => {
                             />,
                         ];
                     }
-                    // return [
-                    //     <GridActionsCellItem
-                    //         key={uuidv4()}
-                    //         icon={<MdCreate size={25} />}
-                    //         label="Edit"
-                    //         onClick={handleEditClick(params.id)}
-                    //     />,
-                    //     <GridActionsCellItem
-                    //         key={uuidv4()}
-                    //         icon={<MdDelete size={25} />}
-                    //         label="Delete"
-                    //         onClick={deleteItem(params.id)}
-                    //     />,
-                    // ]
+                    return [
+                        <GridActionsCellItem
+                            key={uuidv4()}
+                            icon={<MdCreate size={25} />}
+                            label="Edit"
+                            onClick={()=> {
+                                useEffect( () => {
+                                    handleEditClick(id)
+                                }, [id])
+                            }}
+                        />,
+                        <GridActionsCellItem
+                            key={uuidv4()}
+                            icon={<MdDelete size={25} />}
+                            label="Delete"
+                            onClick={() => {
+                                useEffect(()=> {
+                                    deleteItem(id)
+                                }, [id])
+                            }}
+                        />,
+                    ]
                 }
             }
         ]

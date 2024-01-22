@@ -1,9 +1,9 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { DataTable } from '@/components';
 import { GridToolbarContainer, GridRowModes, GridActionsCellItem } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import { v4 as uuidv4 } from 'uuid';
-import { MdOutlineSaveAlt, MdCancel, MdCreate, MdDelete } from 'react-icons/md';
+import { MdAdd, MdOutlineSaveAlt, MdCancel, MdCreate, MdDelete } from 'react-icons/md';
 
 const rowInitialValues = {
     contact_name: '',
@@ -26,7 +26,7 @@ const GridTableToolbar = ({ setRows, setRowModesModel }) => {
     }
     return (
         <GridToolbarContainer>
-            <Button onClick={handleAddcontact}>
+            <Button color="primary" startIcon={<MdAdd size={25} />} onClick={handleAddcontact}>
                 Add contact
             </Button>
         </GridToolbarContainer>
@@ -116,8 +116,8 @@ const ContactPerson = () => {
                 field: 'actions',
                 headerName: 'Action',
                 type: 'actions',
-                getActions: (params) => {
-                    const isInEditMode = rowModesModel[params.id]?.mode === GridRowModes.Edit;
+                getActions: ({id}) => {
+                    const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
 
                     if (isInEditMode) {
                         return [
@@ -125,32 +125,36 @@ const ContactPerson = () => {
                                 key={uuidv4()}
                                 icon={<MdOutlineSaveAlt />}
                                 label="Save"
-                                onClick={handleSaveClick(params.id)}
+                                onClick={ () => {
+                                    useEffect(() => {
+                                        handleSaveClick(id)
+                                    }, [id])
+                                }}
                             />,
-                            <GridActionsCellItem
-                                key={uuidv4()}
-                                icon={<MdCancel />}
-                                label="Cancel"
-                                className="textPrimary"
-                                onClick={handleCancelClick(params.id)}
-                                color="inherit"
-                            />,
+                            // <GridActionsCellItem
+                            //     key={uuidv4()}
+                            //     icon={<MdCancel />}
+                            //     label="Cancel"
+                            //     className="textPrimary"
+                            //     onClick={handleCancelClick(params.id)}
+                            //     color="inherit"
+                            // />,
                         ];
                     }
-                    return [
-                        <GridActionsCellItem
-                            key={uuidv4()}
-                            icon={<MdCreate size={25} />}
-                            label="Edit"
-                            onClick={handleEditClick(params.id)}
-                        />,
-                        <GridActionsCellItem
-                            key={uuidv4()}
-                            icon={<MdDelete size={25} />}
-                            label="Delete"
-                            onClick={deleteItem(params.id)}
-                        />,
-                    ]
+                    // return [
+                    //     <GridActionsCellItem
+                    //         key={uuidv4()}
+                    //         icon={<MdCreate size={25} />}
+                    //         label="Edit"
+                    //         onClick={handleEditClick(params.id)}
+                    //     />,
+                    //     <GridActionsCellItem
+                    //         key={uuidv4()}
+                    //         icon={<MdDelete size={25} />}
+                    //         label="Delete"
+                    //         onClick={deleteItem(params.id)}
+                    //     />,
+                    // ]
                 }
             }
         ]
@@ -160,6 +164,8 @@ const ContactPerson = () => {
             columns={contactColumns}
             rows={rows}
             rowModesModel={rowModesModel}
+            processRowUpdate={processRowUpdate}
+            onRowModesModelChange={handleRowModesModelChange}
             slots={
                 { toolbar: GridTableToolbar }
             }

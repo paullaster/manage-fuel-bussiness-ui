@@ -4,7 +4,6 @@ import { MdDelete } from "react-icons/md";
 import { Form } from "react-router-dom";
 import cardImage from "@/assets/images/card_image.svg";
 import shared from "../../../shared";
-import { v4 as uuidv4 } from 'uuid';
 import { postAddress, postBillingInformation } from "../../../actions";
 import VendorBilling from "./VendorBilling";
 import ContactPerson from "./ContactPerson";
@@ -14,6 +13,8 @@ const NewVendor = () => {
 
     const [upload, setUpload] = useState(null);
     const [paymentMethod, setPaymentMethod] = useState(null);
+    const [rows, setRows] = useState([]);
+    const [rowModesModel, setRowModesModel] = useState({});
 
     const addressRef = useRef(null);
     const cityRef = useRef(null);
@@ -54,6 +55,176 @@ const NewVendor = () => {
     };
 
 
+    const deleteItem = (item) => {
+        setRows((prevRows) => prevRows.filter((row) => row.id !== item.id));
+    };
+
+
+    const handleEditClick = (item) => {
+        console.log(item);
+        setRowModesModel({ ...rowModesModel, [item.id]: { mode: GridRowModes.Edit } });
+        console.log(rowModesModel);
+    };
+
+    const handleSaveClick = (item) => {
+        setRowModesModel({ ...rowModesModel, [item.id]: { mode: GridRowModes.View } });
+    };
+
+    const handleCancelClick = (item) => {
+        setRowModesModel({
+            ...rowModesModel,
+            [item.id]: { mode: GridRowModes.View, ignoreModifications: true }
+        });
+
+        const editedRow = rows.find((row) => row.id === item.id);
+        if (editedRow.isNew) {
+            setRows(rows.filter((row) => row.id !== item.id));
+        }
+    };
+
+    const handleRowEditStop = (params, event) => {
+        if (params.reason == GridRowEditStopReasons.rowFocusOut) {
+            event.defaultMuiPrevented = true;
+        }
+    };
+
+
+    const processRowUpdate = (newRow) => {
+        const updatedRow = { ...newRow, isNew: false };
+        setRows(rows.map((row) => row.id === newRow.id ? updatedRow : row));
+        return updatedRow;
+    };
+
+
+
+    const handleRowModesModelChange = (newRowModesModel) => {
+        setRowModesModel(newRowModesModel);
+    };
+
+    const contactColumns = useMemo(() => {
+        return [
+            {
+                field: 'contact_name',
+                headerName: 'Name',
+                type: 'string',
+                width: 250,
+                headerAlign: 'center',
+                editable: true,
+            },
+            {
+                field: 'contact_email',
+                headerName: 'Email',
+                type: 'string',
+                width: 250,
+                headerAlign: 'center',
+                editable: true,
+            },
+            {
+                field: 'contact_phone_number',
+                headerName: 'Phone',
+                type: 'string',
+                width: 250,
+                headerAlign: 'center',
+                editable: true
+            },
+            {
+                field: 'actions',
+                headerName: 'Action',
+                type: 'actions',
+                getActions: (params) => {
+                    const isInEditMode = rowModesModel[params.id]?.mode === GridRowModes.Edit;
+                    console.log(isInEditMode);
+                    if (isInEditMode) {
+                        return [
+                            <GridActionsCellItem
+                                key={uuidv4()}
+                                icon={<MdOutlineSaveAlt />}
+                                label="Save"
+                                onClick={() => {
+                                    handleSaveClick(params)
+                                }}
+                            />,
+                            <GridActionsCellItem
+                                key={uuidv4()}
+                                icon={<MdCancel />}
+                                label="Cancel"
+                                className="textPrimary"
+                                onClick={() => {
+                                    handleCancelClick(params)
+                                }}
+                                color="inherit"
+                            />,
+                        ];
+                    }
+                    return [
+                        <GridActionsCellItem
+                            key={uuidv4()}
+                            icon={<MdCreate />}
+                            label="Edit"
+                            onClick={() => {
+                                handleEditClick(params)
+                            }}
+                        />,
+                        <GridActionsCellItem
+                            key={uuidv4()}
+                            icon={<MdDelete />}
+                            label="Delete"
+                            onClick={() => {
+                                deleteItem(params)
+                            }}
+                        />,
+                    ]
+                }
+            }
+        ]
+    }, [handleEditClick, handleSaveClick]);
+
+    useEffect(() =>{
+
+    }, [contactColumns]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     const SetPayload = (event) => {
         event.preventDefault();
         event.stopPropagation();
@@ -90,6 +261,13 @@ const NewVendor = () => {
         postAddress(addressObject);
 
         console.log(addressObject);
+
+        const completeContact = rows.filter((contact) => {
+            for (let prop in contact) {
+                return !!contact[prop]
+            }
+        });
+        console.log(completeContact);
 }
 
 return (
@@ -218,7 +396,15 @@ return (
                             <p>To include additional recipients in an email as CC, add them as contact persons.</p>
                         </div>
                         <div className="new_vendors__left__dataentry__form_contactperson_datacolumns">
-                            <ContactPerson />
+                            <ContactPerson 
+                            rows={rows}
+                            columns={contactColumns}
+                            setRows={setRows}
+                            rowModesModel={rowModesModel}
+                            setRowModesModel={setRowModesModel}
+                            handleRowModesModelChange={handleRowModesModelChange}
+                            processRowUpdate={processRowUpdate}
+                            />
                         </div>
                     </div>
                     <Button type='button' className='btn-element btn_primary' onClick={SetPayload}>Save</Button>

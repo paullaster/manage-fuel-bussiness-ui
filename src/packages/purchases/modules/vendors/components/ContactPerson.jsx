@@ -41,29 +41,30 @@ const ContactPerson = () => {
     const [rowModesModel, setRowModesModel] = useState({});
 
 
-    const deleteItem = (id) => {
-        console.log(id);
-        setRows((prevRows) => prevRows.filter((row) => row.id !== id));
+    const deleteItem = (item) => {
+        console.log(item);
+        setRows((prevRows) => prevRows.filter((row) => row.id !== item.id));
     };
 
 
-    const handleEditClick = (id) => {
-        setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.Edit } });
+    const handleEditClick = (item) => {
+        console.log(item);
+        setRowModesModel({ ...rowModesModel, [item.id]: { mode: GridRowModes.Edit } });
     };
 
-    const handleSaveClick = (id) => {
-        setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
+    const handleSaveClick = (item) => {
+        setRowModesModel({ ...rowModesModel, [itme.id]: { mode: GridRowModes.View } });
     };
 
-    const handleCancelClick = (id) => {
+    const handleCancelClick = (item) => {
         setRowModesModel({
             ...rowModesModel,
-            [id]: { mode: GridRowModes.View, ignoreModifications: true }
+            [item.id]: { mode: GridRowModes.View, ignoreModifications: true }
         });
 
-        const editedRow = rows.find((row) => row.id === id);
+        const editedRow = rows.find((row) => row.id === item.id);
         if (editedRow.isNew) {
-            setRows(rows.filter((row) => row.id !== id));
+            setRows(rows.filter((row) => row.id !== item.id));
         }
     };
 
@@ -86,59 +87,6 @@ const ContactPerson = () => {
     const handleRowModesModelChange = (newRowModesModel) => {
         setRowModesModel(newRowModesModel);
     };
-
-    const getActions = (id ) => {
-        const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
-
-        if (isInEditMode) {
-            return [
-                <GridActionsCellItem
-                    key={uuidv4()}
-                    icon={<MdOutlineSaveAlt />}
-                    label="Save"
-                    onClick={() => {
-                        useEffect(() => {
-                            handleSaveClick(id)
-                        }, [id])
-                    }}
-                />,
-                <GridActionsCellItem
-                    key={uuidv4()}
-                    icon={<MdCancel />}
-                    label="Cancel"
-                    className="textPrimary"
-                    onClick={() => {
-                        useEffect(() => {
-                            handleCancelClick(id)
-                        }, [id])
-                    }}
-                    color="inherit"
-                />,
-            ];
-        }
-        return [
-            <GridActionsCellItem
-                key={uuidv4()}
-                icon={<MdCreate size={25} />}
-                label="Edit"
-                onClick={() => {
-                    useEffect(() => {
-                        handleEditClick(id)
-                    }, [id])
-                }}
-            />,
-            <GridActionsCellItem
-                key={uuidv4()}
-                icon={<MdDelete size={25} />}
-                label="Delete"
-                onClick={() => {
-                    useEffect(() => {
-                        deleteItem(id)
-                    }, [id])
-                }}
-            />,
-        ]
-    }
 
     const contactColumns = useMemo(() => {
         return [
@@ -171,8 +119,49 @@ const ContactPerson = () => {
                 headerName: 'Action',
                 type: 'actions',
                 getActions: (params) => {
-                    return getActions(params.id);
-                  }
+                    const isInEditMode = rowModesModel[params.id]?.mode === GridRowModes.Edit;
+                    console.log(isInEditMode);
+                    if (isInEditMode) {
+                        return [
+                            <GridActionsCellItem
+                                key={uuidv4()}
+                                icon={<MdOutlineSaveAlt />}
+                                label="Save"
+                                onClick={() => {
+                                    handleSaveClick(params)
+                                }}
+                            />,
+                            <GridActionsCellItem
+                                key={uuidv4()}
+                                icon={<MdCancel />}
+                                label="Cancel"
+                                className="textPrimary"
+                                onClick={() => {
+                                    handleCancelClick(params)
+                                }}
+                                color="inherit"
+                            />,
+                        ];
+                    }
+                    return [
+                        <GridActionsCellItem
+                            key={uuidv4()}
+                            icon={<MdCreate />}
+                            label="Edit"
+                            onClick={() => {
+                                handleEditClick(params)
+                            }}
+                        />,
+                        <GridActionsCellItem
+                            key={uuidv4()}
+                            icon={<MdDelete />}
+                            label="Delete"
+                            onClick={() => {
+                                deleteItem(params)
+                            }}
+                        />,
+                    ]
+                }
             }
         ]
     }, []);

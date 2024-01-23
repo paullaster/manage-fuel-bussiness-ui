@@ -200,10 +200,6 @@ const NewVendor = () => {
         event.preventDefault();
         event.stopPropagation();
 
-        if(!rows.length) {
-            return;
-        }
-
         const billinObject = {
             payment_method: paymentMethod,
             mpesa_phone_number: phoneNumberRef.current.value,
@@ -215,7 +211,7 @@ const NewVendor = () => {
 
         console.log(billinObject);
         postBillingInformation(billinObject);
-
+        
         const addressObject = {
             address: addressRef.current.value,
             city: cityRef.current.value,
@@ -233,8 +229,25 @@ const NewVendor = () => {
         if (!validRef.current) {
             return new Error("Invalid request");
         };
+        
         postAddress(addressObject);
+
+        if(!rows.length) {
+            return;
+        }
         postContactPerson(rows);
+
+        const vendorObject = {
+            vendor_reference:,
+            website:,
+            kra_pin:,
+            product_description:,
+            company_name:,
+            vendor_phone:,
+            vendor_email: vendorEmailRef.current.vaalue,
+            vendor_name: vendorNameRef.current.value,
+            national_id:,
+        }
 
         console.log(addressObject);
 

@@ -225,7 +225,7 @@ setRowModesModel(newRowModesModel);
           slots={{ toolbar: DataGridToolbar }}
           slotProps={{ toolbar: { setRows, setRowModesModel } }}
         />
-        <FormButtonRow />
+        <FormButtonRow style={{width: '35% !important'}}/>
       </Form>
     </section>
   )

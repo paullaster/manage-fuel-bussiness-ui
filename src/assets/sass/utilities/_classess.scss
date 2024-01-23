@@ -228,6 +228,28 @@ button:disabled {
         }
     }
 }
+.form_actions_wide {
+    width: 35%;
+    margin: 4rem 0;
+    display: flex;
+    justify-content: space-between;
+
+    &>button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 12rem;
+        border-radius: .8rem !important;
+
+        &>span {
+            display: block;
+        }
+
+        &>span:first-child {
+            margin-right: .4rem;
+        }
+    }
+}
 
 .MuiInputBase-input {
     border: none !important;

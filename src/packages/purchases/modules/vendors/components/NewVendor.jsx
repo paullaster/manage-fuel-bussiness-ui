@@ -17,6 +17,7 @@ const NewVendor = () => {
     const [paymentMethod, setPaymentMethod] = useState(null);
     const [rows, setRows] = useState([]);
     const [rowModesModel, setRowModesModel] = useState({});
+    const [open, setOpen] = useState(false);
 
     const addressRef = useRef(null);
     const cityRef = useRef(null);

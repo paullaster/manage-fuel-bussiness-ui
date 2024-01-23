@@ -1,6 +1,15 @@
 import { DataTable } from "@/components";
 
-const ItemData = ({columns, rows}) => {
+const ItemData = ({
+  columns,
+  rows,
+  rowModesModel = {},
+  handleRowModesModelChange = () => { },
+  handleRowEditStop = () => { },
+  processRowUpdate = () => { },
+  slots = {},
+  slotProps = {}
+}) => {
   return (
     <DataTable
     columns={columns}

@@ -9,6 +9,7 @@ import ContactPerson from "./ContactPerson";
 import { GridRowModes, GridActionsCellItem } from '@mui/x-data-grid';
 import {MdOutlineSaveAlt, MdCancel, MdCreate, MdDelete } from 'react-icons/md';
 import { v4 as uuidv4 } from 'uuid';
+import CurrencyComponent from "./CurrencyComponent";
 
 
 const NewVendor = () => {
@@ -366,7 +367,8 @@ return (
                             <h4>Billing</h4>
                             <p>The tax number appears in every bill issued to you. The selected currency becomes the default currency for this vendor.</p>
                         </div>
-                        <VendorBilling ref={billingInfo} handleSelectedPaymentMethod={handleSelectedPaymentMethod}/>
+                        <VendorBilling ref={billingInfo} handleSelectedPaymentMethod={handleSelectedPaymentMethod} handleAddCurrency={handleAddCurrency}/>
+                        <CurrencyComponent ref={}/>
                     </div>
                     <div className="new_vendors__left__dataentry__form_addressinfo">
                         <div className="new_vendors__left__dataentry__form_addressinfo_introduction form_section_introductions">

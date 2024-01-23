@@ -176,13 +176,13 @@ setRowModesModel(newRowModesModel);
           return[
             <GridActionsCellItem
               key={uuidv4()}
-              icon={<MdCreate size={25} />}
+              icon={<MdCreate />}
               label="Edit"
               onClick={ () => handleEditClick(params)}
             />,
             <GridActionsCellItem
               key={uuidv4()}
-              icon={<MdDelete size={25} />}
+              icon={<MdDelete />}
               label="Delete"
               onClick={ () => deleteItem(params)}
             />,

@@ -217,7 +217,12 @@ setRowModesModel(newRowModesModel);
         <PurchaseItemEntry
           columns={columns}
           rows={rows}
-          handleAddNewItem={handleAddNewItem}
+          rowModesModel={rowModesModel}
+          handleRowModesModelChange={handleRowModesModelChange}
+          handleRowEditStop={handleRowEditStop}
+          processRowUpdate={processRowUpdate}
+          slots={{ toolbar: DataGridToolbar }}
+          slotProps={{ toolbar: { setRows, setRowModesModel } }}
         />
         <FormButtonRow />
       </Form>

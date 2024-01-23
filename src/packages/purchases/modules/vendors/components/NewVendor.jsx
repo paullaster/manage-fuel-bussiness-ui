@@ -199,7 +199,6 @@ const NewVendor = () => {
                 type: 'actions',
                 getActions: (params) => {
                     const isInEditMode = rowModesModel[params.id]?.mode === GridRowModes.Edit;
-                    console.log(isInEditMode);
                     if (isInEditMode) {
                         return [
                             <GridActionsCellItem

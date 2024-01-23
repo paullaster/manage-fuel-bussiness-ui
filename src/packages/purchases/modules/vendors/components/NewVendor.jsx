@@ -67,6 +67,9 @@ const NewVendor = () => {
         accountNumberRef,
     };
 
+    const handleSubmitCurrency = (event) => {
+        console.log("Currency submitted");
+    }
     const handleAddCurrency = (event) => {
         event.preventDefault();
         event.stopPropagation();

@@ -1,6 +1,5 @@
 import React, { forwardRef, useState } from 'react'
-import { AutocompleteComponent, InputComponent, Button } from '@/components';
-import { MdAdd } from "react-icons/md";
+import { AutocompleteComponent, InputComponent} from '@/components';
 import AddItemButton from '../../../shared/components/AddItemButton';
 
 const VendorBilling = forwardRef((props, ref) => {

@@ -31,6 +31,12 @@ const NewVendor = () => {
     const bankNameRef = useRef(null);
     const accountNumberRef = useRef(null);
 
+    // VENDOR
+    const vendorNameRef = useRef(null);
+    const vendorEmailRef = useRef(null);
+    const vendorPhoneRef = useRef(null);
+    const vendorNationalIDRef = useRef(null);
+
 
     const billingInfo = {
         phoneNumberRef,
@@ -250,6 +256,7 @@ return (
                                 type="text"
                                 prelabelText={"name"}
                                 name="vendor_name"
+                                ref={vendorNameRef}
                             />
                         </div>
                         <div className="new_vendors__left__dataentry__form_vendorinfo__others">
@@ -258,17 +265,26 @@ return (
                                     type="email"
                                     prelabelText={"email"}
                                     name="vendor_email"
+                                    ref={vendorEmailRef}
                                 />
                                 <InputComponent
                                     type="tel"
                                     prelabelText={"phone"}
                                     name="vendor_phone"
+                                    ref={vendorPhoneRef}
                                 />
-                                {/* <InputComponent
+                                <InputComponent
                                 type="text"
-                                prelabelText={"company name"}
-                                name="company_name"
-                            /> */}
+                                prelabelText={"Company name"}
+                                name="national_id"
+                                ref={vendorCompanyNameRef}
+                            />
+                                <InputComponent
+                                type="text"
+                                prelabelText={"National ID"}
+                                name="national_id"
+                                ref={vendorNationalIDRef}
+                            />
                                 <InputComponent
                                     type="url"
                                     prelabelText={"website"}

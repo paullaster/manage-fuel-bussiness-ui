@@ -27,28 +27,28 @@ const NewItem = () => {
   const [rows, setRows] = useState([]);
   const [rowModesModel, setRowModesModel] = useState({});
 
-  const deleteItem = (id) => {
-    setRows((prevRows) => prevRows.filter((row) => row.id !== id));
+  const deleteItem = (item) => {
+    setRows((prevRows) => prevRows.filter((row) => row.id !== item.id));
 };
 
 
-const handleEditClick = (id) => {
-setRowModesModel({...rowModesModel, [id]: { mode: GridRowModes.Edit}});
+const handleEditClick = (item) => {
+setRowModesModel({...rowModesModel, [item.id]: { mode: GridRowModes.Edit}});
 };
 
-const handleSaveClick = (id) => {
-setRowModesModel({...rowModesModel, [id]: { mode: GridRowModes.View}});
+const handleSaveClick = (item) => {
+setRowModesModel({...rowModesModel, [item.id]: { mode: GridRowModes.View}});
 };
 
-const handleCancelClick = (id) => {
+const handleCancelClick = (item) => {
 setRowModesModel({
   ...rowModesModel,
-  [id]: {mode: GridRowModes.View, ignoreModifications: true}
+  [item.id]: {mode: GridRowModes.View, ignoreModifications: true}
 });
 
-const editedRow = rows.find((row) => row.id === id );
+const editedRow = rows.find((row) => row.id === item.id );
 if(editedRow.isNew) {
-  setRows(rows.filter((row) => row.id !== id));
+  setRows(rows.filter((row) => row.id !== item.id));
 }
 };
 

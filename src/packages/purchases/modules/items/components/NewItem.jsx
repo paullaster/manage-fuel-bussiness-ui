@@ -18,6 +18,7 @@ import { GetGross } from "@/utils";
 import { v4 as uuidv4 } from 'uuid';
 import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 import OfficerComponent from "./OfficerComponent";
+import SummaryComponent from "../../../shared/components/SummaryComponent";
 
 
 const items = WebStorage.GetFromWebStorage('session', APPNAME).items;
@@ -227,6 +228,7 @@ setRowModesModel(newRowModesModel);
           slots={{ toolbar: DataGridToolbar }}
           slotProps={{ toolbar: { setRows, setRowModesModel } }}
         />
+        <SummaryComponent subtotal={4000} totalTaxAmount={2000} total={6000}/>
         <FormButtonRow className='form_actions_wide' />
       </Form>
     </section>

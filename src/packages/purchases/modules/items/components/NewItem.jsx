@@ -28,6 +28,7 @@ const NewItem = () => {
   const appStateDispatcher = useGlobalDispatcher();
   const { cardLabelView } = useGlobalState();
   const [rows, setRows] = useState([]);
+  const [rowModesModel, setRowModesModel] = useState({});
 
   const deleteItem = (id) => {
     setRows((prevRows) => prevRows.filter((row) => row.id !== id));

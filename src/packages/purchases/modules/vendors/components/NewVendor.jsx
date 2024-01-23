@@ -88,6 +88,7 @@ const NewVendor = () => {
                 return new Error("Invalid form");
             }
             postCurrency(currencyObject);
+            setOpen(false);
             console.log(currencyObject)
         }
     }

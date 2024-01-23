@@ -78,14 +78,13 @@ const NewVendor = () => {
                 rate: currencyRateRef.current.value,
                 symbol: currencySymbolref.current.value,
             };
-            let invalid = false;
             for (let prop in currencyObject) {
                 if (!currencyObject[prop] && prop !== 'symbol') {
-                    invalid = true;
+                    invalid.current = true;
                     return new Error(`${prop} is a required filed`);
                 }
             }
-            if(invalid) {
+            if(invalid.current) {
                 return new Error("Invalid form");
             }
             postCurrency(currencyObject);

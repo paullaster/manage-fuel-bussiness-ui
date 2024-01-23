@@ -2,7 +2,7 @@ import { DialogComponent, InputComponent } from '@/components';
 import { forwardRef } from 'react';
 
 const CurrencyComponent = forwardRef((props, ref) => {
-    const { open,  handleCloseDialog, dialogTitle, maxWidth } = props;
+    const { open,  handleCloseDialog, dialogTitle, maxWidth, handleSubmitCurrency } = props;
     return (
         <DialogComponent
             open={open}

@@ -117,6 +117,12 @@ setRowModesModel(newRowModesModel);
         headerAlign: 'center',
         type: 'number',
         align: 'center',
+        valueFormatter:(params) => {
+          if (params.value === null) {
+            return '0%';
+          }
+          return `${params.value.toLocaleString()} %`;
+        }
       },
       {
         field: 'amount',

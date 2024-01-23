@@ -14,8 +14,14 @@ const ItemData = ({
     <DataTable
     columns={columns}
     rows={rows}
+    rowModesModel={rowModesModel}
+    handleRowModesModelChange={handleRowModesModelChange}
+    handleRowEditStop={handleRowEditStop}
+    processRowUpdate={processRowUpdate}
+    slots={slots}
+    slotProps={slotProps}
 
-  />
+    />
   )
 }
 

@@ -240,7 +240,7 @@ const NewVendor = () => {
         const vendorObject = {
             vendor_reference:,
             website: vendorWebsiteRef.current.value,
-            kra_pin:,
+            kra_pin: vendorPinRef.current.value,
             product_description:,
             company_name: vendorCompanyNameRef.current.value,
             vendor_phone: vendorPhoneRef.current.value,

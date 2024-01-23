@@ -32,7 +32,7 @@ const GridTableToolbar = ({ setRows, setRowModesModel }) => {
         </GridToolbarContainer>
     )
 }
-const ContactPerson = ({rows, columns, setRows, rowModesModel, setRowModesModel, processRowUpdate, handleRowModesModelChange}) => {
+const ContactPerson = ({rows, columns, setRows, rowModesModel, setRowModesModel, processRowUpdate, handleRowModesModelChange, handleRowEditStop}) => {
 
 
     
@@ -43,6 +43,7 @@ const ContactPerson = ({rows, columns, setRows, rowModesModel, setRowModesModel,
             rowModesModel={rowModesModel}
             processRowUpdate={processRowUpdate}
             onRowModesModelChange={handleRowModesModelChange}
+            handleRowEditStop={handleRowEditStop}
             slots={
                 { toolbar: GridTableToolbar }
             }

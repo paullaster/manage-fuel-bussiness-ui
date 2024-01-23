@@ -418,6 +418,7 @@ return (
                             setRowModesModel={setRowModesModel}
                             handleRowModesModelChange={handleRowModesModelChange}
                             processRowUpdate={processRowUpdate}
+                            handleRowEditStop={handleRowEditStop}
                             />
                         </div>
                     </div>

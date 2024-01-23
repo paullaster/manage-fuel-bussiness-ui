@@ -2,7 +2,7 @@ import { _request } from '@/services';
 import constants from './constants';
 
 
-const { address, billing, contact, vendor } = constants;
+const { address, billing, contact, vendor, currency } = constants;
 const idObject = {};
 
 export const postBillingInformation = (payload) => {
@@ -93,7 +93,7 @@ export const postVendor = (item) => {
     })
     .catch((error) => {
         console.log(error);
-    })
+    });
 };
 
 export const postCurrency = (item) => {
@@ -104,6 +104,13 @@ export const postCurrency = (item) => {
     _request({
         method: "POST",
         data: data,
-        url:,
+        url: currency,
     })
+    .then((res) => {
+        console.log(res);
+        idObject.currency_id = res?.currency_id;
+    })
+    .catch((error) => {
+        console.log(error);
+    });
 }

@@ -19,7 +19,10 @@ import { apiFetchUtil, GetGross } from "@/utils";
 import WebStorage from "@/utils/WebStorage";
 import { APPNAME } from "@/environments";
 import { v4 as uuidv4 } from 'uuid';
+import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 
+
+const items = WebStorage.GetFromWebStorage('session', APPNAME).tanks;
 
 const NewItem = () => {
   const appStateDispatcher = useGlobalDispatcher();

@@ -1,4 +1,3 @@
-import AddItemButton from "../../../shared/components/AddItemButton"
 import DivisionTopBar from "../../../shared/components/DivisionTopBar"
 import ItemData from "./ItemData"
 

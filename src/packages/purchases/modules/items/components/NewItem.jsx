@@ -29,17 +29,51 @@ const NewItem = () => {
   const { cardLabelView } = useGlobalState();
   const [rows, setRows] = useState([]);
 
+  const deleteItem = (id) => {
+    setRows((prevRows) => prevRows.filter((row) => row.id !== id));
+};
 
-  const tanks = WebStorage.GetFromWebStorage('session', APPNAME).tanks;
 
-  const deleteItem = useCallback(
-    (id) => () => {
-      setTimeout(() => {
-        setRows((prevRows) => prevRows.filter((row) => row.id !== id));
-      });
-    },
-    [],
-  );
+const handleEditClick = (id) => {
+setRowModesModel({...rowModesModel, [id]: { mode: GridRowModes.Edit}});
+};
+
+const handleSaveClick = (id) => {
+setRowModesModel({...rowModesModel, [id]: { mode: GridRowModes.View}});
+};
+
+const handleCancelClick = (id) => {
+setRowModesModel({
+  ...rowModesModel,
+  [id]: {mode: GridRowModes.View, ignoreModifications: true}
+});
+
+const editedRow = rows.find((row) => row.id === id );
+if(editedRow.isNew) {
+  setRows(rows.filter((row) => row.id !== id));
+}
+};
+
+const handleRowEditStop = (params, event) => {
+if(params.reason == GridRowEditStopReasons.rowFocusOut) {
+  event.defaultMuiPrevented = true;
+}
+};
+
+
+const processRowUpdate = (newRow) => {
+const updatedRow = {...newRow, isNew: false};
+setRows(rows.map((row) => row.id === newRow.id ? updatedRow : row));
+console.log({rows: rows});
+return updatedRow;
+};
+
+
+
+const handleRowModesModelChange = (newRowModesModel) => {
+setRowModesModel(newRowModesModel);
+};
+
 
   const columns = useMemo(
     () => [

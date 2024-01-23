@@ -194,9 +194,9 @@ setRowModesModel(newRowModesModel);
     [handleSaveClick, handleCancelClick, handleEditClick,  deleteItem],
   );
 
-  useEffect(() => {
-    appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });
-  }, [columns]);
+  // useEffect(() => {
+  //   appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });
+  // }, [columns]);
 
   return (
     <section className='purchaseItem'>

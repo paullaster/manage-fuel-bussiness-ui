@@ -239,7 +239,7 @@ const NewVendor = () => {
 
         const vendorObject = {
             vendor_reference:,
-            website:,
+            website: vendorWebsiteRef.current.value,
             kra_pin:,
             product_description:,
             company_name: vendorCompanyNameRef.current.value,

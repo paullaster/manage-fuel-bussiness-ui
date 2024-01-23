@@ -22,7 +22,7 @@ import { v4 as uuidv4 } from 'uuid';
 import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 
 
-const items = WebStorage.GetFromWebStorage('session', APPNAME).tanks;
+const items = WebStorage.GetFromWebStorage('session', APPNAME).items;
 
 const NewItem = () => {
   const appStateDispatcher = useGlobalDispatcher();
@@ -48,8 +48,8 @@ const NewItem = () => {
         headerName: 'Item',
         width: 200,
         type: 'singleSelect',
-        valueOptions: () => tanks.map((tank) => {
-          return `tank ${tank.tank_number}`
+        valueOptions: () => items.map((item) => {
+          return `tank ${item.item_id}`
         }),
         editable: true,
         hideable: false,

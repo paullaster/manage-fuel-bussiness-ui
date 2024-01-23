@@ -10,7 +10,8 @@ const CurrencyComponent = forwardRef((props, ref) => {
             dialogTitle={dialogTitle}
             maxWidth={maxWidth}
         >
-             <InputComponent
+            <div className="addCurrency">
+            <InputComponent
                 type="text"
                 prelabelText={"Currency name"}
                 name="currency_name"
@@ -36,6 +37,7 @@ const CurrencyComponent = forwardRef((props, ref) => {
                 ref={ref.currencySymbolref}
             />
 
+            </div>
         </DialogComponent>
     )
 })

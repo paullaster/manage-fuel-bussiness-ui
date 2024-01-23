@@ -44,6 +44,20 @@ const NewVendor = () => {
     const vendorReferenceRef = useRef(null);
     const vendorProdDescRef = useRef(null);
 
+    // Currency
+    const currencyNameRef = useRef(null);
+    const currencyCodeRef = useRef(null);
+    const currencyRateRef = useRef(null);
+    const currencySymbolref = useRef(null);
+
+
+    const currencyRefObject = {
+        currencySymbolref,
+        currencyRateRef,
+        currencyCodeRef,
+        currencyNameRef,
+    };
+
 
     const billingInfo = {
         phoneNumberRef,

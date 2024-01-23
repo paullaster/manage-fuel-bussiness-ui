@@ -243,10 +243,10 @@ const NewVendor = () => {
             kra_pin:,
             product_description:,
             company_name:,
-            vendor_phone:,
+            vendor_phone: vendorPhoneRef.current.value,
             vendor_email: vendorEmailRef.current.vaalue,
             vendor_name: vendorNameRef.current.value,
-            national_id:,
+            national_id: vendorNationalIDRef.current.value,
         }
 
         console.log(addressObject);

@@ -238,18 +238,36 @@ const NewVendor = () => {
         postContactPerson(rows);
 
         const vendorObject = {
-            vendor_reference:,
+            vendor_reference: vendorReferenceRef.current.value,
             website: vendorWebsiteRef.current.value,
             kra_pin: vendorPinRef.current.value,
-            product_description:,
+            product_description: vendorProdDescRef.current.value,
             company_name: vendorCompanyNameRef.current.value,
             vendor_phone: vendorPhoneRef.current.value,
             vendor_email: vendorEmailRef.current.vaalue,
             vendor_name: vendorNameRef.current.value,
             national_id: vendorNationalIDRef.current.value,
+        };
+
+        for (let prop in vendorObject) {
+            if(
+                !vendorObject[prop] &&
+                (
+                    prop !== 'website' ||
+                    prop !== 'national_id '||
+                    prop !== 'vendor_email' ||
+                    prop !== 'vendor_phone' ||
+                    prop !== 'vendor_reference'
+                )
+            ) {
+                validRef.current = false;
+                return new Error(`${prop} is a required field`);
+            }
         }
 
+        postVendor(vendorObject);
         console.log(addressObject);
+        console.log(vendorObject);
 
 }
 

@@ -2,7 +2,7 @@ import { _request } from '@/services';
 import constants from './constants';
 
 
-const { address, billing, contact } = constants;
+const { address, billing, contact, vendor } = constants;
 const idObject = {};
 
 export const postBillingInformation = (payload) => {
@@ -76,3 +76,22 @@ export const postContactPerson = (rows) => {
     })
 }
 console.log(idObject);
+
+export const postVendor = (item) => {
+    const data = {
+        ...item,
+        organization_id: '1',
+        ...idObject
+    }
+    _request({
+        method: 'POST',
+        data: data,
+        url: vendor,
+    })
+    .then((res) => {
+        console.log(res);
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+}

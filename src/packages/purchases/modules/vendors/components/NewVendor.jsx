@@ -85,6 +85,7 @@ const NewVendor = () => {
             if(invalid) {
                 return new Error("Invalid form");
             }
+            postCurrency(currencyObject);
             console.log(currencyObject)
         }
     }

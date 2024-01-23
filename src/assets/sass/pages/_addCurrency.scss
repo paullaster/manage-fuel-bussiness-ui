@@ -1,0 +1,8 @@
+.addCurrency {
+    & > .input-group {
+        display: flex;
+        & > * {
+            display: block;
+        }
+    }
+}

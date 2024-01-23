@@ -25,7 +25,10 @@ const NewVendor = () => {
     const zipCodeRef = useRef(null);
     const stateRef = useRef(null);
     const countryRef = useRef(null);
+
+    // checks
     const validRef = useRef(true);
+    const invalid = useRef(false);
 
     const phoneNumberRef = useRef(null);
     const tillNumberRef = useRef(null);

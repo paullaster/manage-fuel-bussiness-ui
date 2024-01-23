@@ -81,7 +81,7 @@ setRowModesModel(newRowModesModel);
         width: 200,
         type: 'singleSelect',
         valueOptions: () => items.map((item) => {
-          return `tank ${item.item_id}`
+          return `Item ${item.item_id}`
         }),
         editable: true,
         hideable: false,

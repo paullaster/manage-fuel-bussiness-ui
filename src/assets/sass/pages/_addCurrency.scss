@@ -1,6 +1,7 @@
 .addCurrency {
     & > .input-group {
         display: flex;
+        flex-direction: column;
         & > * {
             display: block;
         }

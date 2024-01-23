@@ -73,6 +73,12 @@ const NewVendor = () => {
         setOpen(true);
     };
 
+    const handleCloseDialog = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        setOpen(false);
+    }
+
     const handleSelectedPaymentMethod = (event, newValue) => {
         event.preventDefault();
         event.stopPropagation();

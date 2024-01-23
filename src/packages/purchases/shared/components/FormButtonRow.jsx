@@ -1,8 +1,8 @@
 import { Button } from "@/components";
 import { MdOutlineSimCardDownload, MdClear } from "react-icons/md";
-const FormButtonRow = ({...args}) => {
+const FormButtonRow = ({style = {}}) => {
   return (
-    <div className="form_actions" {...args}>
+    <div className="form_actions" style={style}>
       <Button type="button" className={'btn-element'}><span><MdClear size={20} /> </span> <span>cancel</span></Button>
       <Button type="submit" className={'btn-element btn_primary'}> <span><MdOutlineSimCardDownload size={20} /></span> <span>save</span></Button>
     </div>

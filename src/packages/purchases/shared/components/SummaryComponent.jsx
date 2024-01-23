@@ -8,19 +8,19 @@ const SummaryComponent = ({ subtotal, totalTaxAmount, total }) => {
           <Typography variant="body2">Subtotal:</Typography>
         </Grid>
         <Grid item xs={8}>
-          <Typography variant="body2" align="right">{subtotal}</Typography>
+          <Typography variant="body2" align="right" style={{ fontWeight: "bold" }} >{subtotal}</Typography>
         </Grid>
         <Grid item xs={4}>
           <Typography variant="body2">Total Tax Amount:</Typography>
         </Grid>
         <Grid item xs={8}>
-          <Typography variant="body2" align="right">{totalTaxAmount}</Typography>
+          <Typography variant="body2" align="right" style={{ fontWeight: "bold" }} >{totalTaxAmount}</Typography>
         </Grid>
         <Grid item xs={4}>
           <Typography variant="body2">Total:</Typography>
         </Grid>
         <Grid item xs={8}>
-          <Typography variant="body2" align="right">{total}</Typography>
+          <Typography variant="body2" align="right" style={{ fontWeight: "bold" }} >{total}</Typography>
         </Grid>
       </Grid>
       <Divider />

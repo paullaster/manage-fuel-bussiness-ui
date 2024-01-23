@@ -9,37 +9,36 @@ const CurrencyComponent = forwardRef((props, ref) => {
             handleClose={handleCloseDialog}
             dialogTitle={dialogTitle}
             maxWidth={maxWidth}
+            handleAction={handleSubmitCurrency}
         >
-            <form onSubmit={handleSubmitCurrency}>
-                <div className="addCurrency">
-                    <InputComponent
-                        type="text"
-                        prelabelText={"Currency name"}
-                        name="currency_name"
-                        title="currency name"
-                        ref={ref.currencyNameRef}
-                    />
-                    <InputComponent
-                        type="text"
-                        prelabelText={"Currency code"}
-                        name="currency_code"
-                        ref={ref.currencyCodeRef}
-                    />
-                    <InputComponent
-                        type="text"
-                        prelabelText={"Rate"}
-                        name="rate"
-                        ref={ref.currencyRateRef}
-                    />
-                    <InputComponent
-                        type="text"
-                        prelabelText={"Symbol"}
-                        name="symbol"
-                        ref={ref.currencySymbolref}
-                    />
+            <div className="addCurrency">
+                <InputComponent
+                    type="text"
+                    prelabelText={"Currency name"}
+                    name="currency_name"
+                    title="currency name"
+                    ref={ref.currencyNameRef}
+                />
+                <InputComponent
+                    type="text"
+                    prelabelText={"Currency code"}
+                    name="currency_code"
+                    ref={ref.currencyCodeRef}
+                />
+                <InputComponent
+                    type="text"
+                    prelabelText={"Rate"}
+                    name="rate"
+                    ref={ref.currencyRateRef}
+                />
+                <InputComponent
+                    type="text"
+                    prelabelText={"Symbol"}
+                    name="symbol"
+                    ref={ref.currencySymbolref}
+                />
 
-                </div>
-            </form>
+            </div>
         </DialogComponent>
     )
 })

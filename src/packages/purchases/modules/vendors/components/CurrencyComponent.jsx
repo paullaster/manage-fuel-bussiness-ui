@@ -9,8 +9,12 @@ const CurrencyComponent = forwardRef((props, ref) => {
             handleClose={handleCloseDialog}
             dialogTitle={dialogTitle}
             maxWidth={maxWidth}
+            PaperProps={{
+                component: 'form',
+                onSubmit: (event) => console.log(event)
+            }}
         >
-            <form method="post" onSubmit={handleSubmitCurrency}>
+            <form onSubmit={handleSubmitCurrency}>
             <div className="addCurrency">
             <InputComponent
                 type="text"

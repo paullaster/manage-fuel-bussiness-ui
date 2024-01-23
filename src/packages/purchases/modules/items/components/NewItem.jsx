@@ -148,7 +148,7 @@ const NewItem = () => {
         hideable: false,
       },
     ],
-    [deleteItem],
+    [handleSaveClick, deleteItem],
   );
 
   const handleAddNewItem = (event) => {

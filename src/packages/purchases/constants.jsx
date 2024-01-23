@@ -4,5 +4,6 @@ export default {
     address: 'support_details/address/',
     billing: 'billing/',
     contact: 'support_details/contact/',
-    vendor: 'vendor/'
+    vendor: 'vendor/',
+    currency: 'currency/',
 };

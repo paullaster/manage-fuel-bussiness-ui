@@ -100,5 +100,10 @@ export const postCurrency = (item) => {
     const data = {
         ...item,
         organization_id: '1',
-    }
+    };
+    _request({
+        method: "POST",
+        data: data,
+        url:,
+    })
 }

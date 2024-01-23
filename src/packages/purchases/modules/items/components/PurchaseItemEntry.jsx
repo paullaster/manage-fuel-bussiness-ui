@@ -13,8 +13,7 @@ const PurchaseItemEntry = ({
 }) => {
   return (
         <div className="tankEntries">
-            <DivisionTopBar sectionTitle="Purcahse item details">
-            </DivisionTopBar>
+            <DivisionTopBar sectionTitle="Purcahse item details" />
             <div>
                 <ItemData
                 columns={columns}

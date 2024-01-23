@@ -1,8 +1,11 @@
 import { Autocomplete } from '@/components';
+import DivisionTopBar from "../../../shared/components/DivisionTopBar";
 
 const OfficerComponent = () => {
   return (
-    <div>OfficerComponent</div>
+    <div>
+        <DivisionTopBar sectionTitle="Purcahse item details" />
+    </div>
   )
 }
 

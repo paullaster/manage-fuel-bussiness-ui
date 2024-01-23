@@ -1,6 +1,7 @@
 import React, { forwardRef, useState } from 'react'
 import { AutocompleteComponent, InputComponent, Button } from '@/components';
 import { MdAdd } from "react-icons/md";
+import AddItemButton from '../../../shared/components/AddItemButton';
 
 const VendorBilling = forwardRef((props, ref) => {
     const { handleSelectedPaymentMethod } = props;
@@ -44,10 +45,7 @@ const VendorBilling = forwardRef((props, ref) => {
                 name="bank_account_number"
                 ref={ref.accountNumberRef}
             />
-            <Button>
-                <span><MdAdd size={20} /></span>
-                <span>Add currency</span>
-            </Button>
+            <AddItemButton  btnCustomClass={'btn-element btn_primary'} btnCaption="Add Currency"/>
         </div>
     )
 })

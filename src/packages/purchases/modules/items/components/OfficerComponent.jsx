@@ -7,12 +7,14 @@ const OfficerComponent = ({ handleSelectedOficer }) => {
     return (
         <div className='itemOfficer'>
             <DivisionTopBar sectionTitle="Officer details" />
+            <div>
             <AutocompleteComponent
                 list={officers}
                 label={'Select Officer'}
                 keyField={'name'}
                 handleOnchange={handleSelectedOficer}
             />
+            </div>
         </div>
     )
 }

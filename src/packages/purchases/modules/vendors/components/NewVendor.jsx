@@ -36,6 +36,11 @@ const NewVendor = () => {
     const vendorEmailRef = useRef(null);
     const vendorPhoneRef = useRef(null);
     const vendorNationalIDRef = useRef(null);
+    const vendorCompanyNameRef = useRef(null);
+    const vendorWebsiteRef = useRef(null);
+    const vendorPinRef = useRef(null);
+    const vendorReferenceRef = useRef(null);
+    const vendorProdDescRef = useRef(null);
 
 
     const billingInfo = {
@@ -289,20 +294,23 @@ return (
                                     type="url"
                                     prelabelText={"website"}
                                     name="website"
+                                    ref={vendorWebsiteRef}
                                 />
                                 <InputComponent
                                     type="text"
                                     prelabelText={"reference"}
                                     name="vendor_reference"
+                                    ref={vendorReferenceRef}
                                 />
                                 <InputComponent
                                     type="text"
                                     prelabelText={"Tax number"}
                                     name="kra_pin"
+                                    ref={vendorPinRef}
                                 />
                                 <div className="new_vendors__left__dataentry__form_billinginfo_dataentry_section-two">
                                 <label htmlFor="product_description">product description</label>
-                                <textarea name="product_description" id="product_description" cols="30" rows="4" className="info_textarea"></textarea>
+                                <textarea name="product_description" id="product_description" cols="30" rows="4" className="info_textarea" ref={vendorProdDescRef}></textarea>
                             </div>
                             </div>
                             <div className="new_vendors__left__dataentry__form_vendorinfo__others_right">

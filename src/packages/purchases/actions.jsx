@@ -75,26 +75,6 @@ export const postContactPerson = (rows) => {
         });
     })
 }
-console.log(idObject);
-
-export const postVendor = (item) => {
-    const data = {
-        ...item,
-        organization_id: '1',
-        ...idObject
-    }
-    _request({
-        method: 'POST',
-        data: data,
-        url: vendor,
-    })
-    .then((res) => {
-        console.log(res);
-    })
-    .catch((error) => {
-        console.log(error);
-    });
-};
 
 export const postCurrency = (item) => {
     const data = {
@@ -114,3 +94,22 @@ export const postCurrency = (item) => {
         console.log(error);
     });
 }
+console.log(idObject);
+export const postVendor = (item) => {
+    const data = {
+        ...item,
+        organization_id: '1',
+        ...idObject
+    }
+    _request({
+        method: 'POST',
+        data: data,
+        url: vendor,
+    })
+    .then((res) => {
+        console.log(res);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+};

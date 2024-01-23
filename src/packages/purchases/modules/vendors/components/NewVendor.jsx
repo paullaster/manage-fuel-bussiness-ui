@@ -52,6 +52,12 @@ const NewVendor = () => {
         accountNumberRef,
     };
 
+    const handleAddCurrency = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        setOpen(true);
+    };
+
     const handleSelectedPaymentMethod = (event, newValue) => {
         event.preventDefault();
         event.stopPropagation();

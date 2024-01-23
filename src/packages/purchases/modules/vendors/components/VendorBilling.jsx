@@ -4,7 +4,7 @@ import { MdAdd } from "react-icons/md";
 import AddItemButton from '../../../shared/components/AddItemButton';
 
 const VendorBilling = forwardRef((props, ref) => {
-    const { handleSelectedPaymentMethod } = props;
+    const { handleSelectedPaymentMethod, handleAddCurrency } = props;
     const [paymentMethods, setPaymentMethods] = useState([{ method: 'Mpesa' }]);
     return (
         <div className="billinginfo_dataentry">
@@ -45,7 +45,7 @@ const VendorBilling = forwardRef((props, ref) => {
                 name="bank_account_number"
                 ref={ref.accountNumberRef}
             />
-            <AddItemButton  btnCustomClass={'btn-element btn_primary'} btnCaption="Add Currency"/>
+            <AddItemButton  methodHandler={handleAddCurrency}  btnCustomClass={'btn-element btn_primary'} btnCaption="Add Currency"/>
         </div>
     )
 })

@@ -10,6 +10,7 @@ import WebStorage from "@/utils/WebStorage";
 import { APPNAME } from "@/environments";
 import { GridActionsCellItem } from '@mui/x-data-grid';
 import { MdDelete } from "react-icons/md";
+import NewVendor from "../../vendors/components/NewVendor";
 
 
 const NewItem = () => {
@@ -132,8 +133,14 @@ const NewItem = () => {
     <section className='purchaseItem'>
       <shared.components.SectionIntroduction text="New purchase item" />
       <Form method="post">
-        <shared.components.BillingComponent cardLabelView={cardLabelView} />
-        <PurchaseItemEntry columns={columns} rows={rows} handleAddNewItem={handleAddNewItem} />
+        <shared.components.BillingComponent cardLabelView={cardLabelView} >
+          <NewVendor />
+        </shared.components.BillingComponent>
+        <PurchaseItemEntry
+          columns={columns}
+          rows={rows}
+          handleAddNewItem={handleAddNewItem}
+        />
         <FormButtonRow />
       </Form>
     </section>

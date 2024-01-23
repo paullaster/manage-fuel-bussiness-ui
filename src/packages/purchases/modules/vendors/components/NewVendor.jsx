@@ -68,7 +68,14 @@ const NewVendor = () => {
     };
 
     const handleSubmitCurrency = (event) => {
-        console.log("Currency submitted");
+        if (event.type = 'clcik') {
+            const currencyObj = {
+                currency_name: currencyNameRef.current.value,
+                currency_code: currencyCodeRef.current.value,
+                rate: currencyRateRef.current.value,
+                symbol: currencySymbolref.current.value,
+            }
+        }
     }
     const handleAddCurrency = (event) => {
         event.preventDefault();

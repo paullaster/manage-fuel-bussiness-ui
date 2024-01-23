@@ -242,7 +242,7 @@ const NewVendor = () => {
             website:,
             kra_pin:,
             product_description:,
-            company_name:,
+            company_name: vendorCompanyNameRef.current.value,
             vendor_phone: vendorPhoneRef.current.value,
             vendor_email: vendorEmailRef.current.vaalue,
             vendor_name: vendorNameRef.current.value,

@@ -2,14 +2,31 @@ import AddItemButton from "../../../shared/components/AddItemButton"
 import DivisionTopBar from "../../../shared/components/DivisionTopBar"
 import ItemData from "./ItemData"
 
-const PurchaseItemEntry = ({columns, rows, handleAddNewItem}) => {
+const PurchaseItemEntry = ({
+    columns,
+    rows,
+    rowModesModel = {},
+    handleRowModesModelChange = () => { },
+    handleRowEditStop = () => { },
+    processRowUpdate = () => { },
+    slots = {},
+    slotProps = {}
+}) => {
   return (
         <div className="tankEntries">
             <DivisionTopBar sectionTitle="Purcahse item details">
-                <AddItemButton btnCaption="Add item" methodHandler={handleAddNewItem}/>
             </DivisionTopBar>
             <div>
-                <ItemData columns={columns} rows ={rows}/>
+                <ItemData
+                columns={columns}
+                rows={rows}
+                rowModesModel={rowModesModel}
+                handleRowModesModelChange={handleRowModesModelChange}
+                handleRowEditStop={handleRowEditStop}
+                processRowUpdate={processRowUpdate}
+                slots={slots}
+                slotProps={slotProps}
+                />
             </div>
         </div>
     )

@@ -71,7 +71,7 @@ const NewVendor = () => {
     };
 
     const handleSubmitCurrency = (event) => {
-        if (event.type === 'clcik') {
+        if (event.type === 'click') {
             const currencyObject = {
                 currency_name: currencyNameRef.current.value,
                 currency_code: currencyCodeRef.current.value,

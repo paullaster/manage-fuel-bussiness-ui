@@ -10,6 +10,7 @@ const CurrencyComponent = forwardRef((props, ref) => {
             dialogTitle={dialogTitle}
             maxWidth={maxWidth}
         >
+            <form method="post" onSubmit={handleSubmitCurrency}>
             <div className="addCurrency">
             <InputComponent
                 type="text"
@@ -38,6 +39,7 @@ const CurrencyComponent = forwardRef((props, ref) => {
             />
 
             </div>
+            </form>
         </DialogComponent>
     )
 })

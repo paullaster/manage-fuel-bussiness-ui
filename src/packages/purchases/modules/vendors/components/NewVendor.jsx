@@ -83,7 +83,7 @@ const NewVendor = () => {
                 }
             }
             if(invalid) {
-                return;
+                return new Error("Invalid form");
             }
             console.log(currencyObject)
         }

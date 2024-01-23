@@ -94,4 +94,11 @@ export const postVendor = (item) => {
     .catch((error) => {
         console.log(error);
     })
+};
+
+export const postCurrency = (item) => {
+    const data = {
+        ...item,
+        organization_id: '1',
+    }
 }

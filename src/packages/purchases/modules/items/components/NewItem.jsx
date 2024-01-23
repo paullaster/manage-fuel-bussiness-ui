@@ -9,7 +9,7 @@ import { apiFetchUtil, GetGross } from "@/utils";
 import WebStorage from "@/utils/WebStorage";
 import { APPNAME } from "@/environments";
 import { GridActionsCellItem } from '@mui/x-data-grid';
-import { MdDelete } from "react-icons/md";
+import { MdDelete, MdOutlineSaveAlt, MdCancel, MdCreate } from "react-icons/md";
 import NewVendor from "../../vendors/components/NewVendor";
 
 
@@ -105,14 +105,46 @@ const NewItem = () => {
         field: 'actions',
         type: 'actions',
         width: 80,
-        getActions: (params) => [
-          <GridActionsCellItem
-            key={uuidv4()}
-            icon={<MdDelete size={25} />}
-            label="Delete"
-            onClick={deleteItem(params.id)}
-          />,
-        ],
+        cellClassName: 'actions',
+        getActions: (params) => {
+          const isInEditMode = rowModesModel[params.id]?.mode === GridRowModes.Edit;
+
+          if (isInEditMode) {
+            return [
+              <GridActionsCellItem 
+              key={uuidv4()}
+              icon={<MdOutlineSaveAlt />}
+              label="Save"
+              sx={{
+                color: 'primary.main',
+              }}
+              onClick={ () => handleSaveClick(params)}
+              />,
+              <GridActionsCellItem
+              key={uuidv4()}
+              icon={<MdCancel />}
+              label="Cancel"
+              className="textPrimary"
+              onClick={ () => handleCancelClick(params)}
+              color="inherit"
+            />,
+            ];
+          }
+          return[
+            <GridActionsCellItem
+              key={uuidv4()}
+              icon={<MdCreate size={25} />}
+              label="Edit"
+              onClick={ () => handleEditClick(params)}
+            />,
+            <GridActionsCellItem
+              key={uuidv4()}
+              icon={<MdDelete size={25} />}
+              label="Delete"
+              onClick={ () => deleteItem(params)}
+            />,
+          ]
+        },
         hideable: false,
       },
     ],

@@ -43,7 +43,6 @@ export const postAddress = (payload) => {
 }
 
 export const postContactPerson = (rows) => {
-    console.log('start function')
     const contacts = rows.map((row) => {
         const { id, isNew, ...payloadFields } = row;
         return {
@@ -52,12 +51,9 @@ export const postContactPerson = (rows) => {
         }
 
     });
-    console.log('contacts array ', contacts);
     const contactLen = contacts?.length;
-    console.log(contactLen);
-    contacts.forEeach(async (item, index) => {
+    contacts.forEach(async (item, index) => {
         if (contactLen - 1 === index) {
-            console.log('log item ', item)
             _request({
                 method: 'POST',
                 data: item,

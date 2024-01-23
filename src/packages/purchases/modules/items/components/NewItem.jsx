@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, useCallback } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Form } from "react-router-dom";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
 import shared from "../../../shared";
@@ -7,7 +7,6 @@ import { composableAutofils } from "../setups";
 import PurchaseItemEntry from "./PurchaseItemEntry";
 import WebStorage from "@/utils/WebStorage";
 import { APPNAME } from "@/environments";
-import { GridActionsCellItem } from '@mui/x-data-grid';
 import { MdDelete, MdOutlineSaveAlt, MdCancel, MdCreate } from "react-icons/md";
 import NewVendor from "../../vendors/components/NewVendor";
 import {
@@ -15,9 +14,7 @@ import {
   GridRowModes,
   GridRowEditStopReasons
 } from '@mui/x-data-grid';
-import { apiFetchUtil, GetGross } from "@/utils";
-import WebStorage from "@/utils/WebStorage";
-import { APPNAME } from "@/environments";
+import { GetGross } from "@/utils";
 import { v4 as uuidv4 } from 'uuid';
 import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 
@@ -196,12 +193,6 @@ setRowModesModel(newRowModesModel);
     ],
     [handleSaveClick, handleCancelClick, handleEditClick,  deleteItem],
   );
-
-  const handleAddNewItem = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setRows((prev) => [...prev, { id: uuidv4(), }]);
-  };
 
   useEffect(() => {
     appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });

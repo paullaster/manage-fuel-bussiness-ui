@@ -1,7 +1,7 @@
 import React, { forwardRef, useState } from 'react'
-import { AutocompleteComponent, InputComponent } from '@/components';
+import { AutocompleteComponent, InputComponent, Button } from '@/components';
 
-const VendorBilling = forwardRef((props, ref)=>{
+const VendorBilling = forwardRef((props, ref) => {
     const { handleSelectedPaymentMethod } = props;
     const [paymentMethods, setPaymentMethods] = useState([{ method: 'Mpesa' }]);
     return (
@@ -43,6 +43,9 @@ const VendorBilling = forwardRef((props, ref)=>{
                 name="bank_account_number"
                 ref={ref.accountNumberRef}
             />
+            <Button>
+
+            </Button>
         </div>
     )
 })

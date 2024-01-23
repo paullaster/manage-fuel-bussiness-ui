@@ -294,7 +294,7 @@ const NewFuelPurchase = () => {
           slots={{ toolbar: DataGridToolbar }}
           slotProps={{ toolbar: { setRows, setRowModesModel } }}
         />
-        <FormButtonRow />
+        <FormButtonRow className="form_actions"/>
       </Form>
     </section>
   )

@@ -2,16 +2,16 @@ import { AutocompleteComponent } from '@/components';
 import DivisionTopBar from "../../../shared/components/DivisionTopBar";
 import { useState } from 'react';
 
-const OfficerComponent = () => {
+const OfficerComponent = ({handleSelectedOficer}) => {
   const [officers, setOfficers] = useState([{name: 'Ken Mjungu'}, {name: 'Waigah Mwaura'}]);
   return (
     <div>
-        <DivisionTopBar sectionTitle="Purcahse item details" />
+        <DivisionTopBar sectionTitle="Officer details" />
         <AutocompleteComponent
                 list={officers}
                 label={'Select Officer'}
                 keyField={'name'}
-                handleOnchange={handleSelectedPaymentMethod}
+                handleOnchange={handleSelectedOficer}
             />
     </div>
   )

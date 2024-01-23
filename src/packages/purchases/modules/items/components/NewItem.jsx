@@ -17,6 +17,7 @@ import {
 import { GetGross } from "@/utils";
 import { v4 as uuidv4 } from 'uuid';
 import DataGridToolbar from "../../../shared/components/DataGridToolbar";
+import OfficerComponent from "./OfficerComponent";
 
 
 const items = WebStorage.GetFromWebStorage('session', APPNAME).items;
@@ -215,6 +216,7 @@ setRowModesModel(newRowModesModel);
         <shared.components.BillingComponent cardLabelView={cardLabelView} >
           <NewVendor />
         </shared.components.BillingComponent>
+        <OfficerComponent />
         <PurchaseItemEntry
           columns={columns}
           rows={rows}

@@ -148,7 +148,7 @@ const NewItem = () => {
         hideable: false,
       },
     ],
-    [handleSaveClick, deleteItem],
+    [handleSaveClick, handleCancelClick, handleEditClick,  deleteItem],
   );
 
   const handleAddNewItem = (event) => {
@@ -159,7 +159,7 @@ const NewItem = () => {
 
   useEffect(() => {
     appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });
-  }, []);
+  }, [columns]);
 
   return (
     <section className='purchaseItem'>

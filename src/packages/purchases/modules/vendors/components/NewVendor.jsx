@@ -75,6 +75,11 @@ const NewVendor = () => {
                 rate: currencyRateRef.current.value,
                 symbol: currencySymbolref.current.value,
             }
+            for (let prop in currencyObject) {
+                if (!currencyObject[prop] && prop !== 'symbol') {
+                    return new Error(`${prop} is a required filed`);
+                }
+            }
             console.log(currencyObject)
         }
     }

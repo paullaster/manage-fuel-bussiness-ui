@@ -1,11 +1,13 @@
 import { _request } from '@/services';
 import constants from './constants';
+import WebStorage from '@/utils/WebStorage';
+import { APPNAME } from '@/environments';
 
 
 const { address, billing, contact, vendor, currency } = constants;
-const idObject = {};
+let idObject = {};
 
-export const postBillingInformation = (payload) => {
+export const postBillingInformation = async (payload) => {
     const data = {
         ...payload,
         organization_id: "1",
@@ -17,13 +19,22 @@ export const postBillingInformation = (payload) => {
     })
         .then((res) => {
             console.log(res);
+            idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+            if (!idObject['currency_id']) {
+                console.error("Invalid payload, currency information did not insert correctly!");
+                throw new Error("Invalid payload, Currency information did no insert correctly!");
+            }
             idObject.billing_id = res?.id
+            WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+            return res;
         })
         .catch((err) => {
             return new Error(err.message);
         })
 }
-export const postAddress = (payload) => {
+
+const addresses = [];
+export const postAddress = async (payload) => {
     const data = {
         ...payload,
         organization_id: "1",
@@ -34,46 +45,45 @@ export const postAddress = (payload) => {
         url: address,
     })
         .then((res) => {
-            console.log(res);
-            idObject.address_id = res?.address_id;
+            idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+            console.log(idObject);
+            if (!idObject['billing_id'] || !idObject['currency_id']) {
+                console.error("Invalid payload, Billing and currency  information did no insert correctly!");
+                throw new Error("Invalid payload, Billing and currency information did no insert correctly!");
+            }
+            addresses.push(res?.address_id);
+            idObject.addresses = addresses;
+            WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+            return res;
         })
         .catch((err) => {
             return new Error(err.message);
         });
 }
-
-export const postContactPerson = (rows) => {
-    const contacts = rows.map((row) => {
-        const { id, isNew, ...payloadFields } = row;
-        return {
-            ...payloadFields,
-            organization_id: '1',
-        }
-
-    });
-    const contactLen = contacts?.length;
-    contacts.forEach(async (item, index) => {
-        if (contactLen - 1 === index) {
-            _request({
-                method: 'POST',
-                data: item,
-                url: contact,
-            })
-                .then((res) => {
-                    console.log(res);
-                    idObject.contact_id = res?.contact_id;
-                })
-                .catch((err) => {
-                    return new Error(err.message);
-                });
-        }
-
-        await _request({
-            method: 'POST',
-            data: item,
-            url: contact,
-        });
+const contacts = [];
+export const postContactPerson = async (data) => {
+    const contactInfo = {
+        ...data,
+        organization_id: '1',
+    }
+    _request({
+        method: 'POST',
+        data: contactInfo,
+        url: contact,
     })
+        .then((res) => {
+            idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+            idObject = Array.isArray(idObject) ? {} : idObject;
+            console.log(idObject);
+            contacts.push(res?.contact_id);
+            idObject.contacts = contacts;
+            console.log(idObject);
+            WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+            return res;
+        })
+        .catch((err) => {
+            return new Error(err.message);
+        });
 }
 
 export const postCurrency = (item) => {
@@ -86,42 +96,45 @@ export const postCurrency = (item) => {
         data: data,
         url: currency,
     })
-    .then((res) => {
-        console.log(res);
-        idObject.currency_id = res?.currency_id;
-    })
-    .catch((error) => {
-        console.log(error);
-    });
+        .then((res) => {
+            console.log(res);
+            idObject.currency_id = res?.currency_id;
+            WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 }
-console.log(idObject);
-export const postVendor = (item) => {
-    if(Object.keys(idObject).length !== 4) {
+export const postVendor = async (item) => {
+    const objectKeys = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+    if (Object.keys(objectKeys).length !== 4) {
         console.error("Missing dependency key, please check your data then send again");
         throw new Error("Missing dependency key, please check you data then send again");
     }
-    const nullKey = Object.keys(idObject).filter( (key) => {
-        return !idObject[key];
+    const nullKey = Object.keys(objectKeys).filter((key) => {
+        return !objectKeys[key];
     });
 
-    if(nullKey.length) {
+    if (nullKey.length) {
         console.error("Missing dependency key, please check your data then send again");
         throw new Error("Missing dependency key, please check you data then send again");
     }
     const data = {
         ...item,
         organization_id: '1',
-        ...idObject
+        ...objectKeys
     }
+    console.log("sendin data to vendor", data)
     _request({
         method: 'POST',
         data: data,
         url: vendor,
     })
-    .then((res) => {
-        console.log(res);
-    })
-    .catch((error) => {
-        console.log(error);
-    });
+        .then((res) => {
+            console.log(res);
+            return res;
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 };

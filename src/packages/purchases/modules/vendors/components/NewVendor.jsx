@@ -10,6 +10,7 @@ import { GridRowModes, GridActionsCellItem } from '@mui/x-data-grid';
 import { MdOutlineSaveAlt, MdCancel, MdCreate, MdDelete } from 'react-icons/md';
 import { v4 as uuidv4 } from 'uuid';
 import CurrencyComponent from "./CurrencyComponent";
+import FormButtonRow from "../../../shared/components/FormButtonRow";
 
 
 
@@ -162,6 +163,8 @@ const NewVendor = () => {
 
     const handleSaveClick = (item) => {
         setRowModesModel({ ...rowModesModel, [item.id]: { mode: GridRowModes.View } });
+        const {id, isNew, ...data} = item.row; 
+        postContactPerson(data);
     };
 
     const handleCancelClick = (item) => {
@@ -290,52 +293,53 @@ const NewVendor = () => {
         };
 
         console.log(billinObject);
-        postBillingInformation(billinObject);
+        postBillingInformation(billinObject)
+            .then((res) => {
+                console.log("Billing response ", res);
+                const addressObject = {
+                    address: addressRef.current.value,
+                    city: cityRef.current.value,
+                    zip_code: zipCodeRef.current.value,
+                    state: stateRef.current.value,
+                    country: countryRef.current.value,
+                };
+                for (let prop in addressObject) {
+                    if (!addressObject[prop]) {
+                        validRef.current = false;
+                        return new Error(`${prop} is a required field`);
+                    }
+                }
 
-        const addressObject = {
-            address: addressRef.current.value,
-            city: cityRef.current.value,
-            zip_code: zipCodeRef.current.value,
-            state: stateRef.current.value,
-            country: countryRef.current.value,
-        };
-        for (let prop in addressObject) {
-            if (!addressObject[prop]) {
-                validRef.current = false;
-                return new Error(`${prop} is a required field`);
-            }
-        }
+                if (!validRef.current) {
+                    return new Error("Invalid request");
+                };
 
-        if (!validRef.current) {
-            return new Error("Invalid request");
-        };
-
-        postAddress(addressObject);
-
-        if (!rows.length) {
-            return;
-        }
-        postContactPerson(rows);
-
-        const vendorObject = {
-            vendor_reference: vendorReferenceRef.current.value,
-            website: vendorWebsiteRef.current.value,
-            kra_pin: vendorPinRef.current.value,
-            product_description: vendorProdDescRef.current.value,
-            company_name: vendorCompanyNameRef.current.value,
-            vendor_phone: vendorPhoneRef.current.value,
-            vendor_email: vendorEmailRef.current.vaalue,
-            vendor_name: vendorNameRef.current.value,
-            national_id: vendorNationalIDRef.current.value,
-        };
-        validRef.current = ValidateVendorObject(vendorObject);
-        console.log(validRef.current);
-        if (!validRef.current) {
-            throw new Error("Invalid payload!");
-        }
-        console.log(vendorObject);
-        postVendor(vendorObject);
-        console.log(addressObject);
+                postAddress(addressObject)
+                    .then((res) => {
+                        console.log("Address response , ", res);
+                        const vendorObject = {
+                            vendor_reference: vendorReferenceRef.current.value,
+                            website: vendorWebsiteRef.current.value,
+                            kra_pin: vendorPinRef.current.value,
+                            product_description: vendorProdDescRef.current.value,
+                            company_name: vendorCompanyNameRef.current.value,
+                            vendor_phone: vendorPhoneRef.current.value,
+                            vendor_email: vendorEmailRef.current.vaalue,
+                            vendor_name: vendorNameRef.current.value,
+                            national_id: vendorNationalIDRef.current.value,
+                        };
+                        validRef.current = ValidateVendorObject(vendorObject);
+                        console.log(validRef.current);
+                        if (!validRef.current) {
+                            throw new Error("Invalid payload!");
+                        }
+                        console.log("Vendor object", vendorObject);
+                        postVendor(vendorObject)
+                            .then((res) => {
+                                console.log(res);
+                            })
+                    })
+            });
 
     }
 
@@ -491,7 +495,7 @@ const NewVendor = () => {
                                 />
                             </div>
                         </div>
-                        <Button type='button' className='btn-element btn_primary' onClick={SetPayload}>Save</Button>
+                        <FormButtonRow className={'form_actions_wide'} methodHandler={SetPayload} />
                     </Form>
                 </div>
             </div>

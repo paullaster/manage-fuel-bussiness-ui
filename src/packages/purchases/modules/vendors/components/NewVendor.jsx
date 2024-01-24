@@ -7,9 +7,35 @@ import { postAddress, postBillingInformation, postContactPerson, postVendor, pos
 import VendorBilling from "./VendorBilling";
 import ContactPerson from "./ContactPerson";
 import { GridRowModes, GridActionsCellItem } from '@mui/x-data-grid';
-import {MdOutlineSaveAlt, MdCancel, MdCreate, MdDelete } from 'react-icons/md';
+import { MdOutlineSaveAlt, MdCancel, MdCreate, MdDelete } from 'react-icons/md';
 import { v4 as uuidv4 } from 'uuid';
 import CurrencyComponent from "./CurrencyComponent";
+
+
+
+
+const ValidateVendorObject = (vendorObject) => {
+    const requiredFields = new Set([
+        "company_name",
+        "product_description",
+        "kra_pin",
+        "vendor_name",
+    ]);
+
+    const missingRequiredFields = [];
+
+    for(let prop in vendorObject) {
+        if(requiredFields.has(prop) && !vendorObject[prop]) {
+            missingRequiredFields.push(prop);
+        }
+        if(missingRequiredFields.length) {
+            throw new Error(`The following required fields are missing: ${missingFields.join(", ")}`);
+        }
+    }
+}
+
+
+
 
 
 const NewVendor = () => {
@@ -84,7 +110,7 @@ const NewVendor = () => {
                     return new Error(`${prop} is a required filed`);
                 }
             }
-            if(invalid.current) {
+            if (invalid.current) {
                 return new Error("Invalid form");
             }
             postCurrency(currencyObject);
@@ -244,7 +270,7 @@ const NewVendor = () => {
         ]
     }, [handleEditClick, handleSaveClick]);
 
-    useEffect(() =>{
+    useEffect(() => {
 
     }, [contactColumns]);
 
@@ -263,7 +289,7 @@ const NewVendor = () => {
 
         console.log(billinObject);
         postBillingInformation(billinObject);
-        
+
         const addressObject = {
             address: addressRef.current.value,
             city: cityRef.current.value,
@@ -277,14 +303,14 @@ const NewVendor = () => {
                 return new Error(`${prop} is a required field`);
             }
         }
-        
+
         if (!validRef.current) {
             return new Error("Invalid request");
         };
-        
+
         postAddress(addressObject);
 
-        if(!rows.length) {
+        if (!rows.length) {
             return;
         }
         postContactPerson(rows);
@@ -302,11 +328,11 @@ const NewVendor = () => {
         };
 
         for (let prop in vendorObject) {
-            if(
+            if (
                 !vendorObject[prop] &&
                 (
                     prop !== 'website' ||
-                    prop !== 'national_id '||
+                    prop !== 'national_id ' ||
                     prop !== 'vendor_email' ||
                     prop !== 'vendor_phone' ||
                     prop !== 'vendor_reference'
@@ -321,181 +347,181 @@ const NewVendor = () => {
         console.log(addressObject);
         console.log(vendorObject);
 
-}
+    }
 
-return (
-    <section className="new_vendors">
-        <div className="new_vendors__left">
-            <shared.components.SectionIntroduction text="New Vendor" />
-            <div className="new_vendors__left__dataentry">
-                <Form className="new_vendors__left__dataentry__form">
-                    <div className="new_vendors__left__dataentry__form_vendorinfo">
-                        <div className="new_vendors__left__dataentry__form_vendorinfo_introduction form_section_introductions">
-                            <h4>General</h4>
-                            <p>Your vendor's contact information will appear in bills and their profiles. You can add their contact information and their logo to be used in bills.</p>
-                        </div>
-                        {/* <InputComponent
+    return (
+        <section className="new_vendors">
+            <div className="new_vendors__left">
+                <shared.components.SectionIntroduction text="New Vendor" />
+                <div className="new_vendors__left__dataentry">
+                    <Form className="new_vendors__left__dataentry__form">
+                        <div className="new_vendors__left__dataentry__form_vendorinfo">
+                            <div className="new_vendors__left__dataentry__form_vendorinfo_introduction form_section_introductions">
+                                <h4>General</h4>
+                                <p>Your vendor's contact information will appear in bills and their profiles. You can add their contact information and their logo to be used in bills.</p>
+                            </div>
+                            {/* <InputComponent
                                 type="text"
                                 prelabelText={"national ID"}
                                 name="organization_id"
                             /> */}
-                        <div className="new_vendors__left__dataentry__form_vendorinfo__vendorname">
-                            <InputComponent
-                                type="text"
-                                prelabelText={"name"}
-                                name="vendor_name"
-                                ref={vendorNameRef}
-                            />
-                        </div>
-                        <div className="new_vendors__left__dataentry__form_vendorinfo__others">
-                            <div className="new_vendors__left__dataentry__form_vendorinfo__others_left">
-                                <InputComponent
-                                    type="email"
-                                    prelabelText={"email"}
-                                    name="vendor_email"
-                                    ref={vendorEmailRef}
-                                />
-                                <InputComponent
-                                    type="tel"
-                                    prelabelText={"phone"}
-                                    name="vendor_phone"
-                                    ref={vendorPhoneRef}
-                                />
-                                <InputComponent
-                                type="text"
-                                prelabelText={"Company name"}
-                                name="national_id"
-                                ref={vendorCompanyNameRef}
-                            />
-                                <InputComponent
-                                type="text"
-                                prelabelText={"National ID"}
-                                name="national_id"
-                                ref={vendorNationalIDRef}
-                            />
-                                <InputComponent
-                                    type="url"
-                                    prelabelText={"website"}
-                                    name="website"
-                                    ref={vendorWebsiteRef}
-                                />
+                            <div className="new_vendors__left__dataentry__form_vendorinfo__vendorname">
                                 <InputComponent
                                     type="text"
-                                    prelabelText={"reference"}
-                                    name="vendor_reference"
-                                    ref={vendorReferenceRef}
+                                    prelabelText={"name"}
+                                    name="vendor_name"
+                                    ref={vendorNameRef}
                                 />
-                                <InputComponent
-                                    type="text"
-                                    prelabelText={"Tax number"}
-                                    name="kra_pin"
-                                    ref={vendorPinRef}
-                                />
-                                <div className="new_vendors__left__dataentry__form_billinginfo_dataentry_section-two">
-                                <label htmlFor="product_description">product description</label>
-                                <textarea name="product_description" id="product_description" cols="30" rows="4" className="info_textarea" ref={vendorProdDescRef}></textarea>
                             </div>
-                            </div>
-                            <div className="new_vendors__left__dataentry__form_vendorinfo__others_right">
-                                <div className="file_upload_container">
-                                    <label htmlFor="vendor_logo" className={upload ? '' : 'show'}>upload picture</label>
-                                    <input type="file" id="vendor_logo" accept=".ico, .svg, .jpg, .jpeg, .png, .gif, .webp" name="vendor_image" onChange={handleUploadChange} />
-                                    <img src={upload} alt="preview" className={upload ? 'show' : ''} />
-                                    <button onClick={handleDeleteImage} className={upload ? 'show' : ''} > <MdDelete size={25} /></button>
+                            <div className="new_vendors__left__dataentry__form_vendorinfo__others">
+                                <div className="new_vendors__left__dataentry__form_vendorinfo__others_left">
+                                    <InputComponent
+                                        type="email"
+                                        prelabelText={"email"}
+                                        name="vendor_email"
+                                        ref={vendorEmailRef}
+                                    />
+                                    <InputComponent
+                                        type="tel"
+                                        prelabelText={"phone"}
+                                        name="vendor_phone"
+                                        ref={vendorPhoneRef}
+                                    />
+                                    <InputComponent
+                                        type="text"
+                                        prelabelText={"Company name"}
+                                        name="national_id"
+                                        ref={vendorCompanyNameRef}
+                                    />
+                                    <InputComponent
+                                        type="text"
+                                        prelabelText={"National ID"}
+                                        name="national_id"
+                                        ref={vendorNationalIDRef}
+                                    />
+                                    <InputComponent
+                                        type="url"
+                                        prelabelText={"website"}
+                                        name="website"
+                                        ref={vendorWebsiteRef}
+                                    />
+                                    <InputComponent
+                                        type="text"
+                                        prelabelText={"reference"}
+                                        name="vendor_reference"
+                                        ref={vendorReferenceRef}
+                                    />
+                                    <InputComponent
+                                        type="text"
+                                        prelabelText={"Tax number"}
+                                        name="kra_pin"
+                                        ref={vendorPinRef}
+                                    />
+                                    <div className="new_vendors__left__dataentry__form_billinginfo_dataentry_section-two">
+                                        <label htmlFor="product_description">product description</label>
+                                        <textarea name="product_description" id="product_description" cols="30" rows="4" className="info_textarea" ref={vendorProdDescRef}></textarea>
+                                    </div>
+                                </div>
+                                <div className="new_vendors__left__dataentry__form_vendorinfo__others_right">
+                                    <div className="file_upload_container">
+                                        <label htmlFor="vendor_logo" className={upload ? '' : 'show'}>upload picture</label>
+                                        <input type="file" id="vendor_logo" accept=".ico, .svg, .jpg, .jpeg, .png, .gif, .webp" name="vendor_image" onChange={handleUploadChange} />
+                                        <img src={upload} alt="preview" className={upload ? 'show' : ''} />
+                                        <button onClick={handleDeleteImage} className={upload ? 'show' : ''} > <MdDelete size={25} /></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="new_vendors__left__dataentry__form_billinginfo">
-                        <div className="new_vendors__left__dataentry__form_billinginfo_introduction form_section_introductions">
-                            <h4>Billing</h4>
-                            <p>The tax number appears in every bill issued to you. The selected currency becomes the default currency for this vendor.</p>
+                        <div className="new_vendors__left__dataentry__form_billinginfo">
+                            <div className="new_vendors__left__dataentry__form_billinginfo_introduction form_section_introductions">
+                                <h4>Billing</h4>
+                                <p>The tax number appears in every bill issued to you. The selected currency becomes the default currency for this vendor.</p>
+                            </div>
+                            <VendorBilling ref={billingInfo} handleSelectedPaymentMethod={handleSelectedPaymentMethod} handleAddCurrency={handleAddCurrency} />
+                            <CurrencyComponent ref={currencyRefObject} open={open} handleCloseDialog={handleCloseDialog} dialogTitle="Add currency" maxWidth='200' handleSubmitCurrency={handleSubmitCurrency} />
                         </div>
-                        <VendorBilling ref={billingInfo} handleSelectedPaymentMethod={handleSelectedPaymentMethod} handleAddCurrency={handleAddCurrency}/>
-                        <CurrencyComponent ref={currencyRefObject} open={open} handleCloseDialog={handleCloseDialog} dialogTitle="Add currency" maxWidth='200' handleSubmitCurrency={handleSubmitCurrency} />
-                    </div>
-                    <div className="new_vendors__left__dataentry__form_addressinfo">
-                        <div className="new_vendors__left__dataentry__form_addressinfo_introduction form_section_introductions">
-                            <h4>Address</h4>
-                            <p>The address is required for the bills, so you need to add billing address details for your vendor.</p>
-                        </div>
-                        <div className="new_vendors__left__dataentry__form_addressinfo_datanetry">
-                            <div className="new_vendors__left__dataentry__form_addressinfo_datanetry__section-one">
-                                <InputComponent
-                                    prelabelText={"address finder"}
-                                />
-                                <div className="textarea_container">
-                                    <label htmlFor="address">address</label>
-                                    <textarea name="address" id="address" cols="30" rows="4" className="info_textarea" ref={addressRef}></textarea>
+                        <div className="new_vendors__left__dataentry__form_addressinfo">
+                            <div className="new_vendors__left__dataentry__form_addressinfo_introduction form_section_introductions">
+                                <h4>Address</h4>
+                                <p>The address is required for the bills, so you need to add billing address details for your vendor.</p>
+                            </div>
+                            <div className="new_vendors__left__dataentry__form_addressinfo_datanetry">
+                                <div className="new_vendors__left__dataentry__form_addressinfo_datanetry__section-one">
+                                    <InputComponent
+                                        prelabelText={"address finder"}
+                                    />
+                                    <div className="textarea_container">
+                                        <label htmlFor="address">address</label>
+                                        <textarea name="address" id="address" cols="30" rows="4" className="info_textarea" ref={addressRef}></textarea>
+                                    </div>
+                                </div>
+                                <div className="new_vendors__left__dataentry__form_addressinfo_datanetry__section-two">
+                                    <InputComponent
+                                        type="text"
+                                        prelabelText={"town / city"}
+                                        name="city"
+                                        ref={cityRef}
+                                    />
+                                    <InputComponent
+                                        type="text"
+                                        prelabelText={"postal / zip code"}
+                                        name="zip_code"
+                                        ref={zipCodeRef}
+                                    />
+                                    <InputComponent
+                                        type="text"
+                                        prelabelText={"province / state"}
+                                        name="state"
+                                        ref={stateRef}
+                                    />
+                                    <InputComponent
+                                        type="text"
+                                        prelabelText={"country"}
+                                        name="country"
+                                        ref={countryRef}
+                                    />
                                 </div>
                             </div>
-                            <div className="new_vendors__left__dataentry__form_addressinfo_datanetry__section-two">
-                                <InputComponent
-                                    type="text"
-                                    prelabelText={"town / city"}
-                                    name="city"
-                                    ref={cityRef}
-                                />
-                                <InputComponent
-                                    type="text"
-                                    prelabelText={"postal / zip code"}
-                                    name="zip_code"
-                                    ref={zipCodeRef}
-                                />
-                                <InputComponent
-                                    type="text"
-                                    prelabelText={"province / state"}
-                                    name="state"
-                                    ref={stateRef}
-                                />
-                                <InputComponent
-                                    type="text"
-                                    prelabelText={"country"}
-                                    name="country"
-                                    ref={countryRef}
+                        </div>
+                        <div className="new_vendors__left__dataentry__form_contactperson">
+                            <div className="new_vendors__left__dataentry__form_contactperson_introduction form_section_introductions">
+                                <h4>Contact Person</h4>
+                                <p>To include additional recipients in an email as CC, add them as contact persons.</p>
+                            </div>
+                            <div className="new_vendors__left__dataentry__form_contactperson_datacolumns">
+                                <ContactPerson
+                                    rows={rows}
+                                    columns={contactColumns}
+                                    setRows={setRows}
+                                    rowModesModel={rowModesModel}
+                                    setRowModesModel={setRowModesModel}
+                                    handleRowModesModelChange={handleRowModesModelChange}
+                                    processRowUpdate={processRowUpdate}
+                                    handleRowEditStop={handleRowEditStop}
                                 />
                             </div>
                         </div>
-                    </div>
-                    <div className="new_vendors__left__dataentry__form_contactperson">
-                        <div className="new_vendors__left__dataentry__form_contactperson_introduction form_section_introductions">
-                            <h4>Contact Person</h4>
-                            <p>To include additional recipients in an email as CC, add them as contact persons.</p>
-                        </div>
-                        <div className="new_vendors__left__dataentry__form_contactperson_datacolumns">
-                            <ContactPerson 
-                            rows={rows}
-                            columns={contactColumns}
-                            setRows={setRows}
-                            rowModesModel={rowModesModel}
-                            setRowModesModel={setRowModesModel}
-                            handleRowModesModelChange={handleRowModesModelChange}
-                            processRowUpdate={processRowUpdate}
-                            handleRowEditStop={handleRowEditStop}
-                            />
-                        </div>
-                    </div>
-                    <Button type='button' className='btn-element btn_primary' onClick={SetPayload}>Save</Button>
-                </Form>
-            </div>
-        </div>
-        <div className="new_vendors__right">
-            <div className="new_vendors__right_container">
-                <img src={cardImage} alt="card" />
-            </div>
-            <div className="new_vendors__right_text_div">
-                <div className="customefields">
-                    <Button>custom fields</Button>
-                </div>
-                <div className="payroll-hypertext">
-                    <h3>Payroll</h3>
-                    <p>Create multiple pay calendars, run payrolls, print payslips, add benefits and deductions, and make bulk payments.</p>
-                    <Button>Learn more</Button>
+                        <Button type='button' className='btn-element btn_primary' onClick={SetPayload}>Save</Button>
+                    </Form>
                 </div>
             </div>
-        </div>
-    </section>
-)
+            <div className="new_vendors__right">
+                <div className="new_vendors__right_container">
+                    <img src={cardImage} alt="card" />
+                </div>
+                <div className="new_vendors__right_text_div">
+                    <div className="customefields">
+                        <Button>custom fields</Button>
+                    </div>
+                    <div className="payroll-hypertext">
+                        <h3>Payroll</h3>
+                        <p>Create multiple pay calendars, run payrolls, print payslips, add benefits and deductions, and make bulk payments.</p>
+                        <Button>Learn more</Button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    )
 }
 
 export default NewVendor

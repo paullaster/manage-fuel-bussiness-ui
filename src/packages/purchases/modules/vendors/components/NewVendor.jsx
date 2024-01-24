@@ -419,7 +419,7 @@ const NewVendor = () => {
                                 <div className="new_vendors__left__dataentry__form_vendorinfo__others_right">
                                     <div className="file_upload_container">
                                         <label htmlFor="vendor_logo" className={upload ? '' : 'show'}>upload picture</label>
-                                        <input type="file" id="vendor_logo" accept=".ico, .svg, .jpg, .jpeg, .png, .gif, .webp" name="vendor_image" onChange={handleUploadChange} />
+                                        <input type="file" idk="vendor_logo" accept=".ico, .svg, .jpg, .jpeg, .png, .gif, .webp" name="vendor_image" onChange={handleUploadChange} />
                                         <img src={upload} alt="preview" className={upload ? 'show' : ''} />
                                         <button onClick={handleDeleteImage} className={upload ? 'show' : ''} > <MdDelete size={25} /></button>
                                     </div>

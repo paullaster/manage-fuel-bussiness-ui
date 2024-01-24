@@ -97,16 +97,16 @@ export const postCurrency = (item) => {
 console.log(idObject);
 export const postVendor = (item) => {
     if(Object.keys(idObject).length !== 4) {
-        console.error("Missing dependency key, please check you data then send again");
-        return new Error("Missing dependency key, please check you data then send again");
+        console.error("Missing dependency key, please check your data then send again");
+        throw new Error("Missing dependency key, please check you data then send again");
     }
     const nullKey = Object.keys(idObject).filter( (key) => {
         return !idObject[key];
     });
 
     if(nullKey.length) {
-        console.error("Missing dependency key, please check you data then send again");
-        return new Error("Missing dependency key, please check you data then send again");
+        console.error("Missing dependency key, please check your data then send again");
+        throw new Error("Missing dependency key, please check you data then send again");
     }
     const data = {
         ...item,

@@ -218,7 +218,7 @@ setRowModesModel(newRowModesModel);
       const subtotal = rows.reduce((cummulative, current) => cummulative + current.amount, summaryValues.subtotal);
       const totalTaxAmount = rows.reduce((cummulative, curreent) => cummulative + curreent.tax_amount, summaryValues.taxt_amount_total);
       const total = subtotal + totalTaxAmount;
-      setSummaryValue({subtotal:subtotal, taxt_amount_total: totalTaxAmount, total:total});
+      setSummaryValues({subtotal:subtotal, taxt_amount_total: totalTaxAmount, total:total});
   }, [rows]);
 
 
@@ -250,7 +250,7 @@ setRowModesModel(newRowModesModel);
           slots={{ toolbar: DataGridToolbar }}
           slotProps={{ toolbar: { setRows, setRowModesModel } }}
         />
-        <SummaryComponent subtotal={4000} totalTaxAmount={2000} total={6000}/>
+        <SummaryComponent subtotal={summaryValues.subtotal} totalTaxAmount={summaryValues.taxt_amount_total} total={summaryValues.total}/>
         <FormButtonRow className='form_actions_wide' />
       </Form>
     </section>

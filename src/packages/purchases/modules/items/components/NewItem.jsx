@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Form } from "react-router-dom";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
 import shared from "../../../shared";
@@ -214,11 +214,20 @@ setRowModesModel(newRowModesModel);
     [handleSaveClick, handleCancelClick, handleEditClick,  deleteItem],
   );
 
-  const handleSettingSummary = useCallback(() => {
-      const subtotal = rows.reduce((cummulative, current) => cummulative + current.amount, summaryValues.subtotal);
-      const totalTaxAmount = rows.reduce((cummulative, curreent) => cummulative + curreent.tax_amount, summaryValues.taxt_amount_total);
-      const total = subtotal + totalTaxAmount;
-      setSummaryValues({subtotal:subtotal, taxt_amount_total: totalTaxAmount, total:total});
+  const handleSettingSummary = useMemo(() => {
+      if (rows.length) {
+        const subtotal = rows.reduce((cummulative, current) => {
+          const sub = current.quantity * current.price;
+          return cummulative + sub;
+        }, summaryValues.subtotal);
+        const totalTaxAmount = rows.reduce((cummulative, current) => {
+          const txA = GetGross(current, 'vat_rate', 'quantity', 'price', 'tax_amount');
+          return cummulative + txA
+        }, summaryValues.taxt_amount_total);
+        const total = subtotal + totalTaxAmount;
+        return setSummaryValues({subtotal:subtotal, taxt_amount_total: totalTaxAmount, total:total});
+      }
+      return setSummaryValues({subtotal:0, taxt_amount_total: 0, total:0});
   }, [rows]);
 
 

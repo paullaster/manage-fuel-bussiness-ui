@@ -24,14 +24,16 @@ const ValidateVendorObject = (vendorObject) => {
 
     const missingRequiredFields = [];
 
-    for(let prop in vendorObject) {
-        if(requiredFields.has(prop) && !vendorObject[prop]) {
+    for (let prop in vendorObject) {
+        if (requiredFields.has(prop) && !vendorObject[prop]) {
             missingRequiredFields.push(prop);
         }
-        if(missingRequiredFields.length) {
-            throw new Error(`The following required fields are missing: ${missingFields.join(", ")}`);
-        }
     }
+    if (missingRequiredFields.length) {
+        throw new Error(`The following required fields are missing: ${missingFields.join(", ")}`);
+    }
+    return true;
+
 }
 
 
@@ -326,6 +328,7 @@ const NewVendor = () => {
             vendor_name: vendorNameRef.current.value,
             national_id: vendorNationalIDRef.current.value,
         };
+        
 
         for (let prop in vendorObject) {
             if (

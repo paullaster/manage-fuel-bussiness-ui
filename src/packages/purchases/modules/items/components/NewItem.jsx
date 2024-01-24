@@ -127,6 +127,17 @@ setRowModesModel(newRowModesModel);
         }
       },
       {
+        field: 'tax_amount',
+        headerName: 'Tax amount',
+        width: 120,
+        editable: false,
+        valueGetter: (params) => GetGross(params.row, 'vat_rate', 'quantity', 'price', 'tax_amount'),
+        hideable: false,
+        type: 'number',
+        headerAlign: 'center',
+        align: 'center',
+      },
+      {
         field: 'amount',
         headerName: 'Amount',
         description: 'Derived amount',

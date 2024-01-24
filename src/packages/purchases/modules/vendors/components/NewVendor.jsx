@@ -416,14 +416,6 @@ const NewVendor = () => {
                                         <textarea name="product_description" id="product_description" cols="30" rows="4" className="info_textarea" ref={vendorProdDescRef}></textarea>
                                     </div>
                                 </div>
-                                <div className="new_vendors__left__dataentry__form_vendorinfo__others_right">
-                                    <div className="file_upload_container">
-                                        <label htmlFor="vendor_logo" className={upload ? '' : 'show'}>upload picture</label>
-                                        <input type="file" idk="vendor_logo" accept=".ico, .svg, .jpg, .jpeg, .png, .gif, .webp" name="vendor_image" onChange={handleUploadChange} />
-                                        <img src={upload} alt="preview" className={upload ? 'show' : ''} />
-                                        <button onClick={handleDeleteImage} className={upload ? 'show' : ''} > <MdDelete size={25} /></button>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div className="new_vendors__left__dataentry__form_billinginfo">

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Form } from "react-router-dom";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
 import shared from "../../../shared";
@@ -28,6 +28,7 @@ const NewItem = () => {
   const { cardLabelView } = useGlobalState();
   const [rows, setRows] = useState([]);
   const [rowModesModel, setRowModesModel] = useState({});
+  const [summaryValues, setSummaryValues] = useState({subtotal: 0, taxt_amount_total: 0, total: 0});
 
   const deleteItem = (item) => {
     setRows((prevRows) => prevRows.filter((row) => row.id !== item.id));
@@ -213,13 +214,23 @@ setRowModesModel(newRowModesModel);
     [handleSaveClick, handleCancelClick, handleEditClick,  deleteItem],
   );
 
+  const handleSettingSummary = useCallback(() => {
+      const subtotal = rows.reduce((cummulative, current) => cummulative + current.amount, summaryValues.subtotal);
+      const totalTaxAmount = rows.reduce((cummulative, curreent) => cummulative + curreent.tax_amount, summaryValues.taxt_amount_total);
+      const total = subtotal + totalTaxAmount;
+      setSummaryValue({subtotal:subtotal, taxt_amount_total: totalTaxAmount, total:total});
+  }, [rows]);
+
+
   useEffect(() => {
     appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });
   }, []);
 
   useEffect(() => {
 
-  }, [columns])
+  }, [columns, handleSettingSummary]);
+
+
 
   return (
     <section className='purchaseItem'>

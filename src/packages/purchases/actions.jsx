@@ -17,7 +17,7 @@ export const postBillingInformation = (payload) => {
     })
         .then((res) => {
             console.log(res);
-            idObject.billing_id = res?.billing_id
+            idObject.billing_id = res?.id
         })
         .catch((err) => {
             return new Error(err.message);
@@ -96,6 +96,12 @@ export const postCurrency = (item) => {
 }
 console.log(idObject);
 export const postVendor = (item) => {
+    if(Object.keys(idObject).length !== 4) {
+        return new Error("Missing dependency key, please check you data then send again");
+    }
+    const nullKey = Object.keys(idObject).filter( (key) => {
+        return !!idObject[key]
+    })
     const data = {
         ...item,
         organization_id: '1',

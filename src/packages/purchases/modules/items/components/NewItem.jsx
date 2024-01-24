@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Form } from "react-router-dom";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
 import shared from "../../../shared";
@@ -29,6 +29,25 @@ const NewItem = () => {
   const [rows, setRows] = useState([]);
   const [rowModesModel, setRowModesModel] = useState({});
   const [summaryValues, setSummaryValues] = useState({subtotal: 0, taxt_amount_total: 0, total: 0});
+
+  const vendorRef = useRef(null);
+  const billNumberRef = useRef(null);
+  const invoiceNumberRef = useRef(null);
+  const purchaseOrderNumberRef = useRef(null);
+  const deliveryNoteNumberRef = useRef(null);
+
+
+
+
+  const billingInfoRefObject = {
+    vendorRef,
+    billNumberRef,
+    invoiceNumberRef,
+    purchaseOrderNumberRef,
+    deliveryNoteNumberRef,
+  };
+
+
 
   const deleteItem = (item) => {
     setRows((prevRows) => prevRows.filter((row) => row.id !== item.id));

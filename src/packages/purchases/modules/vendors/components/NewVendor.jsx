@@ -328,27 +328,14 @@ const NewVendor = () => {
             vendor_name: vendorNameRef.current.value,
             national_id: vendorNationalIDRef.current.value,
         };
-        
-
-        for (let prop in vendorObject) {
-            if (
-                !vendorObject[prop] &&
-                (
-                    prop !== 'website' ||
-                    prop !== 'national_id ' ||
-                    prop !== 'vendor_email' ||
-                    prop !== 'vendor_phone' ||
-                    prop !== 'vendor_reference'
-                )
-            ) {
-                validRef.current = false;
-                return new Error(`${prop} is a required field`);
-            }
+        validRef.current = ValidateVendorObject(vendorObject);
+        console.log(validRef.current);
+        if (!validRef.current) {
+            throw new Error("Invalid payload!");
         }
-
+        console.log(vendorObject);
         postVendor(vendorObject);
         console.log(addressObject);
-        console.log(vendorObject);
 
     }
 

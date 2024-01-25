@@ -30,6 +30,14 @@ const NewFuelPurchase = () => {
   const appStateDispatcher = useGlobalDispatcher();
   const { cardLabelView } = useGlobalState();
 
+  const [vendorsList, setVendorsList] = useState([{ id: 1, name: 'Vendor X' }, { id: 2, name: 'Vendor Y' }, { id: 3, name: 'Vendor Z' }]);
+  const [officers, setOfficers] = useState([{ id: 1, name: 'Ken Mjungu' }, { id: 2, name: 'Waigah Mwaura' }]);
+
+  const billNumberRef = useRef(null);
+  const invoiceNumberRef = useRef(null);
+  const purchaseOrderNumberRef = useRef(null);
+  const deliveryNoteNumberRef = useRef(null);
+
   const deleteItem = (id) => {
         setRows((prevRows) => prevRows.filter((row) => row.id !== id));
     };

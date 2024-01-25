@@ -20,7 +20,7 @@ import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 import { MdOutlineSaveAlt, MdCreate, MdCancel, MdDelete } from "react-icons/md";
 
 
-const tanks = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`).tanks;
+const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
 let fueType = '';
 const NewFuelPurchase = () => {
   const [rows, setRows] = useState([]);
@@ -83,7 +83,7 @@ const NewFuelPurchase = () => {
         width: 150,
         editable: true,
         type: 'singleSelect',
-        valueOptions: () => tanks.map((tank) => {
+        valueOptions: () => orgData.tanks.map((tank) => {
           return tank.tank_number
         }),
         valueFormatter: (params) => {

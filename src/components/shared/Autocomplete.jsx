@@ -14,6 +14,16 @@ const AutocompleteComponent = ({list, label, keyField, handleOnchange = () => {}
             const key = optionField ? optionField : keyField
             return option[key];
           }}
+          renderGroup={(props, option) => {
+            const optKey = optionField ? optionField : null
+
+           return ( <li {...props}>
+              {option[optKey]}
+              { option[optKey]? <span>:</span> : ''} 
+              {option[keyField]}
+              </li>
+  )
+          }}
           />
     </div>
   )

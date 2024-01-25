@@ -21,6 +21,7 @@ import OfficerComponent from "./OfficerComponent";
 import SummaryComponent from "../../../shared/components/SummaryComponent";
 import { LookUpMap } from "@/utils";
 import { ObjectValidator } from "../../../../../utils";
+import { postingPurchaseItem } from "../../../actions";
 
 
 const items = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`).items;
@@ -310,7 +311,7 @@ const NewItem = () => {
      }
   }
 
-  
+  postingPurchaseItem(payload)
 
   return (
     <section className='purchaseItem'>

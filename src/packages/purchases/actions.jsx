@@ -140,4 +140,6 @@ export const postVendor = async (item) => {
 };
 
 
-export const postingPurchaseItem = (payload) =>{}
+export const postingPurchaseItem = async(payload) =>{
+    return await _request({method: 'POST', url: purchaseItem, data: payload});
+}

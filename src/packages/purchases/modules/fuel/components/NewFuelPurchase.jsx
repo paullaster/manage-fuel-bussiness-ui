@@ -1,10 +1,10 @@
 import { useEffect, useState, useMemo, useRef} from "react";
 import shared from "../../../shared";
+import SummaryComponent from "../../../shared/components/SummaryComponent";
 import { useGlobalDispatcher, useGlobalState } from '@/store';
 import { Form } from "react-router-dom";
 import { composableAutofils} from "../setups";
 import TankEntries from "./TankEntries";
-import TransportationAndOfficer from "./TransportationAndOfficer";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
 import NewVendor from "../../vendors/components/NewVendor";
 import { v4 as uuidv4 } from 'uuid';
@@ -359,7 +359,6 @@ const NewFuelPurchase = () => {
         officers={officers} 
         handleSelectedOficer={handleSelectedOficer}
         />
-        {/* <TransportationAndOfficer cardLabelView={cardLabelView} /> */}
         <TankEntries
           columns={columns}
           rows={rows}

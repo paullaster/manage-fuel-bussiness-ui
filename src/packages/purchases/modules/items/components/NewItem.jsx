@@ -55,8 +55,7 @@ const NewItem = () => {
   const handleSelectedVendor = (event, newValue) => {
     event.preventDefault();
     event.stopPropagation();
-    const vendorListMap = LookUpMap(vendorsList, 'name');
-    console.log(vendorListMap);
+    console.log(newValue);
     setVendor(newValue);
   }
 

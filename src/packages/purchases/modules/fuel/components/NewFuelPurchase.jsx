@@ -320,11 +320,11 @@ const NewFuelPurchase = () => {
     const handleSettingSummary = useMemo(() => {
       if (rows.length) {
         const subtotal = rows.reduce((cummulative, current) => {
-          const sub = current.quantity * current.price;
+          const sub = current.expected_quantity * current.price;
           return cummulative + sub;
         }, summaryValues.subtotal);
         const totalTaxAmount = rows.reduce((cummulative, current) => {
-          const txA = GetGross(current, 'vat_rate', 'quantity', 'price', 'tax_amount');
+          const txA = GetGross(current, 'tax_rate', 'quantity', 'price', 'tax_amount');
           return cummulative + txA
         }, summaryValues.taxt_amount_total);
         const total = subtotal + totalTaxAmount;
@@ -333,7 +333,7 @@ const NewFuelPurchase = () => {
       return setSummaryValues({ subtotal: 0, taxt_amount_total: 0, total: 0 });
     }, [rows]);
 
-    
+
 
   useEffect(() => {
     appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });

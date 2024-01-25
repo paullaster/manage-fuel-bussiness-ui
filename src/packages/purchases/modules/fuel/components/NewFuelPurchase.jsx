@@ -320,7 +320,10 @@ const NewFuelPurchase = () => {
         >
           <NewVendor />
         </shared.components.BillingComponent>
-        <Transport officers={officers} />
+        <Transport 
+        officers={officers} 
+        handleSelectedOficer={handleSelectedOficer}
+        />
         {/* <TransportationAndOfficer cardLabelView={cardLabelView} /> */}
         <TankEntries
           columns={columns}

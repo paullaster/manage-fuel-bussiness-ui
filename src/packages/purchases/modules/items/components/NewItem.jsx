@@ -29,9 +29,9 @@ const NewItem = () => {
   const { cardLabelView } = useGlobalState();
   const [rows, setRows] = useState([]);
   const [rowModesModel, setRowModesModel] = useState({});
-  const [summaryValues, setSummaryValues] = useState({subtotal: 0, taxt_amount_total: 0, total: 0});
-  const [vendorsList, setVendorsList] = useState([{id: 1, name: 'Vendor X'}, {id: 2, name: 'Vendor Y'}, {id: 3, name: 'Vendor Z'}]);
-  const [officers, setOfficers] = useState([{id: 1, name: 'Ken Mjungu' }, {id:2, name: 'Waigah Mwaura' }]);
+  const [summaryValues, setSummaryValues] = useState({ subtotal: 0, taxt_amount_total: 0, total: 0 });
+  const [vendorsList, setVendorsList] = useState([{ id: 1, name: 'Vendor X' }, { id: 2, name: 'Vendor Y' }, { id: 3, name: 'Vendor Z' }]);
+  const [officers, setOfficers] = useState([{ id: 1, name: 'Ken Mjungu' }, { id: 2, name: 'Waigah Mwaura' }]);
   const [selectedOfficer, setSelectedOfficer] = useState(null);
   const [vendor, setVendor] = useState(null);
 
@@ -52,65 +52,66 @@ const NewItem = () => {
 
 
 
-const handleSelectedVendor = (event, newValue) => {
-  event.preventDefault();
-  event.stopPropagation();
-  console.log(vendorListMap);
-  setVendor(newValue);
-}
+  const vendorListMap = LookUpMap(vendorsList, 'name');
+  const handleSelectedVendor = (event, newValue) => {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log(vendorListMap);
+    setVendor(newValue);
+  }
 
-const handleSelectedOficer = (event, newValue) => {
-  event.stopPropagation();
-  event.preventDefault();
-  setSelectedOfficer(newValue);
-}
+  const handleSelectedOficer = (event, newValue) => {
+    event.stopPropagation();
+    event.preventDefault();
+    setSelectedOfficer(newValue);
+  }
 
 
 
   const deleteItem = (item) => {
     setRows((prevRows) => prevRows.filter((row) => row.id !== item.id));
-};
+  };
 
 
-const handleEditClick = (item) => {
-setRowModesModel({...rowModesModel, [item.id]: { mode: GridRowModes.Edit}});
-};
+  const handleEditClick = (item) => {
+    setRowModesModel({ ...rowModesModel, [item.id]: { mode: GridRowModes.Edit } });
+  };
 
-const handleSaveClick = (item) => {
-setRowModesModel({...rowModesModel, [item.id]: { mode: GridRowModes.View}});
-};
+  const handleSaveClick = (item) => {
+    setRowModesModel({ ...rowModesModel, [item.id]: { mode: GridRowModes.View } });
+  };
 
-const handleCancelClick = (item) => {
-setRowModesModel({
-  ...rowModesModel,
-  [item.id]: {mode: GridRowModes.View, ignoreModifications: true}
-});
+  const handleCancelClick = (item) => {
+    setRowModesModel({
+      ...rowModesModel,
+      [item.id]: { mode: GridRowModes.View, ignoreModifications: true }
+    });
 
-const editedRow = rows.find((row) => row.id === item.id );
-if(editedRow.isNew) {
-  setRows(rows.filter((row) => row.id !== item.id));
-}
-};
+    const editedRow = rows.find((row) => row.id === item.id);
+    if (editedRow.isNew) {
+      setRows(rows.filter((row) => row.id !== item.id));
+    }
+  };
 
-const handleRowEditStop = (params, event) => {
-if(params.reason == GridRowEditStopReasons.rowFocusOut) {
-  event.defaultMuiPrevented = true;
-}
-};
-
-
-const processRowUpdate = (newRow) => {
-const updatedRow = {...newRow, isNew: false};
-setRows(rows.map((row) => row.id === newRow.id ? updatedRow : row));
-console.log({rows: rows});
-return updatedRow;
-};
+  const handleRowEditStop = (params, event) => {
+    if (params.reason == GridRowEditStopReasons.rowFocusOut) {
+      event.defaultMuiPrevented = true;
+    }
+  };
 
 
+  const processRowUpdate = (newRow) => {
+    const updatedRow = { ...newRow, isNew: false };
+    setRows(rows.map((row) => row.id === newRow.id ? updatedRow : row));
+    console.log({ rows: rows });
+    return updatedRow;
+  };
 
-const handleRowModesModelChange = (newRowModesModel) => {
-setRowModesModel(newRowModesModel);
-};
+
+
+  const handleRowModesModelChange = (newRowModesModel) => {
+    setRowModesModel(newRowModesModel);
+  };
 
 
   const columns = useMemo(
@@ -157,7 +158,7 @@ setRowModesModel(newRowModesModel);
         headerAlign: 'center',
         type: 'number',
         align: 'center',
-        valueFormatter:(params) => {
+        valueFormatter: (params) => {
           if (params.value === null) {
             return '0%';
           }
@@ -211,60 +212,60 @@ setRowModesModel(newRowModesModel);
 
           if (isInEditMode) {
             return [
-              <GridActionsCellItem 
-              key={uuidv4()}
-              icon={<MdOutlineSaveAlt />}
-              label="Save"
-              sx={{
-                color: 'primary.main',
-              }}
-              onClick={ () => handleSaveClick(params)}
+              <GridActionsCellItem
+                key={uuidv4()}
+                icon={<MdOutlineSaveAlt />}
+                label="Save"
+                sx={{
+                  color: 'primary.main',
+                }}
+                onClick={() => handleSaveClick(params)}
               />,
               <GridActionsCellItem
-              key={uuidv4()}
-              icon={<MdCancel />}
-              label="Cancel"
-              className="textPrimary"
-              onClick={ () => handleCancelClick(params)}
-              color="inherit"
-            />,
+                key={uuidv4()}
+                icon={<MdCancel />}
+                label="Cancel"
+                className="textPrimary"
+                onClick={() => handleCancelClick(params)}
+                color="inherit"
+              />,
             ];
           }
-          return[
+          return [
             <GridActionsCellItem
               key={uuidv4()}
               icon={<MdCreate />}
               label="Edit"
-              onClick={ () => handleEditClick(params)}
+              onClick={() => handleEditClick(params)}
             />,
             <GridActionsCellItem
               key={uuidv4()}
               icon={<MdDelete />}
               label="Delete"
-              onClick={ () => deleteItem(params)}
+              onClick={() => deleteItem(params)}
             />,
           ]
         },
         hideable: false,
       },
     ],
-    [handleSaveClick, handleCancelClick, handleEditClick,  deleteItem],
+    [handleSaveClick, handleCancelClick, handleEditClick, deleteItem],
   );
 
   const handleSettingSummary = useMemo(() => {
-      if (rows.length) {
-        const subtotal = rows.reduce((cummulative, current) => {
-          const sub = current.quantity * current.price;
-          return cummulative + sub;
-        }, summaryValues.subtotal);
-        const totalTaxAmount = rows.reduce((cummulative, current) => {
-          const txA = GetGross(current, 'vat_rate', 'quantity', 'price', 'tax_amount');
-          return cummulative + txA
-        }, summaryValues.taxt_amount_total);
-        const total = subtotal + totalTaxAmount;
-        return setSummaryValues({subtotal:subtotal, taxt_amount_total: totalTaxAmount, total:total});
-      }
-      return setSummaryValues({subtotal:0, taxt_amount_total: 0, total:0});
+    if (rows.length) {
+      const subtotal = rows.reduce((cummulative, current) => {
+        const sub = current.quantity * current.price;
+        return cummulative + sub;
+      }, summaryValues.subtotal);
+      const totalTaxAmount = rows.reduce((cummulative, current) => {
+        const txA = GetGross(current, 'vat_rate', 'quantity', 'price', 'tax_amount');
+        return cummulative + txA
+      }, summaryValues.taxt_amount_total);
+      const total = subtotal + totalTaxAmount;
+      return setSummaryValues({ subtotal: subtotal, taxt_amount_total: totalTaxAmount, total: total });
+    }
+    return setSummaryValues({ subtotal: 0, taxt_amount_total: 0, total: 0 });
   }, [rows]);
 
 
@@ -278,26 +279,26 @@ setRowModesModel(newRowModesModel);
 
 
   const handleSubmitPurchaseItem = (event) => {
-      event.stopPropagation();
-      event.preventDefault();
-      const payload = {
+    event.stopPropagation();
+    event.preventDefault();
+    const payload = {
 
-      }
+    }
   }
 
   return (
     <section className='purchaseItem'>
       <shared.components.SectionIntroduction text="New purchase item" />
       <Form method="post">
-        <shared.components.BillingComponent 
-        cardLabelView={cardLabelView} 
-        ref={billingInfoRefObject}
-        handleSelectedVendor={handleSelectedVendor}
-        vendorsList={vendorsList}
+        <shared.components.BillingComponent
+          cardLabelView={cardLabelView}
+          ref={billingInfoRefObject}
+          handleSelectedVendor={handleSelectedVendor}
+          vendorsList={vendorsList}
         >
           <NewVendor />
         </shared.components.BillingComponent>
-        <OfficerComponent officers={officers} handleSelectedOficer={handleSelectedOficer}/>
+        <OfficerComponent officers={officers} handleSelectedOficer={handleSelectedOficer} />
         <PurchaseItemEntry
           columns={columns}
           rows={rows}
@@ -308,7 +309,7 @@ setRowModesModel(newRowModesModel);
           slots={{ toolbar: DataGridToolbar }}
           slotProps={{ toolbar: { setRows, setRowModesModel } }}
         />
-        <SummaryComponent subtotal={summaryValues.subtotal} totalTaxAmount={summaryValues.taxt_amount_total} total={summaryValues.total}/>
+        <SummaryComponent subtotal={summaryValues.subtotal} totalTaxAmount={summaryValues.taxt_amount_total} total={summaryValues.total} />
         <FormButtonRow className='form_actions_wide' methodHandler={handleSubmitPurchaseItem} />
       </Form>
     </section>

@@ -33,6 +33,7 @@ const NewFuelPurchase = () => {
 
   const [vendorsList, setVendorsList] = useState([{ id: 1, name: 'Vendor X' }, { id: 2, name: 'Vendor Y' }, { id: 3, name: 'Vendor Z' }]);
   const [officers, setOfficers] = useState([{ id: 1, name: 'Ken Mjungu' }, { id: 2, name: 'Waigah Mwaura' }]);
+  const [summaryValues, setSummaryValues] = useState({ subtotal: 0, taxt_amount_total: 0, total: 0 });
   const [selectedOfficer, setSelectedOfficer] = useState(null);
   const [vendor, setVendor] = useState(null);
 
@@ -314,9 +315,33 @@ const NewFuelPurchase = () => {
       },
     ]);
 
+
+
+    const handleSettingSummary = useMemo(() => {
+      if (rows.length) {
+        const subtotal = rows.reduce((cummulative, current) => {
+          const sub = current.quantity * current.price;
+          return cummulative + sub;
+        }, summaryValues.subtotal);
+        const totalTaxAmount = rows.reduce((cummulative, current) => {
+          const txA = GetGross(current, 'vat_rate', 'quantity', 'price', 'tax_amount');
+          return cummulative + txA
+        }, summaryValues.taxt_amount_total);
+        const total = subtotal + totalTaxAmount;
+        return setSummaryValues({ subtotal: subtotal, taxt_amount_total: totalTaxAmount, total: total });
+      }
+      return setSummaryValues({ subtotal: 0, taxt_amount_total: 0, total: 0 });
+    }, [rows]);
+
+    
+
   useEffect(() => {
     appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });
   }, []);
+
+  useEffect(() => {
+
+  }, [columns, handleSettingSummary]);
 
   return (
     <section className="newfuelpurchase">
@@ -345,6 +370,7 @@ const NewFuelPurchase = () => {
           slots={{ toolbar: DataGridToolbar }}
           slotProps={{ toolbar: { setRows, setRowModesModel } }}
         />
+        <SummaryComponent subtotal={summaryValues.subtotal} totalTaxAmount={summaryValues.taxt_amount_total} total={summaryValues.total} />
         <FormButtonRow className="form_actions"/>
       </Form>
     </section>

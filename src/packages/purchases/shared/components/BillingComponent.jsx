@@ -1,8 +1,10 @@
 import InvoiceDetails from "./InvoiceDetails";
 import shared from "..";
 import DivisionTopBar from "./DivisionTopBar";
+import { forwardRef } from "react";
 
-const BillingComponent = ({ cardLabelView = [], children }) => {
+const BillingComponent = forwardRef((props, ref) => {
+    const { cardLabelView = [], children } = props;
     return (
         <div className="billingCard">
             <DivisionTopBar sectionTitle="Billing details that appear in your bill " />
@@ -30,6 +32,6 @@ const BillingComponent = ({ cardLabelView = [], children }) => {
             </div>
         </div>
     )
-}
+})
 
 export default BillingComponent

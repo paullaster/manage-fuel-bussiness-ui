@@ -299,6 +299,7 @@ const NewItem = () => {
     const payload = {
       vendor: vendor,
       officer: selectedOfficer,
+      bill_number: billNumberRef.current.value,
       purchase_date: purchaseOrderNumberRef.current.value,
       invoice_number: invoiceNumberRef.current.value,
       delivery_note_number: deliveryNoteNumberRef.current.value,

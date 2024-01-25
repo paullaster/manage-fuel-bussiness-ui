@@ -310,6 +310,12 @@ const NewItem = () => {
   }
 
   postingPurchaseItem(payload)
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => {
+    console.error(err);
+  })
 
   return (
     <section className='purchaseItem'>

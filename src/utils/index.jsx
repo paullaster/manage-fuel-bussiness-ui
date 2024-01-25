@@ -10,6 +10,7 @@ import { generator } from "./Generator";
 import GetGross from "./GetGross";
 import { ArrayFunctions } from "./ArrayFunctions";
 import { RandomCodeGenerator } from "./RandomCodeGenerator";
+import { LookUpMap } from "./LookupMap";
 
 
 
@@ -28,4 +29,5 @@ export {
     GetGross,
     ArrayFunctions,
     RandomCodeGenerator,
+    LookUpMap,
 };

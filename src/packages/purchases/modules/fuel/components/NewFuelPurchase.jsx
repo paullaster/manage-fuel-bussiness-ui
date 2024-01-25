@@ -41,6 +41,8 @@ const NewFuelPurchase = () => {
   const purchaseOrderNumberRef = useRef(null);
   const deliveryNoteNumberRef = useRef(null);
 
+  const transportNameRef = useRef(null);
+
 
   const billingInfoRefObject = {
     billNumberRef,
@@ -49,6 +51,10 @@ const NewFuelPurchase = () => {
     deliveryNoteNumberRef,
   };
 
+  // TRANSPORT
+  const transportRefObject = {
+    transportNameRef
+  };
 
   const handleSelectedVendor = (event, newValue) => {
     event.preventDefault();

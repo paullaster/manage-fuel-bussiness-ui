@@ -32,6 +32,8 @@ const NewFuelPurchase = () => {
 
   const [vendorsList, setVendorsList] = useState([{ id: 1, name: 'Vendor X' }, { id: 2, name: 'Vendor Y' }, { id: 3, name: 'Vendor Z' }]);
   const [officers, setOfficers] = useState([{ id: 1, name: 'Ken Mjungu' }, { id: 2, name: 'Waigah Mwaura' }]);
+  const [selectedOfficer, setSelectedOfficer] = useState(null);
+  const [vendor, setVendor] = useState(null);
 
   const billNumberRef = useRef(null);
   const invoiceNumberRef = useRef(null);

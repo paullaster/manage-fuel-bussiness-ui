@@ -1,0 +1,13 @@
+.addCurrency {
+    & > .input-group {
+        margin-bottom: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        & > * {
+            display: block;
+        }
+        & > *:first-child{
+            margin-bottom: .4rem;
+        }
+    }
+}

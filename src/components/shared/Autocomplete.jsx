@@ -8,8 +8,10 @@ const AutocompleteComponent = ({list, label, keyField, handleOnchange = () => {}
           id={label}
           onChange={handleOnchange}
           freeSolo
-          options={list.map((option) => option[keyField])}
+          options={list}
           renderInput={(params) => <TextField {...params} label={label} />}
+          getOptionLabel={(option) => option[keyField] ? option[keyField] : ''}
+          renderOption={(props, option) =><li {...props}>{option[keyField] ? option[keyField] : ''}</li>}
           />
     </div>
   )

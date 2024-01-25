@@ -1,0 +1,16 @@
+@use '../global/' as g;
+
+.itemOfficer {
+    margin-top: 4rem;
+
+    .divisionTopBar {
+        display: flex;
+        flex-direction: column;
+
+        h2 {
+            margin-bottom: 2rem;
+            padding-bottom: .8rem;
+            border-bottom: g.$default_border;
+        }
+    }
+}

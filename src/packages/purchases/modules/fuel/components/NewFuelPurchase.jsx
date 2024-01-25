@@ -1,10 +1,10 @@
-import { useEffect, useState, useMemo, useCallback } from "react";
+import { useEffect, useState, useMemo, useRef} from "react";
 import shared from "../../../shared";
+import SummaryComponent from "../../../shared/components/SummaryComponent";
 import { useGlobalDispatcher, useGlobalState } from '@/store';
 import { Form } from "react-router-dom";
 import { composableAutofils} from "../setups";
 import TankEntries from "./TankEntries";
-import TransportationAndOfficer from "./TransportationAndOfficer";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
 import NewVendor from "../../vendors/components/NewVendor";
 import { v4 as uuidv4 } from 'uuid';
@@ -18,9 +18,10 @@ import WebStorage from "@/utils/WebStorage";
 import { APPNAME } from "@/environments";
 import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 import { MdOutlineSaveAlt, MdCreate, MdCancel, MdDelete } from "react-icons/md";
+import Transport from "./Transport";
 
 
-const tanks = WebStorage.GetFromWebStorage('session', APPNAME).tanks;
+const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
 let fueType = '';
 const NewFuelPurchase = () => {
   const [rows, setRows] = useState([]);
@@ -30,6 +31,48 @@ const NewFuelPurchase = () => {
   const appStateDispatcher = useGlobalDispatcher();
   const { cardLabelView } = useGlobalState();
 
+  const [vendorsList, setVendorsList] = useState([{ id: 1, name: 'Vendor X' }, { id: 2, name: 'Vendor Y' }, { id: 3, name: 'Vendor Z' }]);
+  const [officers, setOfficers] = useState([{ id: 1, name: 'Ken Mjungu' }, { id: 2, name: 'Waigah Mwaura' }]);
+  const [summaryValues, setSummaryValues] = useState({ subtotal: 0, taxt_amount_total: 0, total: 0 });
+  const [selectedOfficer, setSelectedOfficer] = useState(null);
+  const [vendor, setVendor] = useState(null);
+
+  const billNumberRef = useRef(null);
+  const invoiceNumberRef = useRef(null);
+  const purchaseOrderNumberRef = useRef(null);
+  const deliveryNoteNumberRef = useRef(null);
+
+  const transportNameRef = useRef(null);
+  const vehicleRegistrationRef = useRef(null);
+  const driverNameRef = useRef(null);
+
+
+  const billingInfoRefObject = {
+    billNumberRef,
+    invoiceNumberRef,
+    purchaseOrderNumberRef,
+    deliveryNoteNumberRef,
+    driverNameRef,
+  };
+
+  // TRANSPORT
+  const transportRefObject = {
+    transportNameRef,
+    vehicleRegistrationRef
+  };
+
+  const handleSelectedVendor = (event, newValue) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setVendor(newValue.id);
+  }
+
+  const handleSelectedOficer = (event, newValue) => {
+    event.stopPropagation();
+    event.preventDefault();
+    console.log(newValue);
+    setSelectedOfficer(newValue.id);
+  }
   const deleteItem = (id) => {
         setRows((prevRows) => prevRows.filter((row) => row.id !== id));
     };
@@ -83,7 +126,7 @@ const NewFuelPurchase = () => {
         width: 150,
         editable: true,
         type: 'singleSelect',
-        valueOptions: () => tanks.map((tank) => {
+        valueOptions: () => orgData.tanks.map((tank) => {
           return tank.tank_number
         }),
         valueFormatter: (params) => {
@@ -272,18 +315,50 @@ const NewFuelPurchase = () => {
       },
     ]);
 
+
+
+    const handleSettingSummary = useMemo(() => {
+      if (rows.length) {
+        const subtotal = rows.reduce((cummulative, current) => {
+          const sub = current.expected_quantity * current.price;
+          return cummulative + sub;
+        }, summaryValues.subtotal);
+        const totalTaxAmount = rows.reduce((cummulative, current) => {
+          const txA = GetGross(current, 'tax_rate', 'quantity', 'price', 'tax_amount');
+          return cummulative + txA
+        }, summaryValues.taxt_amount_total);
+        const total = subtotal + totalTaxAmount;
+        return setSummaryValues({ subtotal: subtotal, taxt_amount_total: totalTaxAmount, total: total });
+      }
+      return setSummaryValues({ subtotal: 0, taxt_amount_total: 0, total: 0 });
+    }, [rows]);
+
+
+
   useEffect(() => {
     appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });
   }, []);
+
+  useEffect(() => {
+
+  }, [columns, handleSettingSummary]);
 
   return (
     <section className="newfuelpurchase">
       <shared.components.SectionIntroduction text="New Fuel Purchase" />
       <Form>
-        <shared.components.BillingComponent cardLabelView={cardLabelView} >
+        <shared.components.BillingComponent 
+        cardLabelView={cardLabelView} 
+        ref={billingInfoRefObject}
+        handleSelectedVendor={handleSelectedVendor}
+        vendorsList={vendorsList}
+        >
           <NewVendor />
         </shared.components.BillingComponent>
-        <TransportationAndOfficer cardLabelView={cardLabelView} />
+        <Transport 
+        officers={officers} 
+        handleSelectedOficer={handleSelectedOficer}
+        />
         <TankEntries
           columns={columns}
           rows={rows}
@@ -294,7 +369,8 @@ const NewFuelPurchase = () => {
           slots={{ toolbar: DataGridToolbar }}
           slotProps={{ toolbar: { setRows, setRowModesModel } }}
         />
-        <FormButtonRow />
+        <SummaryComponent subtotal={summaryValues.subtotal} totalTaxAmount={summaryValues.taxt_amount_total} total={summaryValues.total} />
+        <FormButtonRow className="form_actions"/>
       </Form>
     </section>
   )

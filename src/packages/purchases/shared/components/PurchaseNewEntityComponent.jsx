@@ -26,7 +26,8 @@ const PurchaseNewEntityComponent = ({label, dialogTitle = '', maxWidth = '', chi
         open={open}
         handleClose={handleCloseDialog}
         dialogTitle={dialogTitle}
-        maxWidth={maxWidth}
+        maxWidth={'lg'}
+        dialogActionButtonLabel={''}
     >
         {children}
     </DialogComponent>

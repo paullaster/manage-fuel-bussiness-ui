@@ -3,4 +3,8 @@ export default {
     fuelType: 'company_data/fuel_type',
     address: 'support_details/address/',
     billing: 'billing/',
+    contact: 'support_details/contact/',
+    vendor: 'vendor/',
+    currency: 'currency/',
+    purchaseItem: 'purchase_item/'
 };

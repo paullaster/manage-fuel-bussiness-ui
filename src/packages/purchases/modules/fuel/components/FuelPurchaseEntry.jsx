@@ -1,5 +1,14 @@
 import { DataTable } from "@/components";
-const FuelPurchaseEntry = ({ columns, rows, rowModesModel = {}, handleRowModesModelChange = () => { }, handleRowEditStop = () => { }, processRowUpdate = () => {}, slots = {}, slotProps = {} }) => {
+const FuelPurchaseEntry = ({
+  columns,
+  rows,
+  rowModesModel = {},
+  handleRowModesModelChange = () => { },
+  handleRowEditStop = () => { },
+  processRowUpdate = () => { },
+  slots = {},
+  slotProps = {}
+}) => {
   return (
     <DataTable
       columns={columns}

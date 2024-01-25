@@ -29,7 +29,7 @@ const BillingComponent = forwardRef((props, ref) => {
                         )
                     }) : ''
                 }
-                <InvoiceDetails />
+                <InvoiceDetails ref={ref}/>
             </div>
         </div>
     )

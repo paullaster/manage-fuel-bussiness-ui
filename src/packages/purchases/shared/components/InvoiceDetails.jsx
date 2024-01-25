@@ -1,7 +1,8 @@
 import { InputComponent } from "@/components";
 import { useGlobalState } from "@/store";
+import { forwardRef } from "react";
 
-const InvoiceDetails = () => {
+const InvoiceDetails = forwardRef((props, ref) => {
     const { transactionCode } = useGlobalState();
 
     return (
@@ -11,10 +12,12 @@ const InvoiceDetails = () => {
                 name="Bill_number"
                 disabled={true}
                 value={transactionCode}
+                ref={ref.billNumberRef}
             />
             <InputComponent
                 prelabelText="Invoice number"
                 name="invoice_number"
+                ref={ref.invoiceNumberRef}
             />
             <InputComponent
                 prelabelText="Purchase order number"
@@ -26,6 +29,6 @@ const InvoiceDetails = () => {
             />
         </div>
     )
-}
+})
 
 export default InvoiceDetails

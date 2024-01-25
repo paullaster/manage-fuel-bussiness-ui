@@ -1,4 +1,4 @@
-const ObjectValidator = (requiredFields, Obj) => {
+export const ObjectValidator = (requiredFields, Obj) => {
     const requiredFieldsSet = new Set([
         ...requiredFields
     ]);

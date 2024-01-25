@@ -18,6 +18,7 @@ import WebStorage from "@/utils/WebStorage";
 import { APPNAME } from "@/environments";
 import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 import { MdOutlineSaveAlt, MdCreate, MdCancel, MdDelete } from "react-icons/md";
+import Transport from "./Transport";
 
 
 const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
@@ -319,7 +320,8 @@ const NewFuelPurchase = () => {
         >
           <NewVendor />
         </shared.components.BillingComponent>
-        <TransportationAndOfficer cardLabelView={cardLabelView} />
+        <Transport officers={officers} />
+        {/* <TransportationAndOfficer cardLabelView={cardLabelView} /> */}
         <TankEntries
           columns={columns}
           rows={rows}

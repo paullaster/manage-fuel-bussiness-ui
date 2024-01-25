@@ -1,6 +1,7 @@
-import { InputComponent } from "@/components";
+import { InputComponent, AutocompleteComponent } from "@/components";
+import { forwardRef } from "react";
 
-const Transport = () => {
+const Transport = forwardRef(() => {
   return (
       <div className="transport">
           <InputComponent
@@ -15,8 +16,14 @@ const Transport = () => {
               prelabelText="driver name"
               name="driver_name"
           />
+          <AutocompleteComponent
+                list={officers}
+                label={'Select Officer'}
+                keyField={'name'}
+                handleOnchange={handleSelectedOficer}
+            />
       </div>
   )
-}
+})
 
 export default Transport

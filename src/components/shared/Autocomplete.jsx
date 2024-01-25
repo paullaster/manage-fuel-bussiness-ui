@@ -1,7 +1,7 @@
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
-const AutocompleteComponent = ({list, label, keyField, handleOnchange = () => {}, optionField = ''}) => {
+const AutocompleteComponent = ({list, label, keyField, handleOnchange = () => {}}) => {
   return (
       <div className={'autocomplete'}>
           <Autocomplete 
@@ -11,16 +11,9 @@ const AutocompleteComponent = ({list, label, keyField, handleOnchange = () => {}
           options={list}
           renderInput={(params) => <TextField {...params} label={label} />}
           getOptionLabel={(option) => {
-            const key = optionField ? optionField : keyField
-            return option[key] ? option[key] : '';
+            return option[keyField] ? option[keyField] : '';
           }}
-          renderOption={(props, option) => {
-            const optKey = optionField ? optionField : null
-
-           return ( <li {...props}>
-              {option[keyField]}
-              </li>
-  )
+          renderOption={(props, option) =><li {...props}>{option[keyField] ? option[keyField] : ''}</li>
           }}
           />
     </div>

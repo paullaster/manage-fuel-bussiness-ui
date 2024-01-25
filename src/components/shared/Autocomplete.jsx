@@ -10,11 +10,8 @@ const AutocompleteComponent = ({list, label, keyField, handleOnchange = () => {}
           freeSolo
           options={list}
           renderInput={(params) => <TextField {...params} label={label} />}
-          getOptionLabel={(option) => {
-            return option[keyField] ? option[keyField] : '';
-          }}
-          renderOption={(props, option) =><li {...props}>{option[keyField] ? option[keyField] : ''}</li>
-          }}
+          getOptionLabel={(option) => option[keyField] ? option[keyField] : ''}
+          renderOption={(props, option) =><li {...props}>{option[keyField] ? option[keyField] : ''}</li>}
           />
     </div>
   )

@@ -20,6 +20,7 @@ import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 import OfficerComponent from "./OfficerComponent";
 import SummaryComponent from "../../../shared/components/SummaryComponent";
 import { LookUpMap } from "@/utils";
+import { ObjectValidator } from "../../../../../utils";
 
 
 const items = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`).items;
@@ -283,7 +284,14 @@ const NewItem = () => {
 
     const itemsList = rows.map((it) => {
       return { vat_rate, vat_amount, net_amount, gross_amount } = it.row;
-    })
+    });
+    
+    itemsList.forEach((item)=> {
+      if (!ObjectValidator(['vat_rate', 'vat_amount', 'net_amount', 'gross_amount'], item)) {
+        throw Error("Please check your table items and complete before you submit again");
+      }
+    });
+
     const  { organization_id } = items;
     const payload = {
       vendor: vendor,
@@ -295,7 +303,8 @@ const NewItem = () => {
       total_amount: summaryValues.total,
       organization_id,
 
-    }
+    };
+
     for (const prop in payload) {
       if(!payload[prop]) throw new Error("Invalid payload, Cross check your item and submit again!")
      }

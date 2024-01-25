@@ -280,8 +280,17 @@ const NewItem = () => {
   const handleSubmitPurchaseItem = (event) => {
     event.stopPropagation();
     event.preventDefault();
-    const payload = {
 
+    // const items = rows.map((it) => {
+    //   const {}
+    // })
+    const payload = {
+      vendor: vendor,
+      officer: selectedOfficer,
+      purchase_date: purchaseOrderNumberRef.current.value,
+      invoice_number: invoiceNumberRef.current.value,
+      delivery_note_number: deliveryNoteNumberRef.current.value,
+      // items: 
     }
   }
 

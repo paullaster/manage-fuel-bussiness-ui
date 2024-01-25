@@ -18,8 +18,6 @@ const AutocompleteComponent = ({list, label, keyField, handleOnchange = () => {}
             const optKey = optionField ? optionField : null
 
            return ( <li {...props}>
-              {option[optKey]}
-              { option[optKey]? <span> : </span> : ''} 
               {option[keyField]}
               </li>
   )

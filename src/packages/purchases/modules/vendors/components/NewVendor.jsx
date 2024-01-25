@@ -43,7 +43,6 @@ const ValidateVendorObject = (vendorObject) => {
 
 const NewVendor = () => {
 
-    const [upload, setUpload] = useState(null);
     const [paymentMethod, setPaymentMethod] = useState(null);
     const [rows, setRows] = useState([]);
     const [rowModesModel, setRowModesModel] = useState({});

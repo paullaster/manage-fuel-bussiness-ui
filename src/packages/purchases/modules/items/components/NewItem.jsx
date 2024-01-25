@@ -273,7 +273,11 @@ setRowModesModel(newRowModesModel);
     <section className='purchaseItem'>
       <shared.components.SectionIntroduction text="New purchase item" />
       <Form method="post">
-        <shared.components.BillingComponent cardLabelView={cardLabelView} ref={billingInfoRefObject}>
+        <shared.components.BillingComponent 
+        cardLabelView={cardLabelView} 
+        ref={billingInfoRefObject}
+        handleSelectedVendor={handleSelectedVendor}
+        >
           <NewVendor />
         </shared.components.BillingComponent>
         <OfficerComponent />

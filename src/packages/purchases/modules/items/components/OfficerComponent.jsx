@@ -10,6 +10,7 @@ const OfficerComponent = ({ handleSelectedOficer, officers }) => {
                 list={officers}
                 label={'Select Officer'}
                 keyField={'name'}
+                optionField='id'
                 handleOnchange={handleSelectedOficer}
             />
         </div>

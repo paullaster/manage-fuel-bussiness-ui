@@ -22,7 +22,7 @@ import { ObjectValidator, GetGross } from "@/utils";
 import { postingPurchaseItem } from "../../../actions";
 
 
-const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`).items;
+const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
 
 const NewItem = () => {
   const appStateDispatcher = useGlobalDispatcher();
@@ -120,7 +120,7 @@ const NewItem = () => {
         headerName: 'Item',
         width: 200,
         type: 'singleSelect',
-        valueOptions: () => orgData.map((item) => {
+        valueOptions: () => orgData.items.map((item) => {
           return `Item ${item.item_id}`
         }),
         editable: true,

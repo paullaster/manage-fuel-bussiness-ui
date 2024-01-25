@@ -11,32 +11,7 @@ import { MdOutlineSaveAlt, MdCancel, MdCreate, MdDelete } from 'react-icons/md';
 import { v4 as uuidv4 } from 'uuid';
 import CurrencyComponent from "./CurrencyComponent";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
-import { ObjectValidator } from "../../../../../utils";
-
-
-
-
-const ValidateVendorObject = (vendorObject) => {
-    const requiredFields = new Set([
-
-    ]);
-
-    const missingRequiredFields = [];
-
-    for (let prop in vendorObject) {
-        if (requiredFields.has(prop) && !vendorObject[prop]) {
-            missingRequiredFields.push(prop);
-        }
-    }
-    if (missingRequiredFields.length) {
-        throw new Error(`The following required fields are missing: ${missingFields.join(", ")}`);
-    }
-    return true;
-
-}
-
-
-
+import { ObjectValidator } from "@/utils";
 
 
 const NewVendor = () => {

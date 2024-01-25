@@ -296,7 +296,12 @@ const NewFuelPurchase = () => {
     <section className="newfuelpurchase">
       <shared.components.SectionIntroduction text="New Fuel Purchase" />
       <Form>
-        <shared.components.BillingComponent cardLabelView={cardLabelView} >
+        <shared.components.BillingComponent 
+        cardLabelView={cardLabelView} 
+        ref={billingInfoRefObject}
+        handleSelectedVendor={handleSelectedVendor}
+        vendorsList={vendorsList}
+        >
           <NewVendor />
         </shared.components.BillingComponent>
         <TransportationAndOfficer cardLabelView={cardLabelView} />

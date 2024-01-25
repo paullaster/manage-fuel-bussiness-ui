@@ -38,6 +38,14 @@ const NewFuelPurchase = () => {
   const purchaseOrderNumberRef = useRef(null);
   const deliveryNoteNumberRef = useRef(null);
 
+
+  const billingInfoRefObject = {
+    billNumberRef,
+    invoiceNumberRef,
+    purchaseOrderNumberRef,
+    deliveryNoteNumberRef,
+  };
+
   const deleteItem = (id) => {
         setRows((prevRows) => prevRows.filter((row) => row.id !== id));
     };

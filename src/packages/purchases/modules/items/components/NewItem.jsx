@@ -165,7 +165,7 @@ const NewItem = () => {
         }
       },
       {
-        field: 'tax_amount',
+        field: 'vat_amount',
         headerName: 'Tax amount',
         width: 120,
         editable: false,
@@ -176,7 +176,7 @@ const NewItem = () => {
         align: 'center',
       },
       {
-        field: 'amount',
+        field: 'net_amount',
         headerName: 'Amount',
         description: 'Derived amount',
         sortable: false,
@@ -281,9 +281,9 @@ const NewItem = () => {
     event.stopPropagation();
     event.preventDefault();
 
-    // const items = rows.map((it) => {
-    //   const {}
-    // })
+    const items = rows.map((it) => {
+      const { vat_rate, vat_amount, net_amount, gross_amount,  } = it.row;
+    })
     const payload = {
       vendor: vendor,
       officer: selectedOfficer,

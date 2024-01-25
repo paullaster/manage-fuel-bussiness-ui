@@ -1,7 +1,5 @@
 export const ObjectValidator = (requiredFields, Obj) => {
-    const requiredFieldsSet = new Set([
-        ...requiredFields
-    ]);
+    const requiredFieldsSet = new Set(requiredFields);
 
     const missingRequiredFields = [];
 

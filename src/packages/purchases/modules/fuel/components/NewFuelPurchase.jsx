@@ -42,6 +42,7 @@ const NewFuelPurchase = () => {
   const deliveryNoteNumberRef = useRef(null);
 
   const transportNameRef = useRef(null);
+  const vehicleRegistrationRef = useRef(null);
 
 
   const billingInfoRefObject = {
@@ -53,7 +54,8 @@ const NewFuelPurchase = () => {
 
   // TRANSPORT
   const transportRefObject = {
-    transportNameRef
+    transportNameRef,
+    vehicleRegistrationRef
   };
 
   const handleSelectedVendor = (event, newValue) => {

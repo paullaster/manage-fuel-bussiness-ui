@@ -285,7 +285,7 @@ const NewItem = () => {
       const{ vat_rate, quantity, price, item } = it;
       const vat_amount = GetGross(it, 'vat_rate', 'quantity', 'price', 'tax_amount');
       const net_amount = it.quantity * it.price;
-      const gross_amount = GetGross(it, 'vat_rate', 'quantity', 'price', 'tax_amount');
+      const gross_amount = GetGross(it, 'vat_rate', 'quantity', 'price', 'gross_amount');
       return { vat_rate, quantity, price, item, vat_amount, net_amount, gross_amount};
     });
 

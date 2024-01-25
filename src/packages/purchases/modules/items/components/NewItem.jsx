@@ -30,6 +30,8 @@ const NewItem = () => {
   const [rowModesModel, setRowModesModel] = useState({});
   const [summaryValues, setSummaryValues] = useState({subtotal: 0, taxt_amount_total: 0, total: 0});
   const [vendorsList, setVendorsList] = useState([{id: 1, name: 'Vendor X'}, {id: 2, name: 'Vendor Y'}, {id: 3, name: 'Vendor Z'}]);
+  const [officers, setOfficers] = useState([{id: 1, name: 'Ken Mjungu' }, {id:2, name: 'Waigah Mwaura' }]);
+  const [selectedOfficer, setSelectedOfficer] = useState(null);
   const [vendor, setVendor] = useState(null);
 
   const billNumberRef = useRef(null);
@@ -55,7 +57,11 @@ const handleSelectedVendor = (event, newValue) => {
   setVendor(newValue);
 }
 
-
+const handleSelectedOficer = (event, newValue) => {
+  event.stopPropagation();
+  event.preventDefault();
+  setSelectedOfficer(newValue);
+}
 
 
 
@@ -282,7 +288,7 @@ setRowModesModel(newRowModesModel);
         >
           <NewVendor />
         </shared.components.BillingComponent>
-        <OfficerComponent />
+        <OfficerComponent officers={officers} handleSelectedOficer={handleSelectedOficer}/>
         <PurchaseItemEntry
           columns={columns}
           rows={rows}

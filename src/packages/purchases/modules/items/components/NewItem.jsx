@@ -296,6 +296,9 @@ const NewItem = () => {
       organization_id,
 
     }
+    for (const prop in payload) {
+      if(!payload[prop]) throw new Error("Invalid payload, Cross check your item and submit again!")
+     }
   }
 
   return (

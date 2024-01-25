@@ -22,7 +22,7 @@ import { ObjectValidator, GetGross } from "@/utils";
 import { postingPurchaseItem } from "../../../actions";
 
 
-const items = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`).items;
+const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`).items;
 
 const NewItem = () => {
   const appStateDispatcher = useGlobalDispatcher();
@@ -120,7 +120,7 @@ const NewItem = () => {
         headerName: 'Item',
         width: 200,
         type: 'singleSelect',
-        valueOptions: () => items.map((item) => {
+        valueOptions: () => orgData.map((item) => {
           return `Item ${item.item_id}`
         }),
         editable: true,
@@ -282,7 +282,6 @@ const NewItem = () => {
     event.preventDefault();
 
     const itemsList = rows.map((it) => {
-      console.log(it)
       const{ vat_rate, quantity, price, item } = it;
       const vat_amount = GetGross(it, 'vat_rate', 'quantity', 'price', 'tax_amount');
       const net_amount = it.quantity * it.price;
@@ -295,8 +294,8 @@ const NewItem = () => {
         throw Error("Please check your table items and complete before you submit again");
       }
     });
-    console.log(items);
-    const { organization_id } = items;
+    console.log(orgData);
+    const { organization_id } = orgData;
     const payload = {
       vendor: vendor,
       officer: selectedOfficer,

@@ -67,7 +67,7 @@ const AddItem = ({
                         list={vendorsList} 
                         keyField={keyField}
                         handleOnchange={handleSelectedVendor}
-                        getOptionLabel={getOptionLabel}
+                        optionField={optionField}
                          />
                         <PurchaseNewEntityComponent
                             label={label}

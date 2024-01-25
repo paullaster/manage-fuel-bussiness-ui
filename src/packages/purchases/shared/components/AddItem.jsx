@@ -26,7 +26,6 @@ const AddItem = ({
     dialogTitle = '',
     handleSelectedVendor,
     vendorsList,
-    optionField,
     children,
 }) => {
     const setAction = useGlobalDispatcher();
@@ -67,7 +66,6 @@ const AddItem = ({
                         list={vendorsList} 
                         keyField={keyField}
                         handleOnchange={handleSelectedVendor}
-                        optionField={optionField}
                          />
                         <PurchaseNewEntityComponent
                             label={label}

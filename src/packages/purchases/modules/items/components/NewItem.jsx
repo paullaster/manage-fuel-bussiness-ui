@@ -294,7 +294,6 @@ const NewItem = () => {
           ref={billingInfoRefObject}
           handleSelectedVendor={handleSelectedVendor}
           vendorsList={vendorsList}
-          optionField='name'
         >
           <NewVendor />
         </shared.components.BillingComponent>

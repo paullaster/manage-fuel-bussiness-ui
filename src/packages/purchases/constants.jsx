@@ -6,4 +6,5 @@ export default {
     contact: 'support_details/contact/',
     vendor: 'vendor/',
     currency: 'currency/',
+    
 };

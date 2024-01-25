@@ -4,7 +4,7 @@ import WebStorage from '@/utils/WebStorage';
 import { APPNAME } from '@/environments';
 
 
-const { address, billing, contact, vendor, currency } = constants;
+const { address, billing, contact, vendor, currency, purchaseItem } = constants;
 let idObject = {};
 
 export const postBillingInformation = async (payload) => {

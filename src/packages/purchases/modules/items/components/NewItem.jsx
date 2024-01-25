@@ -310,6 +310,8 @@ const NewItem = () => {
      }
   }
 
+  
+
   return (
     <section className='purchaseItem'>
       <shared.components.SectionIntroduction text="New purchase item" />

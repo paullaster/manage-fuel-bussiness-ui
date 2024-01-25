@@ -138,3 +138,6 @@ export const postVendor = async (item) => {
             console.log(error);
         });
 };
+
+
+export const postingPurchaseItem = (payload) =>{}

@@ -11,16 +11,14 @@ import { MdOutlineSaveAlt, MdCancel, MdCreate, MdDelete } from 'react-icons/md';
 import { v4 as uuidv4 } from 'uuid';
 import CurrencyComponent from "./CurrencyComponent";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
+import { ObjectValidator } from "../../../../../utils";
 
 
 
 
 const ValidateVendorObject = (vendorObject) => {
     const requiredFields = new Set([
-        "company_name",
-        "product_description",
-        "kra_pin",
-        "vendor_name",
+
     ]);
 
     const missingRequiredFields = [];
@@ -152,7 +150,7 @@ const NewVendor = () => {
 
     const handleSaveClick = (item) => {
         setRowModesModel({ ...rowModesModel, [item.id]: { mode: GridRowModes.View } });
-        const {id, isNew, ...data} = item.row; 
+        const { id, isNew, ...data } = item.row;
         postContactPerson(data);
     };
 
@@ -317,7 +315,15 @@ const NewVendor = () => {
                             vendor_name: vendorNameRef.current.value,
                             national_id: vendorNationalIDRef.current.value,
                         };
-                        validRef.current = ValidateVendorObject(vendorObject);
+                        validRef.current = ObjectValidator(
+                            [
+                                "company_name",
+                                "product_description",
+                                "kra_pin",
+                                "vendor_name"
+                            ],
+                            vendorObject
+                        );
                         console.log(validRef.current);
                         if (!validRef.current) {
                             throw new Error("Invalid payload!");

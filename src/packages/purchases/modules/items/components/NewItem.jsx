@@ -29,7 +29,8 @@ const NewItem = () => {
   const [rows, setRows] = useState([]);
   const [rowModesModel, setRowModesModel] = useState({});
   const [summaryValues, setSummaryValues] = useState({subtotal: 0, taxt_amount_total: 0, total: 0});
-  const [vendor, setVendor] = useState([{id: 1, name: 'Vendor X'}]);
+  const [vendorsList, setVendorsList] = useState([{id: 1, name: 'Vendor X'}, {id: 2, name: 'Vendor Y'}, {id: 3, name: 'Vendor Z'}]);
+  const [vendor, setVendor] = useState(null);
 
   const billNumberRef = useRef(null);
   const invoiceNumberRef = useRef(null);
@@ -277,6 +278,7 @@ setRowModesModel(newRowModesModel);
         cardLabelView={cardLabelView} 
         ref={billingInfoRefObject}
         handleSelectedVendor={handleSelectedVendor}
+        vendorsList={vendorsList}
         >
           <NewVendor />
         </shared.components.BillingComponent>

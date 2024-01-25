@@ -16,7 +16,18 @@ const list = [
 ];
 
 
-const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id, keyField, dialogTitle = '',  children, }) => {
+const AddItem = ({
+    label,
+    cardLabelIcon,
+    cardView,
+    addItemView,
+    id,
+    keyField,
+    dialogTitle = '',
+    handleSelectedVendor,
+    vendorsList,
+    children,
+}) => {
     const setAction = useGlobalDispatcher();
 
     const handleOutsideClick = () => {
@@ -25,7 +36,7 @@ const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id, keyField, di
 
     const itemRef = useRef(null);
 
-    useEffect( () => {
+    useEffect(() => {
         const handleClickOutsideAddItemCard = (event) => {
             event.stopPropagation();
             event.preventDefault();
@@ -43,24 +54,28 @@ const AddItem = ({ label, cardLabelIcon, cardView, addItemView, id, keyField, di
 
 
     return (
-        <div className="addItem" data-id={id} ref={ itemRef }>
+        <div className="addItem" data-id={id} ref={itemRef}>
             <label htmlFor={label} className="label-required">{label}</label>
             {
                 cardView ? <CustomCardLabel label={`add ${label}`} icon={cardLabelIcon} /> : ''
             }
-             {
-                addItemView ? 
-                <div>
-                    <AutocompleteComponent list={list} keyField={keyField} />
-                    <PurchaseNewEntityComponent
-                    label={label}
-                    dialogTitle={dialogTitle}
-                    >
-                        {children}
-                    </PurchaseNewEntityComponent>
-                </div>
-                : ''
-             }
+            {
+                addItemView ?
+                    <div>
+                        <AutocompleteComponent 
+                        list={vendorsList} 
+                        keyField={keyField}
+                        handleOnchange={handleSelectedVendor}
+                         />
+                        <PurchaseNewEntityComponent
+                            label={label}
+                            dialogTitle={dialogTitle}
+                        >
+                            {children}
+                        </PurchaseNewEntityComponent>
+                    </div>
+                    : ''
+            }
         </div>
     )
 }

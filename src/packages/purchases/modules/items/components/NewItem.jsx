@@ -282,16 +282,21 @@ const NewItem = () => {
     event.preventDefault();
 
     const itemsList = rows.map((it) => {
-      return { vat_rate, vat_amount, net_amount, gross_amount } = it.row;
+      console.log(it)
+      const{ vat_rate, quantity, price, item } = it;
+      const vat_amount = GetGross(it, 'vat_rate', 'quantity', 'price', 'tax_amount');
+      const net_amount = it.quantity * it.price;
+      const gross_amount = GetGross(it, 'vat_rate', 'quantity', 'price', 'tax_amount');
+      return { vat_rate, quantity, price, item, vat_amount, net_amount, gross_amount};
     });
-    
-    itemsList.forEach((item)=> {
-      if (!ObjectValidator(['vat_rate', 'vat_amount', 'net_amount', 'gross_amount'], item)) {
+
+    itemsList.forEach((item) => {
+      if (!ObjectValidator(['vat_rate', 'quantity', 'price', 'item', 'vat_amount', 'net_amount', 'gross_amount'], item)) {
         throw Error("Please check your table items and complete before you submit again");
       }
     });
 
-    const  { organization_id } = items;
+    const { organization_id } = items;
     const payload = {
       vendor: vendor,
       officer: selectedOfficer,
@@ -305,17 +310,17 @@ const NewItem = () => {
     };
 
     for (const prop in payload) {
-      if(!payload[prop]) throw new Error("Invalid payload, Cross check your item and submit again!")
-     }
+      if (!payload[prop]) throw new Error("Invalid payload, Cross check your item and submit again!")
+    }
+    postingPurchaseItem(payload)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.error(err);
+      })
   }
 
-  postingPurchaseItem(payload)
-  .then((res) => {
-    console.log(res);
-  })
-  .catch((err) => {
-    console.error(err);
-  })
 
   return (
     <section className='purchaseItem'>

@@ -4,7 +4,7 @@ export const ObjectValidator = (requiredFields, Obj) => {
     const missingRequiredFields = [];
 
     for (let prop in Obj) {
-        if (requiredFields.has(prop) && !Obj[prop]) {
+        if (requiredFieldsSet.has(prop) && !Obj[prop]) {
             missingRequiredFields.push(prop);
         }
     }

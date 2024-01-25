@@ -1,7 +1,8 @@
 import { InputComponent, AutocompleteComponent } from "@/components";
 import { forwardRef } from "react";
 
-const Transport = forwardRef(() => {
+const Transport = forwardRef((props, ref) => {
+  const {officers } = props;
   return (
       <div className="transport">
           <InputComponent

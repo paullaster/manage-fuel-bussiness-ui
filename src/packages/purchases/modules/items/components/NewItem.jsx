@@ -295,7 +295,7 @@ const NewItem = () => {
         throw Error("Please check your table items and complete before you submit again");
       }
     });
-
+    console.log(items);
     const { organization_id } = items;
     const payload = {
       vendor: vendor,
@@ -310,6 +310,7 @@ const NewItem = () => {
     };
 
     for (const prop in payload) {
+      console.log(payload);
       if (!payload[prop]) throw new Error("Invalid payload, Cross check your item and submit again!")
     }
     postingPurchaseItem(payload)

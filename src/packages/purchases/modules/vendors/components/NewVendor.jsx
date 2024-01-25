@@ -139,16 +139,6 @@ const NewVendor = () => {
         setPaymentMethod(newValue);
     }
 
-    const handleUploadChange = (event) => {
-        setUpload(URL.createObjectURL(event.target.files[0]));
-    };
-
-    const handleDeleteImage = (event) => {
-        event.stopPropagation();
-        event.preventDefault();
-        setUpload(null);
-    };
-
 
     const deleteItem = (item) => {
         setRows((prevRows) => prevRows.filter((row) => row.id !== item.id));

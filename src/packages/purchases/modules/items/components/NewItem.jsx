@@ -282,7 +282,7 @@ const NewItem = () => {
     event.preventDefault();
 
     const items = rows.map((it) => {
-      const { vat_rate, vat_amount, net_amount, gross_amount,  } = it.row;
+      return { vat_rate, vat_amount, net_amount, gross_amount } = it.row;
     })
     const payload = {
       vendor: vendor,
@@ -290,7 +290,8 @@ const NewItem = () => {
       purchase_date: purchaseOrderNumberRef.current.value,
       invoice_number: invoiceNumberRef.current.value,
       delivery_note_number: deliveryNoteNumberRef.current.value,
-      // items: 
+      items: items,
+      total_amount: summaryValues.total,
     }
   }
 

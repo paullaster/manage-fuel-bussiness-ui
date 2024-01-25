@@ -43,6 +43,7 @@ const NewFuelPurchase = () => {
 
   const transportNameRef = useRef(null);
   const vehicleRegistrationRef = useRef(null);
+  const driverNameRef = useRef(null);
 
 
   const billingInfoRefObject = {
@@ -50,6 +51,7 @@ const NewFuelPurchase = () => {
     invoiceNumberRef,
     purchaseOrderNumberRef,
     deliveryNoteNumberRef,
+    driverNameRef
   };
 
   // TRANSPORT

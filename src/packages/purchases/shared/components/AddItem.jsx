@@ -26,7 +26,7 @@ const AddItem = ({
     dialogTitle = '',
     handleSelectedVendor,
     vendorsList,
-    getOptionLabel= () => {},
+    optionField,
     children,
 }) => {
     const setAction = useGlobalDispatcher();

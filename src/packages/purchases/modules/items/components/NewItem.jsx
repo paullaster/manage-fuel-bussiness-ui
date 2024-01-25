@@ -281,18 +281,19 @@ const NewItem = () => {
     event.stopPropagation();
     event.preventDefault();
 
-    const items = rows.map((it) => {
+    const itemsList = rows.map((it) => {
       return { vat_rate, vat_amount, net_amount, gross_amount } = it.row;
     })
-    const  { organization_id } = WebStorage.GetFromWebStorage()
+    const  { organization_id } = items;
     const payload = {
       vendor: vendor,
       officer: selectedOfficer,
       purchase_date: purchaseOrderNumberRef.current.value,
       invoice_number: invoiceNumberRef.current.value,
       delivery_note_number: deliveryNoteNumberRef.current.value,
-      items: items,
+      items: itemsList,
       total_amount: summaryValues.total,
+      organization_id,
 
     }
   }

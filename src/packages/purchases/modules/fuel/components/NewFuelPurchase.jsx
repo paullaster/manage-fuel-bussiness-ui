@@ -46,6 +46,19 @@ const NewFuelPurchase = () => {
     deliveryNoteNumberRef,
   };
 
+
+  const handleSelectedVendor = (event, newValue) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setVendor(newValue.id);
+  }
+
+  const handleSelectedOficer = (event, newValue) => {
+    event.stopPropagation();
+    event.preventDefault();
+    console.log(newValue);
+    setSelectedOfficer(newValue.id);
+  }
   const deleteItem = (id) => {
         setRows((prevRows) => prevRows.filter((row) => row.id !== id));
     };

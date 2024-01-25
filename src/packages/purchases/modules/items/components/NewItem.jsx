@@ -55,14 +55,13 @@ const NewItem = () => {
   const handleSelectedVendor = (event, newValue) => {
     event.preventDefault();
     event.stopPropagation();
-    console.log(newValue);
-    setVendor(newValue);
+    setVendor(newValue.id);
   }
 
   const handleSelectedOficer = (event, newValue) => {
     event.stopPropagation();
     event.preventDefault();
-    setSelectedOfficer(newValue);
+    setSelectedOfficer(newValue.id);
   }
 
 

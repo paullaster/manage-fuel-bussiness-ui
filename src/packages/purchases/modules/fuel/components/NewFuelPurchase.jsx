@@ -51,7 +51,7 @@ const NewFuelPurchase = () => {
     invoiceNumberRef,
     purchaseOrderNumberRef,
     deliveryNoteNumberRef,
-    driverNameRef
+    driverNameRef,
   };
 
   // TRANSPORT

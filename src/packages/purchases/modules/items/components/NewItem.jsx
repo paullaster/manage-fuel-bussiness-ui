@@ -275,6 +275,10 @@ setRowModesModel(newRowModesModel);
   }, [columns, handleSettingSummary]);
 
 
+  const handleSubmitPurchaseItem = (event) => {
+      event.stopPropagation();
+      event.preventDefault();
+  }
 
   return (
     <section className='purchaseItem'>
@@ -300,7 +304,7 @@ setRowModesModel(newRowModesModel);
           slotProps={{ toolbar: { setRows, setRowModesModel } }}
         />
         <SummaryComponent subtotal={summaryValues.subtotal} totalTaxAmount={summaryValues.taxt_amount_total} total={summaryValues.total}/>
-        <FormButtonRow className='form_actions_wide' />
+        <FormButtonRow className='form_actions_wide' methodHandler={handleSubmitPurchaseItem} />
       </Form>
     </section>
   )

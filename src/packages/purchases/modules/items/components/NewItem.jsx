@@ -54,6 +54,11 @@ const NewItem = () => {
 const handleSelectedVendor = (event, newValue) => {
   event.preventDefault();
   event.stopPropagation();
+  const vendorListMap = vendorsList.reduce((map, option) => {
+    map[option.name] = option;
+    return map;
+  })
+  console.log(vendorListMap);
   setVendor(newValue);
 }
 
@@ -278,6 +283,9 @@ setRowModesModel(newRowModesModel);
   const handleSubmitPurchaseItem = (event) => {
       event.stopPropagation();
       event.preventDefault();
+      const payload = {
+
+      }
   }
 
   return (

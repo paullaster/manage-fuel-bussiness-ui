@@ -22,7 +22,7 @@ import SummaryComponent from "../../../shared/components/SummaryComponent";
 import { LookUpMap } from "@/utils";
 
 
-const items = WebStorage.GetFromWebStorage('session', APPNAME).items;
+const items = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`).items;
 
 const NewItem = () => {
   const appStateDispatcher = useGlobalDispatcher();
@@ -284,6 +284,7 @@ const NewItem = () => {
     const items = rows.map((it) => {
       return { vat_rate, vat_amount, net_amount, gross_amount } = it.row;
     })
+    const  { organization_id } = WebStorage.GetFromWebStorage()
     const payload = {
       vendor: vendor,
       officer: selectedOfficer,
@@ -292,6 +293,7 @@ const NewItem = () => {
       delivery_note_number: deliveryNoteNumberRef.current.value,
       items: items,
       total_amount: summaryValues.total,
+
     }
   }
 

@@ -20,7 +20,7 @@ import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 import { MdOutlineSaveAlt, MdCreate, MdCancel, MdDelete } from "react-icons/md";
 
 
-const tanks = WebStorage.GetFromWebStorage('session', APPNAME).tanks;
+const tanks = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`).tanks;
 let fueType = '';
 const NewFuelPurchase = () => {
   const [rows, setRows] = useState([]);

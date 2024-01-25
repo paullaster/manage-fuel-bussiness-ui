@@ -11,7 +11,7 @@ const AutocompleteComponent = ({list, label, keyField, handleOnchange = () => {}
           options={list.map((option) => option[keyField])}
           renderInput={(params) => <TextField {...params} label={label} />}
           getOptionLabel={(option) => {
-            const key = optionField? optionField : keyField
+            const key = optionField ? optionField : keyField
             return option[key];
           }}
           />

@@ -22,10 +22,12 @@ const InvoiceDetails = forwardRef((props, ref) => {
             <InputComponent
                 prelabelText="Purchase order number"
                 name="po_number"
+                ref={ref.purchaseOrderNumberRef}
             />
             <InputComponent
                 prelabelText="Delivery note number"
                 name="delivery_note_number"
+                ref={ref.deliveryNoteNumberRef}
             />
         </div>
     )

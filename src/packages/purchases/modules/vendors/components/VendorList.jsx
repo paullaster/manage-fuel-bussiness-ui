@@ -30,6 +30,7 @@ const VendorList = () => {
             sortable: false,
             hideable: false,
             editable: false,
+            align: 'center',
         },
         {
             field: 'vendor_phone',
@@ -39,6 +40,7 @@ const VendorList = () => {
             sortable: false,
             hideable: false,
             editable: false,
+            align: 'center',
         },
         {
             field: 'company_name',
@@ -48,6 +50,7 @@ const VendorList = () => {
             sortable: true,
             hideable: false,
             editable: false,
+            align: 'center',
         },
         {
             field: 'website',
@@ -56,7 +59,8 @@ const VendorList = () => {
             headerAlign: 'center',
             sortable: false,
             editable: false,
-            hideable: false
+            hideable: false,
+            align: 'center',
         },
         {
             field: 'actions',
@@ -67,6 +71,7 @@ const VendorList = () => {
             sortable: false,
             hideable: false,
             editable: false,
+            align: 'center',
             getActions: (params) => {
                 return [
                     <GridActionsCellItem

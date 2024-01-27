@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 import { DataTable } from '@/components';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { fetchVendorsList } from '../../../actions';
 
 const VendorList = () => {
     const [rows, setRows] = useState([]);
@@ -62,6 +63,20 @@ const VendorList = () => {
         editable: false,
     },
   ], []);
+
+  useEffect(() => {
+    fetchVendorsList()
+    .then((res) => {
+        setRows(res.results);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+
+    return () => {
+        
+    }
+  }, [rows]);
   return (
     <Box>
         <DataTable 

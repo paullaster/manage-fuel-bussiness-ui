@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import { DataTable } from '@/components';
 import { useEffect, useMemo, useState } from 'react';
 import { fetchVendorsList } from '../../../actions';
+import { generator } from '@/utils/';
 
 const VendorList = () => {
     const [rows, setRows] = useState([]);
@@ -67,14 +68,18 @@ const VendorList = () => {
   useEffect(() => {
     fetchVendorsList()
     .then((res) => {
-        setRows(res.results);
+        console.log(res.vendors.results);
+        for(const vendor of generator(res.vendors.results)) {
+            vendor.id = vendor.vendor_id;
+            setRows((prev) => [...prev, vendor]);
+        }
     })
     .catch((error) => {
         console.log(error);
     });
 
     return () => {
-        
+
     }
   }, [rows]);
   return (

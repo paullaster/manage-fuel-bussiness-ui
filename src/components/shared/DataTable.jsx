@@ -29,6 +29,7 @@ const DataTable = ({
                 processRowUpdate={processRowUpdate}
                 slots={slots}
                 slotProps={slotProps}
+                style={style}
             />
         </div>
     )

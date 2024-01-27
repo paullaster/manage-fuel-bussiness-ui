@@ -102,6 +102,7 @@ const VendorList = () => {
             <DataTable
                 columns={columns}
                 rows={rows}
+                style={{minHeight:400, height:'auto'}}
             />
         </Box>
     )

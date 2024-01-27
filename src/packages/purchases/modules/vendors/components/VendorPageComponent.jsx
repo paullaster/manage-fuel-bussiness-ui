@@ -11,7 +11,7 @@ const VendorPageComponent = () => {
 
     })
     .catch((error) => {
-        
+        console.log(error);
     })
   }, [vendorId]);
   return (

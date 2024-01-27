@@ -1,11 +1,11 @@
 import React from 'react'
 import SectionIntroduction from '../../../shared/components/SectionIntroduction'
 
-const SingleVendorPageActionsComponent = ({vendor_name}) => {
+const SingleVendorPageActionsComponent = ({vendorName}) => {
     return (
         <div className="actions">
             <div>
-                <SectionIntroduction text={`${vendor_name}`}/>
+                <SectionIntroduction text={`${vendorName}`}/>
             </div>
             <div></div>
         </div>

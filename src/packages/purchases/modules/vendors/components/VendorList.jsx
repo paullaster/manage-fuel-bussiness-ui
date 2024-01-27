@@ -20,6 +20,7 @@ const VendorList = () => {
             sortable: true,
             hideable: false,
             editable: false,
+            align: 'center',
         },
         {
             field: 'vendor_email',

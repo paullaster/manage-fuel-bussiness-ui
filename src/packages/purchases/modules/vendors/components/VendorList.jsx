@@ -84,12 +84,14 @@ const VendorList = () => {
         fetchVendorsList()
             .then((res) => {
                 console.log(res.vendors.results);
-                const vendorsSet = new Set([]);
+                const vendorsWithID = [];
                 for (const vendor of generator(res.vendors.results)) {
                     vendor.id = vendor.vendor_id;
-                    vendorsSet.push(vendor);
+                    vendorsWithID.push(vendor);
                 }
-                setRows(vendorsSet);
+                const vendorsArray = Array.from(new Set(vendorsWithID));
+                console.log(vendorsArray);
+                setRows(vendorsArray);
             })
             .catch((error) => {
                 console.log(error);

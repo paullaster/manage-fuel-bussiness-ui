@@ -1,11 +1,11 @@
 import Box from '@mui/material/Box';
 import { DataTable } from '@/components';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 const VendorList = () => {
     const [rows, setRows] = useState([]);
 
-  const columns = [
+  const columns = useMemo(() =>[
     {
         field: 'vendor_name',
         headerName: 'name',
@@ -61,7 +61,7 @@ const VendorList = () => {
         hideable: false,
         editable: false,
     },
-  ]
+  ], []);
   return (
     <Box>
         <DataTable 

@@ -9,7 +9,7 @@ const VendorList = () => {
     {
         field: 'vendor_name',
         headerName: 'name',
-        width: 200,
+        width: 300,
         headerAlign: 'center',
     },
     {
@@ -27,7 +27,7 @@ const VendorList = () => {
     {
         field: 'company_name',
         headerName: 'company name',
-        width: 200,
+        width: 300,
         headerAlign: 'center'
     },
     {

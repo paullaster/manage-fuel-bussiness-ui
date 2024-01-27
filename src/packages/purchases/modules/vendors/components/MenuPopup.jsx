@@ -12,6 +12,7 @@ const MenuPopup = ({ action }) => {
                     return (
                         <>
                             <Button {...bindTrigger(popupState)}>
+                                <span>{action.caption}</span>
                                 {
                                     action.iconList.map((icl) => {
                                         return (

@@ -69,7 +69,7 @@ const VendorList = () => {
                 return [
                     <GridActionsCellItem
                         key={uuidv4()}
-                        icon={<MdOutlineVisibility size={20}/>}
+                        icon={<MdOutlineVisibility size={20} />}
                         label="View"
                         onClick={() => {
                             handleViewClick(params)
@@ -84,10 +84,14 @@ const VendorList = () => {
         fetchVendorsList()
             .then((res) => {
                 console.log(res.vendors.results);
-                for (const vendor of generator(res.vendors.results)) {
-                    vendor.id = vendor.vendor_id;
-                    setRows((prev) => [...prev, vendor]);
-                }
+                const vendorsList = generator(res.vendors.results).map((v) => {
+                    return {
+                        ...v,
+                        id: v.vendor_id,
+                    };
+                })
+                setRows(vendorsList);
+
             })
             .catch((error) => {
                 console.log(error);
@@ -102,7 +106,7 @@ const VendorList = () => {
             <DataTable
                 columns={columns}
                 rows={rows}
-                style={{minHeight:400, height:'auto'}}
+                style={{ minHeight: 400, height: 'auto' }}
             />
         </Box>
     )

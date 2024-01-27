@@ -8,6 +8,8 @@
         margin-bottom: u.rem(32);
     }
     & > .inputSection{
+        display: grid;
+        grid-template-columns: 6fr 6fr;
         & > div.input-group {
             & > * {
                 display: block;

@@ -1,8 +1,20 @@
-import React from 'react'
+import Box from '@mui/material/Box';
+import { DataTable } from '@/components';
 
 const VendorList = () => {
+
+  const columns = [
+    {
+        field: 'name',
+        headerName: 'Vendor name'
+    }
+  ]
   return (
-    <div>VendorList</div>
+    <Box>
+        <DataTable 
+        columns={columns}
+        />
+    </Box>
   )
 }
 

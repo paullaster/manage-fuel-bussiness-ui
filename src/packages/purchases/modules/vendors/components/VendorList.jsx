@@ -7,7 +7,7 @@ import { generator } from '@/utils/';
 import { v4 as uuidv4 } from 'uuid';
 import { MdOutlineVisibility } from "react-icons/md";
 import shared from '../../../shared';
-import { redirect } from 'react-router-dom';
+import { redirect } from "react-router-dom";
 
 const VendorList = () => {
     const [rows, setRows] = useState([]);
@@ -16,7 +16,7 @@ const VendorList = () => {
     const handleViewClick = (params) => {
         const url = `/dashboard/purchases/vendor/vendors/${params.id}`;
         console.log("VIEW params.id", params.id);
-        console.log("params ", params.id);
+        console.log(url);
         redirect(url);
     };
 

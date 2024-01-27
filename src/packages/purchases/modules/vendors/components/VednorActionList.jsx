@@ -21,4 +21,10 @@ export default
     hasList: false,
     action: () => {console.log("vendor statment ")},
  },
+ {
+    caption: '',
+    iconList: [],
+    hasList: true,
+    action: () => {console.log("vendor statment ")},
+ },
 ]

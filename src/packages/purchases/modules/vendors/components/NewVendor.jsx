@@ -55,6 +55,19 @@ const NewVendor = () => {
     const currencySymbolref = useRef(null);
 
 
+
+    const vendorInformationRefObject = {
+        vendorNameRef,
+        vendorEmailRef,
+        vendorPhoneRef,
+        vendorNationalIDRef,
+        vendorCompanyNameRef,
+        vendorWebsiteRef,
+        vendorPinRef,
+        vendorReferenceRef,
+        vendorProdDescRef
+    };
+    
     const currencyRefObject = {
         currencySymbolref,
         currencyRateRef,
@@ -320,68 +333,6 @@ const NewVendor = () => {
                 <div className="new_vendors__left__dataentry">
                     <Form className="new_vendors__left__dataentry__form">
                         <div className="new_vendors__left__dataentry__form_vendorinfo">
-                            <div className="new_vendors__left__dataentry__form_vendorinfo_introduction form_section_introductions">
-                                <h4>General</h4>
-                                <p>Your vendor's contact information will appear in bills and their profiles. You can add their contact information and their logo to be used in bills.</p>
-                            </div>
-                            <div className="new_vendors__left__dataentry__form_vendorinfo__vendorname">
-                                <InputComponent
-                                    type="text"
-                                    prelabelText={"name"}
-                                    name="vendor_name"
-                                    ref={vendorNameRef}
-                                />
-                            </div>
-                            <div className="new_vendors__left__dataentry__form_vendorinfo__others">
-                                <div className="new_vendors__left__dataentry__form_vendorinfo__others_left">
-                                    <InputComponent
-                                        type="email"
-                                        prelabelText={"email"}
-                                        name="vendor_email"
-                                        ref={vendorEmailRef}
-                                    />
-                                    <InputComponent
-                                        type="tel"
-                                        prelabelText={"phone"}
-                                        name="vendor_phone"
-                                        ref={vendorPhoneRef}
-                                    />
-                                    <InputComponent
-                                        type="text"
-                                        prelabelText={"Company name"}
-                                        name="national_id"
-                                        ref={vendorCompanyNameRef}
-                                    />
-                                    <InputComponent
-                                        type="text"
-                                        prelabelText={"National ID"}
-                                        name="national_id"
-                                        ref={vendorNationalIDRef}
-                                    />
-                                    <InputComponent
-                                        type="url"
-                                        prelabelText={"website"}
-                                        name="website"
-                                        ref={vendorWebsiteRef}
-                                    />
-                                    <InputComponent
-                                        type="text"
-                                        prelabelText={"reference"}
-                                        name="vendor_reference"
-                                        ref={vendorReferenceRef}
-                                    />
-                                    <InputComponent
-                                        type="text"
-                                        prelabelText={"Tax number"}
-                                        name="kra_pin"
-                                        ref={vendorPinRef}
-                                    />
-                                    <div className="new_vendors__left__dataentry__form_billinginfo_dataentry_section-two">
-                                        <label htmlFor="product_description">product description</label>
-                                        <textarea name="product_description" id="product_description" cols="30" rows="4" className="info_textarea" ref={vendorProdDescRef}></textarea>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div className="new_vendors__left__dataentry__form_billinginfo">
                             <div className="new_vendors__left__dataentry__form_billinginfo_introduction form_section_introductions">

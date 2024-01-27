@@ -143,3 +143,9 @@ export const postVendor = async (item) => {
 export const postingPurchaseItem = async(payload) =>{
     return await _request({method: 'POST', url: purchaseItem, data: payload});
 }
+
+
+// FETCH VENDORS
+export const fetchVendorsList = async() => {
+    return await _request({method: 'GET', params: {organization_id: '1'}, url: vendor});
+}

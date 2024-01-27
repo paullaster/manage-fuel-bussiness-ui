@@ -13,9 +13,10 @@ const VendorList = () => {
     const [rows, setRows] = useState([]);
 
 
-    const handleViewClick = useCallback((params) => {
-        const url = `/dashboard/purchases/vendor/vendors/${params.id}`
-    }, []);
+    const handleViewClick = (params) => {
+        const url = `/dashboard/purchases/vendor/vendors/${params.id}`;
+        redirect(url);
+    };
 
     const columns = useMemo(() => [
         {

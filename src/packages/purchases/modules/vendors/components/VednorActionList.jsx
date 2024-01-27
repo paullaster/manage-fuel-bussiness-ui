@@ -25,6 +25,9 @@ export default
     caption: '',
     iconList: [],
     hasList: true,
-    action: () => {console.log("vendor statment ")},
+    list: [ 
+        {cap: 'Duplicate', action: () => {console.log("Duplicate ")}},
+        {cap: 'Delete', action: () => {console.log("Delete")}},
+    ]
  },
 ]

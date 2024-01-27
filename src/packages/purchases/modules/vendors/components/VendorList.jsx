@@ -7,9 +7,42 @@ const VendorList = () => {
 
   const columns = [
     {
-        field: 'name',
-        headerName: 'Vendor name'
-    }
+        field: 'vendor_name',
+        headerName: 'name',
+        width: 200,
+        headerAlign: 'center',
+    },
+    {
+        field: 'vendor_email',
+        headerName: 'email ',
+        width: 200,
+        headerAlign: 'center'
+    },
+    {
+        field: 'vendor_phone',
+        headerName: 'phone',
+        width: 200,
+        headerAlign: 'center'
+    },
+    {
+        field: 'company_name',
+        headerName: 'company name',
+        width: 200,
+        headerAlign: 'center'
+    },
+    {
+        field: 'website',
+        headerName: 'website',
+        width: 200,
+        headerAlign: 'center'
+    },
+    {
+        field: 'actions',
+        headerName: 'actions',
+        type: 'actions',
+        width: 200,
+        headerAlign: 'center'
+    },
   ]
   return (
     <Box>

@@ -62,6 +62,9 @@ const VendorList = () => {
         sortable: false,
         hideable: false,
         editable: false,
+        getActions: (params) => {
+
+        }
     },
   ], []);
 

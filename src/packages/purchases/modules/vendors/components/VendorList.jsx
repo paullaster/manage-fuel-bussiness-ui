@@ -7,6 +7,7 @@ import { generator } from '@/utils/';
 import { v4 as uuidv4 } from 'uuid';
 import { MdOutlineVisibility } from "react-icons/md";
 import shared from '../../../shared';
+import { redirect } from 'react-router-dom';
 
 const VendorList = () => {
     const [rows, setRows] = useState([]);

@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import { DataTable } from '@/components';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchVendorsList } from '../../../actions';
 import { generator } from '@/utils/';
 import { v4 as uuidv4 } from 'uuid';
@@ -10,6 +10,11 @@ import shared from '../../../shared';
 
 const VendorList = () => {
     const [rows, setRows] = useState([]);
+
+
+    const handleViewClick = useCallback(() => {
+
+    }, []);
 
     const columns = useMemo(() => [
         {

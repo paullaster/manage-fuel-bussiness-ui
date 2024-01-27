@@ -26,7 +26,7 @@ export default
  },
  {
     caption: '',
-    iconList: [],
+    iconList: [{key: uuidv4(), icon: <MdOutlineMoreHoriz />}],
     hasList: true,
     list: [ 
         {cap: 'Duplicate', action: () => {console.log("Duplicate ")}},

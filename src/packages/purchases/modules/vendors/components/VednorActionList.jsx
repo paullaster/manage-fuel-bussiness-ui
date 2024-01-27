@@ -1,10 +1,11 @@
-
+import { MdOutlineMoreHoriz, MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { v4 as uuidv4 } from 'uuid';
 
 export default 
 [
  {
     caption: 'New',
-    iconList: [],
+    iconList: [{key: uuidv4(), icon: <MdOutlineMoreHoriz />}, {key: uuidv4(), icon: <MdOutlineKeyboardArrowDown />}],
     hasList: true,
     list: [ 
         {cap: 'Fuel purchase', action: () => {console.log("Fuel purchase")}},

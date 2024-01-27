@@ -9,6 +9,7 @@
     & > .inputSection{
         display: grid;
         grid-template-columns: 6fr 6fr;
+        column-gap: u.rem(16);
         & > div.input-group {
             margin-bottom: u.rem(32);
             & > * {

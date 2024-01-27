@@ -11,6 +11,7 @@
         display: grid;
         grid-template-columns: 6fr 6fr;
         & > div.input-group {
+            margin-bottom: u.rem(32);
             & > * {
                 display: block;
                 &:first-child {

@@ -8,8 +8,8 @@ export default
     iconList: [{key: uuidv4(), icon: <MdOutlineMoreHoriz />}, {key: uuidv4(), icon: <MdOutlineKeyboardArrowDown />}],
     hasList: true,
     list: [ 
-        {cap: 'Fuel purchase', action: () => {console.log("Fuel purchase")}},
-        {cap: 'Item purchase', action: () => {console.log("Item purchase")}},
+        {key: uuidv4(), cap: 'Fuel purchase', action: () => {console.log("Fuel purchase")}},
+        {key: uuidv4(), cap: 'Item purchase', action: () => {console.log("Item purchase")}},
     ]
  },
  {

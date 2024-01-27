@@ -24,9 +24,14 @@ const MenuPopup = ({ action }) => {
                                 }
                             </Button>
                             <Menu {...bindMenu(popupState)}>
-                                <MenuItem onClick={popupState.close}>Profile</MenuItem>
-                                <MenuItem onClick={popupState.close}>My account</MenuItem>
-                                <MenuItem onClick={popupState.close}>Logout</MenuItem>
+                                {
+                                    action.list.map((l) => {
+                                        return (
+
+                                            <MenuItem onClick={popupState.close}>{l.cap}</MenuItem>
+                                        )
+                                    })
+                                }
                             </Menu>
                         </>
                     )

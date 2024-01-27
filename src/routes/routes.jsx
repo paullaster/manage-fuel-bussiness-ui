@@ -26,6 +26,7 @@ const router = createBrowserRouter(
                     {/* VENDORS */}
                     <Route element={<Purchases.modules.vendors.Vendors />} path='vendor' />
                     <Route element={<Purchases.modules.vendors.components.NewVendor />} path='vendor/create'  action={Purchases.postVendor}/>
+                    <Route element={<Purchases.modules.vendors.components.VendorList />} path='vendor/vendors'  />
 
                     {/* FUEL */}
                     <Route element={<Purchases.modules.fuel.FuelPurchase />} path='fuel' />

@@ -1,7 +1,6 @@
 @use '../utilities/' as u;
 
 .vendorInfo {
-    background-color: red;
     display: flex;
     flex-direction: column;
     & > div {

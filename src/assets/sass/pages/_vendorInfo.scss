@@ -6,12 +6,12 @@
     flex-direction: column;
     & > div {
         margin-bottom: u.rem(32);
-        & > div.input-group {
-            & > * {
-                display: block;
-                &:first-child {
-                    margin-bottom: u.rem(8);
-                }
+    }
+    & > div.input-group {
+        & > * {
+            display: block;
+            &:first-child {
+                margin-bottom: u.rem(8);
             }
         }
     }

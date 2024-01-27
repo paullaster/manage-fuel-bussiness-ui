@@ -10,7 +10,7 @@ const VendorInformation = forwardRef((props, ref) => {
             >
                 <p>Your vendor's contact information will appear in bills and their profiles. You can add their contact information and their logo to be used in bills.</p>
             </DivisionTopBar>
-            <div>
+            <div className='inputSection'>
             <InputComponent
                 type="text"
                 prelabelText={"name"}

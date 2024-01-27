@@ -69,7 +69,7 @@ const VendorList = () => {
                 return [
                     <GridActionsCellItem
                         key={uuidv4()}
-                        icon={<MdOutlineVisibility size={20}/>}
+                        icon={<MdOutlineVisibility size={20} />}
                         label="View"
                         onClick={() => {
                             handleViewClick(params)
@@ -105,7 +105,9 @@ const VendorList = () => {
             <DataTable
                 columns={columns}
                 rows={rows}
-                style={{minHeight:400, height:'auto'}}
+                style={{ minHeight: 400, height: 'auto' }}
+                initialState={{ pagination: { paginationModel: { page: 0, pageSize: 10 } } }}
+                pageSizeOptions={[5, 10, 20, 30, 50]}
             />
         </Box>
     )

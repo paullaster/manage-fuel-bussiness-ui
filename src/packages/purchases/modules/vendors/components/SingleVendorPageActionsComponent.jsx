@@ -1,7 +1,7 @@
 import React from 'react'
 import SectionIntroduction from '../../../shared/components/SectionIntroduction'
 
-const singleVendorPageActionsComponent = ({vendor_name}) => {
+const SingleVendorPageActionsComponent = ({vendor_name}) => {
     return (
         <div className="actions">
             <div>
@@ -12,4 +12,4 @@ const singleVendorPageActionsComponent = ({vendor_name}) => {
     )
 }
 
-export default singleVendorPageActionsComponent
+export default SingleVendorPageActionsComponent

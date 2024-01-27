@@ -97,7 +97,7 @@ const VendorList = () => {
     ], []);
 
     useEffect(() => {
-        fetchVendorsList()
+        fetchVendorsList({limit: 10})
             .then((res) => {
                 console.log(res.vendors.results);
                 const vendorsWithID = [];

@@ -90,7 +90,6 @@ const VendorList = () => {
                     vendorsWithID.push(vendor);
                 }
                 const vendorsArray = Array.from(new Set(vendorsWithID));
-                console.log(vendorsArray);
                 setRows(vendorsArray);
             })
             .catch((error) => {

@@ -16,10 +16,9 @@
                 &:first-child {
                     margin-bottom: u.rem(8);
                 }
-
-                input {
-                    width: u.rem(200) !important;
-                }
+            }
+            input {
+                width: u.rem(400) !important;
             }
         }
     }

@@ -18,7 +18,7 @@ const VendorPageComponent = () => {
   }, [vendorId]);
   return (
     <section className="vendorPage">
-        <SingleVendorPageActionsComponent vendorName={vendor.vendor_name}/>
+        <SingleVendorPageActionsComponent vendorName={vendor?.vendor_name}/>
         <div></div>
     </section>
   )

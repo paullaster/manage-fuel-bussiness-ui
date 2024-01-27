@@ -1,13 +1,15 @@
 import { forwardRef } from 'react';
 import { InputComponent } from '@/components';
+import DivisionTopBar from '../../../shared/components/DivisionTopBar';
 
 const VendorInformation = forwardRef((ref) => {
     return (
         <div>
-            <div className="new_vendors__left__dataentry__form_vendorinfo_introduction form_section_introductions">
-                <h4>General</h4>
+            <DivisionTopBar
+                sectionTitle={'General'}
+            >
                 <p>Your vendor's contact information will appear in bills and their profiles. You can add their contact information and their logo to be used in bills.</p>
-            </div>
+            </DivisionTopBar>
             <InputComponent
                 type="text"
                 prelabelText={"name"}

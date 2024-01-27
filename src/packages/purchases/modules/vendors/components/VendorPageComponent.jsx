@@ -15,7 +15,9 @@ const VendorPageComponent = () => {
     })
   }, [vendorId]);
   return (
-    <div>VendorPageComponent</div>
+    <section className="vendorPage">
+
+    </section>
   )
 }
 

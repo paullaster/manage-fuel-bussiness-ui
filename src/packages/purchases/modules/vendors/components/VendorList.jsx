@@ -7,17 +7,17 @@ import { generator } from '@/utils/';
 import { v4 as uuidv4 } from 'uuid';
 import { MdOutlineVisibility } from "react-icons/md";
 import shared from '../../../shared';
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const VendorList = () => {
     const [rows, setRows] = useState([]);
+    const navigate = useNavigate()
 
 
     const handleViewClick = (params) => {
         const url = `/dashboard/purchases/vendor/vendors/${params.id}`;
-        console.log("VIEW params.id", params.id);
         console.log(url);
-        redirect(url);
+        navigate(url);
     };
 
     const columns = useMemo(() => [

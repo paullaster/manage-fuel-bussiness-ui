@@ -28,7 +28,7 @@ const MenuPopup = ({ action }) => {
                                     action.list.map((l) => {
                                         return (
 
-                                            <MenuItem onClick={popupState.close}>{l.cap}</MenuItem>
+                                            <MenuItem onClick={popupState.close} key={l.key}>{l.cap}</MenuItem>
                                         )
                                     })
                                 }

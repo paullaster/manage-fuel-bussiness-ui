@@ -87,7 +87,7 @@ const VendorList = () => {
                         key={uuidv4()}
                         icon={<MdOutlineVisibility size={20} />}
                         label="View"
-                        onClick={(params) => {
+                        onClick={() => {
                             handleViewClick(params)
                         }}
                     />

@@ -8,5 +8,11 @@ export default
         {cap: 'Fuel purchase', action: () => {console.log("Fuel purchase")}},
         {cap: 'Item purchase', action: () => {console.log("Item purchase")}},
     ]
+ },
+ {
+    caption: 'Edit',
+    iconList: [],
+    hasList: false,
+    action: () => {console.log("Edit ")},
  }
 ]

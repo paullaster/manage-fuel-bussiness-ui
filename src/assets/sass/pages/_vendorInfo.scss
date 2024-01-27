@@ -23,6 +23,8 @@
             }
             textarea {
                 width: u.rem(400) !important;
+                min-height: u.rem(50);
+                height: fit-content;
             }
         }
     }

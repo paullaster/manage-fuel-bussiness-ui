@@ -324,11 +324,6 @@ const NewVendor = () => {
                                 <h4>General</h4>
                                 <p>Your vendor's contact information will appear in bills and their profiles. You can add their contact information and their logo to be used in bills.</p>
                             </div>
-                            {/* <InputComponent
-                                type="text"
-                                prelabelText={"national ID"}
-                                name="organization_id"
-                            /> */}
                             <div className="new_vendors__left__dataentry__form_vendorinfo__vendorname">
                                 <InputComponent
                                     type="text"

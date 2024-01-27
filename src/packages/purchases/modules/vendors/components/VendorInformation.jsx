@@ -4,7 +4,7 @@ import DivisionTopBar from '../../../shared/components/DivisionTopBar';
 
 const VendorInformation = forwardRef((ref) => {
     return (
-        <div>
+        <div className=''>
             <DivisionTopBar
                 sectionTitle={'General'}
             >
@@ -58,7 +58,7 @@ const VendorInformation = forwardRef((ref) => {
                 name="kra_pin"
                 ref={ref.vendorPinRef}
             />
-            <div className="new_vendors__left__dataentry__form_billinginfo_dataentry_section-two">
+            <div className='input-group'>
                 <label htmlFor="product_description">product description</label>
                 <textarea name="product_description" id="product_description" cols="30" rows="4" className="info_textarea" ref={ref.vendorProdDescRef}></textarea>
             </div>

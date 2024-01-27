@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { fetchVendorsList } from '../../../actions';
 import { generator } from '@/utils/';
 import { v4 as uuidv4 } from 'uuid';
+import { MdOutlineVisibility } from "react-icons/md";
 
 const VendorList = () => {
     const [rows, setRows] = useState([]);
@@ -68,7 +69,7 @@ const VendorList = () => {
                 return [
                     <GridActionsCellItem
                         key={uuidv4()}
-                        icon={<MdOutlineSaveAlt />}
+                        icon={<MdOutlineVisibility size={20}/>}
                         label="View"
                         onClick={() => {
                             handleViewClick(params)

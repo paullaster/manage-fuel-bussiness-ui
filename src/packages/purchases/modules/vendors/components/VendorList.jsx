@@ -12,7 +12,7 @@ const VendorList = () => {
     const [rows, setRows] = useState([]);
 
 
-    const handleViewClick = useCallback(() => {
+    const handleViewClick = useCallback((params) => {
 
     }, []);
 

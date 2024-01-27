@@ -12,6 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
 import CurrencyComponent from "./CurrencyComponent";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
 import { ObjectValidator } from "@/utils";
+import VendorInformation from "./VendorInformation";
 
 
 const NewVendor = () => {
@@ -65,9 +66,9 @@ const NewVendor = () => {
         vendorWebsiteRef,
         vendorPinRef,
         vendorReferenceRef,
-        vendorProdDescRef
+        vendorProdDescRef,
     };
-    
+
     const currencyRefObject = {
         currencySymbolref,
         currencyRateRef,
@@ -333,6 +334,9 @@ const NewVendor = () => {
                 <div className="new_vendors__left__dataentry">
                     <Form className="new_vendors__left__dataentry__form">
                         <div className="new_vendors__left__dataentry__form_vendorinfo">
+                            <VendorInformation 
+                            ref={vendorInformationRefObject}
+                            />
                         </div>
                         <div className="new_vendors__left__dataentry__form_billinginfo">
                             <div className="new_vendors__left__dataentry__form_billinginfo_introduction form_section_introductions">

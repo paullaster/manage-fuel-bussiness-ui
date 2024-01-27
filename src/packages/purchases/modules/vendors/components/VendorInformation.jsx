@@ -1,4 +1,5 @@
-import React, { forwardRef } from 'react'
+import { forwardRef } from 'react';
+import { InputComponent } from '@/components';
 
 const VendorInformation = forwardRef((ref) => {
     return (

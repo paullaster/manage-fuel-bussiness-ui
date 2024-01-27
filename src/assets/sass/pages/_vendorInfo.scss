@@ -2,7 +2,17 @@
 
 .vendorInfo {
     background-color: red;
+    display: grid;
+    grid-template-columns: 4fr 4fr;
     & > div {
         margin-bottom: u.rem(32);
+    }
+    & > div.input-group {
+        & > * {
+            display: block;
+            &:first-child {
+                margin-bottom: u.rem(16);
+            }
+        }
     }
 }

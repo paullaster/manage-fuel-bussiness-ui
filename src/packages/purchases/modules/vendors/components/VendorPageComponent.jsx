@@ -10,7 +10,7 @@ const VendorPageComponent = () => {
   useEffect(() => {
     fetchVendorsList({vendor_id: vendorId})
     .then((res) => {
-        console.log(res);
+        setVendor(res);
     })
     .catch((error) => {
         console.log(error);

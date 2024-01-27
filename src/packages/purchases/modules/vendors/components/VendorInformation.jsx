@@ -10,6 +10,7 @@ const VendorInformation = forwardRef((props, ref) => {
             >
                 <p>Your vendor's contact information will appear in bills and their profiles. You can add their contact information and their logo to be used in bills.</p>
             </DivisionTopBar>
+            <div>
             <InputComponent
                 type="text"
                 prelabelText={"name"}
@@ -61,6 +62,7 @@ const VendorInformation = forwardRef((props, ref) => {
             <div className='input-group'>
                 <label htmlFor="product_description">product description</label>
                 <textarea name="product_description" id="product_description" cols="30" rows="4" className="info_textarea" ref={ref.vendorProdDescRef}></textarea>
+            </div>
             </div>
         </div>
     )

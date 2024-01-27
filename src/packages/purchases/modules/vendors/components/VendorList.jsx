@@ -81,7 +81,7 @@ const VendorList = () => {
     return () => {
 
     }
-  }, [rows]);
+  }, []);
   return (
     <Box>
         <DataTable 

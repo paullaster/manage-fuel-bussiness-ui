@@ -3,14 +3,15 @@ import { BASEAPIURL } from "../../environments";
 
 export const instance = axios.create({
     baseURL: BASEAPIURL,
-    timeout:10000,
+    timeout: 10000,
 });
 
 export const protectedRequestInterceptor = (config) => {
- return config;
+    return config;
 };
 
-export const  errorInterceptor = (error) => {
+export const errorInterceptor = (error) => {
+    console.log(error);
     return Promise.reject(error);
 };
 

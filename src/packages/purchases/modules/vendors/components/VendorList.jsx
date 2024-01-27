@@ -11,37 +11,55 @@ const VendorList = () => {
         headerName: 'name',
         width: 300,
         headerAlign: 'center',
+        sortable: true,
+        hideable: false,
+        editable: false,
     },
     {
         field: 'vendor_email',
         headerName: 'email ',
         width: 200,
-        headerAlign: 'center'
+        headerAlign: 'center',
+        sortable: false,
+        hideable: false,
+        editable: false,
     },
     {
         field: 'vendor_phone',
         headerName: 'phone',
         width: 200,
-        headerAlign: 'center'
+        headerAlign: 'center',
+        sortable: false,
+        hideable: false,
+        editable: false,
     },
     {
         field: 'company_name',
         headerName: 'company name',
         width: 300,
-        headerAlign: 'center'
+        headerAlign: 'center',
+        sortable: true,
+        hideable: false,
+        editable: false,
     },
     {
         field: 'website',
         headerName: 'website',
         width: 200,
-        headerAlign: 'center'
+        headerAlign: 'center',
+        sortable: false,
+        editable: false,
+        hideable: false
     },
     {
         field: 'actions',
         headerName: 'actions',
         type: 'actions',
         width: 200,
-        headerAlign: 'center'
+        headerAlign: 'center',
+        sortable: false,
+        hideable: false,
+        editable: false,
     },
   ]
   return (

@@ -146,6 +146,6 @@ export const postingPurchaseItem = async(payload) =>{
 
 
 // FETCH VENDORS
-export const fetchVendorsList = async() => {
-    return await _request({method: 'GET', params: {/*organization_id: '1',*/ limit: 10}, url: vendor});
+export const fetchVendorsList = async(params = {}) => {
+    return await _request({method: 'GET', params, url: vendor});
 }

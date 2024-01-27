@@ -5,11 +5,30 @@ import { Button } from '@/components';
 import { v4 as uuidv4 } from 'uuid';
 
 const MenuPopup = () => {
-  return (
-    <PopupState variant="popover" popupId={uuidv4()}>
-
-    </PopupState>
-  )
+    return (
+        <PopupState variant="popover" popupId={uuidv4()}>
+            {
+                (popupState) => {
+                    <>
+                        <Button {...bindTrigger(popupState)}>
+                                {
+                                    iconList.map((icl) => {
+                                        <span key={icl.key}>
+                                            {icl.icon}
+                                        </span>
+                                    })
+                                }
+                        </Button>
+                        <Menu {...bindMenu(popupState)}>
+                            <MenuItem onClick={popupState.close}>Profile</MenuItem>
+                            <MenuItem onClick={popupState.close}>My account</MenuItem>
+                            <MenuItem onClick={popupState.close}>Logout</MenuItem>
+                        </Menu>
+                    </>
+                }
+            }
+        </PopupState>
+    )
 }
 
 export default MenuPopup

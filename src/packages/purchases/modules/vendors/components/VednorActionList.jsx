@@ -14,5 +14,11 @@ export default
     iconList: [],
     hasList: false,
     action: () => {console.log("Edit ")},
- }
+ },
+ {
+    caption: 'Vendor Statement',
+    iconList: [],
+    hasList: false,
+    action: () => {console.log("vendor statment ")},
+ },
 ]

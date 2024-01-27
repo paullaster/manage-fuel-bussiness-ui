@@ -4,7 +4,7 @@ import DivisionTopBar from '../../../shared/components/DivisionTopBar';
 
 const VendorInformation = forwardRef((ref) => {
     return (
-        <div className=''>
+        <div className='vendorInfo'>
             <DivisionTopBar
                 sectionTitle={'General'}
             >

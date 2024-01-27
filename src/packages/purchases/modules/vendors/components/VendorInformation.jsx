@@ -3,7 +3,6 @@ import { InputComponent } from '@/components';
 import DivisionTopBar from '../../../shared/components/DivisionTopBar';
 
 const VendorInformation = forwardRef((props, ref) => {
-    const {} = props;
     return (
         <div className='vendorInfo'>
             <DivisionTopBar

@@ -6,6 +6,7 @@ import { fetchVendorsList } from '../../../actions';
 import { generator } from '@/utils/';
 import { v4 as uuidv4 } from 'uuid';
 import { MdOutlineVisibility } from "react-icons/md";
+import shared from '../../../shared';
 
 const VendorList = () => {
     const [rows, setRows] = useState([]);
@@ -102,6 +103,7 @@ const VendorList = () => {
     }, []);
     return (
         <Box>
+            <shared.components.SectionIntroduction text="List of Vendors" />
             <DataTable
                 columns={columns}
                 rows={rows}

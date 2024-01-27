@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import { DataTable } from '@/components';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import {useEffect, useMemo, useState } from 'react';
 import { fetchVendorsList } from '../../../actions';
 import { generator } from '@/utils/';
 import { v4 as uuidv4 } from 'uuid';
@@ -15,6 +15,8 @@ const VendorList = () => {
 
     const handleViewClick = (params) => {
         const url = `/dashboard/purchases/vendor/vendors/${params.id}`;
+        console.log("VIEW params.id", params.id);
+        console.log("params ", params.id);
         redirect(url);
     };
 
@@ -85,7 +87,7 @@ const VendorList = () => {
                         key={uuidv4()}
                         icon={<MdOutlineVisibility size={20} />}
                         label="View"
-                        onClick={() => {
+                        onClick={(params) => {
                             handleViewClick(params)
                         }}
                     />

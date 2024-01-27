@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { fetchVendorsList } from "../../../actions";
+import SingleVendorPageActionsComponent from "./SingleVendorPageActionsComponent";
 
 const VendorPageComponent = () => {
+  const [vendor, setVendor] = useState();
   const { vendorId } = useParams();
 
   useEffect(() => {
@@ -16,7 +18,7 @@ const VendorPageComponent = () => {
   }, [vendorId]);
   return (
     <section className="vendorPage">
-        <
+        <SingleVendorPageActionsComponent />
         <div></div>
     </section>
   )

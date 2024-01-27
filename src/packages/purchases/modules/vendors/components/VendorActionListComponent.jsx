@@ -1,21 +1,12 @@
 import VendorActionList from "./VendorActionList";
-import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
-// import Button from '@mui/material/Button';
-
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import MenuPopup from "./MenuPopup";
 
 const VendorActionListComponent = () => {
   return (
     <div>
         {
             VendorActionList.map((action) => {
-                action.hasList ? 
-                action.map((list) => {
-                    return (
-
-                    )
-                })
+                return action.hasList ? <MenuPopup action={action}/> : ''
             })
         }
     </div>

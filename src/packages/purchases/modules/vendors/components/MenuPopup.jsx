@@ -4,27 +4,31 @@ import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import { Button } from '@/components';
 import { v4 as uuidv4 } from 'uuid';
 
-const MenuPopup = () => {
+const MenuPopup = ({ action }) => {
     return (
         <PopupState variant="popover" popupId={uuidv4()}>
             {
                 (popupState) => {
-                    <>
-                        <Button {...bindTrigger(popupState)}>
+                    return (
+                        <>
+                            <Button {...bindTrigger(popupState)}>
                                 {
                                     iconList.map((icl) => {
-                                        <span key={icl.key}>
-                                            {icl.icon}
-                                        </span>
+                                        return (
+                                            <span key={icl.key}>
+                                                {icl.icon}
+                                            </span>
+                                        )
                                     })
                                 }
-                        </Button>
-                        <Menu {...bindMenu(popupState)}>
-                            <MenuItem onClick={popupState.close}>Profile</MenuItem>
-                            <MenuItem onClick={popupState.close}>My account</MenuItem>
-                            <MenuItem onClick={popupState.close}>Logout</MenuItem>
-                        </Menu>
-                    </>
+                            </Button>
+                            <Menu {...bindMenu(popupState)}>
+                                <MenuItem onClick={popupState.close}>Profile</MenuItem>
+                                <MenuItem onClick={popupState.close}>My account</MenuItem>
+                                <MenuItem onClick={popupState.close}>Logout</MenuItem>
+                            </Menu>
+                        </>
+                    )
                 }
             }
         </PopupState>

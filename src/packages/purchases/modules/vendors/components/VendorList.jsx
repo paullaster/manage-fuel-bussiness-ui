@@ -13,7 +13,7 @@ const VendorList = () => {
 
 
     const handleViewClick = useCallback((params) => {
-
+        
     }, []);
 
     const columns = useMemo(() => [

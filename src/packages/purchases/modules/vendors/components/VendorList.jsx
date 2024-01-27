@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box';
+import { GridActionsCellItem } from "@mui/x-data-grid"; 
 import { DataTable } from '@/components';
 import { useEffect, useMemo, useState } from 'react';
 import { fetchVendorsList } from '../../../actions';
@@ -63,7 +64,10 @@ const VendorList = () => {
         hideable: false,
         editable: false,
         getActions: (params) => {
-
+            return [
+                <GridActionsCellItem 
+                />
+            ]
         }
     },
   ], []);

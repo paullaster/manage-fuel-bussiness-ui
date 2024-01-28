@@ -352,6 +352,7 @@ const NewVendor = () => {
                                 postVendor(vendorObject)
                                     .then((res) => {
                                         console.log(res);
+                                        WebStorage.RemoveFromStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
                                     })
                                     .catch((error) => {
                                         console.log(error);

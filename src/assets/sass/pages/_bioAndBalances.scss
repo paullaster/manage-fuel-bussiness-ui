@@ -1,4 +1,5 @@
 @use '../utilities/' as u;
+@use '../global/' as g;
 
 .bioAndBalances {
     background-color: red;
@@ -9,6 +10,7 @@
         display: flex;
         & > .initials {
             margin-right: u.rem(24);
+            border: u.rem(2) solid g.$color_active;
         }
         &  > .contact {
             display: flex;

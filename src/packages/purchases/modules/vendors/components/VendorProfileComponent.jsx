@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const VendorProfileComponent = ({ vendor }) => {
+    useEffect(() =>{}, [vendor])
     return (
         <div>
             <VendorAddress address={vendor?.addresses} />
@@ -12,8 +13,7 @@ export default VendorProfileComponent
 
 
 const VendorAddress = ({ address }) => {
-
-
+    useEffect(() => {}, [address])
     return (
         <div>
             <h4>

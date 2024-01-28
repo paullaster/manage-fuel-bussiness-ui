@@ -31,3 +31,12 @@ const VendorTransactionsComponent = () => {
 }
 
 export default VendorTransactionsComponent
+
+
+const TransactionTabContent = ({value}) => {
+    return (
+        <TabPanel value={value}>
+            
+        </TabPanel>
+    )
+}

@@ -1,16 +1,22 @@
 import React from 'react'
 
-const VendorProfileComponent = ({vendor}) => {
-  return (
-    <div>
-        <VendorAddress address={vendor.addresses}/>
-    </div>
-  )
+const VendorProfileComponent = ({ vendor }) => {
+    return (
+        <div>
+            <VendorAddress address={vendor.addresses} />
+        </div>
+    )
 }
 
 export default VendorProfileComponent
 
 
-const VendorAddress = ({address}) => {
+const VendorAddress = ({ address }) => {
 
+
+    return (
+        <address>
+            
+        </address>
+ )
 }

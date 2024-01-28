@@ -29,6 +29,8 @@
         }
         .informationCard {
             background-color: g.$color_default-light;
+            padding: u.rem(32);
+            border-radius: u.rem(20);
         }
     }
 }

@@ -2,7 +2,8 @@
 @use '../global/' as g;
 
 .bioAndBalances {
-    margin-top: u.rem(20);
+    margin-top: u.rem(28);
+    margin-bottom: u.rem(28);
     display: flex;
     & > .bio {
         width: u.rem(500);

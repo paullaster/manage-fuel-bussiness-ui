@@ -19,7 +19,8 @@ const VendorTransactionsComponent = () => {
                     onChange={handleChange} 
                     aria-label="vendor tabs"
                     >
-                        
+                        <Tab label="Fuel purchase"/>
+                        <Tab label="Item purchase"/>
                     </TabList>
                 </Box>
             </TabContext>

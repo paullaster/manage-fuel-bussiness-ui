@@ -40,8 +40,10 @@ const VendorContactPerson = ({ contact }) => {
             {
                 contact.map((c) => {
                     return (
-                        <div key={contact.contact_id}>
-
+                        <div key={c.contact_id}>
+                            <p>{c.contact_name}</p>
+                            <p>{c.contact_email}</p>
+                            <p>{c.contact_phone_number}</p>
                         </div>
                     )
                 })

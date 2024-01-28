@@ -2,7 +2,6 @@
 @use '../global/' as g;
 
 .profileAndTransactions {
-    background-color: red;
     display: flex;
     & > .vendorProfile {
         width: u.rem(600);

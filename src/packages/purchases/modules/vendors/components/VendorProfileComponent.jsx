@@ -76,7 +76,7 @@ const SingleVendorItemDisplay = ({title, value}) => {
     return (
         <div>
             <h4>{title}</h4>
-            <p>{value}</p>
+            <p className='fontSize'>{value}</p>
         </div>
     )
 }

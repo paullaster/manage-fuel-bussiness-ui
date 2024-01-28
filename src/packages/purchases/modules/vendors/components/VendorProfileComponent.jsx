@@ -15,8 +15,13 @@ const VendorAddress = ({ address }) => {
 
 
     return (
-        <address>
+        <div>
+            <h4>
+                Address
+            </h4>
+            <address>
             
-        </address>
+            </address>
+        </div>
  )
 }

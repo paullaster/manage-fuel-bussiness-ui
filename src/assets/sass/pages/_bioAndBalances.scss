@@ -2,19 +2,20 @@
 @use '../global/' as g;
 
 .bioAndBalances {
-    background-color: red;
     display: flex;
     & > .bio {
-        background-color: blue;
         width: u.rem(500);
         display: flex;
         & > .initials {
             margin-right: u.rem(24);
             border: u.rem(2) solid g.$color_active;
+            padding: u.rem(12);
+            border-radius: 100%;
         }
         &  > .contact {
             display: flex;
             flex-direction: column;
+            justify-content: center;
             & > * {
                 display: block;
             }

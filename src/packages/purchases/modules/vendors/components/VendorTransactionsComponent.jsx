@@ -43,7 +43,7 @@ const VendorTransactionsComponent = () => {
                     </TabList>
                 </Box>
                 {
-
+                    
                 }
             </TabContext>
         </div>

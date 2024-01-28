@@ -17,10 +17,15 @@ const VendorPageComponent = () => {
         console.log(error);
     })
   }, [vendorId]);
+
+  const bio = {
+    name: vendor.vendor_name,
+    email: vendor_email,
+  }
   return (
     <section className="vendorPage">
         <SingleVendorPageActionsComponent vendorName={vendor?.vendor_name}/>
-        <BioAndBalancesComponent />
+        <BioAndBalancesComponent bio={}/>
     </section>
   )
 }

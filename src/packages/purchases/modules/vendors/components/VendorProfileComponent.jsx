@@ -3,7 +3,7 @@ import React from 'react'
 const VendorProfileComponent = ({ vendor }) => {
     return (
         <div>
-            <VendorAddress address={vendor.addresses} />
+            <VendorAddress address={vendor?.addresses} />
         </div>
     )
 }
@@ -20,7 +20,12 @@ const VendorAddress = ({ address }) => {
                 Address
             </h4>
             <address>
-            
+                <span>
+                    {vendor?.address}
+                </span>
+                <span>
+                    {vendor?.city}, {vendor?.state}, {vendor?.zip_code}, {vendor?.country}
+                </span>
             </address>
         </div>
  )

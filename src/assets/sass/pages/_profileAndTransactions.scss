@@ -7,6 +7,9 @@
     & > .vendorProfile {
         width: u.rem(600);
         border-right: u.rem(2) solid g.$color_active;
+        & > div {
+            margin-bottom: u.rem(40);
+        }
     }
     & > .vendorTransactions {
         padding-left: u.rem(56);

@@ -1,0 +1,10 @@
+@use '../utilities/' as u;
+@use '../global/' as g;
+
+.vendorActions {
+    display: flex;
+    width: u.rem(1250);
+    & > div:first-child {
+        margin-right: u.rem(48);
+    }
+}

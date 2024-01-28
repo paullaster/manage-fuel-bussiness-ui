@@ -4,7 +4,7 @@ import VendorActionListComponent from './VendorActionListComponent'
 
 const SingleVendorPageActionsComponent = ({ vendorName }) => {
     return (
-        <div className="actions">
+        <div className="vendorActions">
             <SectionIntroduction text={` ${vendorName || 'Vendor Name'}`} />
             <VendorActionListComponent />
         </div>

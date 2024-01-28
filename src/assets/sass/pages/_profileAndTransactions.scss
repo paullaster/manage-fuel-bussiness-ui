@@ -11,7 +11,7 @@
         }
         & > .address {
             address {
-                
+
                 & > * {
                     display: block;
                 }
@@ -20,5 +20,8 @@
     }
     & > .vendorTransactions {
         padding-left: u.rem(56);
+        .MuiButtonBase-root {
+            text-transform: none;
+        }
     }
 }

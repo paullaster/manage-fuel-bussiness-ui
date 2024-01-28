@@ -1,13 +1,13 @@
 import VendorBalancesList from "./VendorBalancesList"
 
-const VendorBalancesListComponent = () => {
+const VendorBalancesListComponent = ({currency = 'Ksh'}) => {
   return (
     <>
         {
             VendorBalancesList.map((bal) => {
                 return (
                     <div key={bal.key}>
-                        <p>Ksh {bal.amount}</p>
+                        <p>{currency} {bal.amount}</p>
                         <p>{bal.cap}</p>
                     </div>
                 )

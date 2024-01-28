@@ -60,7 +60,7 @@ class WebStorage {
                 return resource;
         }
     }
-    RemoveFromStorage(storageType,) {
+    RemoveFromStorage(storageType, resourceName) {
         switch (storageType) {
             case 'local':
                 localStorage.removeItem(resourceName);

@@ -36,7 +36,7 @@ const VendorContactPerson = ({contact}) => {
     useEffect(() =>{}, [contact])
     return (
         <div>
-
+            <h4>Contacts</h4>
         </div>
     )
 }

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { fetchVendorsList } from "../../../actions";
 import SingleVendorPageActionsComponent from "./SingleVendorPageActionsComponent";
 import BioAndBalancesComponent from "./BioAndBalancesComponent";
+import VendorProfileComponent from './VendorProfileComponent';
 
 const VendorPageComponent = () => {
   const [vendor, setVendor] = useState();

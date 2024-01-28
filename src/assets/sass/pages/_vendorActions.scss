@@ -8,14 +8,16 @@
         margin-right: u.rem(48);
     }
     & > div.actions {
-        background-color: red;
         width: u.rem(800);
 
         display: flex;
         justify-content: flex-end;
         & > * {
             display: block;
-            margin: 0 u.rem(32);
+            margin: 0 u.rem(48);
+        }
+        & > button:first-child {
+            background-color: g.$color_primary;
         }
     }
 }

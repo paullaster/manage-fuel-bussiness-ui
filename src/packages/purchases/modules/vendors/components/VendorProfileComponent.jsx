@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
 
 const VendorProfileComponent = ({ vendor }) => {
-    useEffect(() =>{}, [vendor])
-    console.log("vendor", vendor)
+    useEffect(() =>{}, [vendor]);
     return (
         <div>
-            <VendorAddress address={vendor?.addresses} />
+            <VendorAddress address={vendor?.addresses[0]} />
         </div>
     )
 }

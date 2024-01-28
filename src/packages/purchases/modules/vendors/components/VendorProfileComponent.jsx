@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 
 const VendorProfileComponent = ({ vendor }) => {
     useEffect(() =>{}, [vendor])
+    console.log("vendor", vendor)
     return (
         <div>
             <VendorAddress address={vendor?.addresses} />

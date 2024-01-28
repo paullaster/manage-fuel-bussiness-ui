@@ -15,7 +15,7 @@ const BioAndBalancesComponent = ({bio}) => {
             <p>
                 {getNameInitials()}
             </p>
-            <p>
+            <p className="contact">
                 <span>
                     {bio?.vendor_email}
                 </span>

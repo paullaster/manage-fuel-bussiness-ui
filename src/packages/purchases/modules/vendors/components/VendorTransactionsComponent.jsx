@@ -6,6 +6,8 @@ import { useState } from 'react';
 import Box from '@mui/material/Box';
 import { v4 as uuidv4 } from 'uuid';
 import { Button } from '@/components';
+import vendors_bill from '@/assets/images/vendors_bills.png';
+import vendors_transactions from '@/assets/images/vendors_transactions.png';
 
 
 const TabItems = [

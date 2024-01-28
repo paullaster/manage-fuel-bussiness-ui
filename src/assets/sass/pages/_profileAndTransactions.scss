@@ -33,8 +33,16 @@
             border-radius: u.rem(20);
             display: flex;
             align-items: center;
-            & > div {
-
+            & > div.informationCardText {
+                display: flex;
+                flex-direction: column;
+                align-items: right;
+                & > * {
+                    display: block;
+                    &:last-child {
+                        margin-top: u.rem(12);
+                    }
+                }
             }
         }
     }

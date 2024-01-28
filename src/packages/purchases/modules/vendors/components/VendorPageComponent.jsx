@@ -20,7 +20,8 @@ const VendorPageComponent = () => {
 
   const bio = {
     name: vendor?.vendor_name,
-    email: vendor_email,
+    email: vendor?.vendor_email,
+    phone: vendor.vendor_phone,
   }
   return (
     <section className="vendorPage">

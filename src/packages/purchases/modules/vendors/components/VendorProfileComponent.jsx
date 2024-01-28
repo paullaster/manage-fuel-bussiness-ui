@@ -8,7 +8,8 @@ const VendorProfileComponent = ({ vendor }) => {
             <VendorContactPerson contact={vendor?.contacts} />
             <VendorBillingInformationComponent billing={vendor?.billing[0]} />
             <SingleVendorItemDisplay title={'Tax Number'} value={vendor?.kra_pin}/>
-            
+            <SingleVendorItemDisplay title={'Website'} value={vendor?.website}/>
+            <SingleVendorItemDisplay title={'Reference'} value={vendor?.vendor_reference}/>
         </div>
     )
 }

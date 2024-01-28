@@ -26,13 +26,11 @@
     & > .balances {
         display: flex;
         justify-content: flex-end;
-        background-color: green;
         width: u.rem(800);
         padding-right: u.rem(8);
 
         & > div {
             width: u.rem(200);
-
             & > .currencyAndBal {
                 font-size: g.$small_font;
                 font-weight: 300;

@@ -70,5 +70,10 @@ const VendorBillingInformationComponent = ({ billing }) => {
 }
 
 const SingleVendorItemDisplay = ({title, value}) => {
-
+    return (
+        <div>
+            <h4>{title}</h4>
+            <p>{value}</p>
+        </div>
+    )
 }

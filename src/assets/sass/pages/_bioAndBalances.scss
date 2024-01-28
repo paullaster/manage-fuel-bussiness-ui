@@ -4,6 +4,13 @@
     & > .bio {
         background-color: blue;
         display: flex;
+        &  > .contact {
+            display: flex;
+            flex-direction: column;
+            & > * {
+                display: block;
+            }
+        }
     }
     & > .balances {
 

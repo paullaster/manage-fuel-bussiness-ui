@@ -6,7 +6,7 @@ const VendorProfileComponent = ({ vendor }) => {
         <div>
             <VendorAddress address={vendor?.addresses[0]} />
             <VendorContactPerson contact={vendor?.contacts} />
-            <VendorBillingInformationComponent contact={vendor?.billing} />
+            <VendorBillingInformationComponent billing={vendor?.billing} />
         </div>
     )
 }
@@ -50,5 +50,11 @@ const VendorContactPerson = ({ contact }) => {
                 })
             }
         </div>
+    )
+}
+
+const VendorBillingInformationComponent = ({billing}) => {
+    return (
+
     )
 }

@@ -1,5 +1,9 @@
+@use '../utilities/' as u;
+
 .profileAndTransactions {
     background-color: red;
     display: flex;
-    
+    & > .vendorProfile {
+        width: u.rem(680);
+    }
 }

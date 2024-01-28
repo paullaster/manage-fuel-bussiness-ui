@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 const VendorProfileComponent = ({ vendor }) => {
     useEffect(() => { }, [vendor]);
     return (
-        <div>
+        <div className='vendorProfile'>
             <VendorAddress address={vendor?.addresses[0]} />
             <VendorContactPerson contact={vendor?.contacts} />
             <VendorBillingInformationComponent billing={vendor?.billing[0]} />

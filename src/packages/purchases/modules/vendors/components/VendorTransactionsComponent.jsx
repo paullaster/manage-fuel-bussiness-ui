@@ -59,7 +59,7 @@ export default VendorTransactionsComponent
 const TransactionTabContent = ({value, tab}) => {
     return (
         <TabPanel value={value}>
-            <div>
+            <div className='informationCard'>
                 <div>
                     <img src={tab?.imageUrl} alt={`${tab?.btnCaption}`} srcSet="" />
                 </div>

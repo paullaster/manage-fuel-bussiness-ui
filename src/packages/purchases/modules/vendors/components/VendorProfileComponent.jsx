@@ -5,6 +5,7 @@ const VendorProfileComponent = ({ vendor }) => {
     return (
         <div>
             <VendorAddress address={vendor?.addresses[0]} />
+            <VendorContactPerson />
         </div>
     )
 }
@@ -29,4 +30,13 @@ const VendorAddress = ({ address }) => {
             </address>
         </div>
  )
+}
+
+const VendorContactPerson = ({contact}) => {
+    useEffect(() =>{}, [contact])
+    return (
+        <div>
+
+        </div>
+    )
 }

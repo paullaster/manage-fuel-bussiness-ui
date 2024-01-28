@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from "react";
+import VendorBalancesListComponent from "./VendorBalancesListComponent";
 
 const BioAndBalancesComponent = ({bio}) => {
 console.log(bio);
@@ -28,7 +29,7 @@ console.log(bio);
             </p>
         </div>
         <div>
-            
+            <VendorBalancesListComponent />
         </div>
     </div>
   )

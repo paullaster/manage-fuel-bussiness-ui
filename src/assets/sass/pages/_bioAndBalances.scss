@@ -34,7 +34,11 @@
             width: u.rem(200);
 
             & > .currencyAndBal {
-                font-size: g.$medium_font;
+                font-size: g.$small_font;
+                font-weight: 300;
+            }
+            & > .balanceCap {
+                
             }
         }
     }

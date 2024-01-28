@@ -8,7 +8,7 @@ const VendorBalancesListComponent = ({currency = 'Ksh'}) => {
                 return (
                     <div key={bal.key}>
                         <p className="currencyAndBal">{currency} {bal.amount}</p>
-                        <p>{bal.cap}</p>
+                        <p className="balanceCap">{bal.cap}</p>
                     </div>
                 )
             })

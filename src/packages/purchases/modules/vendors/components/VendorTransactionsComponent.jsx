@@ -32,7 +32,7 @@ const VendorTransactionsComponent = () => {
         setValue(newValue);
     };
     return (
-        <div>
+        <div className='vendorTransactions'>
             <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <TabList

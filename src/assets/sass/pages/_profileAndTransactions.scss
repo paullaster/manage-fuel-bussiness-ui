@@ -8,4 +8,7 @@
         width: u.rem(600);
         border-right: u.rem(2) solid g.$color_active;
     }
+    & > .vendorTransactions {
+        padding-left: u.rem(12);
+    }
 }

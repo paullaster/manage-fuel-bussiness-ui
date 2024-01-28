@@ -4,7 +4,7 @@ import { Button } from '@/components';
 
 const VendorActionListComponent = () => {
   return (
-    <div className="action">
+    <div className="actions">
         {
             VendorActionList.map((action) => {
                 return action.hasList ? <MenuPopup action={action} key={action.key}/> : <Button key={action.key}>{action.caption}</Button>

@@ -23,8 +23,9 @@ const VendorTransactionsComponent = () => {
                         <Tab label="Item purchase" value='2' />
                     </TabList>
                 </Box>
-                <TabPanel value='1'> Fuel purchase</TabPanel>
-                <TabPanel value='2'> item purchase purchase</TabPanel>
+                {
+                    
+                }
             </TabContext>
         </div>
     )
@@ -36,7 +37,14 @@ export default VendorTransactionsComponent
 const TransactionTabContent = ({value}) => {
     return (
         <TabPanel value={value}>
-            
+            <div>
+                <div>
+                    image
+                </div>
+                <div>
+                    text
+                </div>
+            </div>
         </TabPanel>
     )
 }

@@ -7,7 +7,8 @@ const VendorBalancesListComponent = () => {
             VendorBalancesList.map((bal) => {
                 return (
                     <div key={bal.key}>
-
+                        <p>Ksh {bal.amount}</p>
+                        <p>{bal.cap}</p>
                     </div>
                 )
             })

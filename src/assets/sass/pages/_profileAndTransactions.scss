@@ -9,6 +9,14 @@
         & > div {
             margin-bottom: u.rem(40);
         }
+        & > .address {
+            address {
+                
+                & > * {
+                    display: block;
+                }
+            }
+        }
     }
     & > .vendorTransactions {
         padding-left: u.rem(56);

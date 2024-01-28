@@ -20,7 +20,7 @@ export default VendorProfileComponent
 const VendorAddress = ({ address }) => {
     useEffect(() => { }, [address])
     return (
-        <div>
+        <div className='address'>
             <h4>
                 Address
             </h4>

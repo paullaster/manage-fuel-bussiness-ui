@@ -57,7 +57,7 @@ const VendorTransactionsComponent = () => {
 export default VendorTransactionsComponent
 
 
-const TransactionTabContent = ({value}) => {
+const TransactionTabContent = ({value, tab}) => {
     return (
         <TabPanel value={value}>
             <div>

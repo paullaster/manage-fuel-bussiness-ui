@@ -15,8 +15,8 @@ const Vendors = () => {
       description: "Import your existing vendor with a single click"
     },
     {
-      caption: "Payroll",
-      link: "",
+      caption: "vendors list",
+      link: "/dashboard/purchases/vendor/vendors",
       description: "Reduce time spent on employee payments, benefits, and deductions"
     },
   ];

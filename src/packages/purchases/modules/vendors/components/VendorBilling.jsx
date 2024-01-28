@@ -4,7 +4,7 @@ import AddItemButton from '../../../shared/components/AddItemButton';
 
 const VendorBilling = forwardRef((props, ref) => {
     const { handleSelectedPaymentMethod, handleAddCurrency } = props;
-    const [paymentMethods, setPaymentMethods] = useState([{ method: 'Mpesa' }]);
+    const [paymentMethods, setPaymentMethods] = useState([{ method: 'Mpesa' }, { method: 'Bank' }]);
     return (
         <div className="billinginfo_dataentry">
             <AutocompleteComponent

@@ -12,6 +12,10 @@ import { v4 as uuidv4 } from 'uuid';
 import CurrencyComponent from "./CurrencyComponent";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
 import { ObjectValidator } from "@/utils";
+import VendorInformation from "./VendorInformation";
+import WebStorage from '@/utils/WebStorage';
+import { APPNAME } from '@/environments';
+import { useNavigate } from 'react-router-dom';
 
 
 const NewVendor = () => {
@@ -54,6 +58,21 @@ const NewVendor = () => {
     const currencyRateRef = useRef(null);
     const currencySymbolref = useRef(null);
 
+    const navigate = useNavigate();
+
+
+
+    const vendorInformationRefObject = {
+        vendorNameRef,
+        vendorEmailRef,
+        vendorPhoneRef,
+        vendorNationalIDRef,
+        vendorCompanyNameRef,
+        vendorWebsiteRef,
+        vendorPinRef,
+        vendorReferenceRef,
+        vendorProdDescRef,
+    };
 
     const currencyRefObject = {
         currencySymbolref,
@@ -125,8 +144,6 @@ const NewVendor = () => {
 
     const handleSaveClick = (item) => {
         setRowModesModel({ ...rowModesModel, [item.id]: { mode: GridRowModes.View } });
-        const { id, isNew, ...data } = item.row;
-        postContactPerson(data);
     };
 
     const handleCancelClick = (item) => {
@@ -239,14 +256,17 @@ const NewVendor = () => {
 
     useEffect(() => {
 
-    }, [contactColumns]);
+    }, [contactColumns, rows]);
+    useEffect(() => {
+
+    }, [rows]);
 
     const SetPayload = (event) => {
         event.preventDefault();
         event.stopPropagation();
 
         const billinObject = {
-            payment_method: paymentMethod,
+            payment_method: paymentMethod.method,
             mpesa_phone_number: phoneNumberRef.current.value,
             mpesa_till_number: tillNumberRef.current.value,
             mpesa_paybill_number: paybillNumberRef.current.value,
@@ -257,7 +277,15 @@ const NewVendor = () => {
         console.log(billinObject);
         postBillingInformation(billinObject)
             .then((res) => {
-                console.log("Billing response ", res);
+
+                const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+                if (!idObject['currency']) {
+                    console.error("Invalid payload, currency information did not insert correctly!");
+                    throw new Error("Invalid payload, Currency information did no insert correctly!");
+                }
+                idObject.billing_id = res?.id
+                WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+
                 const addressObject = {
                     address: addressRef.current.value,
                     city: cityRef.current.value,
@@ -275,38 +303,64 @@ const NewVendor = () => {
                 if (!validRef.current) {
                     return new Error("Invalid request");
                 };
-
+                const addresses = [];
                 postAddress(addressObject)
                     .then((res) => {
-                        console.log("Address response , ", res);
-                        const vendorObject = {
-                            vendor_reference: vendorReferenceRef.current.value,
-                            website: vendorWebsiteRef.current.value,
-                            kra_pin: vendorPinRef.current.value,
-                            product_description: vendorProdDescRef.current.value,
-                            company_name: vendorCompanyNameRef.current.value,
-                            vendor_phone: vendorPhoneRef.current.value,
-                            vendor_email: vendorEmailRef.current.vaalue,
-                            vendor_name: vendorNameRef.current.value,
-                            national_id: vendorNationalIDRef.current.value,
-                        };
-                        validRef.current = ObjectValidator(
-                            [
-                                "company_name",
-                                "product_description",
-                                "kra_pin",
-                                "vendor_name"
-                            ],
-                            vendorObject
-                        );
-                        console.log(validRef.current);
-                        if (!validRef.current) {
-                            throw new Error("Invalid payload!");
+
+                        if (!idObject['billing_id'] || !idObject['currency']) {
+                            console.error("Invalid payload, Billing and currency  information did no insert correctly!");
+                            throw new Error("Invalid payload, Billing and currency information did no insert correctly!");
                         }
-                        console.log("Vendor object", vendorObject);
-                        postVendor(vendorObject)
+                        addresses.push(res?.address_id);
+                        idObject.addresses = addresses;
+                        WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+
+                        // POSTING CONTACT PERSON
+                        const { id, isNew, ...data } = rows[0];
+                        const contacts = [];
+                        postContactPerson(data)
                             .then((res) => {
-                                console.log(res);
+                                contacts.push(res?.contact_id);
+                                idObject.contacts = contacts;
+                                WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+
+                                // COMPOSE VENDOR
+                                const vendorObject = {
+                                    vendor_reference: vendorReferenceRef.current.value,
+                                    website: vendorWebsiteRef.current.value,
+                                    kra_pin: vendorPinRef.current.value,
+                                    product_description: vendorProdDescRef.current.value,
+                                    company_name: vendorCompanyNameRef.current.value,
+                                    vendor_phone: vendorPhoneRef.current.value,
+                                    vendor_email: vendorEmailRef.current.value,
+                                    vendor_name: vendorNameRef.current.value,
+                                    national_id: vendorNationalIDRef.current.value,
+                                };
+
+                                // VALIDATE VENDOR OBJECT
+                                validRef.current = ObjectValidator(
+                                    [
+                                        "company_name",
+                                        "product_description",
+                                        "kra_pin",
+                                        "vendor_name"
+                                    ],
+                                    vendorObject
+                                );
+
+                                if (!validRef.current) {
+                                    throw new Error("Invalid payload!");
+                                }
+                                // POST VENDOR
+                                postVendor(vendorObject)
+                                    .then((res) => {
+                                        console.log(res);
+                                        WebStorage.RemoveFromStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+                                        navigate(`/dashboard/purchases/vendor/vendors`);
+                                    })
+                                    .catch((error) => {
+                                        console.log(error);
+                                    });
                             })
                     })
             });
@@ -320,73 +374,9 @@ const NewVendor = () => {
                 <div className="new_vendors__left__dataentry">
                     <Form className="new_vendors__left__dataentry__form">
                         <div className="new_vendors__left__dataentry__form_vendorinfo">
-                            <div className="new_vendors__left__dataentry__form_vendorinfo_introduction form_section_introductions">
-                                <h4>General</h4>
-                                <p>Your vendor's contact information will appear in bills and their profiles. You can add their contact information and their logo to be used in bills.</p>
-                            </div>
-                            {/* <InputComponent
-                                type="text"
-                                prelabelText={"national ID"}
-                                name="organization_id"
-                            /> */}
-                            <div className="new_vendors__left__dataentry__form_vendorinfo__vendorname">
-                                <InputComponent
-                                    type="text"
-                                    prelabelText={"name"}
-                                    name="vendor_name"
-                                    ref={vendorNameRef}
-                                />
-                            </div>
-                            <div className="new_vendors__left__dataentry__form_vendorinfo__others">
-                                <div className="new_vendors__left__dataentry__form_vendorinfo__others_left">
-                                    <InputComponent
-                                        type="email"
-                                        prelabelText={"email"}
-                                        name="vendor_email"
-                                        ref={vendorEmailRef}
-                                    />
-                                    <InputComponent
-                                        type="tel"
-                                        prelabelText={"phone"}
-                                        name="vendor_phone"
-                                        ref={vendorPhoneRef}
-                                    />
-                                    <InputComponent
-                                        type="text"
-                                        prelabelText={"Company name"}
-                                        name="national_id"
-                                        ref={vendorCompanyNameRef}
-                                    />
-                                    <InputComponent
-                                        type="text"
-                                        prelabelText={"National ID"}
-                                        name="national_id"
-                                        ref={vendorNationalIDRef}
-                                    />
-                                    <InputComponent
-                                        type="url"
-                                        prelabelText={"website"}
-                                        name="website"
-                                        ref={vendorWebsiteRef}
-                                    />
-                                    <InputComponent
-                                        type="text"
-                                        prelabelText={"reference"}
-                                        name="vendor_reference"
-                                        ref={vendorReferenceRef}
-                                    />
-                                    <InputComponent
-                                        type="text"
-                                        prelabelText={"Tax number"}
-                                        name="kra_pin"
-                                        ref={vendorPinRef}
-                                    />
-                                    <div className="new_vendors__left__dataentry__form_billinginfo_dataentry_section-two">
-                                        <label htmlFor="product_description">product description</label>
-                                        <textarea name="product_description" id="product_description" cols="30" rows="4" className="info_textarea" ref={vendorProdDescRef}></textarea>
-                                    </div>
-                                </div>
-                            </div>
+                            <VendorInformation
+                                ref={vendorInformationRefObject}
+                            />
                         </div>
                         <div className="new_vendors__left__dataentry__form_billinginfo">
                             <div className="new_vendors__left__dataentry__form_billinginfo_introduction form_section_introductions">

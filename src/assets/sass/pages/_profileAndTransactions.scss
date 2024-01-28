@@ -1,0 +1,51 @@
+@use '../utilities/' as u;
+@use '../global/' as g;
+
+.profileAndTransactions {
+    display: flex;
+    & > .vendorProfile {
+        width: u.rem(600);
+        border-right: u.rem(2) solid g.$color_active;
+        & > div {
+            margin-bottom: u.rem(40);
+            .fontSize { 
+                font-size: g.$msmall_font;
+                font-weight: 100;
+            }
+        }
+        & > .address {
+            address {
+
+                & > * {
+                    display: block;
+                }
+            }
+        }
+    }
+    & > .vendorTransactions {
+        padding-left: u.rem(56);
+        .MuiButtonBase-root {
+            text-transform: none;
+        }
+        .informationCard {
+            background-color: g.$color_default-light;
+            padding: u.rem(32);
+            border-radius: u.rem(20);
+            display: flex;
+            align-items: center;
+            & > div.informationCardText {
+                display: flex;
+                flex-direction: column;
+                align-items: right;
+                & > * {
+                    display: block;
+                    font-size: g.$msmall_font;
+                    &:last-child {
+                        margin-top: u.rem(12);
+                        text-align: end;
+                    }
+                }
+            }
+        }
+    }
+}

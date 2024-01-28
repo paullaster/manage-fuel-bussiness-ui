@@ -1,0 +1,44 @@
+@use '../utilities/' as u;
+@use '../global/' as g;
+
+.bioAndBalances {
+    margin-top: u.rem(28);
+    margin-bottom: u.rem(28);
+    display: flex;
+    & > .bio {
+        width: u.rem(500);
+        display: flex;
+        & > .initials {
+            margin-right: u.rem(24);
+            border: u.rem(2) solid g.$color_active;
+            padding: u.rem(12);
+            border-radius: 100%;
+        }
+        &  > .contact {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            & > * {
+                display: block;
+            }
+        }
+    }
+    & > .balances {
+        display: flex;
+        justify-content: flex-end;
+        width: u.rem(800);
+        padding-right: u.rem(8);
+
+        & > div {
+            width: u.rem(200);
+            & > .currencyAndBal {
+                font-size: g.$small_font;
+                font-weight: 300;
+                color: g.$color_default;
+            }
+            & > .balanceCap {
+                font-size: g.$msmall_font;
+            }
+        }
+    }
+}

@@ -1,0 +1,31 @@
+@use '../utilities/' as u;
+
+.vendorInfo {
+    display: flex;
+    flex-direction: column;
+    & > div {
+        margin-bottom: u.rem(32);
+    }
+    & > .inputSection{
+        display: grid;
+        grid-template-columns: 6fr 6fr;
+        column-gap: u.rem(50);
+        & > div.input-group {
+            margin-bottom: u.rem(32);
+            & > * {
+                display: block;
+                &:first-child {
+                    margin-bottom: u.rem(8);
+                }
+            }
+            input {
+                width: u.rem(400) !important;
+            }
+            textarea {
+                width: u.rem(400) !important;
+                min-height: u.rem(50);
+                height: fit-content;
+            }
+        }
+    }
+    }

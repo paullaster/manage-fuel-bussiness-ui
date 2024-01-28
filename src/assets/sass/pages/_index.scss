@@ -5,6 +5,7 @@
 @forward './autocomplete';
 @forward './billingCard';
 @forward './billingInfo';
+@forward './bioAndBalances';
 @forward './company';
 @forward './datatable';
 @forward './itemComponent';
@@ -13,6 +14,7 @@
 @forward './landing';
 @forward './logo';
 @forward './pagination';
+@forward './profileAndTransactions';
 @forward './newCompany';
 @forward './new_fuel_purchase';
 @forward './newVendors';
@@ -23,5 +25,7 @@
 @forward './tankEntries';
 @forward './transport';
 @forward './transport_and_officer';
+@forward './vendorActions';
 @forward './vendorBillingInfo';
+@forward './vendorInfo';
 @forward './wizard';

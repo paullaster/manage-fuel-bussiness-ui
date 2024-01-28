@@ -1,0 +1,38 @@
+@use '../utilities/' as u;
+@use '../global/' as g;
+
+.vendorActions {
+    display: flex;
+    width: u.rem(1250);
+    & > div:first-child {
+        margin-right: u.rem(48);
+    }
+    & > div.actions {
+        width: u.rem(800);
+
+        display: flex;
+        justify-content: flex-end;
+        & > * {
+            display: block;
+            margin: 0 u.rem(48);
+            background-color: g.$color_primary_light_active;
+            height: u.rem(40);
+            padding-inline: u.rem(10);
+            border-radius: u.rem(12);
+            width: max-content;
+        }
+        & > button:first-child {
+            background-color: g.$color_primary;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: g.$color_tertiary;
+            & > span {
+                display: block;
+                &:not(:last-child) {
+                    margin-right: u.rem(4);
+                }
+            }
+        }
+    }
+}

@@ -60,6 +60,19 @@ class WebStorage {
                 return resource;
         }
     }
+    RemoveFromStorage(storageType, resourceName) {
+        switch (storageType) {
+            case 'local':
+                localStorage.removeItem(resourceName);
+                break;
+            case 'session':
+                sessionStorage.removeItem(resourceName);
+                break;
+            case 'cookie':
+                this.CheckItemIfExist(cookies.split(';'), `${resourceName}=`, 'array', '', true);
+                break;
+        }
+    }
 
 }
 

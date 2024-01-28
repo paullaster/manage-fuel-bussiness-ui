@@ -12,7 +12,7 @@ const BioAndBalancesComponent = ({bio}) => {
   return (
     <div className="bioAndBalances">
         <div className="bio">
-            <p>
+            <p className="initials">
                 {getNameInitials()}
             </p>
             <p className="contact">

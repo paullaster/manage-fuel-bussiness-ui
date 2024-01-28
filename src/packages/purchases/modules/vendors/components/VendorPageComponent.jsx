@@ -4,6 +4,7 @@ import { fetchVendorsList } from "../../../actions";
 import SingleVendorPageActionsComponent from "./SingleVendorPageActionsComponent";
 import BioAndBalancesComponent from "./BioAndBalancesComponent";
 import VendorProfileComponent from './VendorProfileComponent';
+import VendorTransactionsComponent from './VendorTransactionsComponent';
 
 const VendorPageComponent = () => {
   const [vendor, setVendor] = useState();

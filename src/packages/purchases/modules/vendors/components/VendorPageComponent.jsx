@@ -25,7 +25,7 @@ const VendorPageComponent = () => {
         <SingleVendorPageActionsComponent vendorName={vendor?.vendor_name}/>
         <BioAndBalancesComponent bio={vendor}/>
         <div>
-            <VendorProfileComponent />
+            <VendorProfileComponent vendor={vendor}/>
             <VendorTransactionsComponent />
         </div>
     </section>

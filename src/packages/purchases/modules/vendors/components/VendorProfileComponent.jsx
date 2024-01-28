@@ -56,6 +56,11 @@ const VendorContactPerson = ({ contact }) => {
 const VendorBillingInformationComponent = ({ billing }) => {
     useEffect(() => {}, [billing]);
     return (
-
+        <div>
+            <h4>Billing</h4>
+           { billing?.payment_method ? <p>Payment Method:  {billing?.payment_method}</p> : ''}
+           { billing?.payment_method ? <p>Payment Method:  {billing?.payment_method}</p> : ''}
+           { billing?.payment_method ? <p>Payment Method:  {billing?.payment_method}</p> : ''}
+        </div>
     )
 }

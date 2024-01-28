@@ -21,10 +21,10 @@ const VendorAddress = ({ address }) => {
             </h4>
             <address>
                 <span>
-                    {vendor?.address}
+                    {address?.address}
                 </span>
                 <span>
-                    {vendor?.city}, {vendor?.state}, {vendor?.zip_code}, {vendor?.country}
+                    {address?.city}, {address?.state}, {address?.zip_code}, {address?.country}
                 </span>
             </address>
         </div>

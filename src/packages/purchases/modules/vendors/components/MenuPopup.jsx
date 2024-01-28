@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const MenuPopup = ({ action }) => {
     return (
-        <PopupState variant="popover" popupId={uuidv4()}>
+        <PopupState variant="popover" popupId='buttons-venor-popup' key={uuidv4()}>
             {
                 (popupState) => {
                     return (

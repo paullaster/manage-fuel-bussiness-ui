@@ -7,6 +7,7 @@ const VendorProfileComponent = ({ vendor }) => {
             <VendorAddress address={vendor?.addresses[0]} />
             <VendorContactPerson contact={vendor?.contacts} />
             <VendorBillingInformationComponent billing={vendor?.billing[0]} />
+            <SingleVendorItemDisplay title={'Tax Number'} value={vendor?.kra_pin}/>
             
         </div>
     )

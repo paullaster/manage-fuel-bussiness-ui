@@ -23,6 +23,8 @@ const VendorTransactionsComponent = () => {
                         <Tab label="Item purchase" value='2' />
                     </TabList>
                 </Box>
+                <TabPanel value='1'> Fuel purchase</TabPanel>
+                <TabPanel value='2'> item purchase purchase</TabPanel>
             </TabContext>
         </div>
     )

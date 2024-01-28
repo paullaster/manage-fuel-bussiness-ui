@@ -13,13 +13,13 @@ import vendors_transactions from '@/assets/images/vendors_transactions.png';
 const TabItems = [
     {
         key: uuidv4(),
-        imageUrl: 'http://dummy.image.com',
+        imageUrl: vendors_bill,
         btnCaption: 'New fuel purchase',
         additionalText: 'There is no fuel purchase for this vendor yet. Create a new one now.'
     },
     {
         key: uuidv4(),
-        imageUrl: 'http://dummy.image.com',
+        imageUrl: vendors_transactions,
         btnCaption: 'New item purchase',
         additionalText: 'There is no item purchase for this vendor yet. Create a new one now.'
     },

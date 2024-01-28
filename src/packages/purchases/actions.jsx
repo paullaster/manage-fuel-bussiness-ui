@@ -39,14 +39,7 @@ export const postContactPerson = async (data) => {
         method: 'POST',
         data: contactInfo,
         url: contact,
-    })
-        .then((res) => {
-            
-            return res;
-        })
-        .catch((err) => {
-            return new Error(err.message);
-        });
+    });
 }
 
 export const postCurrency = (item) => {

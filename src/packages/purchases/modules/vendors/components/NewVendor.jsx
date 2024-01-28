@@ -13,6 +13,8 @@ import CurrencyComponent from "./CurrencyComponent";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
 import { ObjectValidator } from "@/utils";
 import VendorInformation from "./VendorInformation";
+import WebStorage from '@/utils/WebStorage';
+import { APPNAME } from '@/environments';
 
 
 const NewVendor = () => {
@@ -318,37 +320,42 @@ const NewVendor = () => {
                                 contacts.push(res?.contact_id);
                                 idObject.contacts = contacts;
                                 WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
-                            })
 
+                                // COMPOSE VENDOR
+                                const vendorObject = {
+                                    vendor_reference: vendorReferenceRef.current.value,
+                                    website: vendorWebsiteRef.current.value,
+                                    kra_pin: vendorPinRef.current.value,
+                                    product_description: vendorProdDescRef.current.value,
+                                    company_name: vendorCompanyNameRef.current.value,
+                                    vendor_phone: vendorPhoneRef.current.value,
+                                    vendor_email: vendorEmailRef.current.vaalue,
+                                    vendor_name: vendorNameRef.current.value,
+                                    national_id: vendorNationalIDRef.current.value,
+                                };
 
-                        const vendorObject = {
-                            vendor_reference: vendorReferenceRef.current.value,
-                            website: vendorWebsiteRef.current.value,
-                            kra_pin: vendorPinRef.current.value,
-                            product_description: vendorProdDescRef.current.value,
-                            company_name: vendorCompanyNameRef.current.value,
-                            vendor_phone: vendorPhoneRef.current.value,
-                            vendor_email: vendorEmailRef.current.vaalue,
-                            vendor_name: vendorNameRef.current.value,
-                            national_id: vendorNationalIDRef.current.value,
-                        };
-                        validRef.current = ObjectValidator(
-                            [
-                                "company_name",
-                                "product_description",
-                                "kra_pin",
-                                "vendor_name"
-                            ],
-                            vendorObject
-                        );
-                        console.log(validRef.current);
-                        if (!validRef.current) {
-                            throw new Error("Invalid payload!");
-                        }
-                        console.log("Vendor object", vendorObject);
-                        postVendor(vendorObject)
-                            .then((res) => {
-                                console.log(res);
+                                // VALIDATE VENDOR OBJECT
+                                validRef.current = ObjectValidator(
+                                    [
+                                        "company_name",
+                                        "product_description",
+                                        "kra_pin",
+                                        "vendor_name"
+                                    ],
+                                    vendorObject
+                                );
+
+                                if (!validRef.current) {
+                                    throw new Error("Invalid payload!");
+                                }
+                                // POST VENDOR
+                                postVendor(vendorObject)
+                                    .then((res) => {
+                                        console.log(res);
+                                    })
+                                    .catch((error) => {
+                                        console.log(error);
+                                    });
                             })
                     })
             });

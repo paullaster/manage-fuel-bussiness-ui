@@ -332,7 +332,7 @@ const NewVendor = () => {
                                     product_description: vendorProdDescRef.current.value,
                                     company_name: vendorCompanyNameRef.current.value,
                                     vendor_phone: vendorPhoneRef.current.value,
-                                    vendor_email: vendorEmailRef.current.vaalue,
+                                    vendor_email: vendorEmailRef.current.value,
                                     vendor_name: vendorNameRef.current.value,
                                     national_id: vendorNationalIDRef.current.value,
                                 };

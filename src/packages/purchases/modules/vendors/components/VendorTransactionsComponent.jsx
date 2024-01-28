@@ -5,6 +5,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import { v4 as uuidv4 } from 'uuid';
+import { Button } from '@/components';
 
 
 const TabItems = [
@@ -60,10 +61,13 @@ const TransactionTabContent = ({value, tab}) => {
         <TabPanel value={value}>
             <div>
                 <div>
-                    image
+                    <img src={tab?.imageUrl} alt={`${tab?.btnCaption}`} srcSet="" />
                 </div>
                 <div>
-                    text
+                    <p>{tab?.additionalText}</p>
+                    <Button>
+                        {tab?.btnCaption}
+                    </Button>
                 </div>
             </div>
         </TabPanel>

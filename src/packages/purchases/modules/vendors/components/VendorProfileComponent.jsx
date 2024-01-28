@@ -3,14 +3,7 @@ import React from 'react'
 const VendorProfileComponent = ({vendor}) => {
   return (
     <div>
-        {vendor.map((prop) => {
-            console.log(prop)
-            if (prop === 'addresses'){
-                return (
-                    <VendorAddress key={prop.address_id} address={prop}/>
-                )
-            }
-        })}
+        <VendorAddress address={vendor.addresses}/>
     </div>
   )
 }

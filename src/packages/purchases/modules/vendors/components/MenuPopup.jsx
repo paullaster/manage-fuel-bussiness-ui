@@ -23,7 +23,7 @@ const MenuPopup = ({ action }) => {
                                     })
                                 }
                             </Button>
-                            <Menu {...bindMenu(popupState)}>
+                            <Menu {...bindMenu(popupState)} key={uuidv4()}>
                                 {
                                     action.list.map((l) => {
                                         return (

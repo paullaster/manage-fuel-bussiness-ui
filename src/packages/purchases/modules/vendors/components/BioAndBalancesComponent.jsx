@@ -4,9 +4,9 @@ const BioAndBalancesComponent = ({bio}) => {
 console.log(bio);
   const getNameInitials = useCallback(() => {
 //     console.log(bio)
-//     // const nameArr = bio['vendor_name']?.split(' ');
-//     // const initials = nameArr[0].charAt(0) + nameArr[1].charAt(0);
-    return 'PO';
+    const nameArr = bio?.vendor_name.split(' ');
+    const initials = nameArr[0].charAt(0) + nameArr[1].charAt(0);
+    return initials;
   }, [bio?.vendor_name]);
   useEffect(() => {}, [bio])
   return (

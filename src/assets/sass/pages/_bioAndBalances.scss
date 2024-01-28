@@ -21,6 +21,9 @@
         }
     }
     & > .balances {
-
+        display: flex;
+        justify-content: flex-end;
+        background-color: green;
+        width: u.rem(800);
     }
 }

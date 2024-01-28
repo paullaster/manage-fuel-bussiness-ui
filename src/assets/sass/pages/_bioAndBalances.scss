@@ -29,5 +29,9 @@
         background-color: green;
         width: u.rem(800);
         padding-right: u.rem(48);
+
+        & > div {
+            width: u.rem(280);
+        }
     }
 }

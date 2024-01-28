@@ -276,7 +276,7 @@ const NewVendor = () => {
             .then((res) => {
 
                 const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-                if (!idObject['currency_id']) {
+                if (!idObject['currency']) {
                     console.error("Invalid payload, currency information did not insert correctly!");
                     throw new Error("Invalid payload, Currency information did no insert correctly!");
                 }
@@ -304,7 +304,7 @@ const NewVendor = () => {
                 postAddress(addressObject)
                     .then((res) => {
 
-                        if (!idObject['billing_id'] || !idObject['currency_id']) {
+                        if (!idObject['billing_id'] || !idObject['currency']) {
                             console.error("Invalid payload, Billing and currency  information did no insert correctly!");
                             throw new Error("Invalid payload, Billing and currency information did no insert correctly!");
                         }

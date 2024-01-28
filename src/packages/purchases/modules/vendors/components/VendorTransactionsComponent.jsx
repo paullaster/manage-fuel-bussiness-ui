@@ -65,7 +65,7 @@ const TransactionTabContent = ({value, tab}) => {
                 <div>
                     <img src={tab?.imageUrl} alt={`${tab?.btnCaption}`} srcSet="" />
                 </div>
-                <div>
+                <div className='informationCardText'>
                     <p>{tab?.additionalText}</p>
                     <Button>
                         {tab?.btnCaption}

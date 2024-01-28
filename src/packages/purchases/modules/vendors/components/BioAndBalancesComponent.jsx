@@ -10,7 +10,7 @@ const BioAndBalancesComponent = ({bio}) => {
   }, [bio?.vendor_name]);
   useEffect(() => {}, [bio])
   return (
-    <div>
+    <div className="bioAndBalances">
         <div>
             <p>
                 {getNameInitials()}

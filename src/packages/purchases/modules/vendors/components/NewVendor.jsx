@@ -58,7 +58,7 @@ const NewVendor = () => {
     const currencyRateRef = useRef(null);
     const currencySymbolref = useRef(null);
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
 
 
@@ -356,7 +356,7 @@ const NewVendor = () => {
                                     .then((res) => {
                                         console.log(res);
                                         WebStorage.RemoveFromStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-
+                                        navigate(`/dashboard/purchases/vendor/vendors`);
                                     })
                                     .catch((error) => {
                                         console.log(error);

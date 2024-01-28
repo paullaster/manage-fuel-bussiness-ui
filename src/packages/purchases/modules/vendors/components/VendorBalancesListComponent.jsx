@@ -6,7 +6,9 @@ const VendorBalancesListComponent = () => {
         {
             VendorBalancesList.map((bal) => {
                 return (
-                    
+                    <div key={bal.key}>
+
+                    </div>
                 )
             })
         }

@@ -1,8 +1,10 @@
 import React from 'react'
 
-const VendorProfileComponent = () => {
+const VendorProfileComponent = ({vendor}) => {
   return (
-    <div>VendorProfileComponent</div>
+    <div>
+        
+    </div>
   )
 }
 

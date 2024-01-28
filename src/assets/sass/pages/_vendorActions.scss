@@ -15,14 +15,22 @@
         & > * {
             display: block;
             margin: 0 u.rem(48);
+            background-color: g.$color_primary_light_active;
+            height: u.rem(40);
         }
         & > button:first-child {
             background-color: g.$color_primary;
             display: flex;
             justify-content: center;
             align-items: center;
+            // padding: u.rem(-32) u.rem(40) !important;
+            padding-inline: u.rem(10);
+            color: g.$color_tertiary;
             & > span {
                 display: block;
+                &:not(:last-child) {
+                    margin-right: u.rem(4);
+                }
             }
         }
     }

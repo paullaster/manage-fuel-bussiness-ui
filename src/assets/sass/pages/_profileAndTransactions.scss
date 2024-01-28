@@ -8,6 +8,9 @@
         border-right: u.rem(2) solid g.$color_active;
         & > div {
             margin-bottom: u.rem(40);
+            .fontSize { 
+                font-size: g.$msmall_font;
+            }
         }
         & > .address {
             address {

@@ -139,8 +139,6 @@ const NewVendor = () => {
 
     const handleSaveClick = (item) => {
         setRowModesModel({ ...rowModesModel, [item.id]: { mode: GridRowModes.View } });
-        const { id, isNew, ...data } = item.row;
-        postContactPerson(data);
     };
 
     const handleCancelClick = (item) => {
@@ -254,6 +252,9 @@ const NewVendor = () => {
     useEffect(() => {
 
     }, [contactColumns, rows]);
+    useEffect(() => {
+
+    }, [rows]);
 
     const SetPayload = (event) => {
         event.preventDefault();
@@ -271,7 +272,15 @@ const NewVendor = () => {
         console.log(billinObject);
         postBillingInformation(billinObject)
             .then((res) => {
-                console.log("Billing response ", res);
+
+                const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+                if (!idObject['currency_id']) {
+                    console.error("Invalid payload, currency information did not insert correctly!");
+                    throw new Error("Invalid payload, Currency information did no insert correctly!");
+                }
+                idObject.billing_id = res?.id
+                WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+
                 const addressObject = {
                     address: addressRef.current.value,
                     city: cityRef.current.value,
@@ -289,10 +298,29 @@ const NewVendor = () => {
                 if (!validRef.current) {
                     return new Error("Invalid request");
                 };
-
+                const addresses = [];
                 postAddress(addressObject)
                     .then((res) => {
-                        console.log("Address response , ", res);
+
+                        if (!idObject['billing_id'] || !idObject['currency_id']) {
+                            console.error("Invalid payload, Billing and currency  information did no insert correctly!");
+                            throw new Error("Invalid payload, Billing and currency information did no insert correctly!");
+                        }
+                        addresses.push(res?.address_id);
+                        idObject.addresses = addresses;
+                        WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+
+                        // POSTING CONTACT PERSON
+                        const { id, isNew, ...data } = rows[0];
+                        const contacts = [];
+                        postContactPerson(data)
+                            .then((res) => {
+                                contacts.push(res?.contact_id);
+                                idObject.contacts = contacts;
+                                WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+                            })
+
+
                         const vendorObject = {
                             vendor_reference: vendorReferenceRef.current.value,
                             website: vendorWebsiteRef.current.value,
@@ -334,8 +362,8 @@ const NewVendor = () => {
                 <div className="new_vendors__left__dataentry">
                     <Form className="new_vendors__left__dataentry__form">
                         <div className="new_vendors__left__dataentry__form_vendorinfo">
-                            <VendorInformation 
-                            ref={vendorInformationRefObject}
+                            <VendorInformation
+                                ref={vendorInformationRefObject}
                             />
                         </div>
                         <div className="new_vendors__left__dataentry__form_billinginfo">

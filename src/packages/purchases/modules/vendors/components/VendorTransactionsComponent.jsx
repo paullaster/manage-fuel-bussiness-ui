@@ -43,7 +43,11 @@ const VendorTransactionsComponent = () => {
                     </TabList>
                 </Box>
                 {
-                    
+                    TabItems.map((tab, i) => {
+                        return (
+                            <TransactionTabContent value={`${i + 1}`}/>
+                        )
+                    })
                 }
             </TabContext>
         </div>

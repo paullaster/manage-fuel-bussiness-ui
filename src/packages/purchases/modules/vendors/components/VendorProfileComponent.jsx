@@ -53,7 +53,8 @@ const VendorContactPerson = ({ contact }) => {
     )
 }
 
-const VendorBillingInformationComponent = ({billing}) => {
+const VendorBillingInformationComponent = ({ billing }) => {
+    useEffect(() => {}, [billing]);
     return (
 
     )

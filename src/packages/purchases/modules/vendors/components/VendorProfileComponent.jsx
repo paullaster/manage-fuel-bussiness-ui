@@ -24,7 +24,7 @@ const VendorAddress = ({ address }) => {
             <h4>
                 Address
             </h4>
-            <address>
+            <address className='fontSize'>
                 <span>
                     {address?.address}
                 </span>
@@ -44,7 +44,7 @@ const VendorContactPerson = ({ contact }) => {
             {
                 contact?.map((c) => {
                     return (
-                        <div key={c.contact_id}>
+                        <div key={c.contact_id} className='fontSize'>
                             <p>{c.contact_name}</p>
                             <p>{c.contact_email}</p>
                             <p>{c.contact_phone_number}</p>
@@ -61,12 +61,12 @@ const VendorBillingInformationComponent = ({ billing }) => {
     return (
         <div>
             <h4>Billing</h4>
-           { billing?.payment_method ? <p><span>Method: </span> <span>{billing?.payment_method}</span></p> : ''}
-           { billing?.mpesa_phone_number ? <p><span>Number: </span> <span>{billing?.mpesa_phone_number}</span></p> : ''}
-           { billing?.mpesa_till_number ? <p><span>Till: </span> <span>{billing?.mpesa_till_number}</span></p> : ''}
-           { billing?.mpesa_paybill_number ? <p><span>PayBill: </span>  <span>{billing?.mpesa_paybill_number}</span></p> : ''}
-           { billing?.bank_name ? <p><span>Bank Name: </span>  <span>{billing?.bank_name}</span></p> : ''}
-           { billing?.bank_account_number ? <p><span>Account Number:  </span><span>{billing?.bank_account_number}</span></p> : ''}
+           { billing?.payment_method ? <p className='fontSize'><span>Method: </span> <span>{billing?.payment_method}</span></p> : ''}
+           { billing?.mpesa_phone_number ? <p className='fontSize'><span>Number: </span> <span>{billing?.mpesa_phone_number}</span></p> : ''}
+           { billing?.mpesa_till_number ? <p className='fontSize'><span>Till: </span> <span>{billing?.mpesa_till_number}</span></p> : ''}
+           { billing?.mpesa_paybill_number ? <p className='fontSize'><span>PayBill: </span>  <span>{billing?.mpesa_paybill_number}</span></p> : ''}
+           { billing?.bank_name ? <p className='fontSize'><span>Bank Name: </span>  <span>{billing?.bank_name}</span></p> : ''}
+           { billing?.bank_account_number ? <p className='fontSize'><span>Account Number:  </span><span>{billing?.bank_account_number}</span></p> : ''}
         </div>
     )
 }

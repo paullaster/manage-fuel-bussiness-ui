@@ -1,9 +1,15 @@
-import React from 'react'
+import VendorBalancesList from "./VendorBalancesList"
 
 const VendorBalancesListComponent = () => {
   return (
     <>
-    
+        {
+            VendorBalancesList.map((bal) => {
+                return (
+                    
+                )
+            })
+        }
     </>
   )
 }

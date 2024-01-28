@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 
 const VendorProfileComponent = ({ vendor }) => {
-    useEffect(() =>{}, [vendor]);
+    useEffect(() => { }, [vendor]);
     return (
         <div>
             <VendorAddress address={vendor?.addresses[0]} />
-            <VendorContactPerson contact={vendor?.contacts}/>
+            <VendorContactPerson contact={vendor?.contacts} />
         </div>
     )
 }
@@ -14,7 +14,7 @@ export default VendorProfileComponent
 
 
 const VendorAddress = ({ address }) => {
-    useEffect(() => {}, [address])
+    useEffect(() => { }, [address])
     return (
         <div>
             <h4>
@@ -29,14 +29,21 @@ const VendorAddress = ({ address }) => {
                 </span>
             </address>
         </div>
- )
+    )
 }
 
-const VendorContactPerson = ({contact}) => {
-    useEffect(() =>{}, [contact])
+const VendorContactPerson = ({ contact }) => {
+    useEffect(() => { }, [contact])
     return (
         <div>
             <h4>Contacts</h4>
+            {
+                contact.map((c) => {
+                    <div>
+
+                    </div>
+                })
+            }
         </div>
     )
 }

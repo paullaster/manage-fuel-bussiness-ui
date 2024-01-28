@@ -53,7 +53,7 @@ export const postCurrency = (item) => {
         url: currency,
     })
         .then((res) => {
-            console.log(res);
+            const idObject = {};
             idObject.currency = res?.currency_id;
             WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
         })

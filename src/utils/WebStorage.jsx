@@ -77,5 +77,3 @@ class WebStorage {
 }
 
 export default new WebStorage();
-
-localStorage.removeItem()

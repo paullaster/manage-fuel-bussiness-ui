@@ -7,6 +7,9 @@
         background-color: blue;
         width: u.rem(500);
         display: flex;
+        & > .initials {
+            margin-right: u.rem(48);
+        }
         &  > .contact {
             display: flex;
             flex-direction: column;

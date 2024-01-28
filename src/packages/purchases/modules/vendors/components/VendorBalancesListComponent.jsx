@@ -7,7 +7,7 @@ const VendorBalancesListComponent = ({currency = 'Ksh'}) => {
             VendorBalancesList.map((bal) => {
                 return (
                     <div key={bal.key}>
-                        <p>{currency} {bal.amount}</p>
+                        <p className="currencyAndBal">{currency} {bal.amount}</p>
                         <p>{bal.cap}</p>
                     </div>
                 )

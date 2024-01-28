@@ -19,13 +19,13 @@ const VendorPageComponent = () => {
   }, [vendorId]);
 
   const bio = {
-    name: vendor.vendor_name,
+    name: vendor?.vendor_name,
     email: vendor_email,
   }
   return (
     <section className="vendorPage">
         <SingleVendorPageActionsComponent vendorName={vendor?.vendor_name}/>
-        <BioAndBalancesComponent bio={}/>
+        <BioAndBalancesComponent bio={bio}/>
     </section>
   )
 }

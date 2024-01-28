@@ -27,7 +27,7 @@ const BioAndBalancesComponent = ({bio}) => {
             </p>
         </div>
         <div>
-            <VendorBalancesListComponent />
+            <VendorBalancesListComponent currency={bio?.currency['currency_code']}/>
         </div>
     </div>
   )

@@ -15,6 +15,7 @@ import { ObjectValidator } from "@/utils";
 import VendorInformation from "./VendorInformation";
 import WebStorage from '@/utils/WebStorage';
 import { APPNAME } from '@/environments';
+import { useNavigate } from 'react-router-dom';
 
 
 const NewVendor = () => {
@@ -56,6 +57,8 @@ const NewVendor = () => {
     const currencyCodeRef = useRef(null);
     const currencyRateRef = useRef(null);
     const currencySymbolref = useRef(null);
+
+    const navigate = useNavigate()
 
 
 
@@ -353,6 +356,7 @@ const NewVendor = () => {
                                     .then((res) => {
                                         console.log(res);
                                         WebStorage.RemoveFromStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+
                                     })
                                     .catch((error) => {
                                         console.log(error);

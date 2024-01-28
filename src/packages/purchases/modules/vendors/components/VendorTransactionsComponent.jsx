@@ -45,7 +45,7 @@ const VendorTransactionsComponent = () => {
                 {
                     TabItems.map((tab, i) => {
                         return (
-                            <TransactionTabContent value={`${i + 1}`}/>
+                            <TransactionTabContent value={`${i + 1}`} key={tab.key} tab={tab}/>
                         )
                     })
                 }

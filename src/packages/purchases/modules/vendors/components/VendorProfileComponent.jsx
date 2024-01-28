@@ -58,9 +58,12 @@ const VendorBillingInformationComponent = ({ billing }) => {
     return (
         <div>
             <h4>Billing</h4>
-           { billing?.payment_method ? <p>Payment Method:  {billing?.payment_method}</p> : ''}
-           { billing?.payment_method ? <p>Payment Method:  {billing?.payment_method}</p> : ''}
-           { billing?.payment_method ? <p>Payment Method:  {billing?.payment_method}</p> : ''}
+           { billing?.payment_method ? <p><span>Method: </span> <span>{billing?.payment_method}</span></p> : ''}
+           { billing?.mpesa_phone_number ? <p><span>Number: </span> <span>{billing?.mpesa_phone_number}</span></p> : ''}
+           { billing?.mpesa_till_number ? <p><span>Till: </span> <span>{billing?.mpesa_till_number}</span></p> : ''}
+           { billing?.mpesa_paybill_number ? <p><span>PayBill: </span>  <span>{billing?.mpesa_paybill_number}</span></p> : ''}
+           { billing?.bank_name ? <p><span>Bank Name: </span>  <span>{billing?.bank_name}</span></p> : ''}
+           { billing?.bank_account_number ? <p><span>Account Number:  </span><span>{billing?.bank_account_number}</span></p> : ''}
         </div>
     )
 }

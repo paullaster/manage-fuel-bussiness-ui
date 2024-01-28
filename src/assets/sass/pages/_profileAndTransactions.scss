@@ -5,7 +5,7 @@
     background-color: red;
     display: flex;
     & > .vendorProfile {
-        width: u.rem(680);
+        width: u.rem(600);
         border-right: u.rem(2) solid g.$color_active;
     }
 }

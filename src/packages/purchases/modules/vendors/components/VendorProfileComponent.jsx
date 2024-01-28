@@ -7,6 +7,7 @@ const VendorProfileComponent = ({ vendor }) => {
             <VendorAddress address={vendor?.addresses[0]} />
             <VendorContactPerson contact={vendor?.contacts} />
             <VendorBillingInformationComponent billing={vendor?.billing[0]} />
+            
         </div>
     )
 }
@@ -66,4 +67,8 @@ const VendorBillingInformationComponent = ({ billing }) => {
            { billing?.bank_account_number ? <p><span>Account Number:  </span><span>{billing?.bank_account_number}</span></p> : ''}
         </div>
     )
+}
+
+const SingleVendorItemDisplay = ({title, value}) => {
+
 }

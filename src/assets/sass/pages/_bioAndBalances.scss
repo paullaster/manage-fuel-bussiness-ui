@@ -32,6 +32,10 @@
 
         & > div {
             width: u.rem(200);
+
+            & > .currencyAndBal {
+                font-size: g.$medium_font;
+            }
         }
     }
 }

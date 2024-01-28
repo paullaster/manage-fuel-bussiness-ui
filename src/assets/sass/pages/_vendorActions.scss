@@ -18,7 +18,8 @@
             background-color: g.$color_primary_light_active;
             height: u.rem(40);
             padding-inline: u.rem(10);
-            border-radius: u.rem(4);
+            border-radius: u.rem(12);
+            width: max-content;
         }
         & > button:first-child {
             background-color: g.$color_primary;

@@ -70,6 +70,7 @@ const VendorBillingInformationComponent = ({ billing }) => {
 }
 
 const SingleVendorItemDisplay = ({title, value}) => {
+    useEffect(() =>{}, [value]);
     return (
         <div>
             <h4>{title}</h4>

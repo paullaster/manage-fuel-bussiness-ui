@@ -18,6 +18,12 @@
         }
         & > button:first-child {
             background-color: g.$color_primary;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            & > span {
+                display: block;
+            }
         }
     }
 }

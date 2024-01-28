@@ -7,7 +7,7 @@ const VendorProfileComponent = ({vendor}) => {
             console.log(prop)
             if (prop === 'addresses'){
                 return (
-                    <VendorAddress key={prop.address_id} address={prop.}/>
+                    <VendorAddress key={prop.address_id} address={prop}/>
                 )
             }
         })}

@@ -11,7 +11,7 @@ const BioAndBalancesComponent = ({bio}) => {
         <div>
             <p>
                 {
-
+                    getNameInitials()
                 }
             </p>
             <p>

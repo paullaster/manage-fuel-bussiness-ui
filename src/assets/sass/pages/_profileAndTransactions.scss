@@ -39,8 +39,10 @@
                 align-items: right;
                 & > * {
                     display: block;
+                    font-size: g.$msmall_font;
                     &:last-child {
                         margin-top: u.rem(12);
+                        
                     }
                 }
             }

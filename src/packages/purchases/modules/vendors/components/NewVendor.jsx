@@ -253,7 +253,7 @@ const NewVendor = () => {
 
     useEffect(() => {
 
-    }, [contactColumns]);
+    }, [contactColumns, rows]);
 
     const SetPayload = (event) => {
         event.preventDefault();

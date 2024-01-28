@@ -5,7 +5,8 @@ console.log(bio);
   const getNameInitials = useCallback(() => {
 //     console.log(bio)
     const nameArr = bio?.vendor_name.split(' ');
-    const initials = nameArr[0].charAt(0) + nameArr[1].charAt(0);
+    console.log(nameArr)
+    const initials = nameArr ? nameArr[0].charAt(0) + nameArr[1].charAt(0) : 'VN';
     return initials;
   }, [bio?.vendor_name]);
   useEffect(() => {}, [bio])

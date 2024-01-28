@@ -7,7 +7,7 @@ const VendorActionListComponent = () => {
     <div>
         {
             VendorActionList.map((action) => {
-                return action.hasList ? <MenuPopup action={action}/> : <Button>{action.caption}</Button>
+                return action.hasList ? <MenuPopup action={action} key={action.key}/> : <Button key={action.key}>{action.caption}</Button>
             })
         }
     </div>

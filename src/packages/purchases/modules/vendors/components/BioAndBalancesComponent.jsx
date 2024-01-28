@@ -17,7 +17,14 @@ console.log(bio);
                 {getNameInitials()}
             </p>
             <p>
-
+                <span>
+                    {bio?.vendor_email}
+                </span>
+                <span>
+                    {
+                        bio?.vendor_phone
+                    }
+                </span>
             </p>
         </div>
         <div></div>

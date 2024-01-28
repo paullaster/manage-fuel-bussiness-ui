@@ -11,7 +11,7 @@ const BioAndBalancesComponent = ({bio}) => {
   useEffect(() => {}, [bio])
   return (
     <div className="bioAndBalances">
-        <div>
+        <div className="bio">
             <p>
                 {getNameInitials()}
             </p>

@@ -1,8 +1,10 @@
 .bioAndBalances {
     background-color: red;
     display: flex;
-
+    & > .bio {
+        background-color: blue;
+    }
     & > .balances {
-        
+
     }
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { fetchVendorsList } from "../../../actions";
 import SingleVendorPageActionsComponent from "./SingleVendorPageActionsComponent";
+import BioAndBalancesComponent from "./BioAndBalancesComponent";
 
 const VendorPageComponent = () => {
   const [vendor, setVendor] = useState();
@@ -19,7 +20,7 @@ const VendorPageComponent = () => {
   return (
     <section className="vendorPage">
         <SingleVendorPageActionsComponent vendorName={vendor?.vendor_name}/>
-        <div></div>
+        <BioAndBalancesComponent />
     </section>
   )
 }

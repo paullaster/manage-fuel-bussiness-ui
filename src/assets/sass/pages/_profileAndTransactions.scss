@@ -1,9 +1,11 @@
 @use '../utilities/' as u;
+@use '../global/' as g;
 
 .profileAndTransactions {
     background-color: red;
     display: flex;
     & > .vendorProfile {
         width: u.rem(680);
+        border-right: u.rem(2) solid g.$color_active;
     }
 }

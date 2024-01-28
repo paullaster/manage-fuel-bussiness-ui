@@ -1,8 +1,11 @@
+@use '../utilities/' as u;
+
 .bioAndBalances {
     background-color: red;
     display: flex;
     & > .bio {
         background-color: blue;
+        width: u.rem(100);
         display: flex;
         &  > .contact {
             display: flex;

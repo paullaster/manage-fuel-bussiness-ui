@@ -27,7 +27,9 @@ console.log(bio);
                 </span>
             </p>
         </div>
-        <div></div>
+        <div>
+            
+        </div>
     </div>
   )
 }

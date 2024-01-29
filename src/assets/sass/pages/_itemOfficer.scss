@@ -1,11 +1,13 @@
 @use '../global/' as g;
+@use '../utilities/' as u;
 
 .itemOfficer {
     margin-top: 4rem;
-    padding-top: 4rem;
-    display: flex;
-    & > div {
-
+    & > div.itemOfficerInputs {
+        display: flex;
+        & > .autocomplete {
+            width: u.rem(400);
+        }
     }
 
     .divisionTopBar {

@@ -282,11 +282,11 @@ const NewItem = () => {
     event.preventDefault();
 
     const itemsList = rows.map((it) => {
-      const{ vat_rate, quantity, price, item } = it;
-      const vat_amount = GetGross(it, 'vat_rate', 'quantity', 'price', 'tax_amount');
+      const{ vat_rate:tax, quantity, price:purchase_price , item } = it;
+      const tax_amount = GetGross(it, 'vat_rate', 'quantity', 'price', 'tax_amount');
       const net_amount = it.quantity * it.price;
       const gross_amount = GetGross(it, 'vat_rate', 'quantity', 'price', 'gross_amount');
-      return { vat_rate, quantity, price, item, vat_amount, net_amount, gross_amount};
+      return { tax, quantity, purchase_price, item, tax_amount, net_amount, gross_amount};
     });
 
     itemsList.forEach((item) => {

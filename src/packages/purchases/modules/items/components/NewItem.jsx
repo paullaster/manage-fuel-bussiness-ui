@@ -53,9 +53,9 @@ const NewItem = () => {
 
 
   const handlePcikedDate = (newValue) => {
-    const selectedDate = new Date(newValue.$d);
+    const dateObj = new Date(newValue.$d);
     const formattedDate = `${dateObj.getFullYear()}-0${dateObj.getMonth() + 1}-${dateObj.getDate()}`;
-    setPickedDate(selectedDate);
+    setPickedDate(formattedDate);
   }
 
   const handleSelectedVendor = (event, newValue) => {

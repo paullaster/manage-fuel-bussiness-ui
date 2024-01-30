@@ -52,9 +52,7 @@ const NewItem = () => {
   };
 
 
-  const handlePcikedDate = (event, newValue) => {
-    event.preventDefault();
-    event.stopPropagation()
+  const handlePcikedDate = (newValue) => {
     console.log("Selected date ", newValue);
   }
 

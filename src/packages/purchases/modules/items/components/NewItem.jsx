@@ -66,7 +66,6 @@ const NewItem = () => {
   const handleSelectedOficer = (event, newValue) => {
     event.stopPropagation();
     event.preventDefault();
-    console.log(newValue);
     setSelectedOfficer(newValue.id);
   }
 

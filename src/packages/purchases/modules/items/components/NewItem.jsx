@@ -53,7 +53,7 @@ const NewItem = () => {
 
 
   const handlePcikedDate = (newValue) => {
-    console.log("Selected date ", newValue);
+    console.log("Selected date ", newValue.$d);
   }
 
   const handleSelectedVendor = (event, newValue) => {

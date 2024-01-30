@@ -302,13 +302,13 @@ const NewFuelPurchase = () => {
               key={uuidv4()}
               icon={<MdCreate size={25} />}
               label="Edit"
-              onClick={handleEditClick(params.id)}
+              onClick={ () => handleEditClick(params)}
             />,
             <GridActionsCellItem
               key={uuidv4()}
               icon={<MdDelete size={25} />}
               label="Delete"
-              onClick={deleteItem(params.id)}
+              onClick={() =>deleteItem(params)}
             />,
           ]
         },

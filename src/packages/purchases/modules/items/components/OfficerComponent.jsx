@@ -1,7 +1,7 @@
 import { AutocompleteComponent, DatePickerComponent } from '@/components';
 import DivisionTopBar from "../../../shared/components/DivisionTopBar";
 
-const OfficerComponent = ({ handleSelectedOficer, officers }) => {
+const OfficerComponent = ({ handleSelectedOficer, officers, setValue }) => {
     return (
         <div className='itemOfficer'>
             <DivisionTopBar sectionTitle="Officer details and Purchase date" />
@@ -14,6 +14,7 @@ const OfficerComponent = ({ handleSelectedOficer, officers }) => {
                 />
                 <DatePickerComponent
                     label='Purchase date'
+                    setValue={setValue}
                 />
             </div>
         </div>

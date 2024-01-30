@@ -342,7 +342,7 @@ const NewItem = () => {
         >
           <NewVendor />
         </shared.components.BillingComponent>
-        <OfficerComponent officers={officers} handleSelectedOficer={handleSelectedOficer} />
+        <OfficerComponent officers={officers} handleSelectedOficer={handleSelectedOficer} setValue={handlePcikedDate} />
         <PurchaseItemEntry
           columns={columns}
           rows={rows}

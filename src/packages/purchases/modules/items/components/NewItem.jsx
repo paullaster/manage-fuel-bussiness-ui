@@ -53,7 +53,8 @@ const NewItem = () => {
 
 
   const handlePcikedDate = (newValue) => {
-    console.log("Selected date ", newValue.$d);
+    const selectedDate = new Date(newValue.$d).toISOString();
+    setPickedDate(selectedDate);
   }
 
   const handleSelectedVendor = (event, newValue) => {
@@ -305,7 +306,8 @@ const NewItem = () => {
       vendor: vendor,
       officer: selectedOfficer,
       bill_number: billNumberRef.current.value,
-      purchase_date: purchaseOrderNumberRef.current.value,
+      purchase_date: pickedDate,
+      purchase_order_number: purchaseOrderNumberRef.current.value,
       invoice_number: invoiceNumberRef.current.value,
       delivery_note_number: deliveryNoteNumberRef.current.value,
       items: itemsList,

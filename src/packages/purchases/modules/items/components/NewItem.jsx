@@ -34,6 +34,7 @@ const NewItem = () => {
   const [officers, setOfficers] = useState([{ id: 1, name: 'Ken Mjungu' }, { id: 2, name: 'Waigah Mwaura' }]);
   const [selectedOfficer, setSelectedOfficer] = useState(null);
   const [vendor, setVendor] = useState(null);
+  const [pickedDate, setPickedDate] = useState(null);
 
   const billNumberRef = useRef(null);
   const invoiceNumberRef = useRef(null);
@@ -51,6 +52,11 @@ const NewItem = () => {
   };
 
 
+  const handlePcikedDate = (event, newValue) => {
+    event.preventDefault();
+    event.stopPropagation()
+    console.log("Selected date ", newValue);
+  }
 
   const handleSelectedVendor = (event, newValue) => {
     event.preventDefault();

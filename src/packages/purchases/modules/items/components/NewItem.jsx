@@ -53,7 +53,8 @@ const NewItem = () => {
 
 
   const handlePcikedDate = (newValue) => {
-    const selectedDate = new Date(newValue.$d).toISOString();
+    const selectedDate = new Date(newValue.$d);
+    const formattedDate = `${dateObj.getFullYear()}-0${dateObj.getMonth() + 1}-${dateObj.getDate()}`;
     setPickedDate(selectedDate);
   }
 

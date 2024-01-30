@@ -73,28 +73,28 @@ const NewFuelPurchase = () => {
     console.log(newValue);
     setSelectedOfficer(newValue.id);
   }
-  const deleteItem = (id) => {
-        setRows((prevRows) => prevRows.filter((row) => row.id !== id));
+  const deleteItem = (params) => {
+        setRows((prevRows) => prevRows.filter((row) => row.id !== params.id));
     };
    
 
-  const handleEditClick = (id) => {
-    setRowModesModel({...rowModesModel, [id]: { mode: GridRowModes.Edit}});
+  const handleEditClick = (params) => {
+    setRowModesModel({...rowModesModel, [params.id]: { mode: GridRowModes.Edit}});
   };
 
-  const handleSaveClick = (id) => {
-    setRowModesModel({...rowModesModel, [id]: { mode: GridRowModes.View}});
+  const handleSaveClick = (params) => {
+    setRowModesModel({...rowModesModel, [params.id]: { mode: GridRowModes.View}});
   };
 
-  const handleCancelClick = (id) => {
+  const handleCancelClick = (params) => {
     setRowModesModel({
       ...rowModesModel,
-      [id]: {mode: GridRowModes.View, ignoreModifications: true}
+      [params.id]: {mode: GridRowModes.View, ignoreModifications: true}
     });
 
-    const editedRow = rows.find((row) => row.id === id );
+    const editedRow = rows.find((row) => row.id === params.id );
     if(editedRow.isNew) {
-      setRows(rows.filter((row) => row.id !== id));
+      setRows(rows.filter((row) => row.id !== params.id));
     }
   };
 

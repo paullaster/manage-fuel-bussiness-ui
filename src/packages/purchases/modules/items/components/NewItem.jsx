@@ -311,7 +311,9 @@ const NewItem = () => {
       invoice_number: invoiceNumberRef.current.value,
       delivery_note_number: deliveryNoteNumberRef.current.value,
       items: itemsList,
-      total_amount: summaryValues.total,
+      sub_total_vat_amount: summaryValues.subtotal,
+      net_amount: summaryValues.taxt_amount_total,
+      gross_amount: summaryValues.total,
       organization_id,
 
     };

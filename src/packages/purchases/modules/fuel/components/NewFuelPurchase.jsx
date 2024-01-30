@@ -313,7 +313,7 @@ const NewFuelPurchase = () => {
           ]
         },
       },
-    ]);
+    ],[handleSaveClick, handleCancelClick, handleEditClick, deleteItem]);
 
 
 

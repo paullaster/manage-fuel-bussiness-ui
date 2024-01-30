@@ -285,14 +285,14 @@ const NewFuelPurchase = () => {
               sx={{
                 color: 'primary.main',
               }}
-              onClick={handleSaveClick(params.id)}
+              onClick={ () => handleSaveClick(params)}
               />,
               <GridActionsCellItem
               key={uuidv4()}
               icon={<MdCancel />}
               label="Cancel"
               className="textPrimary"
-              onClick={handleCancelClick(params.id)}
+              onClick={ () => handleCancelClick(params)}
               color="inherit"
             />,
             ];

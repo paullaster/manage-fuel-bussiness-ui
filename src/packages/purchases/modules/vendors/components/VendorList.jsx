@@ -11,6 +11,34 @@ import { useNavigate } from "react-router-dom";
 import { deleteItem } from '../../../../../store';
 import constants from '../../../constants';
 
+
+const VendorListGridToolBar = ({setRows}) => {
+    const handleRefreshVendorList = () => {
+        fetchVendorsList({limit: 10})
+        .then((res) => {
+            console.log(res.vendors.results);
+            const vendorsWithID = [];
+            for (const vendor of generator(res.vendors.results)) {
+                vendor.id = vendor.vendor_id;
+                vendorsWithID.push(vendor);
+            }
+            const vendorsArray = Array.from(new Set(vendorsWithID));
+            setRows(vendorsArray);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+
+    return (
+        <GridToolbarContainer>
+            <Button color="primary" startIcon={<MdOutlineRefresh size={25} />} onClick={handleRefreshVendorList}>
+                refresh list
+            </Button>
+        </GridToolbarContainer>
+    )
+}
+
 const VendorList = () => {
     const [rows, setRows] = useState([]);
     const navigate = useNavigate()
@@ -167,30 +195,3 @@ const VendorList = () => {
 
 export default VendorList
 
-
-const VendorListGridToolBar = ({setRows}) => {
-    const handleRefreshVendorList = () => {
-        fetchVendorsList({limit: 10})
-        .then((res) => {
-            console.log(res.vendors.results);
-            const vendorsWithID = [];
-            for (const vendor of generator(res.vendors.results)) {
-                vendor.id = vendor.vendor_id;
-                vendorsWithID.push(vendor);
-            }
-            const vendorsArray = Array.from(new Set(vendorsWithID));
-            setRows(vendorsArray);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-    }
-
-    return (
-        <GridToolbarContainer>
-            <Button color="primary" startIcon={<MdOutlineRefresh size={25} />} onClick={handleRefreshVendorList}>
-                refresh list
-            </Button>
-        </GridToolbarContainer>
-    )
-}

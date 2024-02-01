@@ -8,6 +8,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { MdOutlineVisibility, MdAutoDelete } from "react-icons/md";
 import shared from '../../../shared';
 import { useNavigate } from "react-router-dom";
+import { deleteItem } from '../../../../../store';
+import constants from '../../../constants';
 
 const VendorList = () => {
     const [rows, setRows] = useState([]);
@@ -21,7 +23,7 @@ const VendorList = () => {
     };
 
     const handleDelete = (params) => {
-        
+        deleteItem(constants.vendor, {})
     }
 
     const columns = useMemo(() => [

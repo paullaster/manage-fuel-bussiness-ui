@@ -23,7 +23,12 @@ const VendorList = () => {
     };
 
     const handleDelete = (params) => {
-        deleteItem(constants.vendor, {})
+        deleteItem(constants.vendor, {vendor_id: params.id})
+        .then((res) => {
+            /**
+             * @todo: toast success message
+             */
+        })
     }
 
     const columns = useMemo(() => [

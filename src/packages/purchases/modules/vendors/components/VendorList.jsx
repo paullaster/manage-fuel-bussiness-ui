@@ -5,7 +5,7 @@ import {useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchVendorsList } from '../../../actions';
 import { generator } from '@/utils/';
 import { v4 as uuidv4 } from 'uuid';
-import { MdOutlineVisibility, MdAutoDelete } from "react-icons/md";
+import { MdOutlineVisibility, MdAutoDelete, MdOutlineRefresh } from "react-icons/md";
 import shared from '../../../shared';
 import { useNavigate } from "react-router-dom";
 import { deleteItem } from '../../../../../store';
@@ -158,9 +158,39 @@ const VendorList = () => {
                 style={{ minHeight: 400, height: 'auto' }}
                 initialState={{ pagination: { paginationModel: { page: 0, pageSize: 10 } } }}
                 pageSizeOptions={[5, 10, 20, 30, 50]}
+                slots={{toolbar: VendorListGridToolBar}}
+                slotProps={{toolbar:{setRows}}}
             />
         </Box>
     )
 }
 
 export default VendorList
+
+
+const VendorListGridToolBar = ({setRows}) => {
+    const handleRefreshVendorList = () => {
+        fetchVendorsList({limit: 10})
+        .then((res) => {
+            console.log(res.vendors.results);
+            const vendorsWithID = [];
+            for (const vendor of generator(res.vendors.results)) {
+                vendor.id = vendor.vendor_id;
+                vendorsWithID.push(vendor);
+            }
+            const vendorsArray = Array.from(new Set(vendorsWithID));
+            setRows(vendorsArray);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+
+    return (
+        <GridToolbarContainer>
+            <Button color="primary" startIcon={<MdOutlineRefresh size={25} />} onClick={handleRefreshVendorList}>
+                refresh list
+            </Button>
+        </GridToolbarContainer>
+    )
+}

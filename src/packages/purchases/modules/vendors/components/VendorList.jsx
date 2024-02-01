@@ -29,8 +29,8 @@ const VendorList = () => {
              * @todo: toast success message
              */
             console.log(res.message);
-            const newRows = rows.filter((row) => row.vendor_id !== params.id);
-            setRows(newRows);
+            // const newRows = rows.filter((row) => row.vendor_id !== params.id);
+            // setRows(newRows);
         })
         .catch((error) => {
             /**
@@ -145,9 +145,9 @@ const VendorList = () => {
         }
     }, []);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-    },[rows]);
+    // },[rows]);
 
     return (
         <Box>

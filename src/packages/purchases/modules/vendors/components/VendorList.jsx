@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import { DataTable } from '@/components';
-import {useEffect, useMemo, useState } from 'react';
+import {useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchVendorsList } from '../../../actions';
 import { generator } from '@/utils/';
 import { v4 as uuidv4 } from 'uuid';
@@ -22,13 +22,15 @@ const VendorList = () => {
         navigate(url);
     };
 
-    const handleDelete = (params) => {
+    const handleDelete = useCallback((params) => {
         deleteItem(constants.vendor, {vendor_id: params.id})
         .then((res) => {
             /**
              * @todo: toast success message
              */
             console.log(res.message);
+            const newRows = rows.filter((row) => row.vendor_id !== params.id);
+            setRows(newRows);
         })
         .catch((error) => {
             /**
@@ -36,7 +38,7 @@ const VendorList = () => {
              */
             console.log(error);
         });
-    }
+    });
 
     const columns = useMemo(() => [
         {
@@ -120,7 +122,7 @@ const VendorList = () => {
                 ]
             }
         },
-    ], [handleDelete]);
+    ], []);
 
     useEffect(() => {
         fetchVendorsList({limit: 10})
@@ -142,9 +144,7 @@ const VendorList = () => {
 
         }
     }, []);
-    useEffect(() => {
 
-    }, [rows]);
     return (
         <Box>
             <shared.components.SectionIntroduction text="List of Vendors" />

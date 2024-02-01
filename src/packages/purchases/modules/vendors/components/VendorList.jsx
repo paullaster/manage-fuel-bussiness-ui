@@ -28,6 +28,13 @@ const VendorList = () => {
             /**
              * @todo: toast success message
              */
+            console.log(res.message);
+        })
+        .catch((error) => {
+            /**
+             * @todo: toast error
+             */
+            console.log(error);
         })
     }
 

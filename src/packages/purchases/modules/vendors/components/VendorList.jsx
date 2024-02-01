@@ -5,7 +5,7 @@ import {useEffect, useMemo, useState } from 'react';
 import { fetchVendorsList } from '../../../actions';
 import { generator } from '@/utils/';
 import { v4 as uuidv4 } from 'uuid';
-import { MdOutlineVisibility } from "react-icons/md";
+import { MdOutlineVisibility, MdAutoDelete } from "react-icons/md";
 import shared from '../../../shared';
 import { useNavigate } from "react-router-dom";
 
@@ -89,6 +89,14 @@ const VendorList = () => {
                         label="View"
                         onClick={() => {
                             handleViewClick(params)
+                        }}
+                    />,
+                    <GridActionsCellItem
+                        key={uuidv4()}
+                        icon={<MdAutoDelete size={20} />}
+                        label="Delete"
+                        onClick={() => {
+                            handleDelete(params)
                         }}
                     />
                 ]

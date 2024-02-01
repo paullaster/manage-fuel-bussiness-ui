@@ -20,6 +20,10 @@ const VendorList = () => {
         navigate(url);
     };
 
+    const handleDelete = (params) => {
+        
+    }
+
     const columns = useMemo(() => [
         {
             field: 'vendor_name',

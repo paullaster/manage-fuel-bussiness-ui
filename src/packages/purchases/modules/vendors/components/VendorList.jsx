@@ -145,6 +145,10 @@ const VendorList = () => {
         }
     }, []);
 
+    useEffect(() => {
+
+    },[rows]);
+
     return (
         <Box>
             <shared.components.SectionIntroduction text="List of Vendors" />

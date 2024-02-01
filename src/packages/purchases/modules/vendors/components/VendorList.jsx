@@ -35,7 +35,7 @@ const VendorList = () => {
              * @todo: toast error
              */
             console.log(error);
-        })
+        });
     }
 
     const columns = useMemo(() => [
@@ -120,7 +120,7 @@ const VendorList = () => {
                 ]
             }
         },
-    ], []);
+    ], [handleDelete]);
 
     useEffect(() => {
         fetchVendorsList({limit: 10})
@@ -142,6 +142,9 @@ const VendorList = () => {
 
         }
     }, []);
+    useEffect(() => {
+
+    }, [rows]);
     return (
         <Box>
             <shared.components.SectionIntroduction text="List of Vendors" />

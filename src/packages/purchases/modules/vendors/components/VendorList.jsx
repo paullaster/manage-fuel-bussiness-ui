@@ -5,7 +5,7 @@ import {useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchVendorsList } from '../../../actions';
 import { generator } from '@/utils/';
 import { v4 as uuidv4 } from 'uuid';
-import { MdOutlineVisibility, MdAutoDelete, MdOutlineRefresh } from "react-icons/md";
+import { MdOutlineVisibility, MdDelete, MdOutlineRefresh } from "react-icons/md";
 import shared from '../../../shared';
 import { useNavigate } from "react-router-dom";
 import { deleteItem } from '../../../../../store';
@@ -59,8 +59,6 @@ const VendorList = () => {
              * @todo: toast success message
              */
             console.log(res.message);
-            // const newRows = rows.filter((row) => row.vendor_id !== params.id);
-            // setRows(newRows);
         })
         .catch((error) => {
             /**
@@ -143,7 +141,7 @@ const VendorList = () => {
                     />,
                     <GridActionsCellItem
                         key={uuidv4()}
-                        icon={<MdAutoDelete size={20} />}
+                        icon={<MdDelete size={20} />}
                         label="Delete"
                         onClick={() => {
                             handleDelete(params)

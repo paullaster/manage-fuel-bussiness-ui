@@ -1,4 +1,4 @@
-import { AutocompleteComponent, DatePickerComponent } from '@/components';
+import { AutocompleteComponent } from '@/components';
 import DivisionTopBar from "../../../shared/components/DivisionTopBar";
 
 const OfficerComponent = ({ handleSelectedOficer, officers }) => {

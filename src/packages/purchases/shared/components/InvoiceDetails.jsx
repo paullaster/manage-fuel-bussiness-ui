@@ -1,4 +1,4 @@
-import { InputComponent, DatePickerComponent } from "@/components";
+import { InputComponent } from "@/components";
 import { useGlobalState } from "@/store";
 import { forwardRef } from "react";
 
@@ -30,11 +30,11 @@ const InvoiceDetails = forwardRef((props, ref) => {
                 name="delivery_note_number"
                 ref={ref.deliveryNoteNumberRef}
             />
-            <DatePickerComponent
-                    label='Purchase date'
-                    value={purchaseDate}
-                    setValue={setValue}
-                />
+            <InputComponent
+                prelabelText="Bill date"
+                value={new Date()}
+                ref={ref.billDate}
+            />
         </div>
     )
 })

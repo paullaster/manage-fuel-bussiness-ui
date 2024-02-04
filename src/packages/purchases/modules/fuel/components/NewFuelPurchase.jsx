@@ -13,7 +13,7 @@ import {
   GridRowModes,
   GridRowEditStopReasons
 } from '@mui/x-data-grid';
-import { apiFetchUtil, GetGross } from "@/utils";
+import { apiFetchUtil, GetGross, ObjectValidator, YearMonthDate } from "@/utils";
 import WebStorage from "@/utils/WebStorage";
 import { APPNAME } from "@/environments";
 import DataGridToolbar from "../../../shared/components/DataGridToolbar";
@@ -59,7 +59,7 @@ const NewFuelPurchase = () => {
   // TRANSPORT
   const transportRefObject = {
     transportNameRef,
-    vehicleRegistrationRef
+    vehicleRegistrationRef,
   };
 
   const handleSelectedVendor = (event, newValue) => {
@@ -247,8 +247,6 @@ const NewFuelPurchase = () => {
         width: 100,
         editable: false,
         valueGetter: (params) => {
-          console.log(params.row.expected_quantity * params.row.price);
-          console.log(params);
           return params.row.expected_quantity * params.row.price;
         },
         type: 'number',
@@ -345,8 +343,25 @@ const NewFuelPurchase = () => {
   }, [columns, handleSettingSummary]);
 
 
-  const handleSubmttingFuelPurchase = () => {
-    
+  const handleSubmttingFuelPurchase = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+
+    const itemsList = rows.map((it) => {
+      const{ tax_rate, expected_quantity, price:purchase_price , item } = it;
+      const tax_amount = GetGross(it, 'tax_rate', 'expected_quantity', 'price', 'tax_amount');
+      const net_amount = it.expected_quantity * it.price;
+      const gross_amount = GetGross(it, 'tax_rate', 'expected_quantity', 'price', 'gross_amount');
+      const tax = Number(tax_rate)/100;
+      return { tax, expected_quantity, purchase_price, item, tax_amount, net_amount, gross_amount};
+    });
+
+    itemsList.forEach((item) => {
+      if (!ObjectValidator(['tax_rate', 'expected_quantity', 'price', 'item', 'vat_amount', 'net_amount', 'gross_amount'], item)) {
+        throw Error("Please check your items table and complete before you submit again");
+      }
+    });
+    const pickedDate = YearMonthDate(billDate);
     const { organization_id } = orgData;
     const payload = {
       vendor: vendor,

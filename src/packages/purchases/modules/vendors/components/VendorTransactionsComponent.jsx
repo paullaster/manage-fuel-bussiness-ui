@@ -67,7 +67,7 @@ const TransactionTabContent = ({value, tab}) => {
                 </div>
                 <div className='informationCardText'>
                     <p>{tab?.additionalText}</p>
-                    <Button>
+                    <Button className={'btn-element btn_primary'}>
                         {tab?.btnCaption}
                     </Button>
                 </div>

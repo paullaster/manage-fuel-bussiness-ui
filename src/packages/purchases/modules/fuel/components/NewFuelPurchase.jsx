@@ -349,12 +349,12 @@ const NewFuelPurchase = () => {
     event.preventDefault();
 
     const itemsList = rows.map((it) => {
-      const{ tax_rate, expected_quantity, price , item } = it;
+      const{ tax_rate, expected_quantity, price , tank, dip_quantity_before_offloading, sales_quantity_during_offloading, actual_dip_quantity_after_offloading } = it;
       const tax_amount = GetGross(it, 'tax_rate', 'expected_quantity', 'price', 'tax_amount');
       const net_amount = it.expected_quantity * it.price;
       const gross_amount = GetGross(it, 'tax_rate', 'expected_quantity', 'price', 'gross_amount');
       const tax = Number(tax_rate)/100;
-      return { tax, expected_quantity, price, item, tax_amount, net_amount, gross_amount};
+      return { tax, expected_quantity, price, tank, tax_amount, net_payable, gross_amount, dip_quantity_before_offloading, sales_quantity_during_offloading, actual_dip_quantity_after_offloading};
     });
 
     itemsList.forEach((item) => {
@@ -386,12 +386,16 @@ const NewFuelPurchase = () => {
       invoice_number: invoiceNumberRef.current.value,
       delivery_note_number: deliveryNoteNumberRef.current.value,
       items: itemsList,
-      sub_total_vat_amount: summaryValues.subtotal,
-      net_amount: summaryValues.taxt_amount_total,
+      sub_total_tax_amount: summaryValues.subtotal,
+      net_payable: summaryValues.taxt_amount_total,
       gross_amount: summaryValues.total,
       organization_id,
 
+
     };
+    for (const prop in payload) {
+      if (!payload[prop]) throw new Error("Invalid payload, Cross check your item and submit again!")
+    }
   }
 
   return (

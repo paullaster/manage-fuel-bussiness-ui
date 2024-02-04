@@ -241,7 +241,7 @@ const NewFuelPurchase = () => {
         align: 'center',
       },
       {
-        field: 'amount',
+        field: 'net_payable',
         headerName: 'Amount',
         description: 'amount',
         sortable: false,
@@ -363,13 +363,13 @@ const NewFuelPurchase = () => {
         'expected_quantity', 
         'price', 
         'dip_quantity_before_offloading', 
-        'vat_amount', 
-        'net_amount', 
+        'net_payable', 
         'gross_amount',
         'sales_quantity_during_offloading',
         'actual_dip_quantity_after_offloading',
         'tank',
-        'tax_amount'
+        'tax_amount',
+        'variance',
 
       ], item)) {
         throw Error("Please check your items table and complete before you submit again");

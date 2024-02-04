@@ -32,6 +32,7 @@ const InvoiceDetails = forwardRef((props, ref) => {
             />
             <DatePickerComponent
                     label='Purchase date'
+                    value={purchaseDate}
                     setValue={setValue}
                 />
         </div>

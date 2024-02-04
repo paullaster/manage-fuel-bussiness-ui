@@ -45,6 +45,7 @@ const NewFuelPurchase = () => {
   const transportNameRef = useRef(null);
   const vehicleRegistrationRef = useRef(null);
   const driverNameRef = useRef(null);
+  const billDate = useRef(null);
 
 
   const billingInfoRefObject = {
@@ -348,16 +349,29 @@ const NewFuelPurchase = () => {
     event.preventDefault();
 
     const itemsList = rows.map((it) => {
-      const{ tax_rate, expected_quantity, price:purchase_price , item } = it;
+      const{ tax_rate, expected_quantity, price , item } = it;
       const tax_amount = GetGross(it, 'tax_rate', 'expected_quantity', 'price', 'tax_amount');
       const net_amount = it.expected_quantity * it.price;
       const gross_amount = GetGross(it, 'tax_rate', 'expected_quantity', 'price', 'gross_amount');
       const tax = Number(tax_rate)/100;
-      return { tax, expected_quantity, purchase_price, item, tax_amount, net_amount, gross_amount};
+      return { tax, expected_quantity, price, item, tax_amount, net_amount, gross_amount};
     });
 
     itemsList.forEach((item) => {
-      if (!ObjectValidator(['tax_rate', 'expected_quantity', 'price', 'item', 'vat_amount', 'net_amount', 'gross_amount'], item)) {
+      if (!ObjectValidator([
+        'tax_rate', 
+        'expected_quantity', 
+        'price', 
+        'dip_quantity_before_offloading', 
+        'vat_amount', 
+        'net_amount', 
+        'gross_amount',
+        'sales_quantity_during_offloading',
+        'actual_dip_quantity_after_offloading',
+        'tank',
+        'tax_amount'
+
+      ], item)) {
         throw Error("Please check your items table and complete before you submit again");
       }
     });

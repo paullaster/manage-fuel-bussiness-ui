@@ -33,6 +33,8 @@ const InvoiceDetails = forwardRef((props, ref) => {
                 prelabelText="Bill date"
                 value={new Date()}
                 ref={ref.billDate}
+                readOnly
+                disabled
             />
         </div>
     )

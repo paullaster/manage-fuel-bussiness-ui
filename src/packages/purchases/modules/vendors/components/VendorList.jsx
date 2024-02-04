@@ -71,7 +71,7 @@ const VendorList = () => {
     const columns = useMemo(() => [
         {
             field: 'vendor_name',
-            headerName: 'name',
+            headerName: 'Name',
             width: 300,
             headerAlign: 'center',
             sortable: true,
@@ -81,7 +81,7 @@ const VendorList = () => {
         },
         {
             field: 'vendor_email',
-            headerName: 'email ',
+            headerName: 'Email ',
             width: 200,
             headerAlign: 'center',
             sortable: false,
@@ -91,7 +91,7 @@ const VendorList = () => {
         },
         {
             field: 'vendor_phone',
-            headerName: 'phone',
+            headerName: 'Phone',
             width: 200,
             headerAlign: 'center',
             sortable: false,
@@ -101,7 +101,7 @@ const VendorList = () => {
         },
         {
             field: 'company_name',
-            headerName: 'company name',
+            headerName: 'Company name',
             width: 300,
             headerAlign: 'center',
             sortable: true,
@@ -111,7 +111,7 @@ const VendorList = () => {
         },
         {
             field: 'website',
-            headerName: 'website',
+            headerName: 'Website',
             width: 200,
             headerAlign: 'center',
             sortable: false,
@@ -121,7 +121,7 @@ const VendorList = () => {
         },
         {
             field: 'actions',
-            headerName: 'actions',
+            headerName: 'Actions',
             type: 'actions',
             width: 200,
             headerAlign: 'center',

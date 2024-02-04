@@ -4,7 +4,7 @@ import DivisionTopBar from "./DivisionTopBar";
 import { forwardRef } from "react";
 
 const BillingComponent = forwardRef((props, ref) => {
-    const { cardLabelView = [], handleSelectedVendor, vendorsList, children, setValue } = props;
+    const { cardLabelView = [], handleSelectedVendor, vendorsList, children } = props;
     return (
         <div className="billingCard">
             <DivisionTopBar sectionTitle="Billing details that appear in your bill " />
@@ -29,7 +29,7 @@ const BillingComponent = forwardRef((props, ref) => {
                         )
                     }) : ''
                 }
-                <InvoiceDetails ref={ref} setValue={setValue}/>
+                <InvoiceDetails ref={ref}/>
             </div>
         </div>
     )

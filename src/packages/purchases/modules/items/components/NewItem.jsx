@@ -18,7 +18,7 @@ import { v4 as uuidv4 } from 'uuid';
 import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 import OfficerComponent from "./OfficerComponent";
 import SummaryComponent from "../../../shared/components/SummaryComponent";
-import { ObjectValidator, GetGross } from "@/utils";
+import { ObjectValidator, GetGross, YearMonthDate } from "@/utils";
 import { postingPurchaseItem } from "../../../actions";
 
 
@@ -294,7 +294,7 @@ const NewItem = () => {
         throw Error("Please check your table items and complete before you submit again");
       }
     });
-    const pickedDate = 
+    const pickedDate = YearMonthDate(billDate);
 
     const { organization_id } = orgData;
     const payload = {
@@ -336,7 +336,6 @@ const NewItem = () => {
           ref={billingInfoRefObject}
           handleSelectedVendor={handleSelectedVendor}
           vendorsList={vendorsList}
-          setValue={handlePcikedDate}
         >
           <NewVendor />
         </shared.components.BillingComponent >

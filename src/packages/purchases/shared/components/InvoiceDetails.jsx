@@ -3,7 +3,7 @@ import { useGlobalState } from "@/store";
 import { forwardRef } from "react";
 
 const InvoiceDetails = forwardRef((props, ref) => {
-    const { transactionCode } = useGlobalState();
+    const { transactionCode, purchaseDate } = useGlobalState();
     const { setValue } = props;
 
     return (

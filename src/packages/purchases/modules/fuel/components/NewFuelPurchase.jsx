@@ -349,12 +349,26 @@ const NewFuelPurchase = () => {
     event.preventDefault();
 
     const itemsList = rows.map((it) => {
-      const{ tax_rate, expected_quantity, price , tank, dip_quantity_before_offloading, sales_quantity_during_offloading, actual_dip_quantity_after_offloading } = it;
+      const{ tax_rate, expected_quantity, price , 
+        tank, dip_quantity_before_offloading, 
+        sales_quantity_during_offloading, 
+        actual_dip_quantity_after_offloading,
+        variance
+       } = it;
       const tax_amount = GetGross(it, 'tax_rate', 'expected_quantity', 'price', 'tax_amount');
-      const net_amount = it.expected_quantity * it.price;
+      const net_payable = it.expected_quantity * it.price;
       const gross_amount = GetGross(it, 'tax_rate', 'expected_quantity', 'price', 'gross_amount');
       const tax = Number(tax_rate)/100;
-      return { tax, expected_quantity, price, tank, tax_amount, net_payable, gross_amount, dip_quantity_before_offloading, sales_quantity_during_offloading, actual_dip_quantity_after_offloading};
+      return { 
+        tax_rate: tax, 
+        expected_quantity, 
+        price, tank, tax_amount, 
+        net_payable, gross_amount, 
+        dip_quantity_before_offloading, 
+        sales_quantity_during_offloading, 
+        actual_dip_quantity_after_offloading,
+        variance
+      };
     });
 
     itemsList.forEach((item) => {

@@ -341,10 +341,11 @@ const NewItem = () => {
           ref={billingInfoRefObject}
           handleSelectedVendor={handleSelectedVendor}
           vendorsList={vendorsList}
+          setValue={handlePcikedDate}
         >
           <NewVendor />
-        </shared.components.BillingComponent>
-        <OfficerComponent officers={officers} handleSelectedOficer={handleSelectedOficer} setValue={handlePcikedDate} />
+        </shared.components.BillingComponent >
+        <OfficerComponent officers={officers} handleSelectedOficer={handleSelectedOficer} />
         <PurchaseItemEntry
           columns={columns}
           rows={rows}

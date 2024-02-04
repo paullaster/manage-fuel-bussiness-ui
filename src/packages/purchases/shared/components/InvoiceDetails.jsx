@@ -1,7 +1,7 @@
 import { InputComponent } from "@/components";
 import { useGlobalState } from "@/store";
 import { forwardRef } from "react";
-
+import { YearMonthDate } from "@/utils";
 const InvoiceDetails = forwardRef((props, ref) => {
     const { transactionCode } = useGlobalState();
 
@@ -32,7 +32,7 @@ const InvoiceDetails = forwardRef((props, ref) => {
             />
             <InputComponent
                 prelabelText="Bill date"
-                value={new Date()}
+                value={YearMonthDate(new Date())}
                 ref={ref.billDate}
                 readOnly
                 disabled

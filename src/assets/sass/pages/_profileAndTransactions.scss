@@ -43,6 +43,7 @@
                     &:last-child {
                         margin-top: u.rem(12);
                         text-align: end;
+                        width: max-content;
                     }
                 }
             }

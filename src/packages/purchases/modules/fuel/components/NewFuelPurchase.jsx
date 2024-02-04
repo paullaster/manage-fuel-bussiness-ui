@@ -396,7 +396,7 @@ const NewFuelPurchase = () => {
       officer: selectedOfficer,
       bill_number: billNumberRef.current.value,
       purchase_date: pickedDate,
-      purchase_order_number: purchaseOrderNumberRef.current.value,
+      po_number: purchaseOrderNumberRef.current.value,
       invoice_number: invoiceNumberRef.current.value,
       delivery_note_number: deliveryNoteNumberRef.current.value,
       items: itemsList,
@@ -404,8 +404,9 @@ const NewFuelPurchase = () => {
       net_payable: summaryValues.taxt_amount_total,
       gross_amount: summaryValues.total,
       organization_id,
-
-
+      transport_name: transportNameRef.current.value,
+      vehicle_registration: vehicleRegistrationRef.current.value,
+      driver_name: driverNameRef.current.value
     };
     for (const prop in payload) {
       if (!payload[prop]) throw new Error("Invalid payload, Cross check your item and submit again!")

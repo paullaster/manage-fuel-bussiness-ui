@@ -1,7 +1,7 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import App from '@/App'
 import { ErrorComponent } from '@/components';
-import { Landing } from '@/packages/Landing';
+import {Landing} from '@/packages/Landing';
 import { Admin, User, CompanyList, AddCompany, NewCompany, Wizard, TankAndPumpData, Dashboard, } from '@/packages/dashboard';
 import auth from '@/packages/auth';
 import Purchases from '@/packages/purchases';

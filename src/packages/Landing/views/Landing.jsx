@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Button, Logo } from '@/components';
+import { Logo } from '@/components';
 import { FaAngleRight } from "react-icons/fa6";
 import Landing_graphics from "@/assets/images/landing_graphics.svg";
 

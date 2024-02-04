@@ -323,7 +323,7 @@ const NewItem = () => {
       })
       .catch((err) => {
         console.error(err);
-      })
+      });
   }
 
 

@@ -11,6 +11,7 @@ const InvoiceDetails = forwardRef((props, ref) => {
                 prelabelText="Bill number"
                 name="Bill_number"
                 disabled={true}
+                readOnly
                 value={transactionCode}
                 ref={ref.billNumberRef}
             />

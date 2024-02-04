@@ -34,12 +34,12 @@ const NewItem = () => {
   const [officers, setOfficers] = useState([{ id: 1, name: 'Ken Mjungu' }, { id: 2, name: 'Waigah Mwaura' }]);
   const [selectedOfficer, setSelectedOfficer] = useState(null);
   const [vendor, setVendor] = useState(null);
-  const [pickedDate, setPickedDate] = useState(null);
 
   const billNumberRef = useRef(null);
   const invoiceNumberRef = useRef(null);
   const purchaseOrderNumberRef = useRef(null);
   const deliveryNoteNumberRef = useRef(null);
+  const billDate = useRef(null);
 
 
 
@@ -49,13 +49,7 @@ const NewItem = () => {
     invoiceNumberRef,
     purchaseOrderNumberRef,
     deliveryNoteNumberRef,
-  };
-
-
-  const handlePcikedDate = (newValue) => {
-    const dateObj = new Date(newValue.$d);
-    const formattedDate = `${dateObj.getFullYear()}-0${dateObj.getMonth() + 1}-${dateObj.getDate()}`;
-    setPickedDate(formattedDate);
+    billDate,
   };
 
   const handleSelectedVendor = (event, newValue) => {
@@ -300,7 +294,8 @@ const NewItem = () => {
         throw Error("Please check your table items and complete before you submit again");
       }
     });
-    console.log(orgData);
+    const pickedDate = 
+
     const { organization_id } = orgData;
     const payload = {
       vendor: vendor,

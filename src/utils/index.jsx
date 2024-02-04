@@ -16,6 +16,7 @@ import { ObjectValidator } from "./ObjectValidator";
 
 
 export * from './apiFetchUtil';
+export * from './DateFormatter';
 
 export {
     Hide,

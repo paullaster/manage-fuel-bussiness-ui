@@ -291,7 +291,7 @@ const NewItem = () => {
 
     itemsList.forEach((item) => {
       if (!ObjectValidator(['vat_rate', 'quantity', 'price', 'item', 'vat_amount', 'net_amount', 'gross_amount'], item)) {
-        throw Error("Please check your table items and complete before you submit again");
+        throw Error("Please check your items table and complete before you submit again");
       }
     });
     const pickedDate = YearMonthDate(billDate);

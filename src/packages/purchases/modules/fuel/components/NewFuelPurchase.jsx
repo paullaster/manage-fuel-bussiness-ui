@@ -53,6 +53,7 @@ const NewFuelPurchase = () => {
     purchaseOrderNumberRef,
     deliveryNoteNumberRef,
     driverNameRef,
+    billDate,
   };
 
   // TRANSPORT
@@ -342,6 +343,27 @@ const NewFuelPurchase = () => {
   useEffect(() => {
 
   }, [columns, handleSettingSummary]);
+
+
+  const handleSubmttingFuelPurchase = () => {
+    
+    const { organization_id } = orgData;
+    const payload = {
+      vendor: vendor,
+      officer: selectedOfficer,
+      bill_number: billNumberRef.current.value,
+      purchase_date: pickedDate,
+      purchase_order_number: purchaseOrderNumberRef.current.value,
+      invoice_number: invoiceNumberRef.current.value,
+      delivery_note_number: deliveryNoteNumberRef.current.value,
+      items: itemsList,
+      sub_total_vat_amount: summaryValues.subtotal,
+      net_amount: summaryValues.taxt_amount_total,
+      gross_amount: summaryValues.total,
+      organization_id,
+
+    };
+  }
 
   return (
     <section className="newfuelpurchase">

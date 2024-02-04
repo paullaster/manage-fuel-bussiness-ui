@@ -12,14 +12,17 @@ const Transport = forwardRef((props, ref) => {
           <InputComponent
               prelabelText="transport name"
               name="transport_name"
+              ref={ref.transportNameRef}
           />
           <InputComponent
               prelabelText="vehicle registration"
               name="vehicle_registration"
+              ref={ref.vehicleRegistrationRef}
           />
           <InputComponent
               prelabelText="driver name"
               name="driver_name"
+              ref={ref.driverNameRef}
           />
           <AutocompleteComponent
                 list={officers}

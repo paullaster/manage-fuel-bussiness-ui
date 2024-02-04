@@ -41,26 +41,26 @@ const NewFuelPurchase = () => {
   const invoiceNumberRef = useRef(null);
   const purchaseOrderNumberRef = useRef(null);
   const deliveryNoteNumberRef = useRef(null);
-
+  const billDate = useRef(null);
+  
   const transportNameRef = useRef(null);
   const vehicleRegistrationRef = useRef(null);
   const driverNameRef = useRef(null);
-  const billDate = useRef(null);
-
-
+  
+  
   const billingInfoRefObject = {
     billNumberRef,
     invoiceNumberRef,
     purchaseOrderNumberRef,
     deliveryNoteNumberRef,
-    driverNameRef,
     billDate,
   };
-
+  
   // TRANSPORT
   const transportRefObject = {
     transportNameRef,
     vehicleRegistrationRef,
+    driverNameRef,
   };
 
   const handleSelectedVendor = (event, newValue) => {
@@ -409,6 +409,7 @@ const NewFuelPurchase = () => {
         <Transport 
         officers={officers} 
         handleSelectedOficer={handleSelectedOficer}
+        ref={transportRefObject}
         />
         <TankEntries
           columns={columns}

@@ -19,6 +19,7 @@ import { APPNAME } from "@/environments";
 import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 import { MdOutlineSaveAlt, MdCreate, MdCancel, MdDelete } from "react-icons/md";
 import Transport from "./Transport";
+import { postingFuelPurchase } from "../../../actions";
 
 
 const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
@@ -411,6 +412,13 @@ const NewFuelPurchase = () => {
     for (const prop in payload) {
       if (!payload[prop]) throw new Error("Invalid payload, Cross check your item and submit again!")
     }
+    postingFuelPurchase(payload)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.error(err);
+    })
   }
 
   return (

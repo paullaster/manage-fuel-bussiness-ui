@@ -2,6 +2,7 @@ import { _request } from '@/services';
 import constants from './constants';
 import WebStorage from '@/utils/WebStorage';
 import { APPNAME } from '@/environments';
+import { method } from 'lodash';
 
 
 const { address, billing, contact, vendor, currency, purchaseItem } = constants;
@@ -91,6 +92,10 @@ export const postVendor = async (item) => {
 
 export const postingPurchaseItem = async(payload) =>{
     return await _request({method: 'POST', url: purchaseItem, data: payload});
+}
+// POSTING FUEL PURCHASE
+export const postingFuelPurchase = async(payload) => {
+    return await _request({method: 'POST', url: FuelPurchase, data: payload});
 }
 
 

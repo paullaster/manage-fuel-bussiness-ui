@@ -126,7 +126,7 @@ const NewFuelPurchase = () => {
     {
         field: 'tank',
         headerName: 'Tank',
-        width: 150,
+        width: 60,
         editable: true,
         type: 'singleSelect',
         valueOptions: () => orgData.tanks.map((tank) => {
@@ -146,7 +146,7 @@ const NewFuelPurchase = () => {
       {
         field: 'fuel_type',
         headerName: 'Fuel Type',
-        width: 150,
+        width: 100,
         editable: false,
         sortable: false,
         type: 'string',
@@ -157,7 +157,7 @@ const NewFuelPurchase = () => {
       {
         field: 'dip_quantity_before_offloading',
         headerName: 'Dip quantity before offloading',
-        width: 240,
+        width: 200,
         editable: true,
         hideable: false,
         type: 'number',
@@ -167,7 +167,7 @@ const NewFuelPurchase = () => {
       {
         field: 'sales_quantity_during_offloading',
         headerName: 'Sales quantity during offloading',
-        width: 240,
+        width: 200,
         editable: true,
         hideable: false,
         type: 'number',
@@ -177,7 +177,7 @@ const NewFuelPurchase = () => {
       {
         field: 'actual_dip_quantity_after_offloading',
         headerName: 'Actual dip quantity after offloading',
-        width: 240,
+        width: 200,
         editable: true,
         hideable: false,
         type: 'number',
@@ -187,7 +187,7 @@ const NewFuelPurchase = () => {
       {
         field: 'expected_quantity',
         headerName: 'Expected quantity',
-        width: 130,
+        width: 150,
         editable: true,
         hideable: false,
         type: 'number',
@@ -197,7 +197,7 @@ const NewFuelPurchase = () => {
       {
         field: 'variance',
         headerName: 'Variance',
-        width: 100,
+        width: 80,
         editable: true,
         hideable: false,
         type: 'number',
@@ -233,7 +233,7 @@ const NewFuelPurchase = () => {
       {
         field: 'tax_amount',
         headerName: 'Tax amount',
-        width: 120,
+        width: 100,
         editable: false,
         valueGetter: (params) => GetGross(params.row, 'tax_rate', 'expected_quantity', 'price', 'tax_amount'),
         hideable: false,
@@ -261,7 +261,7 @@ const NewFuelPurchase = () => {
         headerName: 'Gross amount',
         description: 'gross amount',
         sortable: false,
-        width: 150,
+        width: 120,
         valueGetter: (params) => GetGross(params.row, 'tax_rate', 'expected_quantity', 'price', 'gross_amount'),
         type: 'number',
         hideable: false,
@@ -271,7 +271,7 @@ const NewFuelPurchase = () => {
       {
         field: 'actions',
         type: 'actions',
-        width: 80,
+        width: 60,
         hideable: false,
         cellClassName: 'actions',
         getActions: (params) => {

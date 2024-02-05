@@ -1,7 +1,7 @@
 @use '../utilities/' as u;
 @use '../global/' as g;
 
-.container {
+#root {
     display: grid;
     grid-template-areas:
         'header main'

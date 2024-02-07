@@ -22,7 +22,7 @@ export default {
             case 'SET_BILLS':
                 return {
                     ...state,
-                    bills: payload.filter ? payload.bills : [...state.bills, ...payload.bills],
+                    bills: action.payload.filter ? action.payload.bills : [...state.bills, ...action.payload.bills],
                 }
         }
     }

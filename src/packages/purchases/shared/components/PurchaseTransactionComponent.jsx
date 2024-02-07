@@ -127,7 +127,7 @@ const TransactionTabContent = ({value, tab}) => {
         const handleGridRowClick = useCallback((params) => {
             navigate('/dashboard/purchases/bills/params.row.id');
         },[]);
-        
+        return apiRef.current.subscribeEvent('rowClick', handleGridRowClick);
     }, [apiRef]);
 
     return (

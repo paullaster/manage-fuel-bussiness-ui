@@ -5,10 +5,14 @@ import BalancesListComponent from './BalancesListComponent';
 import PurchaseTransactionComponent from './PurchaseTransactionComponent';
 import { useEffect } from 'react';
 import { fetchFuelPurchases } from '../../actions';
+import { usePurchasesDispatcher, usePurchasesState, usePurchasesState } from '../../Context';
 
 const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
 
 const BillRecords = () => {
+
+  const purchaseActions = usePurchasesDispatcher();
+  const usePurchasesState = usePurchasesState();
 
   useEffect(() => {
     fetchFuelPurchases({limit: 10})

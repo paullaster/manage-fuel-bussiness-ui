@@ -20,6 +20,7 @@ import OfficerComponent from "./OfficerComponent";
 import SummaryComponent from "../../../shared/components/SummaryComponent";
 import { ObjectValidator, GetGross, YearMonthDate } from "@/utils";
 import { postingPurchaseItem } from "../../../actions";
+import { usePurchasesState } from '../../../Context';
 
 
 const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
@@ -30,8 +31,6 @@ const NewItem = () => {
   const [rows, setRows] = useState([]);
   const [rowModesModel, setRowModesModel] = useState({});
   const [summaryValues, setSummaryValues] = useState({ subtotal: 0, taxt_amount_total: 0, total: 0 });
-  const [vendorsList, setVendorsList] = useState([{ id: 1, name: 'Vendor X' }, { id: 2, name: 'Vendor Y' }, { id: 3, name: 'Vendor Z' }]);
-  const [officers, setOfficers] = useState([{ id: 1, name: 'Ken Mjungu' }, { id: 2, name: 'Waigah Mwaura' }]);
   const [selectedOfficer, setSelectedOfficer] = useState(null);
   const [vendor, setVendor] = useState(null);
 
@@ -42,7 +41,7 @@ const NewItem = () => {
   const billDate = useRef(null);
 
 
-
+  const {vendors, officers} = usePurchasesState();
 
   const billingInfoRefObject = {
     billNumberRef,
@@ -55,13 +54,13 @@ const NewItem = () => {
   const handleSelectedVendor = (event, newValue) => {
     event.preventDefault();
     event.stopPropagation();
-    setVendor(newValue.id);
+    setVendor(newValue.vendor_id);
   }
 
   const handleSelectedOficer = (event, newValue) => {
     event.stopPropagation();
     event.preventDefault();
-    setSelectedOfficer(newValue.id);
+    setSelectedOfficer(newValue.officer_id);
   }
 
 
@@ -335,7 +334,7 @@ const NewItem = () => {
           cardLabelView={cardLabelView}
           ref={billingInfoRefObject}
           handleSelectedVendor={handleSelectedVendor}
-          vendorsList={vendorsList}
+          vendorsList={vendors}
         >
           <NewVendor />
         </shared.components.BillingComponent >

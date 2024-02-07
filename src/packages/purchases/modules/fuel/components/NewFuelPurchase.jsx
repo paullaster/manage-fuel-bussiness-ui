@@ -20,6 +20,7 @@ import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 import { MdOutlineSaveAlt, MdCreate, MdCancel, MdDelete } from "react-icons/md";
 import Transport from "./Transport";
 import { postingFuelPurchase } from "../../../actions";
+import { usePurchasesState } from '../../../Context';
 
 
 const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
@@ -32,8 +33,7 @@ const NewFuelPurchase = () => {
   const appStateDispatcher = useGlobalDispatcher();
   const { cardLabelView } = useGlobalState();
 
-  const [vendorsList, setVendorsList] = useState([{ id: 1, name: 'Vendor X' }, { id: 2, name: 'Vendor Y' }, { id: 3, name: 'Vendor Z' }]);
-  const [officers, setOfficers] = useState([{ id: 1, name: 'Ken Mjungu' }, { id: 2, name: 'Waigah Mwaura' }]);
+
   const [summaryValues, setSummaryValues] = useState({ subtotal: 0, taxt_amount_total: 0, total: 0 });
   const [selectedOfficer, setSelectedOfficer] = useState(null);
   const [vendor, setVendor] = useState(null);
@@ -48,6 +48,7 @@ const NewFuelPurchase = () => {
   const vehicleRegistrationRef = useRef(null);
   const driverNameRef = useRef(null);
   
+  const {vendors, officers} = usePurchasesState();
   
   const billingInfoRefObject = {
     billNumberRef,
@@ -67,14 +68,14 @@ const NewFuelPurchase = () => {
   const handleSelectedVendor = (event, newValue) => {
     event.preventDefault();
     event.stopPropagation();
-    setVendor(newValue.id);
+    setVendor(newValue.vendor_id);
   }
 
   const handleSelectedOficer = (event, newValue) => {
     event.stopPropagation();
     event.preventDefault();
     console.log(newValue);
-    setSelectedOfficer(newValue.id);
+    setSelectedOfficer(newValue.officer_id);
   }
   const deleteItem = (params) => {
         setRows((prevRows) => prevRows.filter((row) => row.id !== params.id));
@@ -429,7 +430,7 @@ const NewFuelPurchase = () => {
         cardLabelView={cardLabelView} 
         ref={billingInfoRefObject}
         handleSelectedVendor={handleSelectedVendor}
-        vendorsList={vendorsList}
+        vendorsList={vendors}
         >
           <NewVendor />
         </shared.components.BillingComponent>
@@ -449,7 +450,7 @@ const NewFuelPurchase = () => {
           slotProps={{ toolbar: { setRows, setRowModesModel } }}
         />
         <SummaryComponent subtotal={summaryValues.subtotal} totalTaxAmount={summaryValues.taxt_amount_total} total={summaryValues.total} />
-        <FormButtonRow className="form_actions"/>
+        <FormButtonRow className="form_actions" methodHandler={handleSubmttingFuelPurchase}/>
       </Form>
     </section>
   )

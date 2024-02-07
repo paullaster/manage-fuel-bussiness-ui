@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
-import { GridActionsCellItem } from "@mui/x-data-grid";
+import { GridActionsCellItem, GridToolbarContainer  } from "@mui/x-data-grid";
 import { DataTable } from '@/components';
-import {useCallback, useEffect, useMemo, useState } from 'react';
+import {useCallback, useMemo} from 'react';
 import { fetchVendorsList } from '../../../actions';
 import { generator } from '@/utils/';
 import { v4 as uuidv4 } from 'uuid';
@@ -10,8 +10,8 @@ import shared from '../../../shared';
 import { useNavigate } from "react-router-dom";
 import { deleteItem } from '../../../../../store';
 import constants from '../../../constants';
-import { GridToolbarContainer } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
+import { usePurchasesState } from '../../../Context';
 
 
 const VendorListGridToolBar = ({setRows}) => {
@@ -42,8 +42,8 @@ const VendorListGridToolBar = ({setRows}) => {
 }
 
 const VendorList = () => {
-    const [rows, setRows] = useState([]);
     const navigate = useNavigate()
+    const purchasesState = usePurchasesState();
 
 
     const handleViewClick = (params) => {
@@ -152,27 +152,6 @@ const VendorList = () => {
         },
     ], []);
 
-    useEffect(() => {
-        fetchVendorsList({limit: 10})
-            .then((res) => {
-                console.log(res.vendors.results);
-                const vendorsWithID = [];
-                for (const vendor of generator(res.vendors.results)) {
-                    vendor.id = vendor.vendor_id;
-                    vendorsWithID.push(vendor);
-                }
-                const vendorsArray = Array.from(new Set(vendorsWithID));
-                setRows(vendorsArray);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-
-        return () => {
-
-        }
-    }, []);
-
     // useEffect(() => {
 
     // },[rows]);
@@ -182,7 +161,7 @@ const VendorList = () => {
             <shared.components.SectionIntroduction text="List of Vendors" />
             <DataTable
                 columns={columns}
-                rows={rows}
+                rows={purchasesState.vendors}
                 style={{ minHeight: 400, height: 'auto' }}
                 initialState={{ pagination: { paginationModel: { page: 0, pageSize: 10 } } }}
                 pageSizeOptions={[5, 10, 20, 30, 50]}

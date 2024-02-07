@@ -79,6 +79,7 @@ const TransactionTabContent = ({value, tab}) => {
                 type: 'string',
                 width: 250,
                 headerAlign: 'center',
+                align: 'center',
                 editable: true,
             },
             {
@@ -87,6 +88,7 @@ const TransactionTabContent = ({value, tab}) => {
                 type: 'string',
                 width: 250,
                 headerAlign: 'center',
+                align: 'center',
                 editable: true,
                 valueGetter: () => 'Paid'
             },
@@ -96,6 +98,7 @@ const TransactionTabContent = ({value, tab}) => {
                 type: 'string',
                 width: 250,
                 headerAlign: 'center',
+                align: 'center',
                 editable: true,
                 valueGetter: (params) => params.row.vendor.vendor_name
             },
@@ -105,6 +108,7 @@ const TransactionTabContent = ({value, tab}) => {
                 type: 'string',
                 width: 250,
                 headerAlign: 'center',
+                align: 'center',
                 editable: true,
                 valueGetter: (params) => `${orgData?.currency || 'KES'} ${params.row.gross_amount}`
             },

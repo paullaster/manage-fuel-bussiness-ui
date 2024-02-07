@@ -73,6 +73,7 @@ const TransactionTabContent = ({value, tab}) => {
     
     const apiRef = useGridApiRef();
     const { bills } = usePurchasesState();
+    const navigate = useNavigate();
 
     const Columns = useMemo(() => {
         return [

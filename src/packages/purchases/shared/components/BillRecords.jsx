@@ -29,9 +29,9 @@ const BillRecords = () => {
 
   return (
     <section>
-    <PurcahsesItemsTopBar caption={'Bill'}/>
+    <PurcahsesItemsTopBar caption={'Bill'} listOfActions={PurchasesActionsList}/>
     <BalancesListComponent currency={orgData?.currency}/>
-    <PurchaseTransactionComponent listOfActions={PurchasesActionsList} />
+    <PurchaseTransactionComponent />
     </section>
   )
 }

@@ -1,4 +1,4 @@
-import PurcahsesItemsTopBar from "./PurcahsesItemsTopBar"
+import PurcahsesItemsTopBar from "./PurcahsesItemsTopBar";
 
 const BillRecordPageComponent = () => {
   return (
@@ -12,3 +12,4 @@ const BillRecordPageComponent = () => {
 }
 
 export default BillRecordPageComponent
+

@@ -6,6 +6,10 @@ import { useState, useMemo, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { v4 as uuidv4 } from 'uuid';
 import { AutocompleteComponent, DataTable } from '@/components';
+import { usePurchasesState } from '../../Context';
+import WebStorage from "@/utils/WebStorage";
+
+const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
 
 const TabItems = [
     {
@@ -64,10 +68,12 @@ export default PurchaseTransactionComponent
 
 const TransactionTabContent = ({value, tab}) => {
 
+    const { bills } = usePurchasesState();
+
     const Columns = useMemo(() => {
         return [
             {
-                field: 'bill_date',
+                field: 'purchase_date',
                 headerName: 'Bill Date',
                 type: 'string',
                 width: 250,
@@ -81,22 +87,25 @@ const TransactionTabContent = ({value, tab}) => {
                 width: 250,
                 headerAlign: 'center',
                 editable: true,
+                valueGetter: () => 'Paid'
             },
             {
-                field: 'vendor_number',
-                headerName: 'Vendor Number',
+                field: 'vendor_name',
+                headerName: 'Vendor Name',
                 type: 'string',
                 width: 250,
                 headerAlign: 'center',
-                editable: true
+                editable: true,
+                valueGetter: (params) => params.row.vendor.vendor_name
             },
             {
-                field: 'amount',
+                field: 'gross_amount',
                 headerName: 'Amount',
                 type: 'string',
                 width: 250,
                 headerAlign: 'center',
-                editable: true
+                editable: true,
+                valueGetter: (params) => `${orgData?.currency}${params.row.gross_amount}`
             },
         ]
     }, []);
@@ -109,7 +118,7 @@ const TransactionTabContent = ({value, tab}) => {
         <TabPanel value={value}>
             <div className='informationCard'>
                 <AutocompleteComponent list={['']} label='Search or filter results...' />
-                <DataTable rows={[{id: '1'}]} columns={Columns}/>
+                <DataTable rows={bills} columns={Columns}/>
             </div>
         </TabPanel>
     )

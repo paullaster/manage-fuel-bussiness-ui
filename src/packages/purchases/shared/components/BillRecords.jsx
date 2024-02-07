@@ -10,7 +10,7 @@ const BillRecords = () => {
   return (
     <>
     <PurcahsesItemsTopBar caption={'Bill'}/>
-    <VendorBalancesListComponent currency={orgData?.currency}/>
+    <BalancesListComponent currency={orgData?.currency}/>
     </>
   )
 }

@@ -1,12 +1,11 @@
-import PurchasesActionsList from "./PurchasesActionList";
 import MenuPopup from "./MenuPopup";
 import { Button } from '@/components';
 
-const PurchasesActionListComponent = () => {
+const PurchasesActionListComponent = ({list}) => {
   return (
     <div className="actions">
         {
-            PurchasesActionsList.map((action) => {
+            list.map((action) => {
                 return action.hasList ? <MenuPopup action={action} key={action.key}/> : <Button key={action.key}>{action.caption}</Button>
             })
         }

@@ -6,6 +6,7 @@ import PurchaseTransactionComponent from './PurchaseTransactionComponent';
 import { useEffect } from 'react';
 import { fetchFuelPurchases } from '../../actions';
 import { usePurchasesDispatcher } from '../../Context';
+import PurchasesActionsList from "./PurchasesActionList";
 
 const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
 
@@ -30,7 +31,7 @@ const BillRecords = () => {
     <section>
     <PurcahsesItemsTopBar caption={'Bill'}/>
     <BalancesListComponent currency={orgData?.currency}/>
-    <PurchaseTransactionComponent />
+    <PurchaseTransactionComponent listOfActions={PurchasesActionsList} />
     </section>
   )
 }

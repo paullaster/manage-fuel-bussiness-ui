@@ -102,3 +102,10 @@ export const postingFuelPurchase = async(payload) => {
 export const fetchVendorsList = async(params = {}) => {
     return await _request({method: 'GET', params, url: vendor});
 }
+
+export const fetchFuelPurchases = async(params = {}) => {
+    return await _request({method: 'GET', params, url: fuelPurchase});
+}
+export const fetchItemPurchases = async(params = {}) => {
+    return await _request({method: 'GET', params, url: purchase_item});
+}

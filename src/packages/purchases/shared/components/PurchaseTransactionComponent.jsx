@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { AutocompleteComponent, DataTable } from '@/components';
 import { usePurchasesState } from '../../Context';
 import WebStorage from "@/utils/WebStorage";
+import { APPNAME } from "@/environments";
 
 const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
 
@@ -105,7 +106,7 @@ const TransactionTabContent = ({value, tab}) => {
                 width: 250,
                 headerAlign: 'center',
                 editable: true,
-                valueGetter: (params) => `${orgData?.currency}${params.row.gross_amount}`
+                valueGetter: (params) => `${orgData?.currency || 'KES'} ${params.row.gross_amount}`
             },
         ]
     }, []);

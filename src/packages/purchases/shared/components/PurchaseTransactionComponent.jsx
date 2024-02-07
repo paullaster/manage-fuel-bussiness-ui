@@ -119,15 +119,15 @@ const TransactionTabContent = ({value, tab}) => {
         ]
     }, []);
 
-    const handleGridRowClick = useCallback((params) => {
-
-    },[]);
     
     useEffect(() => {
-    
+        
     }, [Columns]);
-    useEffect(() => {
-    
+    useEffect(() => { 
+        const handleGridRowClick = useCallback((params) => {
+            navigate('/dashboard/purchases/bills/params.row.id');
+        },[]);
+        
     }, [apiRef]);
 
     return (

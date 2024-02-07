@@ -1,6 +1,10 @@
 import { MdChevronRight } from "react-icons/md";
 import vendorsImage from "@/assets/images/vendors.svg";
 import { NavLink } from "react-router-dom";
+import { usePurchasesDispatcher } from "../../Context";
+import {useEffect} from 'react';
+import { fetchVendorsList } from "../../actions";
+import { generator } from '@/utils/';
 
 const PurchasesItemsIndex = (
     {
@@ -14,6 +18,33 @@ const PurchasesItemsIndex = (
         componentImage = vendorsImage,
     }
 ) => {
+
+
+  const purchasesActions = usePurchasesDispatcher();
+
+  useEffect(() => {
+    fetchVendorsList({limit: 10})
+        .then((res) => {
+            console.log(res.vendors.results);
+            const vendorsWithID = [];
+            for (const vendor of generator(res.vendors.results)) {
+                vendor.id = vendor.vendor_id;
+                vendorsWithID.push(vendor);
+            }
+            const vendorsArray = Array.from(new Set(vendorsWithID));
+            console.log("Updated LIST",  vendorsArray)
+            purchasesActions({type: 'SET_VENDORS', payload: vendorsArray});
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
+    return () => {
+
+    }
+}, []);
+
+
     return (
         <section className="purchase_items_index">
             <div className="purchase_items_index_actions">

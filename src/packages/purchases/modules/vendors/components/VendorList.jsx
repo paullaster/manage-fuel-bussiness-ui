@@ -3,7 +3,6 @@ import { GridActionsCellItem, GridToolbarContainer  } from "@mui/x-data-grid";
 import { DataTable } from '@/components';
 import {useCallback, useMemo} from 'react';
 import { fetchVendorsList } from '../../../actions';
-import { generator } from '@/utils/';
 import { v4 as uuidv4 } from 'uuid';
 import { MdOutlineVisibility, MdDelete, MdOutlineRefresh } from "react-icons/md";
 import shared from '../../../shared';
@@ -14,27 +13,12 @@ import Button from '@mui/material/Button';
 import { usePurchasesState } from '../../../Context';
 
 
-const VendorListGridToolBar = ({setRows}) => {
-    const handleRefreshVendorList = () => {
-        fetchVendorsList({limit: 10})
-        .then((res) => {
-            console.log(res.vendors.results);
-            const vendorsWithID = [];
-            for (const vendor of generator(res.vendors.results)) {
-                vendor.id = vendor.vendor_id;
-                vendorsWithID.push(vendor);
-            }
-            const vendorsArray = Array.from(new Set(vendorsWithID));
-            setRows(vendorsArray);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-    }
+const VendorListGridToolBar = ({}) => {
+
 
     return (
         <GridToolbarContainer>
-            <Button color="primary" startIcon={<MdOutlineRefresh size={25} />} onClick={handleRefreshVendorList}>
+            <Button color="primary" startIcon={<MdOutlineRefresh size={25} />} >
                 refresh list
             </Button>
         </GridToolbarContainer>
@@ -166,7 +150,7 @@ const VendorList = () => {
                 initialState={{ pagination: { paginationModel: { page: 0, pageSize: 10 } } }}
                 pageSizeOptions={[5, 10, 20, 30, 50]}
                 slots={{toolbar: VendorListGridToolBar}}
-                slotProps={{toolbar:{setRows}}}
+                slotProps={{toolbar:{}}}
             />
         </Box>
     )

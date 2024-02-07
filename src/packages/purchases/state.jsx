@@ -22,7 +22,7 @@ export default {
             case 'SET_BILLS':
                 return {
                     ...state,
-                    bills: action.payload.filter ? action.payload.bills : [...state.bills, ...action.payload.bills],
+                    bills: action.payload.filter ? Array.from(new Set(action.payload.bills)) : Array.from(new Set([...state.bills, ...action.payload.bills])),
                 }
         }
     }

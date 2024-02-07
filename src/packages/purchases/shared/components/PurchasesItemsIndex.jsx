@@ -25,14 +25,12 @@ const PurchasesItemsIndex = (
   useEffect(() => {
     fetchVendorsList({limit: 10})
         .then((res) => {
-            console.log(res.vendors.results);
             const vendorsWithID = [];
             for (const vendor of generator(res.vendors.results)) {
                 vendor.id = vendor.vendor_id;
                 vendorsWithID.push(vendor);
             }
             const vendorsArray = Array.from(new Set(vendorsWithID));
-            console.log("Updated LIST",  vendorsArray)
             purchasesActions({type: 'SET_VENDORS', payload: vendorsArray});
         })
         .catch((error) => {

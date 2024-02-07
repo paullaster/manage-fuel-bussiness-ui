@@ -1,12 +1,12 @@
-import VendorActionList from "./VendorActionList";
-import MenuPopup from "../../../shared/components/MenuPopup";
+import PurchasesActionsList from "./PurchasesActionList";
+import MenuPopup from "./MenuPopup";
 import { Button } from '@/components';
 
-const VendorActionListComponent = () => {
+const PurchasesActionListComponent = () => {
   return (
     <div className="actions">
         {
-            VendorActionList.map((action) => {
+            PurchasesActionsList.map((action) => {
                 return action.hasList ? <MenuPopup action={action} key={action.key}/> : <Button key={action.key}>{action.caption}</Button>
             })
         }
@@ -14,4 +14,4 @@ const VendorActionListComponent = () => {
   )
 }
 
-export default VendorActionListComponent
+export default PurchasesActionListComponent

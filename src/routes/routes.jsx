@@ -41,6 +41,7 @@ const router = createBrowserRouter(
                         path='item/create'
                         action={Purchases.modules.items.saveNewPurchaseItem}
                     />
+                    <Route element={<Purchases.BillRecords />} path='bills'/>
                 </Route>
             </Route>
         </Route>

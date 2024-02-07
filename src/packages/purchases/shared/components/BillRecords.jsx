@@ -27,11 +27,11 @@ const BillRecords = () => {
   },[]);
 
   return (
-    <div>
+    <section>
     <PurcahsesItemsTopBar caption={'Bill'}/>
     <BalancesListComponent currency={orgData?.currency}/>
     <PurchaseTransactionComponent />
-    </div>
+    </section>
   )
 }
 

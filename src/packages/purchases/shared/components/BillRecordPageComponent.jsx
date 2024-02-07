@@ -2,7 +2,9 @@ import React from 'react'
 
 const BillRecordPageComponent = () => {
   return (
-    <div>BillRecordPageComponent</div>
+    <section>
+
+    </section>
   )
 }
 

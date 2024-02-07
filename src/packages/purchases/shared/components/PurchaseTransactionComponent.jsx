@@ -2,11 +2,10 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { useState, useMemo, useEffect, useCallback } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { v4 as uuidv4 } from 'uuid';
 import { AutocompleteComponent, DataTable } from '@/components';
-import { useGridApiRef } from '@mui/x-data-grid';
 import { usePurchasesState } from '../../Context';
 import WebStorage from "@/utils/WebStorage";
 import { APPNAME } from "@/environments";
@@ -71,7 +70,6 @@ export default PurchaseTransactionComponent
 
 const TransactionTabContent = ({value, tab}) => {
     
-    const apiRef = useGridApiRef();
     const { bills } = usePurchasesState();
     const navigate = useNavigate();
 
@@ -120,15 +118,12 @@ const TransactionTabContent = ({value, tab}) => {
     }, []);
 
     
+    const handleGridRowClick = (params) => {
+        navigate(`/dashboard/purchases/bills/${params.row.id}`);
+    };
     useEffect(() => {
         
     }, [Columns]);
-    useEffect(() => { 
-        const handleGridRowClick = useCallback((params) => {
-            navigate('/dashboard/purchases/bills/params.row.id');
-        },[]);
-        return apiRef.current.subscribeEvent('rowClick', handleGridRowClick);
-    }, [apiRef]);
 
     return (
         <TabPanel value={value}>
@@ -139,7 +134,7 @@ const TransactionTabContent = ({value, tab}) => {
                 columns={Columns} 
                 pageSizeOptions = {[10, 25, 50, 75, 100]}
                 initialState = {{ pagination: { paginationModel: { page: 10, pageSize: 10 } }} }
-                apiRef={apiRef}
+                onCellClick={handleGridRowClick}
                 />
             </div>
         </TabPanel>

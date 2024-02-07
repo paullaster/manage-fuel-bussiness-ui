@@ -16,7 +16,6 @@ const BillRecords = () => {
   useEffect(() => {
     fetchFuelPurchases({limit: 10})
     .then((res) => {
-      console.log(res);
       purchaseActions({type: 'SET_BILLS', payload: {filter: true, bills: res.fuel_purchase.results}})
     })
     .catch((error) => {

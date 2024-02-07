@@ -123,7 +123,12 @@ const TransactionTabContent = ({value, tab}) => {
         <TabPanel value={value}>
             <div className='informationCard'>
                 <AutocompleteComponent list={['']} label='Search or filter results...' />
-                <DataTable rows={bills} columns={Columns}/>
+                <DataTable 
+                rows={bills} 
+                columns={Columns} 
+                pageSizeOptions = {[10, 25, 50, 75, 100]}
+                initialState = {{ pagination: { paginationModel: { page: 10, pageSize: 10 } }} }
+                />
             </div>
         </TabPanel>
     )

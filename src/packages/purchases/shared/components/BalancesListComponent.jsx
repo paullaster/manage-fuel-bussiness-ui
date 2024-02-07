@@ -1,10 +1,10 @@
-import React from 'react'
+import BalancesList from "./BalancesList"
 
 const BalancesListComponent = ({currency = 'KES'}) => {
     return (
         <>
             {
-                VendorBalancesList.map((bal) => {
+                BalancesList.map((bal) => {
                     return (
                         <div key={bal.key}>
                             <p className="currencyAndBal">{currency} {bal.amount}</p>

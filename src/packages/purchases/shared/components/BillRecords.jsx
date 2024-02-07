@@ -1,6 +1,7 @@
 import PurcahsesItemsTopBar from './PurcahsesItemsTopBar';
 import WebStorage from "@/utils/WebStorage";
 import { APPNAME } from "@/environments";
+import BalancesListComponent from './BalancesListComponent';
 
 const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
 

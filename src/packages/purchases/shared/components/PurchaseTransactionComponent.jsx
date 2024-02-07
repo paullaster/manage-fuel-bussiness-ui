@@ -5,7 +5,9 @@ import TabPanel from '@mui/lab/TabPanel';
 import { useState, useMemo, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { v4 as uuidv4 } from 'uuid';
-import { AutocompleteComponent, DataTable } from '@/components';
+import { AutocompleteComponent, DataTable } from 
+'@/components';
+import { useGridApiRef } from '@mui/x-data-grid';
 import { usePurchasesState } from '../../Context';
 import WebStorage from "@/utils/WebStorage";
 import { APPNAME } from "@/environments";
@@ -80,7 +82,7 @@ const TransactionTabContent = ({value, tab}) => {
                 width: 250,
                 headerAlign: 'center',
                 align: 'center',
-                editable: true,
+                editable: false,
             },
             {
                 field: 'status',
@@ -89,7 +91,7 @@ const TransactionTabContent = ({value, tab}) => {
                 width: 250,
                 headerAlign: 'center',
                 align: 'center',
-                editable: true,
+                editable: false,
                 valueGetter: () => 'Paid'
             },
             {
@@ -99,7 +101,7 @@ const TransactionTabContent = ({value, tab}) => {
                 width: 250,
                 headerAlign: 'center',
                 align: 'center',
-                editable: true,
+                editable: false,
                 valueGetter: (params) => params.row.vendor.vendor_name
             },
             {
@@ -109,7 +111,7 @@ const TransactionTabContent = ({value, tab}) => {
                 width: 250,
                 headerAlign: 'center',
                 align: 'center',
-                editable: true,
+                editable: false,
                 valueGetter: (params) => `${orgData?.currency || 'KES'} ${params.row.gross_amount}`
             },
         ]

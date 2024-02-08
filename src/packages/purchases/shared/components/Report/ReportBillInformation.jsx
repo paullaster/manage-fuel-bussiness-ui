@@ -1,12 +1,9 @@
 import React from 'react'
 
-
 const ReportBillInformation = () => {
-  return 
-  (
+  return (
     <div>ReportBillInformation</div>
   )
 }
-
 
 export default ReportBillInformation

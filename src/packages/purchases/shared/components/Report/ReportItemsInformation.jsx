@@ -2,12 +2,12 @@ import { DataTable } from '@/components';
 import Box from '@mui/material/Box';
 import { useEffect, useMemo } from 'react';
 import { usePurchasesState } from '../../../Context';
+import { AddIDFieldToArray } from '@/utils';
 
 const ReportItemsInformation = () => {
 
     const { bill } = usePurchasesState();
-    const rows = bill?.tank_entries ?
-     bill.tank_entries : bill?.items || [];
+    const rows = bill?.tank_entries ? AddIDFieldToArray(bill.tank_entries, 'uuid') : AddIDFieldToArray(bill?.items, 'uuid') || [];
 
     const columns = useMemo(() => [
         {

@@ -1,8 +1,11 @@
-import React from 'react'
+import { DataTable } from '@/components';
+import Box from '@mui/material/Box';
 
 const ReportItemsInformation = () => {
   return (
-    <div>ReportItemsInformation</div>
+    <Box>
+
+    </Box>
   )
 }
 

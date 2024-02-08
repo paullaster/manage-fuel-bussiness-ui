@@ -6,6 +6,7 @@ export default {
         vendors: [],
         officers: [],
         bills: [],
+        bill: {},
     },
     actions:(state, action) => {
         switch(action.type) {
@@ -23,6 +24,11 @@ export default {
                 return {
                     ...state,
                     bills: action.payload.filter ? Array.from(new Set(action.payload.bills)) : Array.from(new Set([...state.bills, ...action.payload.bills])),
+                }
+            case 'SET_CURRENTSELECTED_BILL':
+                return {
+                    ...state,
+                    bill: action.payload
                 }
         }
     }

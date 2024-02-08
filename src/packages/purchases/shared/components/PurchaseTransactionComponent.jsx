@@ -119,7 +119,7 @@ const TransactionTabContent = ({value, tab}) => {
 
     
     const handleGridRowClick = (params) => {
-        navigate(`/dashboard/purchases/bills/${params.row.id}`);
+        navigate(`/dashboard/purchases/bills/${params.row.uuid}`);
     };
     useEffect(() => {
         

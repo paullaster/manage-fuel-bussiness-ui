@@ -4,13 +4,16 @@ import AcountingActions from "./AcountingActions";
 import ReportComponent from "./Report/ReportComponent";
 import { useEffect } from "react";
 import { usePurchasesDispatcher } from "../../Context";
+import { fetchFuelPurchases } from "../../actions";
+import { useParams } from 'react-router-dom';
 
 const BillRecordPageComponent = () => {
 
   const purchasesActions = usePurchasesDispatcher();
+  const { uuid } = useParams();
 
   useEffect(() => {
-    fetchVendorsList({limit: 10})
+    fetchFuelPurchases({uuid: uuid})
     .then((res) => {
         const vendorsWithID = [];
         for (const vendor of generator(res.vendors.results)) {
@@ -18,7 +21,7 @@ const BillRecordPageComponent = () => {
             vendorsWithID.push(vendor);
         }
         const vendorsArray = Array.from(new Set(vendorsWithID));
-        purchasesActions({type: 'SET_VENDORS', payload: vendorsArray});
+        purchasesActions({type: 'SET_CURRENTSELECTED_BILL', payload: vendorsArray});
     })
     .catch((error) => {
         console.log(error);

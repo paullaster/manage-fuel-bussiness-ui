@@ -21,7 +21,7 @@ const BillRecordPageComponent = () => {
         console.log(error);
       });
 
-  }, []);
+  }, [uuid]);
 
   return (
     <section>

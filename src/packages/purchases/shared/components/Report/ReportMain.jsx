@@ -1,8 +1,14 @@
 import React from 'react'
+import ReportVendorInformation from './ReportVendorInformation'
 
 const ReportMain = () => {
   return (
-    <div>ReportMain</div>
+    <div>
+        <div>
+        <ReportVendorInformation />
+        <ReportBillInformation />
+        </div>
+    </div>
   )
 }
 

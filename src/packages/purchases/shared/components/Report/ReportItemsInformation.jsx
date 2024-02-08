@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import { useEffect, useMemo } from 'react';
 import { usePurchasesState } from '../../../Context';
 import { AddIDFieldToArray } from '@/utils';
+import { fetchfuelType } from '../../../actions';
 
 const ReportItemsInformation = () => {
 
@@ -11,7 +12,7 @@ const ReportItemsInformation = () => {
 
     const columns = useMemo(() => [
         {
-            field: 'vendor_name',
+            field: 'fuel_type',
             headerName: 'Item',
             width: 300,
             headerAlign: 'center',
@@ -19,6 +20,15 @@ const ReportItemsInformation = () => {
             hideable: false,
             editable: false,
             align: 'center',
+            valueGetter: (params) => {
+                fetchfuelType({fuel_type_id: params?.row?.tank?.tank_number})
+                .then((res) => {
+                    return res.type;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            }
         },
         {
             field: 'vendor_email',

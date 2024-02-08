@@ -31,7 +31,7 @@ export default {
                     ...state,
                     bill: action.payload,
                 }
-            case 'SET_BILL_VENDOR':
+            case 'SET_VENDOR':
                 return {
                     ...state,
                     vendor: action.payload,

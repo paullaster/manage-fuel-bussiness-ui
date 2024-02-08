@@ -12,7 +12,7 @@ const ReportVendorInformation = () => {
     useEffect(() => {
         fetchVendorsList({ uuid: uuid })
           .then((res) => {
-            purchasesActions({ type: 'SET_BILL_VENDOR', payload: res });
+            purchasesActions({ type: 'SET_VENDOR', payload: res });
           })
           .catch((error) => {
             console.log(error);

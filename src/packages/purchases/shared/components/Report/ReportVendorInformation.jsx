@@ -22,7 +22,8 @@ const ReportVendorInformation = () => {
 
   return (
     <div>
-
+        <h3>Bill From</h3>
+        <VendorDetails />
     </div>
   )
 }

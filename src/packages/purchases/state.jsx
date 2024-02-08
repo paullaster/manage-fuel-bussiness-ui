@@ -7,6 +7,7 @@ export default {
         officers: [],
         bills: [],
         bill: {},
+        vendor: {},
     },
     actions:(state, action) => {
         switch(action.type) {
@@ -28,7 +29,12 @@ export default {
             case 'SET_CURRENTSELECTED_BILL':
                 return {
                     ...state,
-                    bill: action.payload
+                    bill: action.payload,
+                }
+            case 'SET_BILL_VENDOR':
+                return {
+                    ...state,
+                    vendor: action.payload,
                 }
         }
     }

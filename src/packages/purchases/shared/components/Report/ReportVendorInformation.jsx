@@ -1,10 +1,13 @@
 import {useEffect} from 'react'
 import { fetchVendorsList } from '../../../actions';
-import { usePurchasesDispatcher } from '../../../Context';
+import { usePurchasesDispatcher, usePurchasesState } from '../../../Context';
 
 const ReportVendorInformation = () => {
 
-    const purchasesActions = usePurchasesDispatcher
+    const purchasesActions = usePurchasesDispatcher();
+    const { bill } = usePurchasesState();
+
+    const { uuid } = bill.vendor;
   
     useEffect(() => {
         fetchVendorsList({ uuid: uuid })

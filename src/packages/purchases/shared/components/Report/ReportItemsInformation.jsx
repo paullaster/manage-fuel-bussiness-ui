@@ -1,8 +1,14 @@
 import { DataTable } from '@/components';
 import Box from '@mui/material/Box';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
+import { usePurchasesState } from '../../../Context';
 
 const ReportItemsInformation = () => {
+
+    const { bill } = usePurchasesState();
+    const rows = bill?.tank_entries ?
+     bill.tank_entries : bill?.items || [];
+
     const columns = useMemo(() => [
         {
             field: 'vendor_name',
@@ -86,11 +92,21 @@ const ReportItemsInformation = () => {
             }
         },
     ], []);
-  return (
-    <Box>
 
-    </Box>
-  )
+    useEffect(() => {
+
+    }, [bill]);
+    return (
+        <Box>
+            <DataTable
+                columns={columns}
+                rows={rows}
+                style={{ minHeight: 400, height: 'auto' }}
+                initialState={{ pagination: { paginationModel: { page: 0, pageSize: 10 } } }}
+                pageSizeOptions={[5, 10, 20, 30, 50]}
+            />
+        </Box>
+    )
 }
 
 export default ReportItemsInformation

@@ -4,7 +4,7 @@ import { usePurchasesState } from '../../../Context'
 const VendorDetails = () => {
 
     const { vendor } = usePurchasesState();
-    const location = `${vendor?.addresses[0]?.city }, ${vendor?.addresses[0]?.zip_code }, ${vendor?.addresses[0]?.state}, ${vendor?.addresses[0]?.country}`;
+    const location = vendor?.addresses?.length  && `${vendor?.addresses[0]?.city }, ${vendor?.addresses[0]?.zip_code }, ${vendor?.addresses[0]?.state}, ${vendor?.addresses[0]?.country}`;
 
   return (
     <div>

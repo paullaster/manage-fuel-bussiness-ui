@@ -1,13 +1,11 @@
 import React from 'react'
-import ReportVendorInformation from './ReportVendorInformation'
+import ReportRelatedInformationComponent from './ReportRelatedInformationComponent'
 
 const ReportMain = () => {
   return (
     <div>
-        <div>
-        <ReportVendorInformation />
-        <ReportBillInformation />
-        </div>
+        <ReportRelatedInformationComponent />
+        
     </div>
   )
 }

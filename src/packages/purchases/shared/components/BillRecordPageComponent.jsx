@@ -13,29 +13,23 @@ const BillRecordPageComponent = () => {
   const { uuid } = useParams();
 
   useEffect(() => {
-    fetchFuelPurchases({uuid: uuid})
-    .then((res) => {
-        const vendorsWithID = [];
-        for (const vendor of generator(res.vendors.results)) {
-            vendor.id = vendor.vendor_id;
-            vendorsWithID.push(vendor);
-        }
-        const vendorsArray = Array.from(new Set(vendorsWithID));
-        purchasesActions({type: 'SET_CURRENTSELECTED_BILL', payload: vendorsArray});
-    })
-    .catch((error) => {
+    fetchFuelPurchases({ uuid: uuid })
+      .then((res) => {
+        purchasesActions({ type: 'SET_CURRENTSELECTED_BILL', payload: res });
+      })
+      .catch((error) => {
         console.log(error);
-    });
+      });
 
   }, []);
 
   return (
     <section>
-        <PurcahsesItemsTopBar caption={'Bill'} listOfActions={SingleBillActionsList}/>
-        <div>
-          <AcountingActions />
-          <ReportComponent />
-        </div>
+      <PurcahsesItemsTopBar caption={'Bill'} listOfActions={SingleBillActionsList} />
+      <div>
+        <AcountingActions />
+        <ReportComponent />
+      </div>
     </section>
   )
 }

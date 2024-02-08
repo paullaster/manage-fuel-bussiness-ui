@@ -1,11 +1,11 @@
-import React from 'react'
+import ReportItemsInformation from './ReportItemsInformation'
 import ReportRelatedInformationComponent from './ReportRelatedInformationComponent'
 
 const ReportMain = () => {
   return (
     <div>
         <ReportRelatedInformationComponent />
-        
+        <ReportItemsInformation />
     </div>
   )
 }

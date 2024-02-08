@@ -7,12 +7,12 @@ import { AddIDFieldToArray } from '@/utils';
 const ReportItemsInformation = () => {
 
     const { bill } = usePurchasesState();
-    const rows = bill?.tank_entries ? AddIDFieldToArray(bill.tank_entries, 'uuid') : AddIDFieldToArray(bill?.items, 'uuid') || [];
+    const rows = bill?.tank_entries ? AddIDFieldToArray(bill.tank_entries, 'uuid') : bill?.items ?   AddIDFieldToArray(bill?.items, 'uuid') : [];
 
     const columns = useMemo(() => [
         {
             field: 'vendor_name',
-            headerName: 'Name',
+            headerName: 'Item',
             width: 300,
             headerAlign: 'center',
             sortable: true,
@@ -22,7 +22,7 @@ const ReportItemsInformation = () => {
         },
         {
             field: 'vendor_email',
-            headerName: 'Email ',
+            headerName: 'Qunatity ',
             width: 200,
             headerAlign: 'center',
             sortable: false,
@@ -32,7 +32,7 @@ const ReportItemsInformation = () => {
         },
         {
             field: 'vendor_phone',
-            headerName: 'Phone',
+            headerName: 'Price',
             width: 200,
             headerAlign: 'center',
             sortable: false,
@@ -42,55 +42,14 @@ const ReportItemsInformation = () => {
         },
         {
             field: 'company_name',
-            headerName: 'Company name',
+            headerName: 'Amount',
             width: 300,
             headerAlign: 'center',
             sortable: true,
             hideable: false,
             editable: false,
             align: 'center',
-        },
-        {
-            field: 'website',
-            headerName: 'Website',
-            width: 200,
-            headerAlign: 'center',
-            sortable: false,
-            editable: false,
-            hideable: false,
-            align: 'center',
-        },
-        {
-            field: 'actions',
-            headerName: 'Actions',
-            type: 'actions',
-            width: 200,
-            headerAlign: 'center',
-            sortable: false,
-            hideable: false,
-            editable: false,
-            align: 'center',
-            getActions: (params) => {
-                return [
-                    <GridActionsCellItem
-                        key={uuidv4()}
-                        icon={<MdOutlineVisibility size={20} />}
-                        label="View"
-                        onClick={() => {
-                            handleViewClick(params)
-                        }}
-                    />,
-                    <GridActionsCellItem
-                        key={uuidv4()}
-                        icon={<MdDelete size={20} />}
-                        label="Delete"
-                        onClick={() => {
-                            handleDelete(params)
-                        }}
-                    />
-                ]
-            }
-        },
+        }
     ], []);
 
     useEffect(() => {

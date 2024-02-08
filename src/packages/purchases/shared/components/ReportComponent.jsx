@@ -1,10 +1,12 @@
-import React from 'react'
 
 
 const ReportComponent = () => {
-  return 
-  (
-    <div>ReportComponent</div>
+  return (
+    <div>
+        <ReportHeader />
+        <ReportMain />
+        <ReportFooter />
+    </div>
   )
 }
 

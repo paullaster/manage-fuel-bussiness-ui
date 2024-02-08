@@ -1,5 +1,7 @@
 import PurcahsesItemsTopBar from "./PurcahsesItemsTopBar";
 import SingleBillActionsList from "./SingleBillActionsList";
+import AcountingActions from "./AcountingActions";
+import ReportComponent from "./ReportComponent";
 
 const BillRecordPageComponent = () => {
   return (

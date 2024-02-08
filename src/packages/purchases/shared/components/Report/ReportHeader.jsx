@@ -1,8 +1,12 @@
-import React from 'react'
+import defaultImage  from '@/assets/images/defaultLogo.svg';
+import OrganizationDetails from './OrganizationDetails';
 
 const ReportHeader = () => {
   return (
-    <div>ReportHeader</div>
+    <div>
+        <div><img src={defaultImage} alt="vendor logo" /></div>
+        <OrganizationDetails />
+    </div>
   )
 }
 

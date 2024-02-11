@@ -1,61 +1,116 @@
-import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import { Form } from 'react-router-dom';
+import { Button } from '@/components';
+import { useRef } from 'react';
 
 export const CreateNewUser = () => {
+
+    const emailRef = useRef(null);
+    const firstName = useRef(null);
+    const lastName = useRef(null);
+    const passwordRef = useRef(null);
+    const phoneNumberRef = useRef(null);
+    const stationNameRef = useRef(null);
+    const stationEmail = useRef(null);
+
     return (
         <section>
-            <Box>
-                <FormControl>
-                    <Grid spcing={{ xs: 2, md: 4 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+            <div>
+                <Form method='POST'>
+                    <div className="input-group">
+                        <label htmlFor="username">Email</label>
+                        <div className="input_control">
+                            <input
+                                placeholder={'someone@email.com'}
+                                type={'email'}
+                                id='username'
+                                required
+                                ref={emailRef}
+                            />
 
-                        <Grid item xs={4}>
-                            <TextField
-                                id="email"
-                                label="Email"
-                                size='small'
+                        </div>
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor="first_name">First name</label>
+                        <div className="input_control">
+                            <input
+                                placeholder={'John'}
+                                type={'text'}
+                                id='first_name'
+                                required
+                                ref={firstName}
                             />
-                        </Grid>
-                        <Grid item xs={4}>
-                            <TextField
-                                id="first_name"
-                                label="First name"
+
+                        </div>
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor="last_name">Last name</label>
+                        <div className="input_control">
+                            <input
+                                placeholder={'Doe'}
+                                type={'text'}
+                                id='last_name'
+                                required
+                                ref={lastName}
                             />
-                        </Grid>
-                        <Grid item xs={12} md={6} lg={4}>
-                            <TextField
-                                id="last_name"
-                                label="Last name"
+
+                        </div>
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor="password">Password</label>
+                        <div className="input_control">
+                            <input
+                                type={'password'}
+                                id='password'
+                                required
+                                ref={passwordRef}
                             />
-                        </Grid>
-                        <Grid item xs={12} md={6} lg={4}>
-                            <TextField
-                                id="password"
-                                label="Password"
+
+                        </div>
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor="phone_number">Phone number</label>
+                        <div className="input_control">
+                            <input
+                                placeholder={'+25470025765'}
+                                type={'tel'}
+                                id='phone_number'
+                                required
+                                ref={phoneNumberRef}
                             />
-                        </Grid>
-                        <Grid item xs={12} md={6} lg={4}>
-                            <TextField
-                                id="phone_number"
-                                label="Phone number"
+
+                        </div>
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor="station_name">Station name</label>
+                        <div className="input_control">
+                            <input
+                                placeholder={'Station X'}
+                                type={'text'}
+                                id='station_name'
+                                required
+                                ref={stationNameRef}
                             />
-                        </Grid>
-                        <Grid item xs={12} md={6} lg={4}>
-                            <TextField
-                                id="station_name"
-                                label="Station name"
+
+                        </div>
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor="station_email">Station email</label>
+                        <div className="input_control">
+                            <input
+                                placeholder={'station.x@x.com'}
+                                type={'email'}
+                                id='station_email'
+                                required
+                                ref={stationEmail}
                             />
-                        </Grid>
-                        <Grid item xs={12} md={6} lg={4}>
-                            <TextField
-                                id="station_email"
-                                label="Station email"
-                            />
-                        </Grid>
-                    </Grid>
-                </FormControl>
-            </Box>
+
+                        </div>
+                    </div>
+                    <div className='btn-group'>
+                        <Button className={'btn-element btn_primary'} type='submit'>Create user</Button>
+                    </div>
+                </Form>
+            </div>
         </section>
     )
 };

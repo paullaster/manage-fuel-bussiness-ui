@@ -1,8 +1,7 @@
 
 import { Form, NavLink } from 'react-router-dom';
-import { Button, InputComponent } from '@/components';
+import { Button } from '@/components';
 import { MdAlternateEmail, MdLockOutline } from "react-icons/md";
-import keycloak from '@/assets/images/keycloak.svg';
 
 const Register = () => {
   return (

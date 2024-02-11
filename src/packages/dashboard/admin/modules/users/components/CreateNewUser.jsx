@@ -1,19 +1,35 @@
 import { Form } from 'react-router-dom';
 import { Button } from '@/components';
 import { useRef } from 'react';
+import { createUser } from '../actions';
 
 export const CreateNewUser = () => {
 
     const emailRef = useRef(null);
-    const firstName = useRef(null);
-    const lastName = useRef(null);
+    const firstNameRef = useRef(null);
+    const lastNameRef = useRef(null);
     const passwordRef = useRef(null);
     const phoneNumberRef = useRef(null);
     const stationNameRef = useRef(null);
     const stationEmail = useRef(null);
 
     const handleAdminCreateUser = (event) => {
-        
+        const payload = {
+            email: emailRef.current.value,
+            first_name: firstNameRef.current.value,
+            last_name: lastNameRef.current.value,
+            password: passwordRef.current.value,
+            phone_number: phoneNumberRef.current.value,
+            station_name: stationNameRef.current.value,
+            station_email: stationEmail.current.value,
+        };
+        createUser(payload)
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     }
 
     return (

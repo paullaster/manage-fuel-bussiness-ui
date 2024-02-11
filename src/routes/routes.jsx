@@ -25,7 +25,7 @@ const router = createBrowserRouter(
 
                     {/* Users module */}
                     <Route element={<UsersComponent />} path='manage/users/list' />
-                    <Route element={< CreateNewUser/>} path='manage/company/create' />
+                    <Route element={< CreateNewUser/>} path='manage/users/create' />
                 </Route>
                 <Route element={<User />} path='user/:id'></Route>
                 <Route element={<Purchases.Purchases />} path='purchases'>

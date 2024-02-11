@@ -12,6 +12,10 @@ export const CreateNewUser = () => {
     const stationNameRef = useRef(null);
     const stationEmail = useRef(null);
 
+    const handleAdminCreateUser = (event) => {
+        
+    }
+
     return (
         <section>
             <div>
@@ -107,7 +111,7 @@ export const CreateNewUser = () => {
                         </div>
                     </div>
                     <div className='btn-group'>
-                        <Button className={'btn-element btn_primary'} type='submit'>Create user</Button>
+                        <Button className={'btn-element btn_primary'} onClick={handleAdminCreateUser}>Create user</Button>
                     </div>
                 </Form>
             </div>

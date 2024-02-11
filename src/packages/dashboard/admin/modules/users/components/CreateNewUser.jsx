@@ -1,9 +1,7 @@
 import React from 'react'
 
-const CreateNewUser = () => {
+export const CreateNewUser = () => {
   return (
     <div>CreateNewUser</div>
   )
-}
-
-export default CreateNewUser
+};

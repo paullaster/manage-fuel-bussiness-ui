@@ -5,6 +5,8 @@ import {Landing} from '@/packages/Landing';
 import { Admin, User, CompanyList, AddCompany, NewCompany, Wizard, TankAndPumpData, Dashboard, } from '@/packages/dashboard';
 import auth from '@/packages/auth';
 import Purchases from '@/packages/purchases';
+import { UsersComponent, } from '../packages/dashboard/admin/modules';
+import { CreateNewUser } from '../packages/dashboard/admin/modules/users/components';
 
 
 const router = createBrowserRouter(
@@ -23,8 +25,8 @@ const router = createBrowserRouter(
                     <Route element={<Wizard />} path='manage/company/wizard/:step' action={TankAndPumpData} />
 
                     {/* Users module */}
-                    <Route element={<CompanyList />} path='manage/users/list' />
-                    <Route element={<NewCompany />} path='manage/company/create' />
+                    <Route element={<UsersComponent />} path='manage/users/list' />
+                    <Route element={< CreateNewUser/>} path='manage/company/create' />
                 </Route>
                 <Route element={<User />} path='user/:id'></Route>
                 <Route element={<Purchases.Purchases />} path='purchases'>

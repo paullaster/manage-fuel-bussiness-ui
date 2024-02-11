@@ -1,2 +1,2 @@
 export * from './views/UsersComponent';
-export * from './components';
+export * from './components/CreateNewUser';

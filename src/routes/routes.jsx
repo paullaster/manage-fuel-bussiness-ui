@@ -17,9 +17,14 @@ const router = createBrowserRouter(
             </Route>
             <Route element={<Dashboard />} path='dashboard'>
                 <Route element={<Admin />} path='admin/:id'>
-                    <Route element={<CompanyList />} path='company/list' />
-                    <Route element={<NewCompany />} path='company/new' action={AddCompany} />
-                    <Route element={<Wizard />} path='company/wizard/:step' action={TankAndPumpData} />
+                    {/* Company module */}
+                    <Route element={<CompanyList />} path='manage/company/list' />
+                    <Route element={<NewCompany />} path='manage/company/new' action={AddCompany} />
+                    <Route element={<Wizard />} path='manage/company/wizard/:step' action={TankAndPumpData} />
+
+                    {/* Users module */}
+                    <Route element={<CompanyList />} path='manage/users/list' />
+                    <Route element={<NewCompany />} path='manage/company/create' />
                 </Route>
                 <Route element={<User />} path='user/:id'></Route>
                 <Route element={<Purchases.Purchases />} path='purchases'>

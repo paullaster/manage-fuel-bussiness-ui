@@ -15,7 +15,7 @@ export const links =
         sublinks: [
             {
                 id: uuidv4(),
-                to: '/dashboard/admin/:id/manage/users',
+                to: '/dashboard/admin/:id/manage/users/list',
                 icon: <MdOutlinePeopleAlt   size={20} />,
                 caption: "Users",
                 disabled: false,
@@ -25,7 +25,7 @@ export const links =
             },
             {
                 id: uuidv4(),
-                to: '/dashboard/admin/:id/manage/company',
+                to: '/dashboard/admin/:id/manage/company/list',
                 icon: <MdOutlineHouse   size={20} />,
                 caption: "Company",
                 disabled: false,

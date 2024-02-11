@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 export const links =
     {
         id: uuidv4(),
-        to: '/dashboard/admin/:id/manage',
+        to: '',
         icon: <MdSettingsSuggest size={30} />,
         caption: "Manage",
         disabled: false,

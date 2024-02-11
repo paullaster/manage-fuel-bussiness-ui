@@ -1,4 +1,3 @@
-import { Navigation, Footer } from "../../../../components";
 import { Outlet } from "react-router-dom";
 import { useGlobalDispatcher, useGlobalState } from "../../../../store";
 import { links } from "../links";
@@ -8,8 +7,6 @@ import { _request } from "../../../../services";
 import AdminStateProvider from "../store";
 
 const Admin = () => {
-
-  const appState = useGlobalState();
   const appStateDispatcher = useGlobalDispatcher();
 
   useEffect(() => {

@@ -23,7 +23,7 @@ const Landing = () => {
             </li>
           </ul>
           <div className='landing_cta'>
-            <NavLink  to = {'account/register'} className={'btn-element btn_primary'}>Get started</NavLink>
+            <NavLink  to = {'account/login'} className={'btn-element btn_primary'}>Get started</NavLink>
           </div>
         </div>
         <div className='card_content'>
@@ -42,7 +42,7 @@ const Landing = () => {
               </p>
             </div>
             <div className={"card_content_cta"}>
-              <NavLink to= {'account/register'} className={'btn-element btn_primary'}>
+              <NavLink to= {'account/login'} className={'btn-element btn_primary'}>
                 <span><FaAngleRight size={20} /></span>
                 <span>Get started</span>
               </NavLink>

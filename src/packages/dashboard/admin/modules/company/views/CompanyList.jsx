@@ -78,7 +78,7 @@ const CompanyList = () => {
           </Button>
         </div>
         <div className="topsection_div__2">
-          <NavLink className={'btn-element btn_primary'} to={'/dashboard/admin/:id/company/new'} >
+          <NavLink className={'btn-element btn_primary'} to={'/dashboard/admin/:id/manage/company/new'} >
             <span>new company</span>
           </NavLink>
         </div>

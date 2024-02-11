@@ -11,7 +11,7 @@ export const CreateNewUser = () => {
     const passwordRef = useRef(null);
     const phoneNumberRef = useRef(null);
     const stationNameRef = useRef(null);
-    const stationEmail = useRef(null);
+    const stationEmailRef = useRef(null);
 
     const handleAdminCreateUser = (event) => {
         const payload = {
@@ -21,7 +21,7 @@ export const CreateNewUser = () => {
             password: passwordRef.current.value,
             phone_number: phoneNumberRef.current.value,
             station_name: stationNameRef.current.value,
-            station_email: stationEmail.current.value,
+            station_email: stationEmailRef.current.value,
         };
         createUser(payload)
         .then((res) => {
@@ -57,7 +57,7 @@ export const CreateNewUser = () => {
                                 type={'text'}
                                 id='first_name'
                                 required
-                                ref={firstName}
+                                ref={firstNameRef}
                             />
 
                         </div>
@@ -70,7 +70,7 @@ export const CreateNewUser = () => {
                                 type={'text'}
                                 id='last_name'
                                 required
-                                ref={lastName}
+                                ref={lastNameRef}
                             />
 
                         </div>
@@ -121,7 +121,7 @@ export const CreateNewUser = () => {
                                 type={'email'}
                                 id='station_email'
                                 required
-                                ref={stationEmail}
+                                ref={stationEmailRef}
                             />
 
                         </div>

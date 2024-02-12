@@ -20,6 +20,7 @@ class AuthService {
 
     }
     isLoggedIn() {
+        console.log(this.accessToken);
         return !!this.accessToken;
     }
 }

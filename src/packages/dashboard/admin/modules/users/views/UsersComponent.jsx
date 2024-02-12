@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { MdOutlineStarBorder } from 'react-icons/md';
-import { useGlobalDispatcher, useGlobalState } from "../../../../../../store";
-import { Button, SearchComponent, TableComponent } from "../../../../../../components";
+import { useGlobalDispatcher, useGlobalState } from "@/store";
+import { Button, SearchComponent, TableComponent, AutocompleteComponent } from "@/components";
 import { Form, redirect, NavLink } from "react-router-dom";
 import { _request } from "../../../../../../services";
-// import constants from '../constants';
-import { SearchArray, TableHeaders } from "../../../../../../utils";
+import { SearchArray, TableHeaders } from "@/utils";
 
 export const UsersComponent = () => {
 
@@ -55,7 +54,7 @@ export const UsersComponent = () => {
 
     let items = [...appState.companies];
 
-    const searchCompany = (e) => {
+    const handleSelectedOficer = (e) => {
         e.stopPropagation();
         setSearchText(e.target.value);
 
@@ -66,22 +65,23 @@ export const UsersComponent = () => {
         <section className="users">
             <div className="topsection">
                 <div className="topsection_div__1">
-                    <span className={'text_small'}>Company</span>
+                    <span className={'text_small'}>Users</span>
                     <Button onClick={() => console.log("Add favorite")} title={'Add favorite'}>
                         <MdOutlineStarBorder size={30} />
                     </Button>
                 </div>
                 <div className="topsection_div__2">
                     <NavLink className={'btn-element btn_primary'} to={'/dashboard/admin/:id/manage/users/create'} >
-                        <span>new company</span>
+                        <span>create new user</span>
                     </NavLink>
                 </div>
             </div>
-            <div>
-                <Form role="search">
-                    <SearchComponent placeholder={'Search for ...'} onInput={searchCompany} />
-                </Form>
-            </div>
+            <AutocompleteComponent
+                    list={companies}
+                    label={'Search for company here...'}
+                    keyField={'officer_name'}
+                    handleOnchange={handleSelectedOficer}
+                />
             <div>
                 <TableComponent headers={headers} items={companies.length > 0 ? companies : items} />
             </div>

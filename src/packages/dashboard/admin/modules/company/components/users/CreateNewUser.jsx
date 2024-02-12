@@ -1,7 +1,7 @@
 import { Form } from 'react-router-dom';
 import { Button } from '@/components';
 import { useRef } from 'react';
-import { createUser } from '../actions';
+import { createUser } from '../../../users/actions';
 
 export const CreateNewUser = () => {
 

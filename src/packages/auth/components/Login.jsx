@@ -1,15 +1,16 @@
-import { Form } from 'react-router-dom';
+import { Form, useNavigate } from 'react-router-dom';
 import { Button } from '@/components';
 import { MdAlternateEmail, MdLockOutline } from "react-icons/md";
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { login } from '../authActions';
 import AuthService from '../AuthService';
 import { useGlobalDispatcher, useGlobalState } from '../../../store/GlobalStateContext';
 
 const Login = () => {
 
-  const globalState = useGlobalState();
+  const { isAuthenticated } = useGlobalState();
   const globalStateSetter = useGlobalDispatcher();
+  const navigate = useNavigate();
 
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
@@ -22,6 +23,7 @@ const Login = () => {
     login(payload)
     .then((res) => {
       AuthService.Login(res.access, res.refresh);
+      globalStateSetter({type: 'SETAUTH', payload: true});
       // if(!)
       // WebStorage.CheckItemIfExist()
       console.log(res);
@@ -31,6 +33,9 @@ const Login = () => {
     })
   }
 
+  useEffect(() => {
+    navigate('/dashboard');
+  }, [isAuthenticated]);
 
   return (
       <div>

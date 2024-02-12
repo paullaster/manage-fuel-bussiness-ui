@@ -23,7 +23,7 @@ const Login = () => {
     login(payload)
     .then((res) => {
       AuthService.Login(res.access, res.refresh);
-      globalStateSetter({type: 'SETAUTH', payload: true});
+      globalStateSetter({type: 'SETAUTH', payload: AuthService.isLoggedIn()});
       // if(!)
       // WebStorage.CheckItemIfExist()
       console.log(res);

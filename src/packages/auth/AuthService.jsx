@@ -1,7 +1,7 @@
 import WebStorage from "../../utils/WebStorage";
 import { APPNAME } from "../../environments";
 class AuthService {
-    caccessToken = null;
+    accessToken = null;
     refreshtoken = null;
     user = null;
 
@@ -18,6 +18,9 @@ class AuthService {
         WebStorage.storeToWebDB('session', `${APPNAME}_accessToken`, accessToken);
         WebStorage.storeToWebDB('local', `${APPNAME}_refreshToken`, refreshToken);
 
+    }
+    isLoggedIn() {
+        return !!this.accessToken;
     }
 }
 

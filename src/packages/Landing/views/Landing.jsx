@@ -1,9 +1,17 @@
-import { NavLink } from 'react-router-dom';
-import { Logo } from '@/components';
+import { useNavigate } from 'react-router-dom';
+import { Logo, Button } from '@/components';
 import { FaAngleRight } from "react-icons/fa6";
 import Landing_graphics from "@/assets/images/landing_graphics.svg";
+import { useGlobalDispatcher, useGlobalState } from '@/store';
 
 const Landing = () => {
+
+  const navigate = useNavigate();
+  const handleOnClick =(event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+  }
   return (
     <section className='landing'>
       <div className='landing_card'>
@@ -23,7 +31,7 @@ const Landing = () => {
             </li>
           </ul>
           <div className='landing_cta'>
-            <NavLink  to = {'account/login'} className={'btn-element btn_primary'}>Get started</NavLink>
+            <Button  to = {'account/login'} className={'btn-element btn_primary'} onClick={handleOnClick}>Get started</Button>
           </div>
         </div>
         <div className='card_content'>

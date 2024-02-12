@@ -4,6 +4,7 @@ import { useGlobalDispatcher, useGlobalState } from "@/store";
 import { useEffect, useMemo } from "react";
 import { Navigation, Footer } from "@/components";
 import { RandomCodeGenerator } from "@/utils";
+import AuthService from "../../auth/AuthService";
 
 const Dashboard = () => {
 
@@ -35,6 +36,7 @@ const Dashboard = () => {
   }, [transactionCode]);
 
   useEffect(() => {
+    AuthService
     if (!isAuthenticated) navigate('/account/login');
   }, [isAuthenticated]);
 

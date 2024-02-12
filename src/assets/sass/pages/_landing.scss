@@ -100,7 +100,7 @@
                     & > *:not(:last-child) {
                         margin-right: g.$small;
                     }
-                    a {
+                    button {
                         display: flex;
                         align-items: center;
                         & > * {

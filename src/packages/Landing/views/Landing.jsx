@@ -10,11 +10,10 @@ const Landing = () => {
   const { isAuthenticated } = useGlobalState();
   const globalStateSetter = useGlobalDispatcher();
 
-  const handleOnClick =(event) => {
+  const handleOnClick = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    globalStateSetter({type: 'SETAUTH', payload: AuthService.isLoggedIn()});
-
+    globalStateSetter({ type: 'SETAUTH', payload: AuthService.isLoggedIn() });
     isAuthenticated ? navigate('/dashboard') : navigate('account/login');
   }
   return (
@@ -36,7 +35,7 @@ const Landing = () => {
             </li>
           </ul>
           <div className='landing_cta'>
-            <Button  className={'btn-element btn_primary'} onClick={handleOnClick}>Get started</Button>
+            <Button className={'btn-element btn_primary'} onClick={handleOnClick}>Get started</Button>
           </div>
         </div>
         <div className='card_content'>
@@ -55,10 +54,10 @@ const Landing = () => {
               </p>
             </div>
             <div className={"card_content_cta"}>
-              <NavLink to= {'account/login'} className={'btn-element btn_primary'}>
+              <Button className={'btn-element btn_primary'} onClick={handleOnClick}>
                 <span><FaAngleRight size={20} /></span>
                 <span>Get started</span>
-              </NavLink>
+              </Button>
               <NavLink className={'btn-element btn-primary btn_transparent'}>Schedule for a demo</NavLink>
             </div>
           </div>

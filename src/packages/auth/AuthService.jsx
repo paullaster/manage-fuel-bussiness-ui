@@ -20,8 +20,10 @@ class AuthService {
 
     }
     isLoggedIn() {
-        console.log(this.accessToken);
         return !!this.accessToken;
+    }
+    getAccessToken() {
+        return this.accessToken;
     }
 }
 

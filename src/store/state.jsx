@@ -7,5 +7,6 @@ export default {
     nextSearchItem: null,
     cardLabelView: [],
     transactionCode: '',
-    purchaseDate: new Date(),
+    isAuthenticated: false,
+
 }

@@ -1,9 +1,12 @@
 import _ from "lodash";
-import { _request } from "../services";
-import { constants } from "../packages/dashboard";
 
 export const StateReducer = (state, action) => {
     switch (action.type) {
+        case 'SETAUTH':
+            return {
+                ...state,
+                isAuthenticated: action.payload,
+            };
         case 'LINKS':
             /**
              * Checking if link exist
@@ -22,59 +25,59 @@ export const StateReducer = (state, action) => {
          * @TODO: Add case for adding sublinks to links
          */
         case 'COMPANIES':
-            return state = {
+            return {
                 ...state,
                 companies: action.payload
             };
 
         case 'SETCOMPANIESLISTCOUNT':
-            return state = {
+            return {
                 ...state,
                 itemsCount: action.payload,
             };
         case 'SETPREVIOUSSEARCHITEM':
-            return state = {
+            return {
                 ...state,
                 previousSearchItem: action.payload,
             };
         case 'SETPNEXTSEARCHITEM':
-            return state = {
+            return {
                 ...state,
                 nextSearchItem: action.payload,
             };
         case 'TOGGLESUBLINK':
-            return state = {
+            return {
                 ...state,
                 links: state.links.map((link) => {
                     if (link.id === action.payload) {
-                        return link = {
+                        return {
                             ...link,
                             showSubs: !link.showSubs,
                         };
                     }
-                    return link = {
+                    return {
                         ...link,
                         showSubs: false,
                     };
                 }),
             };
         case 'CREATECOMPOSABLEAUTOFILS':
-            return state = {
+            return {
                 ...state,
                 cardLabelView: action.payload,
             };
         case 'SETCARDLABELVIEW':
-            return state = {
+            return {
                 ...state,
                 cardLabelView: state.cardLabelView.map((card) => {
                     if (card.card === action.payload) {
-                        return card = {
+                        return {
                             ...card,
                             cardView: !card.cardView,
                             addItemView: !card.addItemView,
                         };
                     }
-                    return card = {
+                    return {
                         ...card,
                         cardView: true,
                         addItemView: false,
@@ -82,7 +85,7 @@ export const StateReducer = (state, action) => {
                 })
             };
         case 'PURCHASE_CODE':
-            return state = {
+            return {
                 ...state,
                 transactionCode: action.payload,
             };

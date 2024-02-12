@@ -1,7 +1,7 @@
 import WebStorage from "../../utils/WebStorage";
 import { APPNAME } from "../../environments";
 class AuthService {
-    accessToken = null;
+    caccessToken = null;
     refreshtoken = null;
     user = null;
 
@@ -23,4 +23,4 @@ class AuthService {
 
 Object.freeze(AuthService);
 
-export default new AuthService();
+export default new AuthService()

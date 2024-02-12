@@ -3,8 +3,7 @@ import { Button } from '@/components';
 import { MdAlternateEmail, MdLockOutline } from "react-icons/md";
 import { useRef } from 'react';
 import { login } from '../authActions';
-import WebStorage from '../../../utils/WebStorage';
-import { APPNAME } from '../../../environments';
+import AuthService from '../AuthService';
 
 const Login = () => {
 
@@ -18,10 +17,9 @@ const Login = () => {
     };
     login(payload)
     .then((res) => {
-      const currentToken = WebStorage.GetFromWebStorage('session', `${APPNAME}_token`);
-
-      if(!)
-      WebStorage.CheckItemIfExist()
+      AuthService.Login(res.access, res.refresh);
+      // if(!)
+      // WebStorage.CheckItemIfExist()
       console.log(res);
     })
     .catch((error) => {

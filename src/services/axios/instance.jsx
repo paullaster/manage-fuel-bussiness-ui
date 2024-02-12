@@ -9,9 +9,10 @@ export const instance = axios.create({
 
 export const protectedRequestInterceptor = (config) => {
     if (AuthService.isLoggedIn()){
-        config.headers.common['Authorization'] = `Bearer ${AuthService.getAccessToken}`; 
+        config.headers.Authorization = `Bearer ${AuthService.getAccessToken()}`;
     }
-    return config;
+    config.headers['Allow-origin'] = "*";
+    config.headers['Content-Type'] = `application/json`;
 };
 
 export const errorInterceptor = (error) => {

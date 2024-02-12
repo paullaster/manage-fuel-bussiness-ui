@@ -1,7 +1,7 @@
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import purchases from "../../purchases";
 import { useGlobalDispatcher, useGlobalState } from "@/store";
-import { useEffect, useMemo } from "react";
+import { useEffect, useLayoutEffect, useMemo } from "react";
 import { Navigation, Footer } from "@/components";
 import { RandomCodeGenerator } from "@/utils";
 import AuthService from "../../auth/AuthService";
@@ -36,7 +36,10 @@ const Dashboard = () => {
   }, [transactionCode]);
 
   useEffect(() => {
-     appStateDispatcher({type: 'SETAUTH', payload: AuthService.isLoggedIn()});
+    appStateDispatcher({type: 'SETAUTH', payload: AuthService.isLoggedIn()})
+  },[isAuthenticated]);
+  useLayoutEffect(() => {
+     console.log(AuthService.isLoggedIn());
     if (!isAuthenticated) navigate('/account/login');
   }, [isAuthenticated]);
 

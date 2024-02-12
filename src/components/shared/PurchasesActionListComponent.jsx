@@ -1,5 +1,5 @@
+import Button from "./Button";
 import MenuPopup from "./MenuPopup";
-import { Button } from '@/components';
 
 const PurchasesActionListComponent = ({list}) => {
   return (

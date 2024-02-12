@@ -3,7 +3,7 @@ import {
     Footer, Navigation, Sidebar, Button,
     SearchComponent, TableComponent, PaginatorComponent,
     InputComponent, Stepper, DatePickerComponent, DataTable,
-    AutocompleteComponent, DialogComponent,
+    AutocompleteComponent, DialogComponent, MenuPopup,
 } from './shared';
 
 
@@ -12,5 +12,5 @@ export {
     ErrorComponent, Footer, Navigation,
     Sidebar, Button, SearchComponent, TableComponent,
     PaginatorComponent, InputComponent, Stepper, DatePickerComponent,
-    DataTable, AutocompleteComponent, DialogComponent,
+    DataTable, AutocompleteComponent, DialogComponent, MenuPopup,
 };

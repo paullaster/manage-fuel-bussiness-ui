@@ -72,7 +72,7 @@ export const UsersComponent = () => {
                 </div>
                 <div className="topsection_div__2">
                     <NavLink className={'btn-element btn_primary'} to={'/dashboard/admin/:id/manage/users/create'} >
-                        <span>create new user</span>
+                        <span></span>
                     </NavLink>
                 </div>
             </div>

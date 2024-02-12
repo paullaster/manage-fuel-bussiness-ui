@@ -1,5 +1,5 @@
 import VendorActionList from "./VendorActionList";
-import MenuPopup from "../../../shared/components/MenuPopup";
+import MenuPopup from "../../../../../components/shared/MenuPopup";
 import { Button } from '@/components';
 
 const VendorActionListComponent = () => {

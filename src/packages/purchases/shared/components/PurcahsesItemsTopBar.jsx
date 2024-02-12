@@ -1,5 +1,5 @@
 import SectionIntroduction from './SectionIntroduction';
-import PurchasesActionListComponent from './PurchasesActionListComponent';
+import PurchasesActionListComponent from '@/components/shared/PurchasesActionListComponent';
 
 const PurcahsesItemsTopBar = ({caption, listOfActions}) => {
     return (

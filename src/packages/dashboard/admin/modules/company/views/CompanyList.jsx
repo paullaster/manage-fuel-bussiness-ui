@@ -173,6 +173,9 @@ const CompanyList = () => {
           <NavLink className={'btn-element btn_primary'} to={'/dashboard/admin/:id/manage/company/new'} >
             <span>new company</span>
           </NavLink>
+          <NavLink className={'btn-element btn_primary'} to={'/dashboard/admin/:id/manage/company/new'} >
+            <span>create new user</span>
+          </NavLink>
         </div>
       </div>
       <AutocompleteComponent

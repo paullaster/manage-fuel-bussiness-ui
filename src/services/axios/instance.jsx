@@ -1,5 +1,6 @@
 import axios from "axios";
 import { BASEAPIURL } from "../../environments";
+import AuthService from "@/packages/auth/AuthService";
 
 export const instance = axios.create({
     baseURL: BASEAPIURL,
@@ -7,6 +8,9 @@ export const instance = axios.create({
 });
 
 export const protectedRequestInterceptor = (config) => {
+    if (AuthService.isLoggedIn()){
+        config.headers.common['Authorization'] = `Bearer ${AuthService.getAccessToken}`; 
+    }
     return config;
 };
 

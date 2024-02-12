@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { MdOutlineStarBorder } from 'react-icons/md';
 import { useGlobalDispatcher, useGlobalState } from "../../../../../../store";
-import { Button, AutocompleteComponent, DataTable } from "@/components";
+import { Button, AutocompleteComponent, DataTable, ActionListComponent } from "@/components";
 import { Form, redirect, NavLink } from "react-router-dom";
 import { _request } from "../../../../../../services";
 // import constants from '../constants';
@@ -177,6 +177,7 @@ const CompanyList = () => {
             <span>create new user</span>
           </NavLink>
         </div>
+        <ActionListComponent />
       </div>
       <AutocompleteComponent
         list={companies}

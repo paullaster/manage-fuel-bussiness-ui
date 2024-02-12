@@ -11,8 +11,10 @@ export const protectedRequestInterceptor = (config) => {
     if (AuthService.isLoggedIn()){
         config.headers.Authorization = `Bearer ${AuthService.getAccessToken()}`;
     }
-    config.headers['Allow-origin'] = "*";
     config.headers['Content-Type'] = `application/json`;
+    config.headers.Accept = `application/json`;
+
+    return config;
 };
 
 export const errorInterceptor = (error) => {

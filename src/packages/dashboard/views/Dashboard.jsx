@@ -27,6 +27,10 @@ const Dashboard = () => {
         type: "LINKS",
         payload: purchases.links
       });
+      /**
+       * @TODO take the transanction code state to purchase item of the dashboard instead of having it affected the entire dashboard that is made of many heavy packeges
+       * - this is to be done for code refactoring and optimization
+       */
    },[transactionCode]);
 
 

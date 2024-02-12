@@ -1,1 +1,5 @@
-export { default as Landing } from './views/Landing';
+import Landing from "./views/Landing";
+
+export {
+    Landing,
+}

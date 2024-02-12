@@ -228,6 +228,7 @@ button:disabled {
         }
     }
 }
+
 .form_actions_wide {
     width: 35%;
     margin: 4rem 0;
@@ -255,6 +256,16 @@ button:disabled {
     border: none !important;
     outline: none !important;
 }
+
 .MuiAutocomplete-input {
-height: 1.6rem !important;
+    height: 1.6rem !important;
+}
+
+.currencyAndBal {
+    font-size: g.$small_font;
+    font-weight: 300;
+    color: g.$color_default;
+}
+.balanceCap {
+    font-size: g.$msmall_font;
 }

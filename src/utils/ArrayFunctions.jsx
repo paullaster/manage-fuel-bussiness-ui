@@ -1,3 +1,5 @@
+import { generator } from "./Generator";
+
 export const ArrayFunctions = (obj, arr) => {
     const operationList = {
         equal: equality,
@@ -31,3 +33,14 @@ export const ArrayFunctions = (obj, arr) => {
 }
 
 const equality = (a, b) => a === b;
+
+
+export const AddIDFieldToArray = (array, value) => {
+    const arrayWithID = [];
+    for (const item of generator(array)) {
+        item.id = item[value];
+        arrayWithID.push(item);
+    }
+    return Array.from(new Set(arrayWithID));
+
+}

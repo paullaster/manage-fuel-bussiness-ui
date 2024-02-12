@@ -1,4 +1,5 @@
 @use '../global/' as g;
+@use '../utilities/' as u;
 
 .billingInfo {
     display: grid;
@@ -22,5 +23,9 @@
         border: none !important;
         outline: none !important;
         height: fit-content !important;
+    }
+    .MuiInputBase-input  {
+        height: u.rem(28);
+        width: u.rem(350);
     }
 }

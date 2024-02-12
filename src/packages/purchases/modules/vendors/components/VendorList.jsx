@@ -1,17 +1,33 @@
 import Box from '@mui/material/Box';
-import { GridActionsCellItem } from "@mui/x-data-grid";
+import { GridActionsCellItem, GridToolbarContainer  } from "@mui/x-data-grid";
 import { DataTable } from '@/components';
-import {useEffect, useMemo, useState } from 'react';
+import {useCallback, useMemo} from 'react';
 import { fetchVendorsList } from '../../../actions';
-import { generator } from '@/utils/';
 import { v4 as uuidv4 } from 'uuid';
-import { MdOutlineVisibility } from "react-icons/md";
+import { MdOutlineVisibility, MdDelete, MdOutlineRefresh } from "react-icons/md";
 import shared from '../../../shared';
 import { useNavigate } from "react-router-dom";
+import { deleteItem } from '../../../../../store';
+import constants from '../../../constants';
+import Button from '@mui/material/Button';
+import { usePurchasesState } from '../../../Context';
+
+
+const VendorListGridToolBar = ({}) => {
+
+
+    return (
+        <GridToolbarContainer>
+            <Button color="primary" startIcon={<MdOutlineRefresh size={25} />} >
+                refresh list
+            </Button>
+        </GridToolbarContainer>
+    )
+}
 
 const VendorList = () => {
-    const [rows, setRows] = useState([]);
     const navigate = useNavigate()
+    const purchasesState = usePurchasesState();
 
 
     const handleViewClick = (params) => {
@@ -20,10 +36,26 @@ const VendorList = () => {
         navigate(url);
     };
 
+    const handleDelete = useCallback((params) => {
+        deleteItem(constants.vendor, {vendor_id: params.id})
+        .then((res) => {
+            /**
+             * @todo: toast success message
+             */
+            console.log(res.message);
+        })
+        .catch((error) => {
+            /**
+             * @todo: toast error
+             */
+            console.log(error);
+        });
+    });
+
     const columns = useMemo(() => [
         {
             field: 'vendor_name',
-            headerName: 'name',
+            headerName: 'Name',
             width: 300,
             headerAlign: 'center',
             sortable: true,
@@ -33,7 +65,7 @@ const VendorList = () => {
         },
         {
             field: 'vendor_email',
-            headerName: 'email ',
+            headerName: 'Email ',
             width: 200,
             headerAlign: 'center',
             sortable: false,
@@ -43,7 +75,7 @@ const VendorList = () => {
         },
         {
             field: 'vendor_phone',
-            headerName: 'phone',
+            headerName: 'Phone',
             width: 200,
             headerAlign: 'center',
             sortable: false,
@@ -53,7 +85,7 @@ const VendorList = () => {
         },
         {
             field: 'company_name',
-            headerName: 'company name',
+            headerName: 'Company name',
             width: 300,
             headerAlign: 'center',
             sortable: true,
@@ -63,7 +95,7 @@ const VendorList = () => {
         },
         {
             field: 'website',
-            headerName: 'website',
+            headerName: 'Website',
             width: 200,
             headerAlign: 'center',
             sortable: false,
@@ -73,7 +105,7 @@ const VendorList = () => {
         },
         {
             field: 'actions',
-            headerName: 'actions',
+            headerName: 'Actions',
             type: 'actions',
             width: 200,
             headerAlign: 'center',
@@ -90,44 +122,39 @@ const VendorList = () => {
                         onClick={() => {
                             handleViewClick(params)
                         }}
+                    />,
+                    <GridActionsCellItem
+                        key={uuidv4()}
+                        icon={<MdDelete size={20} />}
+                        label="Delete"
+                        onClick={() => {
+                            handleDelete(params)
+                        }}
                     />
                 ]
             }
         },
     ], []);
 
-    useEffect(() => {
-        fetchVendorsList({limit: 10})
-            .then((res) => {
-                console.log(res.vendors.results);
-                const vendorsWithID = [];
-                for (const vendor of generator(res.vendors.results)) {
-                    vendor.id = vendor.vendor_id;
-                    vendorsWithID.push(vendor);
-                }
-                const vendorsArray = Array.from(new Set(vendorsWithID));
-                setRows(vendorsArray);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+    // useEffect(() => {
 
-        return () => {
+    // },[rows]);
 
-        }
-    }, []);
     return (
         <Box>
             <shared.components.SectionIntroduction text="List of Vendors" />
             <DataTable
                 columns={columns}
-                rows={rows}
+                rows={purchasesState.vendors}
                 style={{ minHeight: 400, height: 'auto' }}
                 initialState={{ pagination: { paginationModel: { page: 0, pageSize: 10 } } }}
                 pageSizeOptions={[5, 10, 20, 30, 50]}
+                slots={{toolbar: VendorListGridToolBar}}
+                slotProps={{toolbar:{}}}
             />
         </Box>
     )
 }
 
 export default VendorList
+

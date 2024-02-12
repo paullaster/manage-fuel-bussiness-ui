@@ -13,12 +13,14 @@ import {
   GridRowModes,
   GridRowEditStopReasons
 } from '@mui/x-data-grid';
-import { apiFetchUtil, GetGross } from "@/utils";
+import { apiFetchUtil, GetGross, ObjectValidator, YearMonthDate } from "@/utils";
 import WebStorage from "@/utils/WebStorage";
 import { APPNAME } from "@/environments";
 import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 import { MdOutlineSaveAlt, MdCreate, MdCancel, MdDelete } from "react-icons/md";
 import Transport from "./Transport";
+import { postingFuelPurchase } from "../../../actions";
+import { usePurchasesState } from '../../../Context';
 
 
 const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
@@ -31,8 +33,7 @@ const NewFuelPurchase = () => {
   const appStateDispatcher = useGlobalDispatcher();
   const { cardLabelView } = useGlobalState();
 
-  const [vendorsList, setVendorsList] = useState([{ id: 1, name: 'Vendor X' }, { id: 2, name: 'Vendor Y' }, { id: 3, name: 'Vendor Z' }]);
-  const [officers, setOfficers] = useState([{ id: 1, name: 'Ken Mjungu' }, { id: 2, name: 'Waigah Mwaura' }]);
+
   const [summaryValues, setSummaryValues] = useState({ subtotal: 0, taxt_amount_total: 0, total: 0 });
   const [selectedOfficer, setSelectedOfficer] = useState(null);
   const [vendor, setVendor] = useState(null);
@@ -41,60 +42,63 @@ const NewFuelPurchase = () => {
   const invoiceNumberRef = useRef(null);
   const purchaseOrderNumberRef = useRef(null);
   const deliveryNoteNumberRef = useRef(null);
-
+  const billDate = useRef(null);
+  
   const transportNameRef = useRef(null);
   const vehicleRegistrationRef = useRef(null);
   const driverNameRef = useRef(null);
-
-
+  
+  const {vendors, officers} = usePurchasesState();
+  
   const billingInfoRefObject = {
     billNumberRef,
     invoiceNumberRef,
     purchaseOrderNumberRef,
     deliveryNoteNumberRef,
-    driverNameRef,
+    billDate,
   };
-
+  
   // TRANSPORT
   const transportRefObject = {
     transportNameRef,
-    vehicleRegistrationRef
+    vehicleRegistrationRef,
+    driverNameRef,
   };
 
   const handleSelectedVendor = (event, newValue) => {
     event.preventDefault();
     event.stopPropagation();
-    setVendor(newValue.id);
+    setVendor(newValue.vendor_id);
   }
 
   const handleSelectedOficer = (event, newValue) => {
     event.stopPropagation();
     event.preventDefault();
     console.log(newValue);
-    setSelectedOfficer(newValue.id);
+    setSelectedOfficer(newValue.officer_id);
   }
-  const deleteItem = (id) => {
-        setRows((prevRows) => prevRows.filter((row) => row.id !== id));
+  const deleteItem = (params) => {
+        setRows((prevRows) => prevRows.filter((row) => row.id !== params.id));
     };
    
 
-  const handleEditClick = (id) => {
-    setRowModesModel({...rowModesModel, [id]: { mode: GridRowModes.Edit}});
+  const handleEditClick = (params) => {
+    setRowModesModel({...rowModesModel, [params.id]: { mode: GridRowModes.Edit}});
   };
 
-  const handleSaveClick = (id) => {
-    setRowModesModel({...rowModesModel, [id]: { mode: GridRowModes.View}});
+  const handleSaveClick = (params) => {
+    setRowModesModel({...rowModesModel, [params.id]: { mode: GridRowModes.View}});
   };
 
-  const handleCancelClick = (id) => {
+  const handleCancelClick = (params) => {
     setRowModesModel({
       ...rowModesModel,
-      [id]: {mode: GridRowModes.View, ignoreModifications: true}
+      [params.id]: {mode: GridRowModes.View, ignoreModifications: true}
     });
 
-    const editedRow = rows.find((row) => row.id === id );
+    const editedRow = rows.find((row) => row.id === params.id );
     if(editedRow.isNew) {
-      setRows(rows.filter((row) => row.id !== id));
+      setRows(rows.filter((row) => row.id !== params.id));
     }
   };
 
@@ -123,7 +127,7 @@ const NewFuelPurchase = () => {
     {
         field: 'tank',
         headerName: 'Tank',
-        width: 150,
+        width: 60,
         editable: true,
         type: 'singleSelect',
         valueOptions: () => orgData.tanks.map((tank) => {
@@ -143,7 +147,7 @@ const NewFuelPurchase = () => {
       {
         field: 'fuel_type',
         headerName: 'Fuel Type',
-        width: 150,
+        width: 100,
         editable: false,
         sortable: false,
         type: 'string',
@@ -154,7 +158,7 @@ const NewFuelPurchase = () => {
       {
         field: 'dip_quantity_before_offloading',
         headerName: 'Dip quantity before offloading',
-        width: 240,
+        width: 200,
         editable: true,
         hideable: false,
         type: 'number',
@@ -164,7 +168,7 @@ const NewFuelPurchase = () => {
       {
         field: 'sales_quantity_during_offloading',
         headerName: 'Sales quantity during offloading',
-        width: 240,
+        width: 200,
         editable: true,
         hideable: false,
         type: 'number',
@@ -174,7 +178,7 @@ const NewFuelPurchase = () => {
       {
         field: 'actual_dip_quantity_after_offloading',
         headerName: 'Actual dip quantity after offloading',
-        width: 240,
+        width: 200,
         editable: true,
         hideable: false,
         type: 'number',
@@ -184,7 +188,7 @@ const NewFuelPurchase = () => {
       {
         field: 'expected_quantity',
         headerName: 'Expected quantity',
-        width: 130,
+        width: 150,
         editable: true,
         hideable: false,
         type: 'number',
@@ -194,7 +198,7 @@ const NewFuelPurchase = () => {
       {
         field: 'variance',
         headerName: 'Variance',
-        width: 100,
+        width: 80,
         editable: true,
         hideable: false,
         type: 'number',
@@ -230,7 +234,7 @@ const NewFuelPurchase = () => {
       {
         field: 'tax_amount',
         headerName: 'Tax amount',
-        width: 120,
+        width: 100,
         editable: false,
         valueGetter: (params) => GetGross(params.row, 'tax_rate', 'expected_quantity', 'price', 'tax_amount'),
         hideable: false,
@@ -239,15 +243,13 @@ const NewFuelPurchase = () => {
         align: 'center',
       },
       {
-        field: 'amount',
+        field: 'net_payable',
         headerName: 'Amount',
         description: 'amount',
         sortable: false,
         width: 100,
         editable: false,
         valueGetter: (params) => {
-          console.log(params.row.expected_quantity * params.row.price);
-          console.log(params);
           return params.row.expected_quantity * params.row.price;
         },
         type: 'number',
@@ -260,7 +262,7 @@ const NewFuelPurchase = () => {
         headerName: 'Gross amount',
         description: 'gross amount',
         sortable: false,
-        width: 150,
+        width: 120,
         valueGetter: (params) => GetGross(params.row, 'tax_rate', 'expected_quantity', 'price', 'gross_amount'),
         type: 'number',
         hideable: false,
@@ -270,7 +272,7 @@ const NewFuelPurchase = () => {
       {
         field: 'actions',
         type: 'actions',
-        width: 80,
+        width: 60,
         hideable: false,
         cellClassName: 'actions',
         getActions: (params) => {
@@ -285,14 +287,14 @@ const NewFuelPurchase = () => {
               sx={{
                 color: 'primary.main',
               }}
-              onClick={handleSaveClick(params.id)}
+              onClick={ () => handleSaveClick(params)}
               />,
               <GridActionsCellItem
               key={uuidv4()}
               icon={<MdCancel />}
               label="Cancel"
               className="textPrimary"
-              onClick={handleCancelClick(params.id)}
+              onClick={ () => handleCancelClick(params)}
               color="inherit"
             />,
             ];
@@ -302,18 +304,18 @@ const NewFuelPurchase = () => {
               key={uuidv4()}
               icon={<MdCreate size={25} />}
               label="Edit"
-              onClick={handleEditClick(params.id)}
+              onClick={ () => handleEditClick(params)}
             />,
             <GridActionsCellItem
               key={uuidv4()}
               icon={<MdDelete size={25} />}
               label="Delete"
-              onClick={deleteItem(params.id)}
+              onClick={() =>deleteItem(params)}
             />,
           ]
         },
       },
-    ]);
+    ],[handleSaveClick, handleCancelClick, handleEditClick, deleteItem]);
 
 
 
@@ -343,6 +345,83 @@ const NewFuelPurchase = () => {
 
   }, [columns, handleSettingSummary]);
 
+
+  const handleSubmttingFuelPurchase = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+
+    const itemsList = rows.map((it) => {
+      const{ tax_rate, expected_quantity, price , 
+        tank, dip_quantity_before_offloading, 
+        sales_quantity_during_offloading, 
+        actual_dip_quantity_after_offloading,
+        variance
+       } = it;
+      const tax_amount = GetGross(it, 'tax_rate', 'expected_quantity', 'price', 'tax_amount');
+      const net_payable = it.expected_quantity * it.price;
+      const gross_amount = GetGross(it, 'tax_rate', 'expected_quantity', 'price', 'gross_amount');
+      const tax = Number(tax_rate)/100;
+      return { 
+        tax_rate: tax, 
+        expected_quantity, 
+        price, tank, tax_amount, 
+        net_payable, gross_amount, 
+        dip_quantity_before_offloading, 
+        sales_quantity_during_offloading, 
+        actual_dip_quantity_after_offloading,
+        variance
+      };
+    });
+
+    itemsList.forEach((item) => {
+      if (!ObjectValidator([
+        'tax_rate', 
+        'expected_quantity', 
+        'price', 
+        'dip_quantity_before_offloading', 
+        'net_payable', 
+        'gross_amount',
+        'sales_quantity_during_offloading',
+        'actual_dip_quantity_after_offloading',
+        'tank',
+        'tax_amount',
+        'variance',
+
+      ], item)) {
+        throw Error("Please check your items table and complete before you submit again");
+      }
+    });
+    const pickedDate = YearMonthDate(billDate);
+    const { organization_id } = orgData;
+    const payload = {
+      vendor: vendor,
+      officer: selectedOfficer,
+      bill_number: billNumberRef.current.value,
+      purchase_date: pickedDate,
+      po_number: purchaseOrderNumberRef.current.value,
+      invoice_number: invoiceNumberRef.current.value,
+      delivery_note_number: deliveryNoteNumberRef.current.value,
+      items: itemsList,
+      sub_total_tax_amount: summaryValues.subtotal,
+      net_payable: summaryValues.taxt_amount_total,
+      gross_amount: summaryValues.total,
+      organization_id,
+      transport_name: transportNameRef.current.value,
+      vehicle_registration: vehicleRegistrationRef.current.value,
+      driver_name: driverNameRef.current.value
+    };
+    for (const prop in payload) {
+      if (!payload[prop]) throw new Error("Invalid payload, Cross check your item and submit again!")
+    }
+    postingFuelPurchase(payload)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+  }
+
   return (
     <section className="newfuelpurchase">
       <shared.components.SectionIntroduction text="New Fuel Purchase" />
@@ -351,13 +430,14 @@ const NewFuelPurchase = () => {
         cardLabelView={cardLabelView} 
         ref={billingInfoRefObject}
         handleSelectedVendor={handleSelectedVendor}
-        vendorsList={vendorsList}
+        vendorsList={vendors}
         >
           <NewVendor />
         </shared.components.BillingComponent>
         <Transport 
         officers={officers} 
         handleSelectedOficer={handleSelectedOficer}
+        ref={transportRefObject}
         />
         <TankEntries
           columns={columns}
@@ -370,7 +450,7 @@ const NewFuelPurchase = () => {
           slotProps={{ toolbar: { setRows, setRowModesModel } }}
         />
         <SummaryComponent subtotal={summaryValues.subtotal} totalTaxAmount={summaryValues.taxt_amount_total} total={summaryValues.total} />
-        <FormButtonRow className="form_actions"/>
+        <FormButtonRow className="form_actions" methodHandler={handleSubmttingFuelPurchase}/>
       </Form>
     </section>
   )

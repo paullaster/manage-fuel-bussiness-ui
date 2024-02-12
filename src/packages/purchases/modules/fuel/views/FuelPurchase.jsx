@@ -28,6 +28,11 @@ const FuelPurchase = () => {
       link: "",
       description: "Initiate purchase for items ready to be shipped and delivery"
     },
+    {
+      caption: "Bills",
+      link: "/dashboard/purchases/bills?type=fuel",
+      description: "View bill items"
+    },
   ];
 
   return (

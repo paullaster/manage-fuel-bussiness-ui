@@ -1,9 +1,21 @@
-import { NavLink } from 'react-router-dom';
-import { Button, Logo } from '@/components';
+import { useNavigate, NavLink } from 'react-router-dom';
+import { Logo, Button } from '@/components';
 import { FaAngleRight } from "react-icons/fa6";
 import Landing_graphics from "@/assets/images/landing_graphics.svg";
+import { useGlobalDispatcher, useGlobalState } from '@/store';
+import AuthService from '../../auth/AuthService';
 
 const Landing = () => {
+  const navigate = useNavigate();
+  const { isAuthenticated } = useGlobalState();
+  const globalStateSetter = useGlobalDispatcher();
+
+  const handleOnClick = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    globalStateSetter({ type: 'SETAUTH', payload: AuthService.isLoggedIn() });
+    isAuthenticated ? navigate('/dashboard') : navigate('account/login');
+  }
   return (
     <section className='landing'>
       <div className='landing_card'>
@@ -23,7 +35,7 @@ const Landing = () => {
             </li>
           </ul>
           <div className='landing_cta'>
-            <NavLink  to = {'account/register'} className={'btn-element btn_primary'}>Get started</NavLink>
+            <Button className={'btn-element btn_primary'} onClick={handleOnClick}>Get started</Button>
           </div>
         </div>
         <div className='card_content'>
@@ -42,10 +54,10 @@ const Landing = () => {
               </p>
             </div>
             <div className={"card_content_cta"}>
-              <NavLink to= {'account/register'} className={'btn-element btn_primary'}>
+              <Button className={'btn-element btn_primary'} onClick={handleOnClick}>
                 <span><FaAngleRight size={20} /></span>
                 <span>Get started</span>
-              </NavLink>
+              </Button>
               <NavLink className={'btn-element btn-primary btn_transparent'}>Schedule for a demo</NavLink>
             </div>
           </div>

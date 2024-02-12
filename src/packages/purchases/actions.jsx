@@ -4,7 +4,7 @@ import WebStorage from '@/utils/WebStorage';
 import { APPNAME } from '@/environments';
 
 
-const { address, billing, contact, vendor, currency, purchaseItem } = constants;
+const { address, billing, contact, vendor, currency, purchase_item, fuelPurchase, fuelType } = constants;
 
 export const postBillingInformation = async (payload) => {
     const data = {
@@ -90,11 +90,26 @@ export const postVendor = async (item) => {
 
 
 export const postingPurchaseItem = async(payload) =>{
-    return await _request({method: 'POST', url: purchaseItem, data: payload});
+    return await _request({method: 'POST', url: purchase_item, data: payload});
+}
+// POSTING FUEL PURCHASE
+export const postingFuelPurchase = async(payload) => {
+    return await _request({method: 'POST', url: fuelPurchase, data: payload});
 }
 
 
 // FETCH VENDORS
 export const fetchVendorsList = async(params = {}) => {
     return await _request({method: 'GET', params, url: vendor});
+}
+
+export const fetchFuelPurchases = async(params = {}) => {
+    return await _request({method: 'GET', params, url: fuelPurchase});
+}
+export const fetchItemPurchases = async(params = {}) => {
+    return await _request({method: 'GET', params, url: purchase_item});
+}
+
+export const fetchfuelType = async(params = {}) => {
+    return await _request({method: 'GET', params, url: fuelType})
 }

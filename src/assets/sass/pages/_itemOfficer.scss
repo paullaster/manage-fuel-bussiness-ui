@@ -1,7 +1,23 @@
 @use '../global/' as g;
+@use '../utilities/' as u;
 
 .itemOfficer {
     margin-top: 4rem;
+    & > div.itemOfficerInputs {
+        display: flex;
+        & > .autocomplete {
+            width: u.rem(600);
+        }
+        & > .MuiStack-root {
+            margin-left: u.rem(48);
+            margin-top: u.rem(12);
+            
+            .MuiInputBase-input  {
+                height: u.rem(28);
+                width: u.rem(600);
+            }
+        }
+    }
 
     .divisionTopBar {
         display: flex;

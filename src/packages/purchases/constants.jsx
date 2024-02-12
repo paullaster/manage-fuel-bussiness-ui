@@ -6,5 +6,6 @@ export default {
     contact: 'support_details/contact/',
     vendor: 'vendor/',
     currency: 'currency/',
-    purchaseItem: 'purchase_item/'
+    purchase_item: 'purchase_item/',
+    fuelPurchase: 'fuel_purchase/',
 };

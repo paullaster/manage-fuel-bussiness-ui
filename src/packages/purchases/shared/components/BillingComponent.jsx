@@ -14,7 +14,7 @@ const BillingComponent = forwardRef((props, ref) => {
                     cardLabelView.slice(0, 1).map((card) => {
                         return (
                             <shared.components.AddItem
-                                keyField='name'
+                                keyField='vendor_name'
                                 label={card.name}
                                 cardLabelIcon={card.CustomCardLabelIcon}
                                 key={card.card}

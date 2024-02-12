@@ -18,8 +18,9 @@ import { v4 as uuidv4 } from 'uuid';
 import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 import OfficerComponent from "./OfficerComponent";
 import SummaryComponent from "../../../shared/components/SummaryComponent";
-import { ObjectValidator, GetGross } from "@/utils";
+import { ObjectValidator, GetGross, YearMonthDate } from "@/utils";
 import { postingPurchaseItem } from "../../../actions";
+import { usePurchasesState } from '../../../Context';
 
 
 const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
@@ -30,8 +31,6 @@ const NewItem = () => {
   const [rows, setRows] = useState([]);
   const [rowModesModel, setRowModesModel] = useState({});
   const [summaryValues, setSummaryValues] = useState({ subtotal: 0, taxt_amount_total: 0, total: 0 });
-  const [vendorsList, setVendorsList] = useState([{ id: 1, name: 'Vendor X' }, { id: 2, name: 'Vendor Y' }, { id: 3, name: 'Vendor Z' }]);
-  const [officers, setOfficers] = useState([{ id: 1, name: 'Ken Mjungu' }, { id: 2, name: 'Waigah Mwaura' }]);
   const [selectedOfficer, setSelectedOfficer] = useState(null);
   const [vendor, setVendor] = useState(null);
 
@@ -39,30 +38,29 @@ const NewItem = () => {
   const invoiceNumberRef = useRef(null);
   const purchaseOrderNumberRef = useRef(null);
   const deliveryNoteNumberRef = useRef(null);
+  const billDate = useRef(null);
 
 
-
+  const {vendors, officers} = usePurchasesState();
 
   const billingInfoRefObject = {
     billNumberRef,
     invoiceNumberRef,
     purchaseOrderNumberRef,
     deliveryNoteNumberRef,
+    billDate,
   };
-
-
 
   const handleSelectedVendor = (event, newValue) => {
     event.preventDefault();
     event.stopPropagation();
-    setVendor(newValue.id);
+    setVendor(newValue.vendor_id);
   }
 
   const handleSelectedOficer = (event, newValue) => {
     event.stopPropagation();
     event.preventDefault();
-    console.log(newValue);
-    setSelectedOfficer(newValue.id);
+    setSelectedOfficer(newValue.officer_id);
   }
 
 
@@ -282,29 +280,34 @@ const NewItem = () => {
     event.preventDefault();
 
     const itemsList = rows.map((it) => {
-      const{ vat_rate, quantity, price, item } = it;
-      const vat_amount = GetGross(it, 'vat_rate', 'quantity', 'price', 'tax_amount');
+      const{ vat_rate, quantity, price:purchase_price , item } = it;
+      const tax_amount = GetGross(it, 'vat_rate', 'quantity', 'price', 'tax_amount');
       const net_amount = it.quantity * it.price;
       const gross_amount = GetGross(it, 'vat_rate', 'quantity', 'price', 'gross_amount');
-      return { vat_rate, quantity, price, item, vat_amount, net_amount, gross_amount};
+      const tax = Number(vat_rate)/100;
+      return { tax, quantity, purchase_price, item, tax_amount, net_amount, gross_amount};
     });
 
     itemsList.forEach((item) => {
       if (!ObjectValidator(['vat_rate', 'quantity', 'price', 'item', 'vat_amount', 'net_amount', 'gross_amount'], item)) {
-        throw Error("Please check your table items and complete before you submit again");
+        throw Error("Please check your items table and complete before you submit again");
       }
     });
-    console.log(orgData);
+    const pickedDate = YearMonthDate(billDate);
+
     const { organization_id } = orgData;
     const payload = {
       vendor: vendor,
       officer: selectedOfficer,
       bill_number: billNumberRef.current.value,
-      purchase_date: purchaseOrderNumberRef.current.value,
+      purchase_date: pickedDate,
+      purchase_order_number: purchaseOrderNumberRef.current.value,
       invoice_number: invoiceNumberRef.current.value,
       delivery_note_number: deliveryNoteNumberRef.current.value,
       items: itemsList,
-      total_amount: summaryValues.total,
+      sub_total_vat_amount: summaryValues.subtotal,
+      net_amount: summaryValues.taxt_amount_total,
+      gross_amount: summaryValues.total,
       organization_id,
 
     };
@@ -319,7 +322,7 @@ const NewItem = () => {
       })
       .catch((err) => {
         console.error(err);
-      })
+      });
   }
 
 
@@ -331,10 +334,10 @@ const NewItem = () => {
           cardLabelView={cardLabelView}
           ref={billingInfoRefObject}
           handleSelectedVendor={handleSelectedVendor}
-          vendorsList={vendorsList}
+          vendorsList={vendors}
         >
           <NewVendor />
-        </shared.components.BillingComponent>
+        </shared.components.BillingComponent >
         <OfficerComponent officers={officers} handleSelectedOficer={handleSelectedOficer} />
         <PurchaseItemEntry
           columns={columns}

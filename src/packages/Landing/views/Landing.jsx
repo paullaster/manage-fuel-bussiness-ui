@@ -1,16 +1,21 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import { Logo, Button } from '@/components';
 import { FaAngleRight } from "react-icons/fa6";
 import Landing_graphics from "@/assets/images/landing_graphics.svg";
 import { useGlobalDispatcher, useGlobalState } from '@/store';
+import AuthService from '../../auth/AuthService';
 
 const Landing = () => {
-
   const navigate = useNavigate();
+  const { isAuthenticated } = useGlobalState();
+  const globalStateSetter = useGlobalDispatcher();
+
   const handleOnClick =(event) => {
     event.preventDefault();
     event.stopPropagation();
+    globalStateSetter({type: 'SETAUTH', payload: AuthService.isLoggedIn()});
 
+    isAuthenticated ? navigate('/dashboard') : navigate('account/login');
   }
   return (
     <section className='landing'>
@@ -31,7 +36,7 @@ const Landing = () => {
             </li>
           </ul>
           <div className='landing_cta'>
-            <Button  to = {'account/login'} className={'btn-element btn_primary'} onClick={handleOnClick}>Get started</Button>
+            <Button  className={'btn-element btn_primary'} onClick={handleOnClick}>Get started</Button>
           </div>
         </div>
         <div className='card_content'>

@@ -1,11 +1,11 @@
 import SectionIntroduction from './SectionIntroduction';
-import {ActionListComponent} from '@/components';
+import { ActionListComponent } from '@/components';
 
-const PurcahsesItemsTopBar = ({caption, listOfActions}) => {
+const PurcahsesItemsTopBar = ({ caption, listOfActions }) => {
     return (
         <div className="vendorActions">
             <SectionIntroduction text={` ${caption || 'something here'}`} />
-            <PurchasesActionListComponent list={listOfActions || []} />
+            <ActionListComponent list={listOfActions || []} />
         </div>
     )
 }

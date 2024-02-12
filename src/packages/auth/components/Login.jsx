@@ -4,7 +4,7 @@ import { MdAlternateEmail, MdLockOutline } from "react-icons/md";
 import { useEffect, useRef } from 'react';
 import { login } from '../authActions';
 import AuthService from '../AuthService';
-import { useGlobalDispatcher, useGlobalState } from '../../../store/GlobalStateContext';
+import { useGlobalDispatcher, useGlobalState } from '@/store';
 
 const Login = () => {
 

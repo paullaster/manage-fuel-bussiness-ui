@@ -5,7 +5,8 @@ import { Button, AutocompleteComponent, DataTable, ActionListComponent } from "@
 import { Form, redirect, NavLink } from "react-router-dom";
 import { _request } from "../../../../../../services";
 // import constants from '../constants';
-import { SearchArray, TableHeaders } from "../../../../../../utils";
+import { SearchArray, TableHeaders } from "@/utils";
+import AdminActions from "../AdminActions";
 
 const CompanyList = () => {
 
@@ -170,14 +171,14 @@ const CompanyList = () => {
           </Button>
         </div>
         <div className="topsection_div__2">
-          <NavLink className={'btn-element btn_primary'} to={'/dashboard/admin/:id/manage/company/new'} >
+          {/* <NavLink className={'btn-element btn_primary'} to={'/dashboard/admin/:id/manage/company/new'} >
             <span>new company</span>
           </NavLink>
           <NavLink className={'btn-element btn_primary'} to={'/dashboard/admin/:id/manage/company/new'} >
             <span>create new user</span>
-          </NavLink>
+          </NavLink> */}
+          <ActionListComponent list={AdminActions} />
         </div>
-        <ActionListComponent />
       </div>
       <AutocompleteComponent
         list={companies}
@@ -186,8 +187,8 @@ const CompanyList = () => {
         handleOnchange={handleSearch}
       />
       <DataTable
-      columns={columns}
-      rows={companies}
+        columns={columns}
+        rows={companies}
       />
     </section>
   )

@@ -3,13 +3,11 @@ import constants from './constants';
 import WebStorage from '@/utils/WebStorage';
 import { APPNAME } from '@/environments';
 
-
 const { address, billing, contact, vendor, currency, purchase_item, fuelPurchase, fuelType } = constants;
 
 export const postBillingInformation = async (payload) => {
     const data = {
         ...payload,
-        organization_id: "1",
     };
     return await _request({
         method: 'POST',
@@ -21,7 +19,6 @@ export const postBillingInformation = async (payload) => {
 export const postAddress = async (payload) => {
     const data = {
         ...payload,
-        organization_id: "1",
     };
     return await _request({
         method: 'POST',
@@ -33,7 +30,6 @@ export const postAddress = async (payload) => {
 export const postContactPerson = async (data) => {
     const contactInfo = {
         ...data,
-        organization_id: '1',
     }
     return await _request({
         method: 'POST',
@@ -45,7 +41,6 @@ export const postContactPerson = async (data) => {
 export const postCurrency = (item) => {
     const data = {
         ...item,
-        organization_id: '1',
     };
     _request({
         method: "POST",
@@ -77,7 +72,6 @@ export const postVendor = async (item) => {
     }
     const data = {
         ...item,
-        organization_id: '1',
         ...objectKeys
     }
     console.log("sendin data to vendor", data)

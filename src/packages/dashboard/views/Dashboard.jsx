@@ -36,7 +36,7 @@ const Dashboard = () => {
   }, [transactionCode]);
 
   useEffect(() => {
-    AuthService
+     appStateDispatcher({type: 'SETAUTH', payload: AuthService.isLoggedIn()});
     if (!isAuthenticated) navigate('/account/login');
   }, [isAuthenticated]);
 

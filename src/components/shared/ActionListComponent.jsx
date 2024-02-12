@@ -1,7 +1,7 @@
 import Button from "./Button";
 import MenuPopup from "./MenuPopup";
 
-const PurchasesActionListComponent = ({list}) => {
+const ActionListComponent = ({list}) => {
   return (
     <div className="actions">
         {
@@ -13,4 +13,4 @@ const PurchasesActionListComponent = ({list}) => {
   )
 }
 
-export default PurchasesActionListComponent
+export default ActionListComponent

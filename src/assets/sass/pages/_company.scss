@@ -1,4 +1,5 @@
 @use '../global/' as g;
+@use '../utilities/' as u;
 
 .company {
     width: 80vw;
@@ -13,17 +14,17 @@
             flex-direction: row;
             align-items: center;
             flex-grow: 1;
-        
-            & > * {
+
+            &>* {
                 display: block;
             }
 
-            & > *:first-child {
+            &>*:first-child {
                 margin-right: g.$msmall;
             }
 
             // span {
-                
+
             // }
         }
 
@@ -33,15 +34,27 @@
             justify-content: right;
             flex-grow: 1;
 
-            // button {
-            //     display: flex;
-            //     & > * {
-            //         display: block;
-            //     }
-            //     & > *:first-child {
-            //         margin-right: g.$tiny;
-            //     }
-            // }
+            .actions {
+                width: u.rem(140);
+
+                button {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 100%;
+                    background-color: g.$color_primary !important;
+                    color: g.$color_tertiary;
+                    padding: g.$xsmall g.$small;
+                    @include u.borderradius(g.$small);
+                    @include u.boxshadow;
+                    text-transform: capitalize;
+
+                    &>* {
+                        margin-left: g.$xsmall;
+                    }
+                }
+            }
         }
     }
 }

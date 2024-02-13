@@ -45,8 +45,8 @@ const BillRecordPageComponent = () => {
   return (
     <section className="singleBillPage">
       <PurcahsesItemsTopBar caption={'Bill'} listOfActions={SingleBillActionsList} />
-      <button onClick={handleDownloadPDF}>download pdf</button>
-      <button onClick={handlePrint}>print</button>
+      {/* <button onClick={handleDownloadPDF}>download pdf</button> */}
+      {/* <button onClick={handlePrint}>print</button> */}
       <div className="actionsAndReport">
         <AcountingActions />
         <ReportComponent id="pdf-content" ref={componentRef}/>

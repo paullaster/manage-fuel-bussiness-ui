@@ -21,7 +21,7 @@ export default
          hasList: true,
          list: [
             { key: uuidv4(), cap: 'User', action: (state) =>  handleCreateNewUser(state)},
-            { key: uuidv4(), cap: 'Company', action: () => handleCreateNewCompany(state)},
+            { key: uuidv4(), cap: 'Company', action: (state) => handleCreateNewCompany(state)},
          ]
       },
    ];

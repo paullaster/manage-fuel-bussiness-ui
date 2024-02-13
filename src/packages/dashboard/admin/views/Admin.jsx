@@ -39,13 +39,9 @@ const Admin = () => {
 
 
   return (
-    <>
-      <section>
         <AdminStateProvider>
             <Outlet />
         </AdminStateProvider>
-      </section >
-    </>
   );
 }
 

@@ -2,6 +2,7 @@
 @forward './addCurrency';
 @forward './addItem';
 @forward './admin';
+@forward './adminCreateUser';
 @forward './autocomplete';
 @forward './balanceList';
 @forward './billingCard';
@@ -19,7 +20,9 @@
 @forward './newCompany';
 @forward './new_fuel_purchase';
 @forward './newVendors';
+@forward './reportTemplate';
 @forward './saleItem';
+@forward './singleBillPage';
 @forward './stepper';
 @forward './purchase_items_index';
 @forward './purchaseItem';

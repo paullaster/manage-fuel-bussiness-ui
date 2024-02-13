@@ -22,6 +22,9 @@ class AuthService {
     isLoggedIn() {
         return !!this.accessToken;
     }
+    getAccessToken() {
+        return this.accessToken;
+    }
 }
 
 Object.freeze(AuthService);

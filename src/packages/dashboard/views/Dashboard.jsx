@@ -35,11 +35,11 @@ const Dashboard = () => {
      */
   }, [transactionCode]);
 
-  useEffect(() => {
-     appStateDispatcher({type: 'SETAUTH', payload: AuthService.isLoggedIn()});
-     console.log(AuthService.isLoggedIn());
-    if (!isAuthenticated) navigate('/account/login');
-  }, [isAuthenticated]);
+  // useEffect(() => {
+  //    appStateDispatcher({type: 'SETAUTH', payload: AuthService.isLoggedIn()});
+  //    console.log(AuthService.isLoggedIn());
+  //   if (!isAuthenticated) navigate('/account/login');
+  // }, [isAuthenticated]);
 
   return (
     <>

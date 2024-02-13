@@ -14,7 +14,7 @@ const ReportItemsInformation = () => {
         {
             field: 'fuel_type',
             headerName: 'Item',
-            width: 300,
+            width: 200,
             headerAlign: 'center',
             sortable: true,
             hideable: false,
@@ -33,7 +33,7 @@ const ReportItemsInformation = () => {
         {
             field: 'expected_quantity',
             headerName: 'Qunatity ',
-            width: 200,
+            width: 100,
             headerAlign: 'center',
             sortable: false,
             hideable: false,
@@ -43,7 +43,7 @@ const ReportItemsInformation = () => {
         {
             field: 'price',
             headerName: 'Price',
-            width: 200,
+            width: 100,
             headerAlign: 'center',
             sortable: false,
             hideable: false,
@@ -53,7 +53,7 @@ const ReportItemsInformation = () => {
         {
             field: 'gross_amount',
             headerName: 'Amount',
-            width: 300,
+            width: 200,
             headerAlign: 'center',
             sortable: true,
             hideable: false,
@@ -70,9 +70,9 @@ const ReportItemsInformation = () => {
             <DataTable
                 columns={columns}
                 rows={rows}
-                style={{ minHeight: 400, height: 'auto' }}
-                initialState={{ pagination: { paginationModel: { page: 0, pageSize: 10 } } }}
-                pageSizeOptions={[5, 10, 20, 30, 50]}
+                style={{  minHeight: 400, heigh: 'auto' }}
+                initialState={{ pagination: { paginationModel: { page: 0, pageSize: 0 } } }}
+                pageSizeOptions={[]}
             />
         </Box>
     )

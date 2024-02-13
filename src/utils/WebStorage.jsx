@@ -48,11 +48,11 @@ class WebStorage {
         let resource = '';
         switch (storageType) {
             case 'local':
-                resource = localStorage.getItem(resourceName) || '[]';
+                resource = localStorage.getItem(resourceName) || 'null';
                 resource = JSON.parse(resource);
                 return resource;
             case 'session':
-                resource = sessionStorage.getItem(resourceName) || '[]';
+                resource = sessionStorage.getItem(resourceName) || 'null';
                 resource = JSON.parse(resource);
                 return resource;
             case 'cookie':

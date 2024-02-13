@@ -11,6 +11,8 @@
 
     & .reportHeader {
         display: flex;
+        border-bottom: g.$default_border;
+        padding-bottom: u.rem(40);
 
         & div {
             flex-grow: 1;
@@ -79,6 +81,17 @@
         }
         .MuiDataGrid-footerContainer {
             display: none !important;
+        }
+        .MuiDataGrid-columnHeaders {
+            background-color: g.$color_default !important;
+        }
+        .MuiDataGrid-main {
+            border-left: none !important;
+            border-right: none !important;
+        }
+        .MuiDataGrid-withBorderColor {
+            border-left: none !important;
+            border-right: none !important;
         }
     }
 }

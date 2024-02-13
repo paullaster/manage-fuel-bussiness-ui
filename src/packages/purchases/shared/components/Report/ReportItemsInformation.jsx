@@ -70,7 +70,7 @@ const ReportItemsInformation = () => {
             <DataTable
                 columns={columns}
                 rows={rows}
-                style={{  minHeight: 0, heigh: 'auto' }}
+                style={{  minHeight: 400, heigh: 'auto' }}
                 initialState={{ pagination: { paginationModel: { page: 0, pageSize: 0 } } }}
                 pageSizeOptions={[]}
             />

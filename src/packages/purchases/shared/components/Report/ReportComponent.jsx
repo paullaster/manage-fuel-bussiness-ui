@@ -6,7 +6,7 @@ import { forwardRef } from 'react';
 const ReportComponent = forwardRef((props, ref) => {
   const { id } = props;
   return (
-    <div id={id} ref={ref}>
+    <div id={id} ref={ref} className='reportTemplate'>
         <ReportHeader />
         <ReportMain />
         <ReportFooter />

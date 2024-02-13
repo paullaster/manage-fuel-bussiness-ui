@@ -2,7 +2,7 @@
 @use '../global/' as g;
 
 .reportTemplate {
-    width: 80%;
+    width: 100%;
     padding: g.$small;
     @include u.boxshadow;
     @include u.borderradius(u.rem(20));
@@ -76,6 +76,9 @@
                     }
                 }
             }
+        }
+        .MuiDataGrid-footerContainer {
+            display: none !important;
         }
     }
 }

@@ -1,6 +1,8 @@
 @use '../utilities/' as u;
+@use '../global/' as g;
 
 .reportTemplate {
+    padding: g.$small;
     @include u.boxshadow;
     @include u.borderradius(u.rem(20));
     display: flex;

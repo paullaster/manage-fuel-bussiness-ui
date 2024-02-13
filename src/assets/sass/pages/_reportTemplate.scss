@@ -26,5 +26,10 @@
     }
     & .reportMainContent {
         display: flex;
+        flex-direction: column;
+
+        & .reportRelatedInformation {
+            display: flex;
+        }
     }
 }

@@ -156,3 +156,12 @@ const modifyingObject = (object, valvesArray, pumpNumber) => {
     } : '';
     return object;
 }
+
+
+export const createUser = async (payload) => {
+    return await _request({
+        url: constants.createUser,
+        data: payload,
+        method: 'POST'
+    });
+}

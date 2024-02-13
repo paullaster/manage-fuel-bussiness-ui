@@ -1,7 +1,7 @@
 import { Form } from 'react-router-dom';
 import { Button } from '@/components';
 import { useRef } from 'react';
-import { createUser } from '../../../users/actions';
+import { createUser } from '../../Actions';
 
 export const CreateNewUser = () => {
 
@@ -33,8 +33,8 @@ export const CreateNewUser = () => {
     }
 
     return (
-        <section>
-            <div>
+            <section className='adminCreateUser'>
+                <div>
                 <Form method='POST'>
                     <div className="input-group">
                         <label htmlFor="username">Email</label>
@@ -131,6 +131,6 @@ export const CreateNewUser = () => {
                     </div>
                 </Form>
             </div>
-        </section>
+            </section>
     )
 };

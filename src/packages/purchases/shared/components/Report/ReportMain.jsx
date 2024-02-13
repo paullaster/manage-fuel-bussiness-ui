@@ -3,7 +3,7 @@ import ReportRelatedInformationComponent from './ReportRelatedInformationCompone
 
 const ReportMain = () => {
   return (
-    <div>
+    <div className='reportMainContent'>
         <ReportRelatedInformationComponent />
         <ReportItemsInformation />
     </div>

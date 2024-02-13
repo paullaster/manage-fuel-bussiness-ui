@@ -24,4 +24,7 @@
             padding-right: u.rem(16);
         }
     }
+    & .reportMainContent {
+        display: flex;
+    }
 }

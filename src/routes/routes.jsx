@@ -24,7 +24,6 @@ const router = createBrowserRouter(
                     <Route element={<Wizard />} path='manage/company/wizard/:step' action={TankAndPumpData} />
 
                     {/* Users module */}
-                    <Route element={<UsersComponent />} path='manage/users/list' />
                     <Route element={< CreateNewUser/>} path='manage/users/create' />
                 </Route>
                 <Route element={<User />} path='user/:id'></Route>

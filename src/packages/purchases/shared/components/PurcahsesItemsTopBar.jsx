@@ -1,4 +1,4 @@
-import SectionIntroduction from './SectionIntroduction';
+import SectionIntroduction from '../../../../components/shared/SectionIntroduction';
 import { ActionListComponent } from '@/components';
 
 const PurcahsesItemsTopBar = ({ caption, listOfActions }) => {

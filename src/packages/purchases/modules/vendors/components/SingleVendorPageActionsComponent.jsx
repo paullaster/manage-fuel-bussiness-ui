@@ -1,5 +1,5 @@
 import React from 'react'
-import SectionIntroduction from '../../../shared/components/SectionIntroduction'
+import SectionIntroduction from '../../../../../components/shared/SectionIntroduction'
 import VendorActionListComponent from './VendorActionListComponent'
 
 const SingleVendorPageActionsComponent = ({ vendorName }) => {

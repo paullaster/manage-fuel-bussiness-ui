@@ -2,6 +2,7 @@ import { Form } from 'react-router-dom';
 import { Button } from '@/components';
 import { useRef } from 'react';
 import { createUser } from '../../Actions';
+import SectionIntroduction from '../../../../../../../components/shared/SectionIntroduction';
 
 export const CreateNewUser = () => {
 
@@ -34,6 +35,7 @@ export const CreateNewUser = () => {
 
     return (
             <section className='adminCreateUser'>
+                <SectionIntroduction text='Create new user'/>
                 <div>
                 <Form method='POST'>
                     <div className="input-group">

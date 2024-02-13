@@ -3,7 +3,7 @@ import OrganizationDetails from './OrganizationDetails';
 
 const ReportHeader = () => {
   return (
-    <div>
+    <div className='reportHeader'>
         <div><img src={defaultImage} alt="vendor logo" /></div>
         <OrganizationDetails />
     </div>

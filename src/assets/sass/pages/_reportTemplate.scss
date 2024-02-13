@@ -1,3 +1,18 @@
+@use '../utilities/' as u;
+
 .reportTemplate {
-    
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    & .reportHeader {
+        background-color: red;
+        display: flex;
+        & div {
+            flex-grow: 1;
+            & img {
+                width: u.rem(180);
+                height: u.rem(180);
+            }
+        }
+    }
 }

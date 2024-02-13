@@ -1,4 +1,25 @@
+@use '../utilities/' as u;
 .adminCreateUser {
     width: 80%;
-    background-color: red;
+
+    & .adminCreateUserForm {
+        & form {
+            display: grid;
+            grid-template-columns: 4fr 4fr;
+            column-gap: u.rem(80);
+
+            & div {margin-bottom: u.rem(28);
+                width: 100%;
+
+                & * {
+                    display: block;
+                    width: 100%;
+                }
+                & label { 
+                    margin-bottom: u.rem(8);
+                    margin-left: u.rem(4);
+                }
+            }
+        }
+    }
 }

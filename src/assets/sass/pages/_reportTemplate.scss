@@ -2,28 +2,35 @@
 @use '../global/' as g;
 
 .reportTemplate {
+    width: 80%;
     padding: g.$small;
     @include u.boxshadow;
     @include u.borderradius(u.rem(20));
     display: flex;
     flex-direction: column;
+
     & .reportHeader {
         display: flex;
+
         & div {
             flex-grow: 1;
+
             & img {
                 width: u.rem(180);
                 height: u.rem(180);
             }
         }
+
         & .headerLogo {
             padding-left: u.rem(16);
         }
+
         & .organizationDetails {
             text-align: right;
             padding-right: u.rem(16);
         }
     }
+
     & .reportMainContent {
         padding: u.rem(12) 0;
         display: flex;
@@ -35,13 +42,37 @@
 
             & div {
                 flex-grow: 1;
+
                 & h3 {
                     font-weight: bold;
                 }
+
                 & div {
                     & p {
                         font-size: g.$msmall_font;
                         line-height: u.rem(32);
+                    }
+                }
+            }
+
+            & .relatedBillInfo {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                & p {
+                    font-weight: 500;
+                    font-size: g.$msmall_font;
+                    line-height: u.rem(32);
+                    display: flex;
+                    justify-content: flex-start;
+
+                    & * {
+                        flex-grow: 1;
+                        display: block;
+                    }
+                    & .caption {
+                        padding-right: u.rem(80) ;
+                        // width: u.rem(200);
                     }
                 }
             }

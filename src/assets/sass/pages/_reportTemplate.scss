@@ -14,6 +14,9 @@
                 height: u.rem(180);
             }
         }
+        & .headerLogo {
+            padding-left: u.rem(12);
+        }
         & .organizationDetails {
             background-color: white;
             text-align: right;

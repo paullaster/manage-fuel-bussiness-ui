@@ -5,7 +5,7 @@ import {Landing} from '@/packages/Landing';
 import { Admin, User, CompanyList, AddCompany, NewCompany, Wizard, TankAndPumpData, Dashboard, } from '@/packages/dashboard';
 import auth from '@/packages/auth';
 import Purchases from '@/packages/purchases';
-import { CreateNewUser, UsersComponent, } from '../packages/dashboard/admin/modules';
+import { CreateNewUser } from '../packages/dashboard/admin/modules';
 
 
 const router = createBrowserRouter(

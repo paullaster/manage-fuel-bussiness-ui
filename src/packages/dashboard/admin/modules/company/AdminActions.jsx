@@ -1,11 +1,15 @@
 import { MdOutlineMoreHoriz, MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { v4 as uuidv4 } from 'uuid';
-import { redirect } from 'react-router-dom';
 
 
 const handleCreateNewUser = (state) => {
    state.close();
-   redirect('/dashboard/admin/:id/manage/users/create');
+   location.pathname = '/dashboard/admin/:id/manage/users/create';
+}
+
+const handleCreateNewCompany = (state) => {
+   state.close();
+   location.pathname = '/dashboard/admin/:id/manage/company/new';
 }
 
 export default
@@ -16,8 +20,8 @@ export default
          iconList: [{ key: uuidv4(), icon: <MdOutlineMoreHoriz /> }, { key: uuidv4(), icon: <MdOutlineKeyboardArrowDown /> }],
          hasList: true,
          list: [
-            { key: uuidv4(), cap: 'User', action: (state) => { console.log(state) } },
-            { key: uuidv4(), cap: 'Company', action: () => { console.log("new company") } },
+            { key: uuidv4(), cap: 'User', action: (state) =>  handleCreateNewUser(state)},
+            { key: uuidv4(), cap: 'Company', action: () => handleCreateNewCompany(state)},
          ]
       },
    ];

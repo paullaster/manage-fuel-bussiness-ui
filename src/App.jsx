@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { StateProvider } from './store';
+import { AuthContext } from './store';
 
 const App = () => {
   return (

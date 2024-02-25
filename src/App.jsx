@@ -10,7 +10,7 @@ const App = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-if (Hide('/account') && !isAuthenticated)
+if (Hide('/account') && auth.isAuthenticated) navigate('/dasboard');
   useEffect(() => {
 
   },[auth, location])

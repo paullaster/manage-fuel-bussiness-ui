@@ -497,6 +497,12 @@ const NewVendor = () => {
 export default NewVendor
 
 
+const CurrencyComponent = () => {
+    return (
+        <div>Currency</div>
+    )
+}
+
 const ContactPerson = () => {
     return (
         <div>Contact person </div>

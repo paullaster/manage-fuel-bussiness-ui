@@ -18,6 +18,14 @@ import { APPNAME } from '@/environments';
 import { useNavigate } from 'react-router-dom';
 
 
+
+const createVendorSteps = [
+    {
+        label: 'Add primary currency',
+        id: uuidv4(),
+    }
+]
+
 const NewVendor = () => {
 
     const [paymentMethod, setPaymentMethod] = useState(null);

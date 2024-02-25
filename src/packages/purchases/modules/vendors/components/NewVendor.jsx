@@ -23,8 +23,24 @@ const createVendorSteps = [
     {
         label: 'Add primary currency',
         id: uuidv4(),
-    }
-]
+    },
+    {
+        label: 'Add billing information',
+        id: uuidv4(),
+    },
+    {
+        label: 'Add contact person',
+        id: uuidv4(),
+    },
+    {
+        label: 'Add vendor address details',
+        id: uuidv4(),
+    },
+    {
+        label: 'Add general vendor information',
+        id: uuidv4(),
+    },
+];
 
 const NewVendor = () => {
 
@@ -479,3 +495,10 @@ const NewVendor = () => {
 }
 
 export default NewVendor
+
+
+const ContactPerson = () => {
+    return (
+        <div>Contact person </div>
+    )
+}

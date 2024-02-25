@@ -12,7 +12,7 @@ const Login = () => {
   // const { isAuthenticated } = useGlobalState();
   // const globalStateSetter = useGlobalDispatcher();
   // const navigate = useNavigate();
-  const { account, authSetter } = useContext(AuthContext);
+  const { authSetter } = useContext(AuthContext);
 
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
@@ -25,8 +25,8 @@ const Login = () => {
     login(payload)
     .then((res) => {
       AuthService.Login(res.access, res.refresh);
-
       // globalStateSetter({type: 'SETAUTH', payload: AuthService.isLoggedIn()});
+      authSetter({ user: 'user', isAuthenticated: AuthService.isLoggedIn()});
       console.log(res);
     })
     .catch((error) => {

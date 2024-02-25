@@ -5,17 +5,14 @@ import AuthService from "@/packages/auth/AuthService";
 export const instance = axios.create({
     baseURL: BASEAPIURL,
     // timeout: 10000,
-    // withCredentials: AuthService.isLoggedIn(),
 });
 
 export const protectedRequestInterceptor = (config) => {
-    // if (AuthService.isLoggedIn()) {
-    //     config.headers.Authorization = `Bearer ${AuthService.getAccessToken()}`;
-    // }
-
-    // // config.headers['Content-Type'] = `application/json`;
-    // config.headers.Accept = `application/json`;
-    // delete config.env
+    if (AuthService.isLoggedIn()) {
+        config.headers['Authorization'] = `Bearer ${AuthService.getAccessToken()}`;
+    }
+    // config.headers['Content-Type'] = "application/json";
+    console.log("headers", config.headers);
     return config;
 };
 

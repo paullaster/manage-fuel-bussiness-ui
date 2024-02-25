@@ -1,10 +1,11 @@
 import { Form, useNavigate } from 'react-router-dom';
 import { Button } from '@/components';
-import { MdAlternateEmail, MdLockOutline } from "react-icons/md";
+import { MdAlternateEmail, MdFamilyRestroom, MdLockOutline } from "react-icons/md";
 import { useEffect, useRef } from 'react';
 import { login } from '../authActions';
 import AuthService from '../AuthService';
 import { useGlobalDispatcher, useGlobalState } from '@/store';
+import axios from 'axios';
 
 const Login = () => {
 
@@ -15,7 +16,7 @@ const Login = () => {
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     const payload = {
       email_or_phone: usernameRef.current.value,
       password: passwordRef.current.value,
@@ -24,8 +25,6 @@ const Login = () => {
     .then((res) => {
       AuthService.Login(res.access, res.refresh);
       globalStateSetter({type: 'SETAUTH', payload: AuthService.isLoggedIn()});
-      // if(!)
-      // WebStorage.CheckItemIfExist()
       console.log(res);
     })
     .catch((error) => {
@@ -36,7 +35,6 @@ const Login = () => {
   useEffect(() => {
     if (isAuthenticated) navigate('/dashboard');
   }, [isAuthenticated]);
-
   return (
       <div>
         <Form>

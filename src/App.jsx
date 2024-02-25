@@ -11,12 +11,15 @@ const App = () => {
   const location = useLocation();
 
 if (Hide('/account') && auth.isAuthenticated) navigate('/dasboard');
+
+if (!auth.isAuthenticated && Hide('/dashboard') ) return navigate('/account/login');
+
   useEffect(() => {
 
   },[auth, location])
 
   return (
-    <AuthContext.Provider value={{user: null, isAuthenticated: false}}>
+    <AuthContext.Provider value={{account: auth, authSetter: setAuth}}>
     <StateProvider>
       <Outlet />
     </StateProvider>

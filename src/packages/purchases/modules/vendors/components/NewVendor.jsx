@@ -508,3 +508,9 @@ const ContactPerson = () => {
         <div>Contact person </div>
     )
 }
+
+const VendorBillingComponent = () => {
+    return (
+        <div>Vendor billing</div>
+    )
+}

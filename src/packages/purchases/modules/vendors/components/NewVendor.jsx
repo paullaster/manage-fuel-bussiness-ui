@@ -497,13 +497,13 @@ const NewVendor = () => {
 export default NewVendor
 
 
-const CurrencyComponent = () => {
+const VendorCurrencyComponent = () => {
     return (
         <div>Currency</div>
     )
 }
 
-const ContactPerson = () => {
+const ContactPersonComponent = () => {
     return (
         <div>Contact person </div>
     )

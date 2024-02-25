@@ -18,6 +18,30 @@ import { APPNAME } from '@/environments';
 import { useNavigate } from 'react-router-dom';
 
 
+
+const createVendorSteps = [
+    {
+        label: 'Add primary currency',
+        id: uuidv4(),
+    },
+    {
+        label: 'Add billing information',
+        id: uuidv4(),
+    },
+    {
+        label: 'Add contact person',
+        id: uuidv4(),
+    },
+    {
+        label: 'Add vendor address details',
+        id: uuidv4(),
+    },
+    {
+        label: 'Add general vendor information',
+        id: uuidv4(),
+    },
+];
+
 const NewVendor = () => {
 
     const [paymentMethod, setPaymentMethod] = useState(null);
@@ -471,3 +495,34 @@ const NewVendor = () => {
 }
 
 export default NewVendor
+
+
+const VendorCurrencyComponent = () => {
+    return (
+        <div>Currency</div>
+    )
+}
+
+const ContactPersonComponent = () => {
+    return (
+        <div>Contact person </div>
+    )
+}
+
+const VendorBillingComponent = () => {
+    return (
+        <div>Vendor billing</div>
+    )
+}
+
+const VendorAddressDetails = () => { 
+    return (
+        <div>Vendor address details</div>
+    )
+}
+
+const VendorInformationComponent = () => {
+    return (
+        <div>Vendor information</div>
+    )
+}

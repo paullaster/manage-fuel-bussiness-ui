@@ -1,21 +1,19 @@
-import { Form, useNavigate } from 'react-router-dom';
+import { Form } from 'react-router-dom';
 import { Button } from '@/components';
 import { MdAlternateEmail, MdLockOutline } from "react-icons/md";
-import { useEffect, useRef } from 'react';
+import { useRef, useContext } from 'react';
 import { login } from '../authActions';
 import AuthService from '../AuthService';
-import { useGlobalDispatcher, useGlobalState } from '@/store';
+import { AuthContext } from '@/store';
+
 
 const Login = () => {
-
-  const { isAuthenticated } = useGlobalState();
-  const globalStateSetter = useGlobalDispatcher();
-  const navigate = useNavigate();
+  const { authSetter } = useContext(AuthContext);
 
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     const payload = {
       email_or_phone: usernameRef.current.value,
       password: passwordRef.current.value,
@@ -23,20 +21,13 @@ const Login = () => {
     login(payload)
     .then((res) => {
       AuthService.Login(res.access, res.refresh);
-      globalStateSetter({type: 'SETAUTH', payload: AuthService.isLoggedIn()});
-      // if(!)
-      // WebStorage.CheckItemIfExist()
+      authSetter({ user: 'user', isAuthenticated: AuthService.isLoggedIn()});
       console.log(res);
     })
     .catch((error) => {
       console.log(error)
     })
   }
-
-  useEffect(() => {
-    if (isAuthenticated) navigate('/dashboard');
-  }, [isAuthenticated]);
-
   return (
       <div>
         <Form>

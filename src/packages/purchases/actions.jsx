@@ -94,7 +94,7 @@ export const postingFuelPurchase = async(payload) => {
 
 // FETCH VENDORS
 export const fetchVendorsList = async(params = {}) => {
-    return await _request({method: 'GET', params, url: vendor});
+    return await _request({url: vendor, method: 'GET', params, headers: {'Content-Type': 'application/json'}});
 }
 
 export const fetchFuelPurchases = async(params = {}) => {

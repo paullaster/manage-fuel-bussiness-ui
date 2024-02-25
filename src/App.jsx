@@ -2,6 +2,7 @@ import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { StateProvider } from './store';
 import { AuthContext } from './store';
 import { useEffect, useState } from 'react';
+import { Hide } from './utils';
 
 const App = () => {
   
@@ -9,6 +10,7 @@ const App = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+if (Hide('/account') && !isAuthenticated)
   useEffect(() => {
 
   },[auth, location])

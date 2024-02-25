@@ -3,6 +3,7 @@ import { StateProvider } from './store';
 import { AuthContext } from './store';
 import { useEffect, useState } from 'react';
 import { Hide } from './utils';
+import AuthService from './packages/auth/AuthService';
 
 const App = () => {
 
@@ -10,12 +11,12 @@ const App = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  if (Hide('/account') && auth.isAuthenticated) navigate('/dasboard');
+  if (Hide('/account') && auth.isAuthenticated) navigate('/dashboard');
 
   if (!auth.isAuthenticated && Hide('/dashboard')) return navigate('/account/login');
 
   useEffect(() => {
-
+     setAuth({user: 'user', isAuthenticated: AuthService.isLoggedIn()});
   }, [auth, location])
 
   return (

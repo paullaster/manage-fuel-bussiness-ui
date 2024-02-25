@@ -1,17 +1,18 @@
 import { Form, useNavigate } from 'react-router-dom';
 import { Button } from '@/components';
-import { MdAlternateEmail, MdFamilyRestroom, MdLockOutline } from "react-icons/md";
-import { useEffect, useRef } from 'react';
+import { MdAlternateEmail, MdLockOutline } from "react-icons/md";
+import { useEffect, useRef, useContext } from 'react';
 import { login } from '../authActions';
 import AuthService from '../AuthService';
-import { useGlobalDispatcher, useGlobalState } from '@/store';
-import axios from 'axios';
+import { useGlobalDispatcher, useGlobalState, AuthContext } from '@/store';
+
 
 const Login = () => {
 
-  const { isAuthenticated } = useGlobalState();
-  const globalStateSetter = useGlobalDispatcher();
-  const navigate = useNavigate();
+  // const { isAuthenticated } = useGlobalState();
+  // const globalStateSetter = useGlobalDispatcher();
+  // const navigate = useNavigate();
+  const { account, authSetter } = useContext(AuthContext);
 
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
@@ -24,7 +25,8 @@ const Login = () => {
     login(payload)
     .then((res) => {
       AuthService.Login(res.access, res.refresh);
-      globalStateSetter({type: 'SETAUTH', payload: AuthService.isLoggedIn()});
+
+      // globalStateSetter({type: 'SETAUTH', payload: AuthService.isLoggedIn()});
       console.log(res);
     })
     .catch((error) => {

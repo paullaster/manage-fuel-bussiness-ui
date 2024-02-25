@@ -515,6 +515,12 @@ const VendorBillingComponent = () => {
     )
 }
 
+const VendorAddressDetails = () => { 
+    return (
+        <div>Vendor address details</div>
+    )
+}
+
 const VendorInformationComponent = () => {
     return (
         <div>Vendor information</div>

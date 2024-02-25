@@ -514,3 +514,9 @@ const VendorBillingComponent = () => {
         <div>Vendor billing</div>
     )
 }
+
+const VendorInformationComponent = () => {
+    return (
+        <div>Vendor information</div>
+    )
+}

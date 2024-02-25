@@ -1,17 +1,15 @@
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import purchases from "../../purchases";
 import { useGlobalDispatcher, useGlobalState } from "@/store";
 import { useEffect, useMemo } from "react";
 import { Navigation, Footer } from "@/components";
 import { RandomCodeGenerator } from "@/utils";
-import AuthService from "../../auth/AuthService";
 
 const Dashboard = () => {
 
   const appStateDispatcher = useGlobalDispatcher();
-  const { links, isAuthenticated } = useGlobalState();
+  const { links } = useGlobalState();
   const location = useLocation();
-  const navigate = useNavigate();
 
   const transactionCode = useMemo(() => {
     const locationArray = location.pathname.split('/');
@@ -34,12 +32,6 @@ const Dashboard = () => {
      * - this is to be done for code refactoring and optimization
      */
   }, [transactionCode]);
-
-  useEffect(() => {
-     appStateDispatcher({type: 'SETAUTH', payload: AuthService.isLoggedIn()});
-     console.log(AuthService.isLoggedIn());
-    if (!isAuthenticated) navigate('/account/login');
-  }, [isAuthenticated]);
 
   return (
     <>

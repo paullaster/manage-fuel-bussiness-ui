@@ -3,6 +3,7 @@ import { StateProvider } from './store';
 import { AuthContext } from './store';
 import { useEffect, useState } from 'react';
 import AuthService from './packages/auth/AuthService';
+import { ToastContainer, toast } from 'react-toastify';
 
 const App = () => {
 
@@ -13,22 +14,25 @@ const App = () => {
   const Hide = (path) => {
     return location.pathname.includes(path);
   }
-  
+
   useEffect(() => {
     if (Hide('/account') && auth.isAuthenticated) navigate('/dashboard');
     if (!auth.isAuthenticated && Hide('/dashboard')) navigate('/account/login');
-    setAuth({user: 'user', isAuthenticated: AuthService.isLoggedIn()});
-  },[])
-  
+    setAuth({ user: 'user', isAuthenticated: AuthService.isLoggedIn() });
+  }, [])
+
   useEffect(() => {
   }, [location, auth]);
 
   return (
-    <AuthContext.Provider value={{ account: auth, authSetter: setAuth }}>
-      <StateProvider>
-        <Outlet />
-      </StateProvider>
-    </AuthContext.Provider>
+    <>
+      <AuthContext.Provider value={{ account: auth, authSetter: setAuth }}>
+        <StateProvider>
+          <Outlet />
+        </StateProvider>
+      </AuthContext.Provider>
+      <ToastContainer />
+    </>
   )
 }
 

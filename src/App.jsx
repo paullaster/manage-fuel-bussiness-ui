@@ -19,11 +19,12 @@ const App = () => {
   useEffect(() => {
     if (Hide('/account') && auth.isAuthenticated) navigate('/dashboard');
     if (!auth.isAuthenticated && Hide('/dashboard')) navigate('/account/login');
-    setAuth({ user: 'user', isAuthenticated: AuthService.isLoggedIn() });
-  }, [])
+  }, [location, auth]);
 
   useEffect(() => {
-  }, [location, auth]);
+    setAuth({ user: 'user', isAuthenticated: AuthService.isLoggedIn() });
+
+  }, []);
 
   return (
     <AuthContext.Provider value={{ account: auth, authSetter: setAuth }}>

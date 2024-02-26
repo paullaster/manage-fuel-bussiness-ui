@@ -1,6 +1,6 @@
 import React from 'react'
 
-const LoadingScreen = (message) => {
+const LoadingScreen = ({message}) => {
   return (
     <div className="loading">
       <div className="spinner"></div>

@@ -28,7 +28,7 @@ const App = () => {
 
   }, []);
 
-  if (isLoading) {
+  if (isLoading.status) {
     return <LoadingScreen  message={isLoading.message}/>
   }
   return (

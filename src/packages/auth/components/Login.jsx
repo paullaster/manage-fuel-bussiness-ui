@@ -23,10 +23,10 @@ const Login = () => {
     .then((res) => {
       AuthService.Login(res.access, res.refresh);
       authSetter({ user: 'user', isAuthenticated: AuthService.isLoggedIn()});
-      
+      toast.success('Login successful');
     })
     .catch((error) => {
-      console.log(error)
+      toast.error(error.message);
     })
   }
   return (

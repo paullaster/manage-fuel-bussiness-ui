@@ -23,29 +23,11 @@ const Login = () => {
     .then((res) => {
       AuthService.Login(res.access, res.refresh);
       authSetter({ user: 'user', isAuthenticated: AuthService.isLoggedIn()});
-      toast.success('Login successful',{
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        });
+      toast.success('Login successful');
     })
     .catch((error) => {
-      console.log("Login error ", error);
-      toast.error("Error Logging in!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        });
+      console.log("Login", error);
+      toast.error(error.message);
     })
   }
   return (

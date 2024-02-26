@@ -40,7 +40,6 @@ const App = () => {
           draggable
           pauseOnHover
           theme="colored"
-          transitionBounce
         />
       </StateProvider>
     </AuthContext.Provider>

@@ -1,4 +1,5 @@
 @use '../utilities/' as u;
+@use '../global/' as g;
 
 .loading {
     height: 100dvh;
@@ -7,7 +8,6 @@
     flex-direction: column;
     align-items: center !important;
     justify-content: center;
-    background-color: red;
 
     .spinner {
         border: 4px solid rgba(255, 255, 255, 0.3);

@@ -18,10 +18,10 @@ const App = () => {
     if (Hide('/account') && auth.isAuthenticated) navigate('/dashboard');
     if (!auth.isAuthenticated && Hide('/dashboard')) navigate('/account/login');
     setAuth({user: 'user', isAuthenticated: AuthService.isLoggedIn()});
-  }, [location])
+  },[])
   
   useEffect(() => {
-  }, [auth]);
+  }, [location, auth]);
 
   return (
     <AuthContext.Provider value={{ account: auth, authSetter: setAuth }}>

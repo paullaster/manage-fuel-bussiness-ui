@@ -3,7 +3,7 @@ import { StateProvider } from './store';
 import { AuthContext } from './store';
 import { useEffect, useState } from 'react';
 import AuthService from './packages/auth/AuthService';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
 

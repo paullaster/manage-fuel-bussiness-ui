@@ -22,7 +22,7 @@ const Login = () => {
     .then((res) => {
       AuthService.Login(res.access, res.refresh);
       authSetter({ user: 'user', isAuthenticated: AuthService.isLoggedIn()});
-      console.log(res);
+      
     })
     .catch((error) => {
       console.log(error)

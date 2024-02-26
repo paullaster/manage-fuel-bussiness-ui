@@ -4,6 +4,7 @@ import { AuthContext } from './store';
 import { useEffect, useState } from 'react';
 import AuthService from './packages/auth/AuthService';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
 
@@ -25,26 +26,24 @@ const App = () => {
   }, [location, auth]);
 
   return (
-    <>
-      <AuthContext.Provider value={{ account: auth, authSetter: setAuth }}>
-        <StateProvider>
-          <Outlet />
-        </StateProvider>
-      </AuthContext.Provider>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-        transition:Bounce
-      />
-    </>
+    <AuthContext.Provider value={{ account: auth, authSetter: setAuth }}>
+      <StateProvider>
+        <Outlet />
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+          transitionBounce
+        />
+      </StateProvider>
+    </AuthContext.Provider>
   )
 }
 

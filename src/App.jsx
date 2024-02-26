@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import AuthService from './packages/auth/AuthService';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import 
+import { LoadingScreen } from './components';
 
 const App = () => {
 

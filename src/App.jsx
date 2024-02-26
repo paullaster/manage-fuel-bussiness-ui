@@ -10,6 +10,7 @@ import { LoadingScreen } from './components';
 const App = () => {
 
   const [auth, setAuth] = useState({ user: null, isAuthenticated: false });
+  const [isLoading, setIsLoading] = useState({message: 'Loading...', status: true});
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -27,6 +28,9 @@ const App = () => {
 
   }, []);
 
+  if (isLoading) {
+    return <LoadingScreen  message={isLoading.message}/>
+  }
   return (
     <AuthContext.Provider value={{ account: auth, authSetter: setAuth }}>
       <StateProvider>

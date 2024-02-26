@@ -1,10 +1,10 @@
 import React from 'react'
 
-const LoadingScreen = (message = null) => {
+const LoadingScreen = (message) => {
   return (
     <div className="loading">
       <div className="spinner"></div>
-      <p>{ message || "Loading..." }</p>
+      <p>{ message }</p>
     </div>
   )
 }

@@ -79,7 +79,7 @@ const VendorInformationComponent = () => {
 
 const NewVendor = () => {
 
-    const [paymentMethod, setPaymentMethod] = useState(null);
+    const [paymentMethod, setPaymentMethod] = useState([{ method: 'Mpesa' }, { method: 'Bank' }]);
     const [rows, setRows] = useState([]);
     const [rowModesModel, setRowModesModel] = useState({});
     const [activeStep, setActiveStep] = useState(0);
@@ -165,9 +165,8 @@ const NewVendor = () => {
                 invalid.current = true;
                 field = prop;
             }
-            return {isValid: invalid.current, field: field};
         }
-    
+        return { isValid: invalid.current, field: field };
     };
     // SETTING STEPPER
     const handleNext = () => {
@@ -222,21 +221,20 @@ const NewVendor = () => {
         event.stopPropagation();
         invalid.current = false;
         const billinObject = {
-            payment_method: paymentMethod.method,
+            payment_method: paymentMethod?.method,
             mpesa_phone_number: phoneNumberRef.current.value,
             mpesa_till_number: tillNumberRef.current.value,
             mpesa_paybill_number: paybillNumberRef.current.value,
             bank_name: bankNameRef.current.value,
             bank_account_number: accountNumberRef.current.value,
         };
-        for (let prop in billinObject) {
-            if (!billinObject[prop]) {
-                invalid.current = true;
-                toast.error(`${prop} is a required filed`);
-                return;
-            }
+        console.log(billinObject)
+        const { isValid, field } = validateObject(billinObject);
+        if (isValid) {
+            toast.error(`${field} is a required filed`);
+            return;
         }
-        
+
     }
 
     const createVendorSteps = [
@@ -250,7 +248,7 @@ const NewVendor = () => {
             caption: 'Add billing information',
             id: uuidv4(),
             Component: <VendorBilling ref={billingInfo} handleSelectedPaymentMethod={handleSelectedPaymentMethod} />,
-            stepAction: handleSubmitCurrency
+            stepAction: handleSubmitBillingInformation
         },
         {
             caption: 'Add contact person',

@@ -1,5 +1,5 @@
 import { Button, InputComponent, } from "@/components";
-import { useRef, useState, useMemo, useEffect } from "react";
+import { useRef, useState, useMemo, useEffect, Component } from "react";
 import { Form } from "react-router-dom";
 import cardImage from "@/assets/images/card_image.svg";
 import shared from "../../../shared";
@@ -16,6 +16,10 @@ import VendorInformation from "./VendorInformation";
 import WebStorage from '@/utils/WebStorage';
 import { APPNAME } from '@/environments';
 import { useNavigate } from 'react-router-dom';
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import StepContent from "@mui/material/StepContent";
 
 
 
@@ -23,22 +27,27 @@ const createVendorSteps = [
     {
         label: 'Add primary currency',
         id: uuidv4(),
+        Component: () => (<div>Currency</div>)
     },
     {
         label: 'Add billing information',
         id: uuidv4(),
+        Component: () => (<div>Billing</div>)
     },
     {
         label: 'Add contact person',
         id: uuidv4(),
+        Component: () => (<div>Contact person</div>)
     },
     {
         label: 'Add vendor address details',
         id: uuidv4(),
+        Component: () => (<div>Address</div>)
     },
     {
         label: 'Add general vendor information',
         id: uuidv4(),
+        Component: () => (<div>general </div>)
     },
 ];
 
@@ -392,6 +401,7 @@ const NewVendor = () => {
     }
 
     return (
+
         <section className="new_vendors">
             <div className="new_vendors__left">
                 <shared.components.SectionIntroduction text="New Vendor" />

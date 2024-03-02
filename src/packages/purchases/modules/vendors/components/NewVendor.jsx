@@ -215,7 +215,7 @@ const NewVendor = () => {
         event.stopPropagation();
         setPaymentMethod(newValue);
     };
-    
+
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
@@ -238,72 +238,25 @@ const NewVendor = () => {
         }
         setLoader({ message: "Saving currency informtion...", status: true });
         postBillingInformation(billinObject)
-        .then((res) => {
-            const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-            if (!idObject['currency']) {
-                toast.error("Invalid payload, currency information did not insert correctly!");
-                handleBack();
-                return ;
-            }
-            idObject.billing_id = res?.id
-            WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
-            setLoader({ message: "Saving currency informtion...", status: true });
-            toast.success(`Billing information saved successfully`);
-            handleNext();
-        })
-        .catch((error) => {
-            setLoader({ message: "", status: false });
-            toast.error(error.message);
-        })
+            .then((res) => {
+                const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+                if (!idObject['currency']) {
+                    toast.error("Invalid payload, currency information did not insert correctly!");
+                    handleBack();
+                    return;
+                }
+                idObject.billing_id = res?.id
+                WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+                setLoader({ message: "Saving currency informtion...", status: true });
+                toast.success(`Billing information saved successfully`);
+                handleNext();
+            })
+            .catch((error) => {
+                setLoader({ message: "", status: false });
+                toast.error(error.message);
+            })
 
     }
-
-    const createVendorSteps = [
-        // {
-        //     caption: 'Add primary currency',
-        //     id: uuidv4(),
-        //     Component: <VendorCurrencyComponent ref={currencyRefObject} />,
-        //     stepAction: handleSubmitCurrency
-        // },
-        {
-            caption: 'Add billing information',
-            id: uuidv4(),
-            Component: <VendorBilling ref={billingInfo} handleSelectedPaymentMethod={handleSelectedPaymentMethod} />,
-            stepAction: handleSubmitBillingInformation
-        },
-        {
-            caption: 'Add contact person',
-            id: uuidv4(),
-            Component: () => (<div>Contact person</div>),
-            stepAction: handleSubmitCurrency
-        },
-        {
-            caption: 'Add vendor address details',
-            id: uuidv4(),
-            Component: () => (<div>Address</div>),
-            stepAction: handleSubmitCurrency
-        },
-        {
-            caption: 'Add general vendor information',
-            id: uuidv4(),
-            Component: () => (<div>general </div>),
-            stepAction: handleSubmitCurrency
-        },
-    ];
-
-    const handleAddCurrency = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        setOpen(true);
-    };
-
-    const handleCloseDialog = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        setOpen(false);
-    }
-
-
 
     const deleteItem = (item) => {
         setRows((prevRows) => prevRows.filter((row) => row.id !== item.id));
@@ -337,26 +290,19 @@ const NewVendor = () => {
             event.defaultMuiPrevented = true;
         }
     };
-
-
+    
+    
     const processRowUpdate = (newRow) => {
         const updatedRow = { ...newRow, isNew: false };
         setRows(rows.map((row) => row.id === newRow.id ? updatedRow : row));
         return updatedRow;
     };
-
-
-
+    
+    
+    
     const handleRowModesModelChange = (newRowModesModel) => {
         setRowModesModel(newRowModesModel);
     };
-
-
-
-    const handleReset = () => {
-        setActiveStep(0);
-    };
-
     const contactColumns = useMemo(() => {
         return [
             {
@@ -437,6 +383,69 @@ const NewVendor = () => {
     useEffect(() => {
 
     }, [contactColumns, rows]);
+    const createVendorSteps = [
+        // {
+        //     caption: 'Add primary currency',
+        //     id: uuidv4(),
+        //     Component: <VendorCurrencyComponent ref={currencyRefObject} />,
+        //     stepAction: handleSubmitCurrency
+        // },
+        // {
+        //     caption: 'Add billing information',
+        //     id: uuidv4(),
+        //     Component: <VendorBilling ref={billingInfo} handleSelectedPaymentMethod={handleSelectedPaymentMethod} />,
+        //     stepAction: handleSubmitBillingInformation
+        // },
+        {
+            caption: 'Add contact person',
+            id: uuidv4(),
+            Component: <ContactPerson
+                rows={rows}
+                columns={contactColumns}
+                setRows={setRows}
+                rowModesModel={rowModesModel}
+                setRowModesModel={setRowModesModel}
+                handleRowModesModelChange={handleRowModesModelChange}
+                processRowUpdate={processRowUpdate}
+                handleRowEditStop={handleRowEditStop}
+            />,
+            stepAction: handleSubmitCurrency
+        },
+        {
+            caption: 'Add vendor address details',
+            id: uuidv4(),
+            Component: () => (<div>Address</div>),
+            stepAction: handleSubmitCurrency
+        },
+        {
+            caption: 'Add general vendor information',
+            id: uuidv4(),
+            Component: () => (<div>general </div>),
+            stepAction: handleSubmitCurrency
+        },
+    ];
+
+    const handleAddCurrency = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        setOpen(true);
+    };
+
+    const handleCloseDialog = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        setOpen(false);
+    }
+
+
+
+
+
+
+    const handleReset = () => {
+        setActiveStep(0);
+    };
+
     useEffect(() => {
 
     }, [rows]);
@@ -445,94 +454,94 @@ const NewVendor = () => {
         event.preventDefault();
         event.stopPropagation();
         postBillingInformation(billinObject)
-        .then((res) => {
+            .then((res) => {
 
-            const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-            if (!idObject['currency']) {
-                console.error("Invalid payload, currency information did not insert correctly!");
-                throw new Error("Invalid payload, Currency information did no insert correctly!");
-            }
-            idObject.billing_id = res?.id
-            WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
-
-            const addressObject = {
-                address: addressRef.current.value,
-                city: cityRef.current.value,
-                zip_code: zipCodeRef.current.value,
-                state: stateRef.current.value,
-                country: countryRef.current.value,
-            };
-            for (let prop in addressObject) {
-                if (!addressObject[prop]) {
-                    validRef.current = false;
-                    return new Error(`${prop} is a required field`);
+                const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+                if (!idObject['currency']) {
+                    console.error("Invalid payload, currency information did not insert correctly!");
+                    throw new Error("Invalid payload, Currency information did no insert correctly!");
                 }
-            }
+                idObject.billing_id = res?.id
+                WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
 
-            if (!validRef.current) {
-                return new Error("Invalid request");
-            };
-            const addresses = [];
-            postAddress(addressObject)
-                .then((res) => {
-
-                    if (!idObject['billing_id'] || !idObject['currency']) {
-                        console.error("Invalid payload, Billing and currency  information did no insert correctly!");
-                        throw new Error("Invalid payload, Billing and currency information did no insert correctly!");
+                const addressObject = {
+                    address: addressRef.current.value,
+                    city: cityRef.current.value,
+                    zip_code: zipCodeRef.current.value,
+                    state: stateRef.current.value,
+                    country: countryRef.current.value,
+                };
+                for (let prop in addressObject) {
+                    if (!addressObject[prop]) {
+                        validRef.current = false;
+                        return new Error(`${prop} is a required field`);
                     }
-                    addresses.push(res?.address_id);
-                    idObject.addresses = addresses;
-                    WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+                }
 
-                    // POSTING CONTACT PERSON
-                    const { id, isNew, ...data } = rows[0];
-                    const contacts = [];
-                    postContactPerson(data)
-                        .then((res) => {
-                            contacts.push(res?.contact_id);
-                            idObject.contacts = contacts;
-                            WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+                if (!validRef.current) {
+                    return new Error("Invalid request");
+                };
+                const addresses = [];
+                postAddress(addressObject)
+                    .then((res) => {
 
-                            // COMPOSE VENDOR
-                            const vendorObject = {
-                                vendor_reference: vendorReferenceRef.current.value,
-                                website: vendorWebsiteRef.current.value,
-                                kra_pin: vendorPinRef.current.value,
-                                product_description: vendorProdDescRef.current.value,
-                                company_name: vendorCompanyNameRef.current.value,
-                                vendor_phone: vendorPhoneRef.current.value,
-                                vendor_email: vendorEmailRef.current.value,
-                                vendor_name: vendorNameRef.current.value,
-                                national_id: vendorNationalIDRef.current.value,
-                            };
+                        if (!idObject['billing_id'] || !idObject['currency']) {
+                            console.error("Invalid payload, Billing and currency  information did no insert correctly!");
+                            throw new Error("Invalid payload, Billing and currency information did no insert correctly!");
+                        }
+                        addresses.push(res?.address_id);
+                        idObject.addresses = addresses;
+                        WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
 
-                            // VALIDATE VENDOR OBJECT
-                            validRef.current = ObjectValidator(
-                                [
-                                    "company_name",
-                                    "product_description",
-                                    "kra_pin",
-                                    "vendor_name"
-                                ],
-                                vendorObject
-                            );
+                        // POSTING CONTACT PERSON
+                        const { id, isNew, ...data } = rows[0];
+                        const contacts = [];
+                        postContactPerson(data)
+                            .then((res) => {
+                                contacts.push(res?.contact_id);
+                                idObject.contacts = contacts;
+                                WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
 
-                            if (!validRef.current) {
-                                throw new Error("Invalid payload!");
-                            }
-                            // POST VENDOR
-                            postVendor(vendorObject)
-                                .then((res) => {
-                                    console.log(res);
-                                    WebStorage.RemoveFromStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-                                    navigate(`/dashboard/purchases/vendor/vendors`);
-                                })
-                                .catch((error) => {
-                                    console.log(error);
-                                });
-                        })
-                })
-        });
+                                // COMPOSE VENDOR
+                                const vendorObject = {
+                                    vendor_reference: vendorReferenceRef.current.value,
+                                    website: vendorWebsiteRef.current.value,
+                                    kra_pin: vendorPinRef.current.value,
+                                    product_description: vendorProdDescRef.current.value,
+                                    company_name: vendorCompanyNameRef.current.value,
+                                    vendor_phone: vendorPhoneRef.current.value,
+                                    vendor_email: vendorEmailRef.current.value,
+                                    vendor_name: vendorNameRef.current.value,
+                                    national_id: vendorNationalIDRef.current.value,
+                                };
+
+                                // VALIDATE VENDOR OBJECT
+                                validRef.current = ObjectValidator(
+                                    [
+                                        "company_name",
+                                        "product_description",
+                                        "kra_pin",
+                                        "vendor_name"
+                                    ],
+                                    vendorObject
+                                );
+
+                                if (!validRef.current) {
+                                    throw new Error("Invalid payload!");
+                                }
+                                // POST VENDOR
+                                postVendor(vendorObject)
+                                    .then((res) => {
+                                        console.log(res);
+                                        WebStorage.RemoveFromStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+                                        navigate(`/dashboard/purchases/vendor/vendors`);
+                                    })
+                                    .catch((error) => {
+                                        console.log(error);
+                                    });
+                            })
+                    })
+            });
 
     }
 

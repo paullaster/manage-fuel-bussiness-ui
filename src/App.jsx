@@ -17,6 +17,7 @@ const App = () => {
     return location.pathname.includes(path);
   }
 
+
   useEffect(() => {
     if (Hide('/account') && auth.isAuthenticated) navigate('/dashboard');
     if (!auth.isAuthenticated && Hide('/dashboard')) navigate('/account/login');
@@ -24,8 +25,9 @@ const App = () => {
 
   useEffect(() => {
     setAuth({ user: 'user', isAuthenticated: AuthService.isLoggedIn() });
-
-  }, []);
+    setIsLoading({ message: '', status: true });
+    
+  }, [location]);
 
   return (
     <LoadingContext.Provider value={{loader: isLoading, setLoader: setIsLoading }}>

@@ -57,18 +57,54 @@ const VendorCurrencyComponent = forwardRef((props, ref) => {
     )
 });
 
-const ContactPersonComponent = () => {
-    return (
-        <div>Contact person </div>
-    )
-}
 
-
-const VendorAddressDetails = () => {
+const VendorAddressDetails = forwardRef((props, ref) => {
     return (
-        <div>Vendor address details</div>
+        <div className="new_vendors__left__dataentry__form_addressinfo">
+            <div className="new_vendors__left__dataentry__form_addressinfo_introduction form_section_introductions">
+                <h4>Address</h4>
+                <p>The address is required for the bills, so you need to add billing address details for your vendor.</p>
+            </div>
+            <div className="new_vendors__left__dataentry__form_addressinfo_datanetry">
+                <div className="new_vendors__left__dataentry__form_addressinfo_datanetry__section-one">
+                    <InputComponent
+                        prelabelText={"address finder"}
+                    />
+                    <div className="textarea_container">
+                        <label htmlFor="address">address</label>
+                        <textarea name="address" id="address" cols="30" rows="4" className="info_textarea" ref={ref.addressRef}></textarea>
+                    </div>
+                </div>
+                <div className="new_vendors__left__dataentry__form_addressinfo_datanetry__section-two">
+                    <InputComponent
+                        type="text"
+                        prelabelText={"town / city"}
+                        name="city"
+                        ref={ref.cityRef}
+                    />
+                    <InputComponent
+                        type="text"
+                        prelabelText={"postal / zip code"}
+                        name="zip_code"
+                        ref={ref.zipCodeRef}
+                    />
+                    <InputComponent
+                        type="text"
+                        prelabelText={"province / state"}
+                        name="state"
+                        ref={ref.stateRef}
+                    />
+                    <InputComponent
+                        type="text"
+                        prelabelText={"country"}
+                        name="country"
+                        ref={ref.countryRef}
+                    />
+                </div>
+            </div>
+        </div>
     )
-}
+});
 
 const VendorInformationComponent = () => {
     return (
@@ -236,7 +272,7 @@ const NewVendor = () => {
             toast.error(`${field} is a required filed`);
             return;
         }
-        setLoader({ message: "Saving currency informtion...", status: true });
+        setLoader({ message: "Saving billing informtion...", status: true });
         postBillingInformation(billinObject)
             .then((res) => {
                 const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
@@ -290,19 +326,56 @@ const NewVendor = () => {
             event.defaultMuiPrevented = true;
         }
     };
-    
-    
+
+
     const processRowUpdate = (newRow) => {
         const updatedRow = { ...newRow, isNew: false };
         setRows(rows.map((row) => row.id === newRow.id ? updatedRow : row));
         return updatedRow;
     };
-    
-    
-    
+
+
+
     const handleRowModesModelChange = (newRowModesModel) => {
         setRowModesModel(newRowModesModel);
     };
+
+    const handleSubmitAddress = () => {
+        const addressObject = {
+            address: addressRef.current.value,
+            city: cityRef.current.value,
+            zip_code: zipCodeRef.current.value,
+            state: stateRef.current.value,
+            country: countryRef.current.value,
+        };
+        const { isValid, field } = validateObject(addressObject);
+        if (isValid) {
+            toast.error(`${field} is a required filed`);
+            return;
+        }
+        setLoader({ message: "Saving address informtion...", status: true });
+        const addresses = [];
+        postAddress(addressObject)
+            .then((res) => {
+                if (!idObject['billing_id'] || !idObject['currency']) {
+                    toast.error("Invalid payload, Billing and currency  information did no insert correctly!");
+                    handleBack();
+                    return;
+                }
+                addresses.push(res?.address_id);
+                idObject.addresses = addresses;
+                WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+                setLoader({ message: "", status: false });
+                toast.success(`Successfully saved`);
+                handleNext();
+            })
+            .catch((err) => {
+                setLoader({ message: "", status: false });
+                toast.error(err.message);
+            });
+    };
+
+
     const contactColumns = useMemo(() => {
         return [
             {
@@ -396,31 +469,31 @@ const NewVendor = () => {
         //     Component: <VendorBilling ref={billingInfo} handleSelectedPaymentMethod={handleSelectedPaymentMethod} />,
         //     stepAction: handleSubmitBillingInformation
         // },
-        {
-            caption: 'Add contact person',
-            id: uuidv4(),
-            Component: <ContactPerson
-                rows={rows}
-                columns={contactColumns}
-                setRows={setRows}
-                rowModesModel={rowModesModel}
-                setRowModesModel={setRowModesModel}
-                handleRowModesModelChange={handleRowModesModelChange}
-                processRowUpdate={processRowUpdate}
-                handleRowEditStop={handleRowEditStop}
-            />,
-            stepAction: handleSubmitCurrency
-        },
-        {
-            caption: 'Add vendor address details',
-            id: uuidv4(),
-            Component: () => (<div>Address</div>),
-            stepAction: handleSubmitCurrency
-        },
+        // {
+        //     caption: 'Add vendor address details',
+        //     id: uuidv4(),
+        //     Component: <VendorAddressDetails ref={addressObject} />,
+        //     stepAction: handleSubmitAddress
+        // },
+        // {
+        //     caption: 'Add contact person',
+        //     id: uuidv4(),
+        //     Component: <ContactPerson
+        //         rows={rows}
+        //         columns={contactColumns}
+        //         setRows={setRows}
+        //         rowModesModel={rowModesModel}
+        //         setRowModesModel={setRowModesModel}
+        //         handleRowModesModelChange={handleRowModesModelChange}
+        //         processRowUpdate={processRowUpdate}
+        //         handleRowEditStop={handleRowEditStop}
+        //     />,
+        //     stepAction: handleSubmitCurrency
+        // },
         {
             caption: 'Add general vendor information',
             id: uuidv4(),
-            Component: () => (<div>general </div>),
+            Component: <VendorInformation ref={vendorInformationRefObject} />,
             stepAction: handleSubmitCurrency
         },
     ];

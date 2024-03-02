@@ -1,6 +1,5 @@
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
-import { StateProvider } from './store';
-import { AuthContext } from './store';
+import { StateProvider, AuthContext, LoadingContext } from './store';
 import { useEffect, useState } from 'react';
 import AuthService from './packages/auth/AuthService';
 import { ToastContainer } from 'react-toastify';
@@ -10,7 +9,7 @@ import { LoadingScreen } from './components';
 const App = () => {
 
   const [auth, setAuth] = useState({ user: null, isAuthenticated: false });
-  const [isLoading, setIsLoading] = useState({message: 'Loading...', status: false});
+  const [isLoading, setIsLoading] = useState({ message: 'Loading...', status: true });
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -28,28 +27,28 @@ const App = () => {
 
   }, []);
 
-  if (isLoading.status) {
-    return <LoadingScreen  message={isLoading.message}/>
-  }
   return (
-    <AuthContext.Provider value={{ account: auth, authSetter: setAuth }}>
-      <StateProvider>
-        <Outlet />
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-          transitionBounce
-        />
-      </StateProvider>
-    </AuthContext.Provider>
+    <LoadingContext.Provider value={{loader: isLoading, setLoader: setIsLoading }}>
+      <LoadingScreen show={isLoading.status}  message={isLoading.message} />
+      <AuthContext.Provider value={{ account: auth, authSetter: setAuth }}>
+        <StateProvider>
+          <Outlet />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+            transitionBounce
+          />
+        </StateProvider>
+      </AuthContext.Provider>
+    </LoadingContext.Provider>
   )
 }
 

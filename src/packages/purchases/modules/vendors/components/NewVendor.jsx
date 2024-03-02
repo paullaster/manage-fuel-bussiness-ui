@@ -357,6 +357,7 @@ const NewVendor = () => {
         const addresses = [];
         postAddress(addressObject)
             .then((res) => {
+                const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
                 if (!idObject['billing_id'] || !idObject['currency']) {
                     toast.error("Invalid payload, Billing and currency  information did no insert correctly!");
                     handleBack();
@@ -375,6 +376,77 @@ const NewVendor = () => {
             });
     };
 
+    const handleSubmitContactInfo = () => {
+        const { id, isNew, ...data } = rows[0];
+        const { isValid, field } = validateObject(data);
+        if (isValid) {
+            toast.error(`${field} is a required filed`);
+            return;
+        }
+        const contacts = [];
+        postContactPerson(data)
+            .then((res) => {
+                const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+                if (!idObject['billing_id'] || !idObject['currency']) {
+                    toast.error("Invalid payload, Billing and currency  information did no insert correctly!");
+                    handleBack();
+                    return;
+                }
+                contacts.push(res?.contact_id);
+                idObject.contacts = contacts;
+                WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+                setLoader({ message: "", status: false });
+                toast.success(`Successfully saved`);
+                handleNext();
+            })
+            .catch((error) => {
+                setLoader({ message: "", status: false });
+                toast.error(error.message);
+            });
+    };
+
+    const handleSubmitVendorInformation = (event) => {
+        event.preventDefault();
+        const vendorObject = {
+            vendor_reference: vendorReferenceRef.current.value,
+            website: vendorWebsiteRef.current.value,
+            kra_pin: vendorPinRef.current.value,
+            product_description: vendorProdDescRef.current.value,
+            company_name: vendorCompanyNameRef.current.value,
+            vendor_phone: vendorPhoneRef.current.value,
+            vendor_email: vendorEmailRef.current.value,
+            vendor_name: vendorNameRef.current.value,
+            national_id: vendorNationalIDRef.current.value,
+        };
+         // VALIDATE VENDOR OBJECT
+         validRef.current = ObjectValidator(
+            [
+                "company_name",
+                "product_description",
+                "kra_pin",
+                "vendor_name"
+            ],
+            vendorObject
+        );
+        if (!validRef.current) {
+            toast.error("Invalid payload!");
+            handleBack();
+            return;
+        }
+         // POST VENDOR
+         setLoader({ message: "Creating vendor...", status: true });
+         postVendor(vendorObject)
+         .then((res) => {
+             WebStorage.RemoveFromStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+             setLoader({ message: "", status: false });
+             toast.success("Vendor successfully created");
+             navigate(`/dashboard/purchases/vendor/vendors`);
+         })
+         .catch((error) => {
+            setLoader({ message: "", status: false });
+            toast.error(error.message);
+         });
+    }
 
     const contactColumns = useMemo(() => {
         return [
@@ -457,44 +529,44 @@ const NewVendor = () => {
 
     }, [contactColumns, rows]);
     const createVendorSteps = [
-        // {
-        //     caption: 'Add primary currency',
-        //     id: uuidv4(),
-        //     Component: <VendorCurrencyComponent ref={currencyRefObject} />,
-        //     stepAction: handleSubmitCurrency
-        // },
-        // {
-        //     caption: 'Add billing information',
-        //     id: uuidv4(),
-        //     Component: <VendorBilling ref={billingInfo} handleSelectedPaymentMethod={handleSelectedPaymentMethod} />,
-        //     stepAction: handleSubmitBillingInformation
-        // },
-        // {
-        //     caption: 'Add vendor address details',
-        //     id: uuidv4(),
-        //     Component: <VendorAddressDetails ref={addressObject} />,
-        //     stepAction: handleSubmitAddress
-        // },
-        // {
-        //     caption: 'Add contact person',
-        //     id: uuidv4(),
-        //     Component: <ContactPerson
-        //         rows={rows}
-        //         columns={contactColumns}
-        //         setRows={setRows}
-        //         rowModesModel={rowModesModel}
-        //         setRowModesModel={setRowModesModel}
-        //         handleRowModesModelChange={handleRowModesModelChange}
-        //         processRowUpdate={processRowUpdate}
-        //         handleRowEditStop={handleRowEditStop}
-        //     />,
-        //     stepAction: handleSubmitCurrency
-        // },
+        {
+            caption: 'Add primary currency',
+            id: uuidv4(),
+            Component: <VendorCurrencyComponent ref={currencyRefObject} />,
+            stepAction: handleSubmitCurrency
+        },
+        {
+            caption: 'Add billing information',
+            id: uuidv4(),
+            Component: <VendorBilling ref={billingInfo} handleSelectedPaymentMethod={handleSelectedPaymentMethod} />,
+            stepAction: handleSubmitBillingInformation
+        },
+        {
+            caption: 'Add vendor address details',
+            id: uuidv4(),
+            Component: <VendorAddressDetails ref={addressObject} />,
+            stepAction: handleSubmitAddress
+        },
+        {
+            caption: 'Add contact person',
+            id: uuidv4(),
+            Component: <ContactPerson
+                rows={rows}
+                columns={contactColumns}
+                setRows={setRows}
+                rowModesModel={rowModesModel}
+                setRowModesModel={setRowModesModel}
+                handleRowModesModelChange={handleRowModesModelChange}
+                processRowUpdate={processRowUpdate}
+                handleRowEditStop={handleRowEditStop}
+            />,
+            stepAction: handleSubmitContactInfo
+        },
         {
             caption: 'Add general vendor information',
             id: uuidv4(),
             Component: <VendorInformation ref={vendorInformationRefObject} />,
-            stepAction: handleSubmitCurrency
+            stepAction: handleSubmitVendorInformation
         },
     ];
 
@@ -587,17 +659,6 @@ const NewVendor = () => {
                                     vendor_name: vendorNameRef.current.value,
                                     national_id: vendorNationalIDRef.current.value,
                                 };
-
-                                // VALIDATE VENDOR OBJECT
-                                validRef.current = ObjectValidator(
-                                    [
-                                        "company_name",
-                                        "product_description",
-                                        "kra_pin",
-                                        "vendor_name"
-                                    ],
-                                    vendorObject
-                                );
 
                                 if (!validRef.current) {
                                     throw new Error("Invalid payload!");

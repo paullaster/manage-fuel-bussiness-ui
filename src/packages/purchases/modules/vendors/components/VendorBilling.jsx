@@ -44,7 +44,6 @@ const VendorBilling = forwardRef((props, ref) => {
                 name="bank_account_number"
                 ref={ref.accountNumberRef}
             />
-            <AddItemButton  methodHandler={handleAddCurrency}  btnCustomClass={'btn-element btn_primary'} btnCaption="Add Currency"/>
         </div>
     )
 })

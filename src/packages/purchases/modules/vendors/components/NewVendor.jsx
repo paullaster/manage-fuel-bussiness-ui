@@ -1,5 +1,5 @@
 import { Button, InputComponent, } from "@/components";
-import { useRef, useState, useMemo, useEffect, Component, forwardRef } from "react";
+import { useRef, useState, useMemo, useEffect, useContext, forwardRef } from "react";
 import { Form } from "react-router-dom";
 import cardImage from "@/assets/images/card_image.svg";
 import shared from "../../../shared";
@@ -9,7 +9,6 @@ import ContactPerson from "./ContactPerson";
 import { GridRowModes, GridActionsCellItem } from '@mui/x-data-grid';
 import { MdOutlineSaveAlt, MdCancel, MdCreate, MdDelete } from 'react-icons/md';
 import { v4 as uuidv4 } from 'uuid';
-// import CurrencyComponent from "./CurrencyComponent";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
 import { ObjectValidator } from "@/utils";
 import VendorInformation from "./VendorInformation";
@@ -20,40 +19,41 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import StepContent from "@mui/material/StepContent";
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { LoadingContext } from '@/store';
+import { toast } from 'react-toastify';
 
 const VendorCurrencyComponent = forwardRef((props, ref) => {
-    
+
     return (
         <div className="addCurrency">
-                <InputComponent
-                    type="text"
-                    prelabelText={"Currency name"}
-                    name="currency_name"
-                    title="currency name"
-                    ref={ref.currencyNameRef}
-                />
-                <InputComponent
-                    type="text"
-                    prelabelText={"Currency code"}
-                    name="currency_code"
-                    ref={ref.currencyCodeRef}
-                />
-                <InputComponent
-                    type="text"
-                    prelabelText={"Rate"}
-                    name="rate"
-                    ref={ref.currencyRateRef}
-                />
-                <InputComponent
-                    type="text"
-                    prelabelText={"Symbol"}
-                    name="symbol"
-                    ref={ref.currencySymbolref}
-                />
+            <InputComponent
+                type="text"
+                prelabelText={"Currency name"}
+                name="currency_name"
+                title="currency name"
+                ref={ref.currencyNameRef}
+            />
+            <InputComponent
+                type="text"
+                prelabelText={"Currency code"}
+                name="currency_code"
+                ref={ref.currencyCodeRef}
+            />
+            <InputComponent
+                type="text"
+                prelabelText={"Rate"}
+                name="rate"
+                ref={ref.currencyRateRef}
+            />
+            <InputComponent
+                type="text"
+                prelabelText={"Symbol"}
+                name="symbol"
+                ref={ref.currencySymbolref}
+            />
 
-            </div>
+        </div>
     )
 });
 
@@ -63,11 +63,6 @@ const ContactPersonComponent = () => {
     )
 }
 
-const VendorBillingComponent = () => {
-    return (
-        <div>Vendor billing</div>
-    )
-}
 
 const VendorAddressDetails = () => {
     return (
@@ -87,8 +82,8 @@ const NewVendor = () => {
     const [paymentMethod, setPaymentMethod] = useState(null);
     const [rows, setRows] = useState([]);
     const [rowModesModel, setRowModesModel] = useState({});
-    const [open, setOpen] = useState(false);
     const [activeStep, setActiveStep] = useState(0);
+    const { setLoader } = useContext(LoadingContext);
 
     // CURRENCY
     const currencyNameRef = useRef(null);
@@ -161,8 +156,26 @@ const NewVendor = () => {
         bankNameRef,
         accountNumberRef,
     };
+
+    const validateObject = (obj, option = {}) => {
+        invalid.current = false;
+        let field = null;
+        for (let prop in obj) {
+            if (!obj[prop] && !option[prop]) {
+                invalid.current = true;
+                field = prop;
+            }
+            return {isValid: invalid.current, field: field};
+        }
     
+    };
+    // SETTING STEPPER
+    const handleNext = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    };
+
     const handleSubmitCurrency = (event) => {
+        invalid.current = false;
         if (event.type === 'click') {
             const currencyObject = {
                 currency_name: currencyNameRef.current.value,
@@ -173,32 +186,70 @@ const NewVendor = () => {
             for (let prop in currencyObject) {
                 if (!currencyObject[prop] && prop !== 'symbol') {
                     invalid.current = true;
-                    throw new Error(`${prop} is a required filed`);
+                    toast.error(`${prop} is a required filed`);
+                    return;
                 }
             }
             if (invalid.current) {
-                throw new Error("Invalid form");
+                toast.error("Invalid form");
+                return;
             }
+            setLoader({ message: "Saving currency informtion...", status: true });
             postCurrency(currencyObject)
-            .then((res) => {
-                
-            });
-            // setOpen(false);
-            console.log(currencyObject)
+                .then((res) => {
+                    const idObject = {};
+                    idObject.currency = res?.currency_id;
+                    WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+                    setLoader({ message: "", status: false });
+                    toast.success('Currency information saved successfully');
+                    handleNext();
+                })
+                .catch((error) => {
+                    setLoader({ message: "", status: false });
+                    toast.error(error.message);
+                });
         }
+    };
+
+    const handleSelectedPaymentMethod = (event, newValue) => {
+        event.preventDefault();
+        event.stopPropagation();
+        setPaymentMethod(newValue);
+    };
+
+    const handleSubmitBillingInformation = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        invalid.current = false;
+        const billinObject = {
+            payment_method: paymentMethod.method,
+            mpesa_phone_number: phoneNumberRef.current.value,
+            mpesa_till_number: tillNumberRef.current.value,
+            mpesa_paybill_number: paybillNumberRef.current.value,
+            bank_name: bankNameRef.current.value,
+            bank_account_number: accountNumberRef.current.value,
+        };
+        for (let prop in billinObject) {
+            if (!billinObject[prop]) {
+                invalid.current = true;
+                toast.error(`${prop} is a required filed`);
+                return;
+            }
+        }
+        
     }
 
     const createVendorSteps = [
-        {
-            caption: 'Add primary currency',
-            id: uuidv4(),
-            Component: <VendorCurrencyComponent ref={currencyRefObject}/>,
-            stepAction: handleSubmitCurrency
-        },
+        // {
+        //     caption: 'Add primary currency',
+        //     id: uuidv4(),
+        //     Component: <VendorCurrencyComponent ref={currencyRefObject} />,
+        //     stepAction: handleSubmitCurrency
+        // },
         {
             caption: 'Add billing information',
             id: uuidv4(),
-            Component: () => (<div>Billing</div>),
+            Component: <VendorBilling ref={billingInfo} handleSelectedPaymentMethod={handleSelectedPaymentMethod} />,
             stepAction: handleSubmitCurrency
         },
         {
@@ -233,11 +284,6 @@ const NewVendor = () => {
         setOpen(false);
     }
 
-    const handleSelectedPaymentMethod = (event, newValue) => {
-        event.preventDefault();
-        event.stopPropagation();
-        setPaymentMethod(newValue);
-    }
 
 
     const deleteItem = (item) => {
@@ -286,18 +332,14 @@ const NewVendor = () => {
         setRowModesModel(newRowModesModel);
     };
 
-    // SETTING STEPPER
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-      };
-    
-      const handleBack = () => {
+
+    const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
-      };
-    
-      const handleReset = () => {
+    };
+
+    const handleReset = () => {
         setActiveStep(0);
-      };
+    };
 
     const contactColumns = useMemo(() => {
         return [

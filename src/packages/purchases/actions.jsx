@@ -41,17 +41,9 @@ export const postContactPerson = async (data) => {
 export const postCurrency = async (item) => {
     return await _request({
         method: "POST",
-        data: data,
+        data: item,
         url: currency,
-    })
-        .then((res) => {
-            const idObject = {};
-            idObject.currency = res?.currency_id;
-            WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+    });
 }
 export const postVendor = async (item) => {
     const objectKeys = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);

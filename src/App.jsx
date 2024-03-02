@@ -9,7 +9,7 @@ import { LoadingScreen } from './components';
 const App = () => {
 
   const [auth, setAuth] = useState({ user: null, isAuthenticated: false });
-  const [isLoading, setIsLoading] = useState({ message: 'Loading...', status: true });
+  const [isLoading, setIsLoading] = useState({ message: 'Loading...', status: false });
   const navigate = useNavigate();
   const location = useLocation();
 

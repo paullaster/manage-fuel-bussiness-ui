@@ -38,11 +38,8 @@ export const postContactPerson = async (data) => {
     });
 }
 
-export const postCurrency = (item) => {
-    const data = {
-        ...item,
-    };
-    _request({
+export const postCurrency = async (item) => {
+    return await _request({
         method: "POST",
         data: data,
         url: currency,

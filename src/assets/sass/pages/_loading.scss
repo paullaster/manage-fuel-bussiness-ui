@@ -2,12 +2,9 @@
 @use '../global/' as g;
 
 .loading {
-    height: 100dvh;
-    width: 100dvw;
-    display: flex;
-    flex-direction: column;
-    align-items: center !important;
-    justify-content: center;
+    position: absolute;
+    top: 45%;
+    left: 50%;
     background-color: rgba(2, 36, 66, 0);
     z-index: 999999;
 

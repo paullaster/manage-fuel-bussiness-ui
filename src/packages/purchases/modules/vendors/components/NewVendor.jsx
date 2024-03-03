@@ -690,7 +690,7 @@ const NewVendor = () => {
                                 <StepContent>
                                     <>{step.Component}</>
                                     <Box sx={{ mb: 2, mt: 4 }}>
-                                        <div>
+                                        <div className="stepperButtons">
                                             <Button
                                                 onClick={step.stepAction}
                                                 className="btn-element btn_primary "

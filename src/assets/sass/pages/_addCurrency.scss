@@ -1,3 +1,6 @@
+@use '../utilities/' as u;
+@use '../global/' as g;
+
 .currencyComponent {
     .addCurrency {
         margin-top: 2rem;
@@ -13,6 +16,8 @@
             border: none !important;
             & > * {
                 display: block;
+                outline: none !important;
+                border: u.rem(.1) solid g.$color_primary;
             }
             & > *:first-child{
                 margin-bottom: .4rem;

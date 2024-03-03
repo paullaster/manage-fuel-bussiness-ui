@@ -269,3 +269,8 @@ button:disabled {
 .balanceCap {
     font-size: g.$msmall_font;
 }
+
+.divisionTopBar {
+    border-bottom: g.$default_border;
+    padding-bottom: f.rem(20);
+}

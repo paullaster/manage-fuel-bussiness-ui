@@ -235,9 +235,9 @@ const NewVendor = () => {
             setLoader({ message: "Saving currency informtion...", status: true });
             postCurrency(currencyObject)
                 .then((res) => {
-                    const idObject = {};
-                    idObject.currency = res?.currency_id;
-                    WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+                    // const idObject = {};
+                    // idObject.currency = res?.currency_id;
+                    // WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
                     setLoader({ message: "", status: false });
                     toast.success('Currency information saved successfully');
                     handleNext();
@@ -279,14 +279,15 @@ const NewVendor = () => {
         postBillingInformation(billinObject)
             .then((res) => {
                 const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-                if (!idObject['currency']) {
-                    toast.error("Invalid payload, currency information did not insert correctly!");
-                    handleBack();
-                    return;
-                }
-                idObject.billing_id = res?.id
-                WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
-                setLoader({ message: "Saving currency informtion...", status: true });
+                setLoader({ message: "", status: false });
+                // if (!idObject['currency']) {
+                //     toast.error("Invalid payload, currency information did not insert correctly!");
+                //     handleBack();
+                //     return;
+                // }
+                // idObject.billing_id = res?.id
+                // WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+                setLoader({ message: "", status: false });
                 toast.success(`Billing information saved successfully`);
                 handleNext();
             })
@@ -357,18 +358,18 @@ const NewVendor = () => {
             return;
         }
         setLoader({ message: "Saving address informtion...", status: true });
-        const addresses = [];
+        // const addresses = [];
         postAddress(addressObject)
             .then((res) => {
-                const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-                if (!idObject['billing_id'] || !idObject['currency']) {
-                    toast.error("Invalid payload, Billing and currency  information did no insert correctly!");
-                    handleBack();
-                    return;
-                }
-                addresses.push(res?.address_id);
-                idObject.addresses = addresses;
-                WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+                // const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+                // if (!idObject['billing_id'] || !idObject['currency']) {
+                //     toast.error("Invalid payload, Billing and currency  information did no insert correctly!");
+                //     handleBack();
+                //     return;
+                // }
+                // addresses.push(res?.address_id);
+                // idObject.addresses = addresses;
+                // WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
                 setLoader({ message: "", status: false });
                 toast.success(`Successfully saved`);
                 handleNext();
@@ -386,18 +387,18 @@ const NewVendor = () => {
             toast.error(`${field} is a required filed`);
             return;
         }
-        const contacts = [];
+        // const contacts = [];
         postContactPerson(data)
             .then((res) => {
-                const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-                if (!idObject['billing_id'] || !idObject['currency']) {
-                    toast.error("Invalid payload, Billing and currency  information did no insert correctly!");
-                    handleBack();
-                    return;
-                }
-                contacts.push(res?.contact_id);
-                idObject.contacts = contacts;
-                WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+                // const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+                // if (!idObject['billing_id'] || !idObject['currency']) {
+                //     toast.error("Invalid payload, Billing and currency  information did no insert correctly!");
+                //     handleBack();
+                //     return;
+                // }
+                // contacts.push(res?.contact_id);
+                // idObject.contacts = contacts;
+                // WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
                 setLoader({ message: "", status: false });
                 toast.success(`Successfully saved`);
                 handleNext();
@@ -440,7 +441,7 @@ const NewVendor = () => {
         setLoader({ message: "Creating vendor...", status: true });
         postVendor(vendorObject)
             .then((res) => {
-                WebStorage.RemoveFromStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+                // WebStorage.RemoveFromStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
                 setLoader({ message: "", status: false });
                 toast.success("Vendor successfully created");
                 navigate(`/dashboard/purchases/vendor/vendors`);

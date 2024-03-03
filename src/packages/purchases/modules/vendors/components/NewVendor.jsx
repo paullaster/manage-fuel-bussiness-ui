@@ -22,37 +22,46 @@ import StepContent from "@mui/material/StepContent";
 import Box from '@mui/material/Box';
 import { LoadingContext } from '@/store';
 import { toast } from 'react-toastify';
+import DivisionTopBar from "../../../shared/components/DivisionTopBar";
+
 
 const VendorCurrencyComponent = forwardRef((props, ref) => {
 
     return (
-        <div className="addCurrency">
-            <InputComponent
-                type="text"
-                prelabelText={"Currency name"}
-                name="currency_name"
-                title="currency name"
-                ref={ref.currencyNameRef}
-            />
-            <InputComponent
-                type="text"
-                prelabelText={"Currency code"}
-                name="currency_code"
-                ref={ref.currencyCodeRef}
-            />
-            <InputComponent
-                type="text"
-                prelabelText={"Rate"}
-                name="rate"
-                ref={ref.currencyRateRef}
-            />
-            <InputComponent
-                type="text"
-                prelabelText={"Symbol"}
-                name="symbol"
-                ref={ref.currencySymbolref}
-            />
+        <div  className="currencyComponent">
+            <DivisionTopBar
+                sectionTitle={'Currency'}
+            >
+                <p>This is will be your vendor's primary currency.</p>
+            </DivisionTopBar>
+            <div className="addCurrency">
+                <InputComponent
+                    type="text"
+                    prelabelText={"Currency name"}
+                    name="currency_name"
+                    title="currency name"
+                    ref={ref.currencyNameRef}
+                />
+                <InputComponent
+                    type="text"
+                    prelabelText={"Currency code"}
+                    name="currency_code"
+                    ref={ref.currencyCodeRef}
+                />
+                <InputComponent
+                    type="text"
+                    prelabelText={"Rate"}
+                    name="rate"
+                    ref={ref.currencyRateRef}
+                />
+                <InputComponent
+                    type="text"
+                    prelabelText={"Symbol"}
+                    name="symbol"
+                    ref={ref.currencySymbolref}
+                />
 
+            </div>
         </div>
     )
 });
@@ -418,8 +427,8 @@ const NewVendor = () => {
             vendor_name: vendorNameRef.current.value,
             national_id: vendorNationalIDRef.current.value,
         };
-         // VALIDATE VENDOR OBJECT
-         validRef.current = ObjectValidator(
+        // VALIDATE VENDOR OBJECT
+        validRef.current = ObjectValidator(
             [
                 "company_name",
                 "product_description",
@@ -433,19 +442,19 @@ const NewVendor = () => {
             handleBack();
             return;
         }
-         // POST VENDOR
-         setLoader({ message: "Creating vendor...", status: true });
-         postVendor(vendorObject)
-         .then((res) => {
-             WebStorage.RemoveFromStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-             setLoader({ message: "", status: false });
-             toast.success("Vendor successfully created");
-             navigate(`/dashboard/purchases/vendor/vendors`);
-         })
-         .catch((error) => {
-            setLoader({ message: "", status: false });
-            toast.error(error.message);
-         });
+        // POST VENDOR
+        setLoader({ message: "Creating vendor...", status: true });
+        postVendor(vendorObject)
+            .then((res) => {
+                WebStorage.RemoveFromStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+                setLoader({ message: "", status: false });
+                toast.success("Vendor successfully created");
+                navigate(`/dashboard/purchases/vendor/vendors`);
+            })
+            .catch((error) => {
+                setLoader({ message: "", status: false });
+                toast.error(error.message);
+            });
     }
 
     const contactColumns = useMemo(() => {

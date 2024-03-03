@@ -7,12 +7,13 @@
     grid-template-columns: 6.0fr 3.6fr;
 
     .stepperButtons {
-        background-color: red;
         & > button:not(:first-child) {
             margin-inline-start: u.rem(20);
+            background-color: #01022048;
         }
         & > button {
-            
+            border-radius: .8rem !important;  
+            width: 25%;
         }
     }
 

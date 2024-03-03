@@ -1,19 +1,21 @@
-.addCurrency {
-    display:grid;
-    grid-template-columns: 6fr 6fr;
-    column-gap: 2rem;
-    & > .input-group {
-        overflow: hidden;
-        perspective: none;
-        margin-bottom: 1.2rem;
-        display: flex;
-        flex-direction: column;
-        border: none !important;
-        & > * {
-            display: block;
-        }
-        & > *:first-child{
-            margin-bottom: .4rem;
+.currencyComponent {
+    .addCurrency {
+        display:grid;
+        grid-template-columns: 6fr 6fr;
+        column-gap: 2rem;
+        & > .input-group {
+            overflow: hidden;
+            perspective: none;
+            margin-bottom: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            border: none !important;
+            & > * {
+                display: block;
+            }
+            & > *:first-child{
+                margin-bottom: .4rem;
+            }
         }
     }
 }

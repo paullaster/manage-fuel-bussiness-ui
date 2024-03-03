@@ -4,11 +4,13 @@ import { MdAlternateEmail, MdLockOutline } from "react-icons/md";
 import { useRef, useContext } from 'react';
 import { login } from '../authActions';
 import AuthService from '../AuthService';
-import { AuthContext } from '@/store';
+import { AuthContext, LoadingContext } from '@/store';
+import { toast } from 'react-toastify';
 
 
 const Login = () => {
   const { authSetter } = useContext(AuthContext);
+  const { setLoader } =useContext(LoadingContext);
 
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
@@ -18,14 +20,21 @@ const Login = () => {
       email_or_phone: usernameRef.current.value,
       password: passwordRef.current.value,
     };
+    for (const prop in payload) {
+      if (!payload[prop]) throw new Error(`${prop} can not be empty!`);
+    }
+    setLoader({message: "Login you in...", status: true});
     login(payload)
     .then((res) => {
       AuthService.Login(res.access, res.refresh);
       authSetter({ user: 'user', isAuthenticated: AuthService.isLoggedIn()});
-      console.log(res);
+      setLoader({message: "", status: false});
+      toast.success('Login successful');
     })
     .catch((error) => {
-      console.log(error)
+      console.log("Login", error);
+      setLoader({message: "", status: false});
+      toast.error(error.message);
     })
   }
   return (

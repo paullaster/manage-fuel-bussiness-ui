@@ -3,7 +3,7 @@ import { AutocompleteComponent, InputComponent} from '@/components';
 import AddItemButton from '../../../shared/components/AddItemButton';
 
 const VendorBilling = forwardRef((props, ref) => {
-    const { handleSelectedPaymentMethod, handleAddCurrency } = props;
+    const { handleSelectedPaymentMethod } = props;
     const [paymentMethods, setPaymentMethods] = useState([{ method: 'Mpesa' }, { method: 'Bank' }]);
     return (
         <div className="billinginfo_dataentry">
@@ -44,7 +44,6 @@ const VendorBilling = forwardRef((props, ref) => {
                 name="bank_account_number"
                 ref={ref.accountNumberRef}
             />
-            <AddItemButton  methodHandler={handleAddCurrency}  btnCustomClass={'btn-element btn_primary'} btnCaption="Add Currency"/>
         </div>
     )
 })

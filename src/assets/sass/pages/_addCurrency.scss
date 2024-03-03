@@ -16,11 +16,13 @@
             border: none !important;
             & > * {
                 display: block;
-                outline: none !important;
-                border: u.rem(.1) solid g.$color_primary;
             }
             & > *:first-child{
                 margin-bottom: .4rem;
+            }
+            & > input {
+                outline: none !important;
+                border: u.rem(.1) solid g.$color_primary !important;
             }
         }
     }

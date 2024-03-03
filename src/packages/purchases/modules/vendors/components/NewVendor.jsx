@@ -115,12 +115,6 @@ const VendorAddressDetails = forwardRef((props, ref) => {
     )
 });
 
-const VendorInformationComponent = () => {
-    return (
-        <div>Vendor information</div>
-    )
-}
-
 
 const NewVendor = () => {
 

@@ -32,7 +32,7 @@ const VendorCurrencyComponent = forwardRef((props, ref) => {
             <DivisionTopBar
                 sectionTitle={'Currency'}
             >
-                <p>This is will be your vendor's primary currency.</p>
+                <p>This will be your vendor's primary currency.</p>
             </DivisionTopBar>
             <div className="addCurrency">
                 <InputComponent

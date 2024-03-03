@@ -3,8 +3,8 @@
 
 .new_vendors {
     width: 80%;
-    display: grid;
-    grid-template-columns: 6.0fr 3.6fr;
+    display: flex;
+    flex-direction: column;
 
     .stepperButtons {
         & > button:not(:first-child) {

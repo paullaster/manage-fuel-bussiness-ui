@@ -685,6 +685,7 @@ const NewVendor = () => {
 
     return (
         <section className="new_vendors">
+            <shared.components.SectionIntroduction text="New Vendor" />
             <Stepper activeStep={activeStep} orientation="vertical">
                 {
                     createVendorSteps.map((step, index) => {

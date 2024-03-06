@@ -22,37 +22,46 @@ import StepContent from "@mui/material/StepContent";
 import Box from '@mui/material/Box';
 import { LoadingContext } from '@/store';
 import { toast } from 'react-toastify';
+import DivisionTopBar from "../../../shared/components/DivisionTopBar";
+
 
 const VendorCurrencyComponent = forwardRef((props, ref) => {
 
     return (
-        <div className="addCurrency">
-            <InputComponent
-                type="text"
-                prelabelText={"Currency name"}
-                name="currency_name"
-                title="currency name"
-                ref={ref.currencyNameRef}
-            />
-            <InputComponent
-                type="text"
-                prelabelText={"Currency code"}
-                name="currency_code"
-                ref={ref.currencyCodeRef}
-            />
-            <InputComponent
-                type="text"
-                prelabelText={"Rate"}
-                name="rate"
-                ref={ref.currencyRateRef}
-            />
-            <InputComponent
-                type="text"
-                prelabelText={"Symbol"}
-                name="symbol"
-                ref={ref.currencySymbolref}
-            />
+        <div  className="currencyComponent">
+            <DivisionTopBar
+                sectionTitle={'Currency'}
+            >
+                <p>This will be your vendor's primary currency.</p>
+            </DivisionTopBar>
+            <div className="addCurrency">
+                <InputComponent
+                    type="text"
+                    prelabelText={"Currency name"}
+                    name="currency_name"
+                    title="currency name"
+                    ref={ref.currencyNameRef}
+                />
+                <InputComponent
+                    type="text"
+                    prelabelText={"Currency code"}
+                    name="currency_code"
+                    ref={ref.currencyCodeRef}
+                />
+                <InputComponent
+                    type="text"
+                    prelabelText={"Rate"}
+                    name="rate"
+                    ref={ref.currencyRateRef}
+                />
+                <InputComponent
+                    type="text"
+                    prelabelText={"Symbol"}
+                    name="symbol"
+                    ref={ref.currencySymbolref}
+                />
 
+            </div>
         </div>
     )
 });
@@ -105,12 +114,6 @@ const VendorAddressDetails = forwardRef((props, ref) => {
         </div>
     )
 });
-
-const VendorInformationComponent = () => {
-    return (
-        <div>Vendor information</div>
-    )
-}
 
 
 const NewVendor = () => {
@@ -232,9 +235,9 @@ const NewVendor = () => {
             setLoader({ message: "Saving currency informtion...", status: true });
             postCurrency(currencyObject)
                 .then((res) => {
-                    const idObject = {};
-                    idObject.currency = res?.currency_id;
-                    WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+                    // const idObject = {};
+                    // idObject.currency = res?.currency_id;
+                    // WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
                     setLoader({ message: "", status: false });
                     toast.success('Currency information saved successfully');
                     handleNext();
@@ -276,14 +279,15 @@ const NewVendor = () => {
         postBillingInformation(billinObject)
             .then((res) => {
                 const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-                if (!idObject['currency']) {
-                    toast.error("Invalid payload, currency information did not insert correctly!");
-                    handleBack();
-                    return;
-                }
-                idObject.billing_id = res?.id
-                WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
-                setLoader({ message: "Saving currency informtion...", status: true });
+                setLoader({ message: "", status: false });
+                // if (!idObject['currency']) {
+                //     toast.error("Invalid payload, currency information did not insert correctly!");
+                //     handleBack();
+                //     return;
+                // }
+                // idObject.billing_id = res?.id
+                // WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+                setLoader({ message: "", status: false });
                 toast.success(`Billing information saved successfully`);
                 handleNext();
             })
@@ -354,18 +358,18 @@ const NewVendor = () => {
             return;
         }
         setLoader({ message: "Saving address informtion...", status: true });
-        const addresses = [];
+        // const addresses = [];
         postAddress(addressObject)
             .then((res) => {
-                const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-                if (!idObject['billing_id'] || !idObject['currency']) {
-                    toast.error("Invalid payload, Billing and currency  information did no insert correctly!");
-                    handleBack();
-                    return;
-                }
-                addresses.push(res?.address_id);
-                idObject.addresses = addresses;
-                WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+                // const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+                // if (!idObject['billing_id'] || !idObject['currency']) {
+                //     toast.error("Invalid payload, Billing and currency  information did no insert correctly!");
+                //     handleBack();
+                //     return;
+                // }
+                // addresses.push(res?.address_id);
+                // idObject.addresses = addresses;
+                // WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
                 setLoader({ message: "", status: false });
                 toast.success(`Successfully saved`);
                 handleNext();
@@ -383,18 +387,18 @@ const NewVendor = () => {
             toast.error(`${field} is a required filed`);
             return;
         }
-        const contacts = [];
+        // const contacts = [];
         postContactPerson(data)
             .then((res) => {
-                const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-                if (!idObject['billing_id'] || !idObject['currency']) {
-                    toast.error("Invalid payload, Billing and currency  information did no insert correctly!");
-                    handleBack();
-                    return;
-                }
-                contacts.push(res?.contact_id);
-                idObject.contacts = contacts;
-                WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+                // const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+                // if (!idObject['billing_id'] || !idObject['currency']) {
+                //     toast.error("Invalid payload, Billing and currency  information did no insert correctly!");
+                //     handleBack();
+                //     return;
+                // }
+                // contacts.push(res?.contact_id);
+                // idObject.contacts = contacts;
+                // WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
                 setLoader({ message: "", status: false });
                 toast.success(`Successfully saved`);
                 handleNext();
@@ -418,8 +422,8 @@ const NewVendor = () => {
             vendor_name: vendorNameRef.current.value,
             national_id: vendorNationalIDRef.current.value,
         };
-         // VALIDATE VENDOR OBJECT
-         validRef.current = ObjectValidator(
+        // VALIDATE VENDOR OBJECT
+        validRef.current = ObjectValidator(
             [
                 "company_name",
                 "product_description",
@@ -433,19 +437,19 @@ const NewVendor = () => {
             handleBack();
             return;
         }
-         // POST VENDOR
-         setLoader({ message: "Creating vendor...", status: true });
-         postVendor(vendorObject)
-         .then((res) => {
-             WebStorage.RemoveFromStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-             setLoader({ message: "", status: false });
-             toast.success("Vendor successfully created");
-             navigate(`/dashboard/purchases/vendor/vendors`);
-         })
-         .catch((error) => {
-            setLoader({ message: "", status: false });
-            toast.error(error.message);
-         });
+        // POST VENDOR
+        setLoader({ message: "Creating vendor...", status: true });
+        postVendor(vendorObject)
+            .then((res) => {
+                // WebStorage.RemoveFromStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+                setLoader({ message: "", status: false });
+                toast.success("Vendor successfully created");
+                navigate(`/dashboard/purchases/vendor/vendors`);
+            })
+            .catch((error) => {
+                setLoader({ message: "", status: false });
+                toast.error(error.message);
+            });
     }
 
     const contactColumns = useMemo(() => {
@@ -681,6 +685,7 @@ const NewVendor = () => {
 
     return (
         <section className="new_vendors">
+            <shared.components.SectionIntroduction text="New Vendor" />
             <Stepper activeStep={activeStep} orientation="vertical">
                 {
                     createVendorSteps.map((step, index) => {
@@ -690,7 +695,7 @@ const NewVendor = () => {
                                 <StepContent>
                                     <>{step.Component}</>
                                     <Box sx={{ mb: 2, mt: 4 }}>
-                                        <div>
+                                        <div className="stepperButtons">
                                             <Button
                                                 onClick={step.stepAction}
                                                 className="btn-element btn_primary "

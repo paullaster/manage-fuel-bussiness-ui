@@ -25,7 +25,6 @@ const App = () => {
 
   useEffect(() => {
     setAuth({ user: 'user', isAuthenticated: AuthService.isLoggedIn() });
-    
   }, [location]);
 
   return (

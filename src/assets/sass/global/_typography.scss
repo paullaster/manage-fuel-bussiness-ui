@@ -12,6 +12,7 @@ h1 {
 h2 {
     font-size: v.$small_font;
 }
+
 h2::first-letter {
     text-transform: uppercase;
 }
@@ -40,8 +41,12 @@ li {
     list-style: none;
 }
 
-input::-webkit-search-cancel-button{
+input::-webkit-search-cancel-button {
     display: none;
+}
+
+input {
+    border: f.rem(.1) solid v.$color_primary;
 }
 
 input[type="search"] {
@@ -52,32 +57,40 @@ input[type="search"] {
     border: f.rem(.1) solid v.$color_primary;
     padding: v.$tiny v.$tiny v.$tiny v.$small;
     outline: none !important;
-    
+
 }
-input[type="search"]:focus{
+
+input[type="search"]:focus {
     border: none !important;
     border-bottom: f.rem(.1) solid v.$color_primary !important;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
+
 span {
     text-transform: capitalize;
 }
+
 span.error_span {
     color: v.$color_error;
 }
-input:not([type="search"], [type="checkbox"], [type="radio"]){
+
+input:not([type="search"], [type="checkbox"], [type="radio"]) {
     height: 6vh;
     @include m.borderradius(v.$xsmall);
     padding-inline: v.$xsmall;
 }
+
 input:not([type="search"]):focus {
     border: none !important;
     outline: v.$focus_border
 }
-input:not([type="search"]):valid, input:read-only  {
+
+input:not([type="search"]):valid,
+input:read-only {
     @include m.border(v.$valid_border);
 }
+
 input:invalid {
     @include m.border(v.$error_border);
 }

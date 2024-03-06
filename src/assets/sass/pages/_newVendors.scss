@@ -3,9 +3,19 @@
 
 .new_vendors {
     width: 80%;
-    display: grid;
-    grid-template-columns: 6.0fr 3.6fr;
+    display: flex;
+    flex-direction: column;
 
+    .stepperButtons {
+        & > button:not(:first-child) {
+            margin-inline-start: u.rem(20);
+            background-color: #01022048;
+        }
+        & > button {
+            border-radius: .8rem !important;  
+            width: u.rem(160);
+        }
+    }
 
     &__left {
         &__dataentry {

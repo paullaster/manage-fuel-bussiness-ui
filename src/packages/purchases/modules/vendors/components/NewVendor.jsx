@@ -6,10 +6,9 @@ import shared from "../../../shared";
 import { postAddress, postBillingInformation, postContactPerson, postVendor, postCurrency } from "../../../actions";
 import VendorBilling from "./VendorBilling";
 import ContactPerson from "./ContactPerson";
-import { GridRowModes, GridActionsCellItem } from '@mui/x-data-grid';
+import { GridRowModes, GridActionsCellItem, GridRowEditStopReasons, } from '@mui/x-data-grid';
 import { MdOutlineSaveAlt, MdCancel, MdCreate, MdDelete } from 'react-icons/md';
 import { v4 as uuidv4 } from 'uuid';
-import FormButtonRow from "../../../shared/components/FormButtonRow";
 import { ObjectValidator } from "@/utils";
 import VendorInformation from "./VendorInformation";
 import WebStorage from '@/utils/WebStorage';
@@ -235,9 +234,6 @@ const NewVendor = () => {
             setLoader({ message: "Saving currency informtion...", status: true });
             postCurrency(currencyObject)
                 .then((res) => {
-                    // const idObject = {};
-                    // idObject.currency = res?.currency_id;
-                    // WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
                     setLoader({ message: "", status: false });
                     toast.success('Currency information saved successfully');
                     handleNext();
@@ -280,13 +276,6 @@ const NewVendor = () => {
             .then((res) => {
                 const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
                 setLoader({ message: "", status: false });
-                // if (!idObject['currency']) {
-                //     toast.error("Invalid payload, currency information did not insert correctly!");
-                //     handleBack();
-                //     return;
-                // }
-                // idObject.billing_id = res?.id
-                // WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
                 setLoader({ message: "", status: false });
                 toast.success(`Billing information saved successfully`);
                 handleNext();
@@ -310,6 +299,7 @@ const NewVendor = () => {
     };
 
     const handleSaveClick = (item) => {
+        console.log(item);
         setRowModesModel({ ...rowModesModel, [item.id]: { mode: GridRowModes.View } });
     };
 
@@ -358,18 +348,8 @@ const NewVendor = () => {
             return;
         }
         setLoader({ message: "Saving address informtion...", status: true });
-        // const addresses = [];
         postAddress(addressObject)
             .then((res) => {
-                // const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-                // if (!idObject['billing_id'] || !idObject['currency']) {
-                //     toast.error("Invalid payload, Billing and currency  information did no insert correctly!");
-                //     handleBack();
-                //     return;
-                // }
-                // addresses.push(res?.address_id);
-                // idObject.addresses = addresses;
-                // WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
                 setLoader({ message: "", status: false });
                 toast.success(`Successfully saved`);
                 handleNext();
@@ -387,18 +367,8 @@ const NewVendor = () => {
             toast.error(`${field} is a required filed`);
             return;
         }
-        // const contacts = [];
         postContactPerson(data)
             .then((res) => {
-                // const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-                // if (!idObject['billing_id'] || !idObject['currency']) {
-                //     toast.error("Invalid payload, Billing and currency  information did no insert correctly!");
-                //     handleBack();
-                //     return;
-                // }
-                // contacts.push(res?.contact_id);
-                // idObject.contacts = contacts;
-                // WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
                 setLoader({ message: "", status: false });
                 toast.success(`Successfully saved`);
                 handleNext();
@@ -529,9 +499,6 @@ const NewVendor = () => {
         ]
     }, [handleEditClick, handleSaveClick]);
 
-    useEffect(() => {
-
-    }, [contactColumns, rows]);
     const createVendorSteps = [
         {
             caption: 'Add primary currency',
@@ -574,21 +541,9 @@ const NewVendor = () => {
         },
     ];
 
-    const handleAddCurrency = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        setOpen(true);
-    };
+    useEffect(() => {
 
-    const handleCloseDialog = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        setOpen(false);
-    }
-
-
-
-
+    }, [contactColumns, rows]);
 
 
     const handleReset = () => {

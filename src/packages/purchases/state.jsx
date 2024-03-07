@@ -8,9 +8,10 @@ export default {
         bills: [],
         bill: {},
         vendor: {},
+        ContactPersonArray: [],
     },
-    actions:(state, action) => {
-        switch(action.type) {
+    actions: (state, action) => {
+        switch (action.type) {
             case 'SET_VENDORS':
                 return {
                     ...state,
@@ -36,6 +37,11 @@ export default {
                     ...state,
                     vendor: action.payload,
                 }
+            case 'SET_VENDORS_CONTACT_PERSON':
+                return {
+                    ...state,
+                    ContactPersonArray: action.payload
+                };
         }
     }
 }

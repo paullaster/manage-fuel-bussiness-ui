@@ -1,0 +1,10 @@
+.listOfVendors {
+    width: 80%;
+    .MuiDataGrid-root  {
+        border-left: none!important;
+        border-right: none!important;
+    }
+    .MuiDataGrid-virtualScroller {
+        display: none !important;
+    }
+}

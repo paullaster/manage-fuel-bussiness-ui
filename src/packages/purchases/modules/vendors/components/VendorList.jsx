@@ -1,7 +1,6 @@
-import Box from '@mui/material/Box';
-import { GridActionsCellItem, GridToolbarContainer  } from "@mui/x-data-grid";
+import { GridActionsCellItem, GridToolbarContainer } from "@mui/x-data-grid";
 import { DataTable } from '@/components';
-import {useCallback, useMemo} from 'react';
+import { useCallback, useMemo, useContext, useEffect } from 'react';
 import { fetchVendorsList } from '../../../actions';
 import { v4 as uuidv4 } from 'uuid';
 import { MdOutlineVisibility, MdDelete, MdOutlineRefresh } from "react-icons/md";
@@ -11,9 +10,11 @@ import { deleteItem } from '../../../../../store';
 import constants from '../../../constants';
 import Button from '@mui/material/Button';
 import { usePurchasesState } from '../../../Context';
+import { LoadingContext } from '@/store';
+import { toast } from 'react-toastify';
 
 
-const VendorListGridToolBar = ({}) => {
+const VendorListGridToolBar = ({ }) => {
 
 
     return (
@@ -28,7 +29,7 @@ const VendorListGridToolBar = ({}) => {
 const VendorList = () => {
     const navigate = useNavigate()
     const purchasesState = usePurchasesState();
-
+    const { setLoader } = useContext(LoadingContext);
 
     const handleViewClick = (params) => {
         const url = `/dashboard/purchases/vendor/vendors/${params.id}`;
@@ -37,19 +38,15 @@ const VendorList = () => {
     };
 
     const handleDelete = useCallback((params) => {
-        deleteItem(constants.vendor, {vendor_id: params.id})
-        .then((res) => {
-            /**
-             * @todo: toast success message
-             */
-            console.log(res.message);
-        })
-        .catch((error) => {
-            /**
-             * @todo: toast error
-             */
-            console.log(error);
-        });
+        deleteItem(constants.vendor, { vendor_id: params.id })
+            .then(( ) => {
+                setLoader({message: '', status: ''});
+                toast.success('Vendor deleted successfully');
+            })
+            .catch((error) => {
+                setLoader({message: '', status: false});
+                toast.error(error.message);
+            });
     });
 
     const columns = useMemo(() => [
@@ -136,12 +133,9 @@ const VendorList = () => {
         },
     ], []);
 
-    // useEffect(() => {
-
-    // },[rows]);
 
     return (
-        <Box>
+        <section className='listOfVendors'>
             <shared.components.SectionIntroduction text="List of Vendors" />
             <DataTable
                 columns={columns}
@@ -149,12 +143,11 @@ const VendorList = () => {
                 style={{ minHeight: 400, height: 'auto' }}
                 initialState={{ pagination: { paginationModel: { page: 0, pageSize: 10 } } }}
                 pageSizeOptions={[5, 10, 20, 30, 50]}
-                slots={{toolbar: VendorListGridToolBar}}
-                slotProps={{toolbar:{}}}
+                slots={{ toolbar: VendorListGridToolBar }}
+                slotProps={{ toolbar: {} }}
             />
-        </Box>
+        </section>
     )
 }
 
 export default VendorList
-

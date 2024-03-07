@@ -22,12 +22,12 @@ const Vendors = () => {
   ];
 
   return (
-    <shared.components.PurchasesItemsIndex
-      particular="Vendors"
-      intro="Vendors are required if you want to create bills. You can see the balance<br />you owe and filter reports by the vendor."
-      actionInformation={actionInfo}
-      componentImage={vendorsImage}
-    />
+      <shared.components.PurchasesItemsIndex
+        particular="Vendors"
+        intro="Vendors are required if you want to create bills. You can see the balance<br />you owe and filter reports by the vendor."
+        actionInformation={actionInfo}
+        componentImage={vendorsImage}
+      />
   )
 }
 

@@ -1,18 +1,12 @@
 import { Button, InputComponent, } from "@/components";
-import { useRef, useState, useMemo, useEffect, useContext, forwardRef } from "react";
-import { Form } from "react-router-dom";
-import cardImage from "@/assets/images/card_image.svg";
+import { useRef, useState, useContext, forwardRef } from "react";
 import shared from "../../../shared";
 import { postAddress, postBillingInformation, postContactPerson, postVendor, postCurrency } from "../../../actions";
 import VendorBilling from "./VendorBilling";
 import ContactPerson from "./ContactPerson";
-import { GridRowModes, GridActionsCellItem, GridRowEditStopReasons, } from '@mui/x-data-grid';
-import { MdOutlineSaveAlt, MdCancel, MdCreate, MdDelete } from 'react-icons/md';
 import { v4 as uuidv4 } from 'uuid';
 import { ObjectValidator } from "@/utils";
 import VendorInformation from "./VendorInformation";
-import WebStorage from '@/utils/WebStorage';
-import { APPNAME } from '@/environments';
 import { useNavigate } from 'react-router-dom';
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -22,6 +16,7 @@ import Box from '@mui/material/Box';
 import { LoadingContext } from '@/store';
 import { toast } from 'react-toastify';
 import DivisionTopBar from "../../../shared/components/DivisionTopBar";
+import { usePurchasesState } from "../../../Context";
 
 
 const VendorCurrencyComponent = forwardRef((props, ref) => {
@@ -118,10 +113,9 @@ const VendorAddressDetails = forwardRef((props, ref) => {
 const NewVendor = () => {
 
     const [paymentMethod, setPaymentMethod] = useState([{ method: 'Mpesa' }, { method: 'Bank' }]);
-    const [rows, setRows] = useState([]);
-    const [rowModesModel, setRowModesModel] = useState({});
     const [activeStep, setActiveStep] = useState(0);
     const { setLoader } = useContext(LoadingContext);
+    const {ContactPersonArray} = usePurchasesState();
 
     // CURRENCY
     const currencyNameRef = useRef(null);
@@ -274,8 +268,6 @@ const NewVendor = () => {
         setLoader({ message: "Saving billing informtion...", status: true });
         postBillingInformation(billinObject)
             .then((res) => {
-                const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-                setLoader({ message: "", status: false });
                 setLoader({ message: "", status: false });
                 toast.success(`Billing information saved successfully`);
                 handleNext();
@@ -286,53 +278,6 @@ const NewVendor = () => {
             })
 
     }
-
-    const deleteItem = (item) => {
-        setRows((prevRows) => prevRows.filter((row) => row.id !== item.id));
-    };
-
-
-    const handleEditClick = (item) => {
-        console.log(item);
-        setRowModesModel({ ...rowModesModel, [item.id]: { mode: GridRowModes.Edit } });
-        console.log(rowModesModel);
-    };
-
-    const handleSaveClick = (item) => {
-        console.log(item);
-        setRowModesModel({ ...rowModesModel, [item.id]: { mode: GridRowModes.View } });
-    };
-
-    const handleCancelClick = (item) => {
-        setRowModesModel({
-            ...rowModesModel,
-            [item.id]: { mode: GridRowModes.View, ignoreModifications: true }
-        });
-
-        const editedRow = rows.find((row) => row.id === item.id);
-        if (editedRow.isNew) {
-            setRows(rows.filter((row) => row.id !== item.id));
-        }
-    };
-
-    const handleRowEditStop = (params, event) => {
-        if (params.reason == GridRowEditStopReasons.rowFocusOut) {
-            event.defaultMuiPrevented = true;
-        }
-    };
-
-
-    const processRowUpdate = (newRow) => {
-        const updatedRow = { ...newRow, isNew: false };
-        setRows(rows.map((row) => row.id === newRow.id ? updatedRow : row));
-        return updatedRow;
-    };
-
-
-
-    const handleRowModesModelChange = (newRowModesModel) => {
-        setRowModesModel(newRowModesModel);
-    };
 
     const handleSubmitAddress = () => {
         const addressObject = {
@@ -361,7 +306,7 @@ const NewVendor = () => {
     };
 
     const handleSubmitContactInfo = () => {
-        const { id, isNew, ...data } = rows[0];
+        const { id, isNew, ...data } = ContactPersonArray[0];
         const { isValid, field } = validateObject(data);
         if (isValid) {
             toast.error(`${field} is a required filed`);
@@ -411,7 +356,6 @@ const NewVendor = () => {
         setLoader({ message: "Creating vendor...", status: true });
         postVendor(vendorObject)
             .then((res) => {
-                // WebStorage.RemoveFromStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
                 setLoader({ message: "", status: false });
                 toast.success("Vendor successfully created");
                 navigate(`/dashboard/purchases/vendor/vendors`);
@@ -421,83 +365,6 @@ const NewVendor = () => {
                 toast.error(error.message);
             });
     }
-
-    const contactColumns = useMemo(() => {
-        return [
-            {
-                field: 'contact_name',
-                headerName: 'Name',
-                type: 'string',
-                width: 250,
-                headerAlign: 'center',
-                editable: true,
-            },
-            {
-                field: 'contact_email',
-                headerName: 'Email',
-                type: 'string',
-                width: 250,
-                headerAlign: 'center',
-                editable: true,
-            },
-            {
-                field: 'contact_phone_number',
-                headerName: 'Phone',
-                type: 'string',
-                width: 250,
-                headerAlign: 'center',
-                editable: true
-            },
-            {
-                field: 'actions',
-                headerName: 'Action',
-                type: 'actions',
-                getActions: (params) => {
-                    const isInEditMode = rowModesModel[params.id]?.mode === GridRowModes.Edit;
-                    if (isInEditMode) {
-                        return [
-                            <GridActionsCellItem
-                                key={uuidv4()}
-                                icon={<MdOutlineSaveAlt />}
-                                label="Save"
-                                onClick={() => {
-                                    handleSaveClick(params)
-                                }}
-                            />,
-                            <GridActionsCellItem
-                                key={uuidv4()}
-                                icon={<MdCancel />}
-                                label="Cancel"
-                                className="textPrimary"
-                                onClick={() => {
-                                    handleCancelClick(params)
-                                }}
-                                color="inherit"
-                            />,
-                        ];
-                    }
-                    return [
-                        <GridActionsCellItem
-                            key={uuidv4()}
-                            icon={<MdCreate />}
-                            label="Edit"
-                            onClick={() => {
-                                handleEditClick(params)
-                            }}
-                        />,
-                        <GridActionsCellItem
-                            key={uuidv4()}
-                            icon={<MdDelete />}
-                            label="Delete"
-                            onClick={() => {
-                                deleteItem(params)
-                            }}
-                        />,
-                    ]
-                }
-            }
-        ]
-    }, [handleEditClick, handleSaveClick]);
 
     const createVendorSteps = [
         {
@@ -521,16 +388,7 @@ const NewVendor = () => {
         {
             caption: 'Add contact person',
             id: uuidv4(),
-            Component: <ContactPerson
-                rows={rows}
-                columns={contactColumns}
-                setRows={setRows}
-                rowModesModel={rowModesModel}
-                setRowModesModel={setRowModesModel}
-                handleRowModesModelChange={handleRowModesModelChange}
-                processRowUpdate={processRowUpdate}
-                handleRowEditStop={handleRowEditStop}
-            />,
+            Component: <ContactPerson />,
             stepAction: handleSubmitContactInfo
         },
         {
@@ -541,104 +399,96 @@ const NewVendor = () => {
         },
     ];
 
-    useEffect(() => {
-
-    }, [contactColumns, rows]);
-
-
     const handleReset = () => {
         setActiveStep(0);
     };
 
-    useEffect(() => {
+    // const SetPayload = (event) => {
+    //     event.preventDefault();
+    //     event.stopPropagation();
+    //     postBillingInformation(billinObject)
+    //         .then((res) => {
 
-    }, [rows]);
+    //             const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+    //             if (!idObject['currency']) {
+    //                 console.error("Invalid payload, currency information did not insert correctly!");
+    //                 throw new Error("Invalid payload, Currency information did no insert correctly!");
+    //             }
+    //             idObject.billing_id = res?.id
+    //             WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
 
-    const SetPayload = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        postBillingInformation(billinObject)
-            .then((res) => {
+    //             const addressObject = {
+    //                 address: addressRef.current.value,
+    //                 city: cityRef.current.value,
+    //                 zip_code: zipCodeRef.current.value,
+    //                 state: stateRef.current.value,
+    //                 country: countryRef.current.value,
+    //             };
+    //             for (let prop in addressObject) {
+    //                 if (!addressObject[prop]) {
+    //                     validRef.current = false;
+    //                     return new Error(`${prop} is a required field`);
+    //                 }
+    //             }
 
-                const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-                if (!idObject['currency']) {
-                    console.error("Invalid payload, currency information did not insert correctly!");
-                    throw new Error("Invalid payload, Currency information did no insert correctly!");
-                }
-                idObject.billing_id = res?.id
-                WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+    //             if (!validRef.current) {
+    //                 return new Error("Invalid request");
+    //             };
+    //             const addresses = [];
+    //             postAddress(addressObject)
+    //                 .then((res) => {
 
-                const addressObject = {
-                    address: addressRef.current.value,
-                    city: cityRef.current.value,
-                    zip_code: zipCodeRef.current.value,
-                    state: stateRef.current.value,
-                    country: countryRef.current.value,
-                };
-                for (let prop in addressObject) {
-                    if (!addressObject[prop]) {
-                        validRef.current = false;
-                        return new Error(`${prop} is a required field`);
-                    }
-                }
+    //                     if (!idObject['billing_id'] || !idObject['currency']) {
+    //                         console.error("Invalid payload, Billing and currency  information did no insert correctly!");
+    //                         throw new Error("Invalid payload, Billing and currency information did no insert correctly!");
+    //                     }
+    //                     addresses.push(res?.address_id);
+    //                     idObject.addresses = addresses;
+    //                     WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
 
-                if (!validRef.current) {
-                    return new Error("Invalid request");
-                };
-                const addresses = [];
-                postAddress(addressObject)
-                    .then((res) => {
+    //                     // POSTING CONTACT PERSON
+    //                     const { id, isNew, ...data } = rows[0];
+    //                     const contacts = [];
+    //                     postContactPerson(data)
+    //                         .then((res) => {
+    //                             contacts.push(res?.contact_id);
+    //                             idObject.contacts = contacts;
+    //                             WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
 
-                        if (!idObject['billing_id'] || !idObject['currency']) {
-                            console.error("Invalid payload, Billing and currency  information did no insert correctly!");
-                            throw new Error("Invalid payload, Billing and currency information did no insert correctly!");
-                        }
-                        addresses.push(res?.address_id);
-                        idObject.addresses = addresses;
-                        WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+    //                             // COMPOSE VENDOR
+    //                             const vendorObject = {
+    //                                 vendor_reference: vendorReferenceRef.current.value,
+    //                                 website: vendorWebsiteRef.current.value,
+    //                                 kra_pin: vendorPinRef.current.value,
+    //                                 product_description: vendorProdDescRef.current.value,
+    //                                 company_name: vendorCompanyNameRef.current.value,
+    //                                 vendor_phone: vendorPhoneRef.current.value,
+    //                                 vendor_email: vendorEmailRef.current.value,
+    //                                 vendor_name: vendorNameRef.current.value,
+    //                                 national_id: vendorNationalIDRef.current.value,
+    //                             };
 
-                        // POSTING CONTACT PERSON
-                        const { id, isNew, ...data } = rows[0];
-                        const contacts = [];
-                        postContactPerson(data)
-                            .then((res) => {
-                                contacts.push(res?.contact_id);
-                                idObject.contacts = contacts;
-                                WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
+    //                             if (!validRef.current) {
+    //                                 throw new Error("Invalid payload!");
+    //                             }
+    //                             // POST VENDOR
+    //                             postVendor(vendorObject)
+    //                                 .then((res) => {
+    //                                     console.log(res);
+    //                                     WebStorage.RemoveFromStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
+    //                                     navigate(`/dashboard/purchases/vendor/vendors`);
+    //                                 })
+    //                                 .catch((error) => {
+    //                                     console.log(error);
+    //                                 });
+    //                         })
+    //                 })
+    //         });
 
-                                // COMPOSE VENDOR
-                                const vendorObject = {
-                                    vendor_reference: vendorReferenceRef.current.value,
-                                    website: vendorWebsiteRef.current.value,
-                                    kra_pin: vendorPinRef.current.value,
-                                    product_description: vendorProdDescRef.current.value,
-                                    company_name: vendorCompanyNameRef.current.value,
-                                    vendor_phone: vendorPhoneRef.current.value,
-                                    vendor_email: vendorEmailRef.current.value,
-                                    vendor_name: vendorNameRef.current.value,
-                                    national_id: vendorNationalIDRef.current.value,
-                                };
-
-                                if (!validRef.current) {
-                                    throw new Error("Invalid payload!");
-                                }
-                                // POST VENDOR
-                                postVendor(vendorObject)
-                                    .then((res) => {
-                                        console.log(res);
-                                        WebStorage.RemoveFromStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-                                        navigate(`/dashboard/purchases/vendor/vendors`);
-                                    })
-                                    .catch((error) => {
-                                        console.log(error);
-                                    });
-                            })
-                    })
-            });
-
-    }
+    // }
 
     return (
+        <>
         <section className="new_vendors">
             <shared.components.SectionIntroduction text="New Vendor" />
             <Stepper activeStep={activeStep} orientation="vertical">
@@ -674,7 +524,7 @@ const NewVendor = () => {
             </Stepper>
         </section>
 
-        // <section className="new_vendors">
+        {/* // <section className="new_vendors">
         //     <div className="new_vendors__left">
         //         <shared.components.SectionIntroduction text="New Vendor" />
         //         <div className="new_vendors__left__dataentry">
@@ -740,18 +590,18 @@ const NewVendor = () => {
         //                         <h4>Contact Person</h4>
         //                         <p>To include additional recipients in an email as CC, add them as contact persons.</p>
         //                     </div>
-        //                     <div className="new_vendors__left__dataentry__form_contactperson_datacolumns">
-        //                         <ContactPerson
-        //                             rows={rows}
-        //                             columns={contactColumns}
-        //                             setRows={setRows}
-        //                             rowModesModel={rowModesModel}
-        //                             setRowModesModel={setRowModesModel}
-        //                             handleRowModesModelChange={handleRowModesModelChange}
-        //                             processRowUpdate={processRowUpdate}
-        //                             handleRowEditStop={handleRowEditStop}
-        //                         />
-        //                     </div>
+                            <div className="new_vendors__left__dataentry__form_contactperson_datacolumns">
+                                <ContactPerson
+                                    rows={rows}
+                                    columns={contactColumns}
+                                    setRows={setRows}
+                                    rowModesModel={rowModesModel}
+                                    setRowModesModel={setRowModesModel}
+                                    handleRowModesModelChange={handleRowModesModelChange}
+                                    processRowUpdate={processRowUpdate}
+                                    handleRowEditStop={handleRowEditStop}
+                                />
+                            </div>
         //                 </div>
         //                 <FormButtonRow className={'form_actions_wide'} methodHandler={SetPayload} />
         //             </Form>
@@ -772,7 +622,20 @@ const NewVendor = () => {
         //             </div>
         //         </div>
         //     </div>
-        // </section>
+        // </section> */}
+          {/* <div className="new_vendors__left__dataentry__form_contactperson_datacolumns">
+                                <ContactPerson
+                                    rows={rows}
+                                    columns={contactColumns}
+                                    setRows={setRows}
+                                    rowModesModel={rowModesModel}
+                                    setRowModesModel={setRowModesModel}
+                                    handleRowModesModelChange={handleRowModesModelChange}
+                                    processRowUpdate={processRowUpdate}
+                                    handleRowEditStop={handleRowEditStop}
+                                />
+                            </div> */}
+        </>
     )
 }
 

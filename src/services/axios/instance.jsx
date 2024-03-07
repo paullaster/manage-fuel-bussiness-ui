@@ -17,11 +17,9 @@ export const protectedRequestInterceptor = (config) => {
 };
 
 export const errorInterceptor = (error) => {
-    const errorMessage = JSON.parse(error?.request?.responseText);
-    if (Object.values(errorMessage)[0][0]){
-        error.message = Object.values(errorMessage)[0][0]
-    };
     console.log(error);
+    const errorMessage = error?.response?.statusText;
+    error.message = errorMessage;
     return Promise.reject(error);
 };
 

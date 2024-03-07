@@ -7,7 +7,7 @@ div.pagination {
     padding: g.$xsmall 0;
     width: 100%;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     @include u.borderradius(0, 0, g.$xsmall, g.$xsmall);
 
@@ -16,7 +16,7 @@ div.pagination {
     }
     .initial_caption {
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
         padding-right: g.$xsmall;
     }
 

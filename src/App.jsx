@@ -16,9 +16,6 @@ const App = () => {
   const Hide = (path) => {
     return location.pathname.includes(path);
   }
-
-  // const loaderObj = useMemo(()=> ({loader: isLoading, setLoader: setIsLoading }), []);
-  // const authObj = useMemo(()=> ({ account: auth, authSetter: setAuth }), []);
   useEffect(() => {
     if (Hide('/account') && auth.isAuthenticated) navigate('/dashboard');
     if (!auth.isAuthenticated && Hide('/dashboard')) navigate('/account/login');

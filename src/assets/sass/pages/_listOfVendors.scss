@@ -1,10 +1,12 @@
+@use '../utilities/' as u;
 .listOfVendors {
-    width: 80%;
+    min-width: 80%;
+    max-width: u.rem(2000);
     .MuiDataGrid-root  {
         border-left: none!important;
         border-right: none!important;
     }
     .MuiDataGrid-virtualScroller {
-        display: none !important;
+        // display: none !important;
     }
 }

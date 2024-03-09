@@ -29,7 +29,7 @@ const VendorListGridToolBar = ({ }) => {
 const VendorList = () => {
     const navigate = useNavigate()
     const purchasesState = usePurchasesState();
-    const { setLoader } = useContext(LoadingContext);
+    const { setLoader, loader } = useContext(LoadingContext);
 
     const handleViewClick = (params) => {
         const url = `/dashboard/purchases/vendor/vendors/${params.id}`;
@@ -54,62 +54,62 @@ const VendorList = () => {
             field: 'vendor_name',
             headerName: 'Name',
             width: 300,
-            headerAlign: 'center',
+            headerAlign: 'start',
             sortable: true,
             hideable: false,
             editable: false,
-            align: 'center',
+            align: 'start',
         },
         {
             field: 'vendor_email',
             headerName: 'Email ',
-            width: 200,
-            headerAlign: 'center',
+            width: 300,
+            headerAlign: 'start',
             sortable: false,
             hideable: false,
             editable: false,
-            align: 'center',
+            align: 'start',
         },
         {
             field: 'vendor_phone',
             headerName: 'Phone',
             width: 200,
-            headerAlign: 'center',
+            headeralign: 'start',
             sortable: false,
             hideable: false,
             editable: false,
-            align: 'center',
+            align: 'start',
         },
         {
             field: 'company_name',
             headerName: 'Company name',
             width: 300,
-            headerAlign: 'center',
+            headeralign: 'start',
             sortable: true,
             hideable: false,
             editable: false,
-            align: 'center',
+            align: 'start',
         },
         {
             field: 'website',
             headerName: 'Website',
             width: 200,
-            headerAlign: 'center',
+            headeralign: 'start',
             sortable: false,
             editable: false,
             hideable: false,
-            align: 'center',
+            align: 'start',
         },
         {
             field: 'actions',
             headerName: 'Actions',
             type: 'actions',
             width: 200,
-            headerAlign: 'center',
+            headeralign: 'center',
             sortable: false,
             hideable: false,
             editable: false,
-            align: 'center',
+            align: 'end',
             getActions: (params) => {
                 return [
                     <GridActionsCellItem
@@ -119,6 +119,8 @@ const VendorList = () => {
                         onClick={() => {
                             handleViewClick(params)
                         }}
+                        className="textSecondary"
+                        color="red"
                     />,
                     <GridActionsCellItem
                         key={uuidv4()}
@@ -145,6 +147,8 @@ const VendorList = () => {
                 pageSizeOptions={[5, 10, 20, 30, 50]}
                 slots={{ toolbar: VendorListGridToolBar }}
                 slotProps={{ toolbar: {} }}
+                checkboxSelection
+                loading={loader.status}
             />
         </section>
     )

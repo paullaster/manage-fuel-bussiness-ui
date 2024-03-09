@@ -19,10 +19,9 @@ import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 import OfficerComponent from "./OfficerComponent";
 import SummaryComponent from "../../../shared/components/SummaryComponent";
 import { ObjectValidator, GetGross, YearMonthDate } from "@/utils";
-import { fetchItemPurchases, postingPurchaseItem } from "../../../actions";
-import { usePurchasesState } from '../../../Context';
+import { fetchItemsList, postingPurchaseItem } from "../../../actions";
+import { usePurchasesState, usePurchasesDispatcher } from '../../../Context';
 import { toast } from 'react-toastify';
-import { usePurchasesDispatcher } from "../../../Context";
 
 
 const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
@@ -31,6 +30,7 @@ const NewItem = () => {
   const appStateDispatcher = useGlobalDispatcher();
   const { cardLabelView } = useGlobalState();
   const purchaseActions = usePurchasesDispatcher();
+  const { bills_items} = usePurchasesState();
   const [rows, setRows] = useState([]);
   const [rowModesModel, setRowModesModel] = useState({});
   const [summaryValues, setSummaryValues] = useState({ subtotal: 0, taxt_amount_total: 0, total: 0 });
@@ -104,7 +104,6 @@ const NewItem = () => {
   const processRowUpdate = (newRow) => {
     const updatedRow = { ...newRow, isNew: false };
     setRows(rows.map((row) => row.id === newRow.id ? updatedRow : row));
-    console.log({ rows: rows });
     return updatedRow;
   };
 
@@ -122,9 +121,15 @@ const NewItem = () => {
         headerName: 'Item',
         width: 200,
         type: 'singleSelect',
-        valueOptions: () => orgData.items.map((item) => {
-          return `Item ${item.item_id}`
+        valueOptions: () => bills_items.map((item) => {
+          return `${item.id}-${item.item_name}`
         }),
+        valueFormatter: (params) => {
+          if (params.value) {
+            const name = params.value.split('-')[1];
+            return `${name}`;
+          }
+        },
         editable: true,
         hideable: false,
 
@@ -271,9 +276,9 @@ const NewItem = () => {
 
   useEffect(() => {
     setLoader({message: '', status: true});
-    fetchItemPurchases()
+    fetchItemsList()
     .then((res) => {
-      purchaseActions({type: 'SET_BILL_ITEMS', payload: {filter: true, bills_items: res.purchase_item.results}})
+      purchaseActions({type: 'SET_BILL_ITEMS', payload: {filter: true, items: res.Items.results}})
       setLoader({message: '', status: false});
     }, [])
     .catch((err) => {

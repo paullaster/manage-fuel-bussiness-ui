@@ -32,7 +32,7 @@ export default {
             case 'SET_BILL_ITEMS':
                 return {
                     ...state,
-                    bills_items: action.payload.filter ? Array.from(new Set(action.payload.bills)) : Array.from(new Set([...state.bills, ...action.payload.bills])),
+                    bills_items: action.payload.filter ? Array.from(new Set(action.payload.items)) : Array.from(new Set([...state.bills_items, ...action.payload.items])),
                 }
             case 'SET_CURRENTSELECTED_BILL':
                 return {

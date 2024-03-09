@@ -9,4 +9,5 @@ export default {
     purchase_item: 'purchase_item/',
     fuelPurchase: 'fuel_purchase/',
     officer: 'officer/',
+    companyTankData: `company_data/tank_data`
 };

@@ -27,7 +27,7 @@ const Transport = forwardRef((props, ref) => {
           <AutocompleteComponent
                 list={officers}
                 label={'Select Officer'}
-                keyField={'officer_name'}
+                keyField={'name'}
                 handleOnchange={handleSelectedOficer}
             />
       </div>

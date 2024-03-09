@@ -13,6 +13,7 @@ const PurchaseNewEntityComponent = ({label, dialogTitle = '', maxWidth = '', chi
 
   const handleCloseDialog = () => {
     setOpen(false);
+    setOnDialog({ type: 'SET_ON_DIALOG_STATE', payload: false });
   };
 
   const handleOpenDialog = () => {

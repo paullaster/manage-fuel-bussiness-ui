@@ -61,7 +61,7 @@ const NewItem = () => {
   const handleSelectedOficer = (event, newValue) => {
     event.stopPropagation();
     event.preventDefault();
-    setSelectedOfficer(newValue.officer_id);
+    setSelectedOfficer(newValue.id);
   }
 
 
@@ -302,7 +302,7 @@ const NewItem = () => {
       const tax_amount = GetGross(it, 'vat_rate', 'quantity', 'price', 'tax_amount');
       const net_amount = it.quantity * it.price;
       const gross_amount = GetGross(it, 'vat_rate', 'quantity', 'price', 'gross_amount');
-      const tax = Number(vat_rate) / 100;
+      const tax = Number(Math.ceil(vat_rate)) / 100;
       const item = itemValue.split('-')[0];
       return { tax, quantity, purchase_price, item, tax_amount, net_amount, gross_amount };
     });

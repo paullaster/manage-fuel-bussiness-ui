@@ -16,10 +16,12 @@ import { generator } from '@/utils/';
 
 
 const VendorListGridToolBar = ({ handleRefresh }) => {
-
+    const initiateListRefresh = () => {
+        handleRefresh();
+    }
     return (
         <GridToolbarContainer>
-            <Button color="primary" startIcon={<MdOutlineRefresh size={25} onClick={handleRefresh} />} >
+            <Button color="primary" startIcon={<MdOutlineRefresh size={25} onClick={initiateListRefresh} />} >
                 refresh list
             </Button>
         </GridToolbarContainer>
@@ -137,7 +139,6 @@ const VendorList = () => {
     ], []);
 
     const handleRefresh = () => {
-        setLoader({ message: '', status: true });
         fetchVendorsList()
             .then((res) => {
                 const vendorsWithID = [];

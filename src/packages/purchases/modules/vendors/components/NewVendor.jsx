@@ -451,7 +451,7 @@ const NewVendor = () => {
                 setLoader({ message: "", status: false });
                 toast.success("Vendor successfully created");
                 purchaseState.onDialog ?
-                    (purchaseStateSetter({ type: 'SET_ON_DIALOG_STATE', payload: false })) :
+                    (purchaseStateSetter({ type: 'SET_ON_DIALOG_STATE', payload: false }), window.location.reload()) :
                     (purchaseStateSetter({ type: 'SET_ON_DIALOG_STATE', payload: false }), navigate(`/dashboard/purchases/vendor/vendors`));
             })
             .catch((error) => {

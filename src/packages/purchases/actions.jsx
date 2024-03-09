@@ -93,6 +93,7 @@ export const fetchOfficersList = async(params = {}) => {
     return await _request({url: officer, method: 'GET', params, headers: {'Content-Type': 'application/json'}});
 }
 
+// FETCH COMPANY TANK DATA
 export const fetchCompanyTankData = async(params = {}) => {
     return await _request({url: companyTankData, method: 'GET', params, headers: {'Content-Type': 'application/json'}});
 };

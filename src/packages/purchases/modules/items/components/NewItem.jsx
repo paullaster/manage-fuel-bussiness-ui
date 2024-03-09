@@ -339,6 +339,7 @@ const NewItem = () => {
     postingPurchaseItem(payload)
       .then((res) => {
         setLoader({message:'', status: false});
+        toast.success('Purchase item created successfully');
       })
       .catch((err) => {
         toast.error(err.message);

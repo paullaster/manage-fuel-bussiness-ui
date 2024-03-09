@@ -517,7 +517,7 @@ const NewVendor = () => {
                                             <Button
                                                 onClick={step.stepAction}
                                                 variant="contained" disableElevation
-                                                sx={{ mr: 2 }}
+                                                sx={{ mr: 2, mb: 2 }}
                                             >
                                                 {index === createVendorSteps.length - 1 ? 'Finish' : 'Continue'}
                                             </Button>

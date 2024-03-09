@@ -2,10 +2,13 @@
 import { DialogComponent } from "@/components";
 import AddItemButton from "./AddItemButton";
 import { useState } from "react";
+import { usePurchasesDispatcher } from "../../Context";
+
 
 
 const PurchaseNewEntityComponent = ({label, dialogTitle = '', maxWidth = '', children}) => {
   const [open, setOpen] = useState(false);
+  const setOnDialog = usePurchasesDispatcher();
 
 
   const handleCloseDialog = () => {
@@ -14,6 +17,7 @@ const PurchaseNewEntityComponent = ({label, dialogTitle = '', maxWidth = '', chi
 
   const handleOpenDialog = () => {
     setOpen(true);
+    setOnDialog({ type: 'SET_ON_DIALOG_STATE', payload: true });
   };
 
   return (

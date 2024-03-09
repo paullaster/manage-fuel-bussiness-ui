@@ -275,7 +275,7 @@ const NewItem = () => {
     .then((res) => {
       purchaseActions({type: 'SET_BILL_ITEMS', payload: {filter: true, bills_items: res.purchase_item.results}})
       setLoader({message: '', status: false});
-    })
+    }, [])
     .catch((err) => {
       setLoader({message: '', status: false});
       toast.error(err.message);

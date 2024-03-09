@@ -417,12 +417,17 @@ const NewFuelPurchase = () => {
       po_number: purchaseOrderNumberRef.current.value,
       invoice_number: invoiceNumberRef.current.value,
       delivery_note_number: deliveryNoteNumberRef.current.value,
-      items: itemsList,
+      tank_entries: itemsList,
       sub_total_tax_amount: summaryValues.subtotal,
       net_payable: summaryValues.taxt_amount_total,
+      quantity: itemsList[0]?.quantity,
       gross_amount: summaryValues.total,
+      tax_amount: summaryValues.taxt_amount_total,
+      tax_rate: itemsList[0]?.tax_rate,
       organization_id,
       transport_name: transportNameRef.current.value,
+      price: itemsList[0]?.price,
+      product: 'product',
       vehicle_registration: vehicleRegistrationRef.current.value,
       driver_name: driverNameRef.current.value
     };

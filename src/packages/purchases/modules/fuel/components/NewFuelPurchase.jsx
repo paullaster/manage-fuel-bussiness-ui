@@ -123,7 +123,6 @@ const NewFuelPurchase = () => {
   const handleRowModesModelChange = (newRowModesModel) => {
     setRowModesModel(newRowModesModel);
   };
-  let fueType = '';
 
 
   const columns = useMemo( () =>[
@@ -156,8 +155,8 @@ const NewFuelPurchase = () => {
           if (params.row.tank === '' || undefined || null){
             const tank = tankData.find((t) => t.id === Number(params.row.tank.split('-')[0]));
             return `${tank.fuel_type.type}`;
-          } 'No tank selected' 
-           fueType},
+          }
+        },
         hideable: false,
 
       },
@@ -362,7 +361,7 @@ const NewFuelPurchase = () => {
       setLoader({ message: '', status: false });
       toast.error(err.message);
     });
-  });
+  }, []);
 
   const handleSubmttingFuelPurchase = (event) => {
     event.stopPropagation();

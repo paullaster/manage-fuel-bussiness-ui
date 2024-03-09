@@ -301,17 +301,18 @@ const NewItem = () => {
     event.preventDefault();
 
     const itemsList = rows.map((it) => {
-      const{ vat_rate, quantity, price:purchase_price , item } = it;
+      const{ vat_rate, quantity, price:purchase_price , item:itemValue } = it;
       const tax_amount = GetGross(it, 'vat_rate', 'quantity', 'price', 'tax_amount');
       const net_amount = it.quantity * it.price;
       const gross_amount = GetGross(it, 'vat_rate', 'quantity', 'price', 'gross_amount');
       const tax = Number(vat_rate)/100;
+      const item = itemValue.split('-')[0];
       return { tax, quantity, purchase_price, item, tax_amount, net_amount, gross_amount};
     });
 
     itemsList.forEach((item) => {
       if (!ObjectValidator(['vat_rate', 'quantity', 'price', 'item', 'vat_amount', 'net_amount', 'gross_amount'], item)) {
-        throw Error("Please check your items table and complete before you submit again");
+        toast.error("Please check your items table and complete before you submit again");
       }
     });
     const pickedDate = YearMonthDate(billDate);

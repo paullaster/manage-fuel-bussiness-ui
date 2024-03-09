@@ -10,6 +10,7 @@ export default {
         vendor: {},
         ContactPersonArray: [],
         bills_items: [],
+        onDialog: false,
     },
     actions: (state, action) => {
         switch (action.type) {
@@ -47,6 +48,11 @@ export default {
                 return {
                     ...state,
                     ContactPersonArray: action.payload
+                };
+            case 'SET_ON_DIALOG_STATE':
+                return {
+                    ...state,
+                    onDialog: action.payload
                 };
         }
     }

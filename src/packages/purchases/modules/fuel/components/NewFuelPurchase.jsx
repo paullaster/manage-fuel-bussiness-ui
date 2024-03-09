@@ -152,8 +152,10 @@ const NewFuelPurchase = () => {
         sortable: false,
         type: 'string',
         valueGetter: (params) => {
-          if (params.row.tank === '' || undefined || null){
+          if (params.row.tank){
+
             const tank = tankData.find((t) => t.id === Number(params.row.tank.split('-')[0]));
+            console.log(tank);
             return `${tank.fuel_type.type}`;
           }
         },

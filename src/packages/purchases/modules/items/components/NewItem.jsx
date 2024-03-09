@@ -2,11 +2,9 @@ import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { Form } from "react-router-dom";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
 import shared from "../../../shared";
-import { useGlobalDispatcher, useGlobalState, LoadingContext } from '@/store';
+import { useGlobalDispatcher, useGlobalState, LoadingContext, AuthContext } from '@/store';
 import { composableAutofils } from "../setups";
 import PurchaseItemEntry from "./PurchaseItemEntry";
-import WebStorage from "@/utils/WebStorage";
-import { APPNAME } from "@/environments";
 import { MdDelete, MdOutlineSaveAlt, MdCancel, MdCreate } from "react-icons/md";
 import NewVendor from "../../vendors/components/NewVendor";
 import {
@@ -23,20 +21,19 @@ import { fetchItemsList, postingPurchaseItem } from "../../../actions";
 import { usePurchasesState, usePurchasesDispatcher } from '../../../Context';
 import { toast } from 'react-toastify';
 
-
-const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
-
 const NewItem = () => {
   const appStateDispatcher = useGlobalDispatcher();
   const { cardLabelView } = useGlobalState();
   const purchaseActions = usePurchasesDispatcher();
-  const { bills_items} = usePurchasesState();
+  const { bills_items } = usePurchasesState();
+  const { account } = useContext(AuthContext);
+  const { setLoader } = useContext(LoadingContext);
+
   const [rows, setRows] = useState([]);
   const [rowModesModel, setRowModesModel] = useState({});
   const [summaryValues, setSummaryValues] = useState({ subtotal: 0, taxt_amount_total: 0, total: 0 });
   const [selectedOfficer, setSelectedOfficer] = useState(null);
   const [vendor, setVendor] = useState(null);
-  const { setLoader} = useContext(LoadingContext);
 
   const billNumberRef = useRef(null);
   const invoiceNumberRef = useRef(null);
@@ -45,7 +42,7 @@ const NewItem = () => {
   const billDate = useRef(null);
 
 
-  const {vendors, officers} = usePurchasesState();
+  const { vendors, officers } = usePurchasesState();
 
   const billingInfoRefObject = {
     billNumberRef,
@@ -275,16 +272,16 @@ const NewItem = () => {
   }, [rows]);
 
   useEffect(() => {
-    setLoader({message: '', status: true});
+    setLoader({ message: '', status: true });
     fetchItemsList()
-    .then((res) => {
-      purchaseActions({type: 'SET_BILL_ITEMS', payload: {filter: true, items: res.Items.results}})
-      setLoader({message: '', status: false});
-    }, [])
-    .catch((err) => {
-      setLoader({message: '', status: false});
-      toast.error(err.message);
-    });
+      .then((res) => {
+        purchaseActions({ type: 'SET_BILL_ITEMS', payload: { filter: true, items: res.Items.results } })
+        setLoader({ message: '', status: false });
+      }, [])
+      .catch((err) => {
+        setLoader({ message: '', status: false });
+        toast.error(err.message);
+      });
   }, []);
 
   useEffect(() => {
@@ -301,13 +298,13 @@ const NewItem = () => {
     event.preventDefault();
 
     const itemsList = rows.map((it) => {
-      const{ vat_rate, quantity, price:purchase_price , item:itemValue } = it;
+      const { vat_rate, quantity, price: purchase_price, item: itemValue } = it;
       const tax_amount = GetGross(it, 'vat_rate', 'quantity', 'price', 'tax_amount');
       const net_amount = it.quantity * it.price;
       const gross_amount = GetGross(it, 'vat_rate', 'quantity', 'price', 'gross_amount');
-      const tax = Number(vat_rate)/100;
+      const tax = Number(vat_rate) / 100;
       const item = itemValue.split('-')[0];
-      return { tax, quantity, purchase_price, item, tax_amount, net_amount, gross_amount};
+      return { tax, quantity, purchase_price, item, tax_amount, net_amount, gross_amount };
     });
 
     itemsList.forEach((item) => {
@@ -317,7 +314,7 @@ const NewItem = () => {
     });
     const pickedDate = YearMonthDate(billDate);
 
-    const { organization_id } = orgData;
+    const { organization_id } = account.user;
     const payload = {
       vendor: vendor,
       officer: selectedOfficer,
@@ -336,14 +333,16 @@ const NewItem = () => {
 
     for (const prop in payload) {
       console.log(payload);
-      if (!payload[prop]) throw new Error("Invalid payload, Cross check your item and submit again!")
+      if (!payload[prop]) toast.error("Invalid payload, Cross check your item and submit again!")
     }
+    setLoader({message:'Posting purchase item', status: true});
     postingPurchaseItem(payload)
       .then((res) => {
-        console.log(res);
+        setLoader({message:'', status: false});
       })
       .catch((err) => {
-        console.error(err);
+        toast.error(err.message);
+        setLoader({message:'', status: false});
       });
   }
 

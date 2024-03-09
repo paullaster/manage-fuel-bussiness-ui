@@ -27,7 +27,7 @@ const Login = () => {
     login(payload)
     .then((res) => {
       AuthService.Login(res.access, res.refresh);
-      authSetter({ user: 'user', isAuthenticated: AuthService.isLoggedIn()});
+      authSetter({ user: AuthService.getUser(), isAuthenticated: AuthService.isLoggedIn()});
       setLoader({message: "", status: false});
       toast.success('Login successful');
     })

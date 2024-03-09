@@ -22,7 +22,7 @@ const App = () => {
   }, [location, auth]);
 
   useEffect(() => {
-    setAuth({ user: 'user', isAuthenticated: AuthService.isLoggedIn() });
+    setAuth({ user: AuthService.getUser(), isAuthenticated: AuthService.isLoggedIn() });
   }, [location]);
 
   return (

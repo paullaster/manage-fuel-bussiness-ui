@@ -3,7 +3,7 @@ import vendorsImage from "@/assets/images/vendors.svg";
 import { NavLink } from "react-router-dom";
 import { usePurchasesDispatcher } from "../../Context";
 import { useEffect, useContext } from 'react';
-import { fetchVendorsList } from "../../actions";
+import { fetchVendorsList, fetchOfficersList } from "../../actions";
 import { generator } from '@/utils/';
 import { LoadingContext } from '@/store';
 import { toast } from 'react-toastify';

@@ -24,7 +24,6 @@ import { usePurchasesState } from '../../../Context';
 import { toast } from 'react-toastify';
 
 
-const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
 const NewFuelPurchase = () => {
   const { account } = useContext(AuthContext);
   const { setLoader } = useContext(LoadingContext);
@@ -153,7 +152,6 @@ const NewFuelPurchase = () => {
         type: 'string',
         valueGetter: (params) => {
           if (params.row.tank){
-
             const tank = tankData.find((t) => t.id === Number(params.row.tank.split('-')[0]));
             console.log(tank);
             return `${tank.fuel_type.type}`;
@@ -371,7 +369,7 @@ const NewFuelPurchase = () => {
 
     const itemsList = rows.map((it) => {
       const{ tax_rate, expected_quantity, price , 
-        tank, dip_quantity_before_offloading, 
+        tank:tankValue, dip_quantity_before_offloading, 
         sales_quantity_during_offloading, 
         actual_dip_quantity_after_offloading,
         variance
@@ -380,6 +378,7 @@ const NewFuelPurchase = () => {
       const net_payable = it.expected_quantity * it.price;
       const gross_amount = GetGross(it, 'tax_rate', 'expected_quantity', 'price', 'gross_amount');
       const tax = Number(tax_rate)/100;
+      const tank = Number(tankValue.split('-')[0]);
       return { 
         tax_rate: tax, 
         expected_quantity, 
@@ -410,8 +409,8 @@ const NewFuelPurchase = () => {
         throw Error("Please check your items table and complete before you submit again");
       }
     });
-    const pickedDate = YearMonthDate(billDate);
-    const { organization_id } = orgData;
+    const pickedDate = YearMonthDate(billDate.current.value);
+    const { organization_id } = account.user;
     const payload = {
       vendor: vendor,
       officer: selectedOfficer,
@@ -430,7 +429,7 @@ const NewFuelPurchase = () => {
       driver_name: driverNameRef.current.value
     };
     for (const prop in payload) {
-      if (!payload[prop]) throw new Error("Invalid payload, Cross check your item and submit again!")
+      if (!payload[prop]) {toast.error("Invalid payload, Cross check your item and submit again!"); return};
     }
     postingFuelPurchase(payload)
     .then((res) => {

@@ -334,7 +334,7 @@ const NewItem = () => {
     };
 
     for (const prop in payload) {
-      if (!payload[prop]) toast.error("Invalid payload, Cross check your item and submit again!")
+      if (!payload[prop]) {toast.error("Invalid payload, Cross check your item and submit again!"); return;};
     }
     setLoader({message:'Posting purchase item', status: true});
     postingPurchaseItem(payload)

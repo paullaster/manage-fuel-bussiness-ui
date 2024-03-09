@@ -280,12 +280,6 @@ const NewVendor = () => {
     const handleSubmitCurrency = (event) => {
         invalid.current = false;
         if (event.type === 'click') {
-            // const currencyObject = {
-            //     currency_name: currencyNameRef.current.value,
-            //     currency_code: currencyCodeRef.current.value,
-            //     rate: currencyRateRef.current.value,
-            //     symbol: currencySymbolref.current.value,
-            // };
             let currencyObject = currencies;
             if (currencyObject.value === 'KES') {
                 currencyObject = Object.assign({}, {
@@ -457,8 +451,8 @@ const NewVendor = () => {
                 setLoader({ message: "", status: false });
                 toast.success("Vendor successfully created");
                 purchaseState.onDialog ?
-                    (purchaseStateSetter({type: 'SET_ON_DIALOG_STATE', payload: false})) :
-                    (purchaseStateSetter({type: 'SET_ON_DIALOG_STATE', payload: false}), navigate(`/dashboard/purchases/vendor/vendors`));
+                    (purchaseStateSetter({ type: 'SET_ON_DIALOG_STATE', payload: false })) :
+                    (purchaseStateSetter({ type: 'SET_ON_DIALOG_STATE', payload: false }), navigate(`/dashboard/purchases/vendor/vendors`));
             })
             .catch((error) => {
                 setLoader({ message: "", status: false });
@@ -508,43 +502,41 @@ const NewVendor = () => {
         },
     ];
     return (
-        <>
-            <section className="new_vendors">
-                <shared.components.SectionIntroduction text="New Vendor" />
-                <Stepper activeStep={activeStep} orientation="vertical">
-                    {
-                        createVendorSteps.map((step, index) => {
-                            return (
-                                <Step key={step.id}>
-                                    <StepLabel>{step.caption}</StepLabel>
-                                    <StepContent>
-                                        <>{step.Component}</>
-                                        <Box sx={{ mb: 2, mt: 4 }}>
-                                            <div className="stepperButtons">
-                                                <Button
-                                                    onClick={step.stepAction}
-                                                    variant="contained" disableElevation
-                                                    sx={{ mr: 2 }}
-                                                >
-                                                    {index === createVendorSteps.length - 1 ? 'Finish' : 'Continue'}
-                                                </Button>
-                                                <Button
-                                                    disabled={index === 0}
-                                                    onClick={handleBack}
-                                                    variant="outlined"
-                                                >
-                                                    Back
-                                                </Button>
-                                            </div>
-                                        </Box>
-                                    </StepContent>
-                                </Step>
-                            )
-                        })
-                    }
-                </Stepper>
-            </section>
-        </>
+        <section className="new_vendors">
+            <shared.components.SectionIntroduction text="New Vendor" />
+            <Stepper activeStep={activeStep} orientation="vertical">
+                {
+                    createVendorSteps.map((step, index) => {
+                        return (
+                            <Step key={step.id}>
+                                <StepLabel>{step.caption}</StepLabel>
+                                <StepContent>
+                                    <>{step.Component}</>
+                                    <Box sx={{ mb: 2, mt: 4 }}>
+                                        <div className="stepperButtons">
+                                            <Button
+                                                onClick={step.stepAction}
+                                                variant="contained" disableElevation
+                                                sx={{ mr: 2 }}
+                                            >
+                                                {index === createVendorSteps.length - 1 ? 'Finish' : 'Continue'}
+                                            </Button>
+                                            <Button
+                                                disabled={index === 0}
+                                                onClick={handleBack}
+                                                variant="outlined"
+                                            >
+                                                Back
+                                            </Button>
+                                        </div>
+                                    </Box>
+                                </StepContent>
+                            </Step>
+                        )
+                    })
+                }
+            </Stepper>
+        </section>
     )
 }
 

@@ -89,5 +89,10 @@ export const StateReducer = (state, action) => {
                 ...state,
                 transactionCode: action.payload,
             };
+        case 'SET_TANK_DATA':
+            return {
+              ...state,
+                tankData: action.payload,
+            };
     }
 }

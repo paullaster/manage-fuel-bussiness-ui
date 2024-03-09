@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo, useRef} from "react";
 import shared from "../../../shared";
 import SummaryComponent from "../../../shared/components/SummaryComponent";
-import { useGlobalDispatcher, useGlobalState } from '@/store';
+import { useGlobalDispatcher, useGlobalState,LoadingContext, AuthContext  } from '@/store';
 import { Form } from "react-router-dom";
 import { composableAutofils} from "../setups";
 import TankEntries from "./TankEntries";
@@ -19,25 +19,27 @@ import { APPNAME } from "@/environments";
 import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 import { MdOutlineSaveAlt, MdCreate, MdCancel, MdDelete } from "react-icons/md";
 import Transport from "./Transport";
-import { postingFuelPurchase } from "../../../actions";
+import { postingFuelPurchase, fetchCompanyTankData } from "../../../actions";
 import { usePurchasesState } from '../../../Context';
+import { toast } from 'react-toastify';
 
 
 const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
-let fueType = '';
 const NewFuelPurchase = () => {
+  const { account } = useContext(AuthContext);
+  const { setLoader } = useContext(LoadingContext);
   const [rows, setRows] = useState([]);
   const [rowModesModel, setRowModesModel] = useState({});
-
-
+  
+  
   const appStateDispatcher = useGlobalDispatcher();
-  const { cardLabelView } = useGlobalState();
-
-
+  const { cardLabelView, tankData } = useGlobalState();
+  
+  
   const [summaryValues, setSummaryValues] = useState({ subtotal: 0, taxt_amount_total: 0, total: 0 });
   const [selectedOfficer, setSelectedOfficer] = useState(null);
   const [vendor, setVendor] = useState(null);
-
+  
   const billNumberRef = useRef(null);
   const invoiceNumberRef = useRef(null);
   const purchaseOrderNumberRef = useRef(null);
@@ -78,20 +80,20 @@ const NewFuelPurchase = () => {
     setSelectedOfficer(newValue.officer_id);
   }
   const deleteItem = (params) => {
-        setRows((prevRows) => prevRows.filter((row) => row.id !== params.id));
+    setRows((prevRows) => prevRows.filter((row) => row.id !== params.id));
     };
-   
-
-  const handleEditClick = (params) => {
-    setRowModesModel({...rowModesModel, [params.id]: { mode: GridRowModes.Edit}});
-  };
-
-  const handleSaveClick = (params) => {
-    setRowModesModel({...rowModesModel, [params.id]: { mode: GridRowModes.View}});
-  };
-
-  const handleCancelClick = (params) => {
-    setRowModesModel({
+    
+    
+    const handleEditClick = (params) => {
+      setRowModesModel({...rowModesModel, [params.id]: { mode: GridRowModes.Edit}});
+    };
+    
+    const handleSaveClick = (params) => {
+      setRowModesModel({...rowModesModel, [params.id]: { mode: GridRowModes.View}});
+    };
+    
+    const handleCancelClick = (params) => {
+      setRowModesModel({
       ...rowModesModel,
       [params.id]: {mode: GridRowModes.View, ignoreModifications: true}
     });
@@ -101,14 +103,14 @@ const NewFuelPurchase = () => {
       setRows(rows.filter((row) => row.id !== params.id));
     }
   };
-
+  
   const handleRowEditStop = (params, event) => {
     if(params.reason == GridRowEditStopReasons.rowFocusOut) {
       event.defaultMuiPrevented = true;
     }
   };
-
-
+  
+  
   const processRowUpdate = (newRow) => {
     const updatedRow = {...newRow, isNew: false};
     setRows(rows.map((row) => row.id === newRow.id ? updatedRow : row));
@@ -121,6 +123,7 @@ const NewFuelPurchase = () => {
   const handleRowModesModelChange = (newRowModesModel) => {
     setRowModesModel(newRowModesModel);
   };
+  let fueType = '';
 
 
   const columns = useMemo( () =>[
@@ -130,16 +133,14 @@ const NewFuelPurchase = () => {
         width: 60,
         editable: true,
         type: 'singleSelect',
-        valueOptions: () => orgData.tanks.map((tank) => {
-          return tank.tank_number
+        valueOptions: () => tankData.map((tank) => {
+          return `${tank.id}-${tank.tank_number}`;
         }),
         valueFormatter: (params) => {
-          if(!params.value) {
-            return 'Select tank'
+          if (params.value) {
+            const number = params.value.split('-')[1];
+            return `Tank ${number}`;
           }
-          apiFetchUtil(params, 'fuel_type')
-            .then((res) => fueType = res);
-          return `Tank  ${params.value}`
         },
         sortable: false,
         hideable: false,
@@ -151,7 +152,12 @@ const NewFuelPurchase = () => {
         editable: false,
         sortable: false,
         type: 'string',
-        valueGetter: (params) => (params.row.tank === '' || undefined || null) ? 'No tank selected' : fueType,
+        valueGetter: (params) => {
+          if (params.row.tank === '' || undefined || null){
+            const tank = tankData.find((t) => t.id === Number(params.row.tank.split('-')[0]));
+            return `${tank.fuel_type.type}`;
+          } 'No tank selected' 
+           fueType},
         hideable: false,
 
       },
@@ -345,6 +351,18 @@ const NewFuelPurchase = () => {
 
   }, [columns, handleSettingSummary]);
 
+  useEffect( () => {
+    setLoader({ message: '', status: true });
+    fetchCompanyTankData()
+    .then((res) => {
+      appStateDispatcher({type: 'SET_TANK_DATA', payload: res.Tank.results});
+      setLoader({ message: '', status: false });
+    })
+    .catch((err) => {
+      setLoader({ message: '', status: false });
+      toast.error(err.message);
+    });
+  });
 
   const handleSubmttingFuelPurchase = (event) => {
     event.stopPropagation();

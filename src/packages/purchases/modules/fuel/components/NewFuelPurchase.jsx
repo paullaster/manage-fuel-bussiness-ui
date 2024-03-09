@@ -75,7 +75,7 @@ const NewFuelPurchase = () => {
     event.stopPropagation();
     event.preventDefault();
     console.log(newValue);
-    setSelectedOfficer(newValue.officer_id);
+    setSelectedOfficer(newValue.id);
   }
   const deleteItem = (params) => {
     setRows((prevRows) => prevRows.filter((row) => row.id !== params.id));
@@ -152,7 +152,6 @@ const NewFuelPurchase = () => {
       valueGetter: (params) => {
         if (params.row.tank) {
           const tank = tankData.find((t) => t.id === Number(params.row.tank.split('-')[0]));
-          console.log(tank);
           return `${tank.fuel_type.type}`;
         }
       },
@@ -330,7 +329,7 @@ const NewFuelPurchase = () => {
         return cummulative + sub;
       }, summaryValues.subtotal);
       const totalTaxAmount = rows.reduce((cummulative, current) => {
-        const txA = GetGross(current, 'tax_rate', 'quantity', 'price', 'tax_amount');
+        const txA = GetGross(current, 'tax_rate', 'expected_quantity', 'price', 'tax_amount');
         return cummulative + txA
       }, summaryValues.taxt_amount_total);
       const total = subtotal + totalTaxAmount;
@@ -405,7 +404,7 @@ const NewFuelPurchase = () => {
         'variance',
 
       ], item)) {
-        throw Error("Please check your items table and complete before you submit again");
+        toast.error("Please check your items table and complete before you submit again");
       }
     });
     const pickedDate = YearMonthDate(billDate.current.value);
@@ -427,6 +426,7 @@ const NewFuelPurchase = () => {
       vehicle_registration: vehicleRegistrationRef.current.value,
       driver_name: driverNameRef.current.value
     };
+    console.log(payload);
     for (const prop in payload) {
       if (!payload[prop]) { toast.error("Invalid payload, Cross check your item and submit again!"); return };
     }

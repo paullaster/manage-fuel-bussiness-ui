@@ -28,13 +28,14 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import { APPNAME } from "@/environments";
 import WebStorage from "@/utils/WebStorage";
+import { usePurchasesDispatcher, usePurchasesState } from "../../../Context";
 
 
 const currenciesList = [{ value: 'createCurrency', label: 'Create New Currency' }];
 
 const VendorCurrencyComponent = forwardRef((props, ref) => {
     const { getNewAddedCurrency, setCurrencies, currencies } = props;
-  
+
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -122,8 +123,8 @@ const VendorCurrencyComponent = forwardRef((props, ref) => {
                     </div>
                 </DialogContent>
                 <DialogActions>
-                    <Button variant="outlined" onClick={ () => setCurrencies({ value: 'KES', label: 'Kenya shillings' })}>close</Button>
-                    <Button variant="contained" disableElevation  onClick={handleAddedCurrency}>create</Button>
+                    <Button variant="outlined" onClick={() => setCurrencies({ value: 'KES', label: 'Kenya shillings' })}>close</Button>
+                    <Button variant="contained" disableElevation onClick={handleAddedCurrency}>create</Button>
                 </DialogActions>
             </Dialog>
         </div>
@@ -186,6 +187,8 @@ const NewVendor = () => {
     const [currencies, setCurrencies] = useState({ value: 'KES', label: 'Kenya shillings' });
     const [activeStep, setActiveStep] = useState(0);
     const { setLoader } = useContext(LoadingContext);
+    const purchaseStateSetter = usePurchasesDispatcher();
+    const purchaseState = usePurchasesState();
 
     // CURRENCY
     const currencyNameRef = useRef(null);
@@ -284,15 +287,15 @@ const NewVendor = () => {
             //     symbol: currencySymbolref.current.value,
             // };
             let currencyObject = currencies;
-            if ( currencyObject.value === 'KES') {
-                currencyObject = Object.assign({},{
+            if (currencyObject.value === 'KES') {
+                currencyObject = Object.assign({}, {
                     value: 'KES',
                     label: 'Kenya shillings',
                     currency_code: 'KES',
                     currency_name: 'Kenya shillings',
                     symbol: 'KES',
                     rate: 1,
-                    });
+                });
             }
             for (let prop in currencyObject) {
                 if (!currencyObject[prop] && prop !== 'symbol') {
@@ -305,14 +308,14 @@ const NewVendor = () => {
                 toast.error("Invalid form");
                 return;
             }
-            const { label, value, ...payload} = currencyObject;
+            const { label, value, ...payload } = currencyObject;
             setLoader({ message: "Saving currency informtion...", status: true });
             postCurrency(payload)
                 .then((res) => {
-                    WebStorage.storeToWebDB('session', `${APPNAME}_VENDORDEPENDENCIES`, {currency: res.currency_id});
+                    WebStorage.storeToWebDB('session', `${APPNAME}_VENDORDEPENDENCIES`, { currency: res.currency_id });
                     setLoader({ message: "", status: false });
                     toast.success('Currency information saved successfully');
-                    currencyObject= {};
+                    currencyObject = {};
                     handleNext();
                 })
                 .catch((error) => {
@@ -453,7 +456,9 @@ const NewVendor = () => {
                 WebStorage.RemoveFromStorage('session', `${APPNAME}_VENDORDEPENDENCIES`);
                 setLoader({ message: "", status: false });
                 toast.success("Vendor successfully created");
-                navigate(`/dashboard/purchases/vendor/vendors`);
+                purchaseState.onDialog ?
+                    (purchaseStateSetter({type: 'SET_ON_DIALOG_STATE', payload: false})) :
+                    (purchaseStateSetter({type: 'SET_ON_DIALOG_STATE', payload: false}), navigate(`/dashboard/purchases/vendor/vendors`));
             })
             .catch((error) => {
                 setLoader({ message: "", status: false });
@@ -474,7 +479,7 @@ const NewVendor = () => {
         {
             caption: 'Add primary currency',
             id: uuidv4(),
-            Component: <VendorCurrencyComponent currencies={currencies} setCurrencies={setCurrencies} ref={currencyRefObject}  getNewAddedCurrency={getNewAddedCurrency} />,
+            Component: <VendorCurrencyComponent currencies={currencies} setCurrencies={setCurrencies} ref={currencyRefObject} getNewAddedCurrency={getNewAddedCurrency} />,
             stepAction: handleSubmitCurrency
         },
         {
@@ -502,95 +507,6 @@ const NewVendor = () => {
             stepAction: handleSubmitVendorInformation
         },
     ];
-
-    const handleReset = () => {
-        setActiveStep(0);
-    };
-
-    // const SetPayload = (event) => {
-    //     event.preventDefault();
-    //     event.stopPropagation();
-    //     postBillingInformation(billinObject)
-    //         .then((res) => {
-
-    //             const idObject = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-    //             if (!idObject['currency']) {
-    //                 console.error("Invalid payload, currency information did not insert correctly!");
-    //                 throw new Error("Invalid payload, Currency information did no insert correctly!");
-    //             }
-    //             idObject.billing_id = res?.id
-    //             WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
-
-    //             const addressObject = {
-    //                 address: addressRef.current.value,
-    //                 city: cityRef.current.value,
-    //                 zip_code: zipCodeRef.current.value,
-    //                 state: stateRef.current.value,
-    //                 country: countryRef.current.value,
-    //             };
-    //             for (let prop in addressObject) {
-    //                 if (!addressObject[prop]) {
-    //                     validRef.current = false;
-    //                     return new Error(`${prop} is a required field`);
-    //                 }
-    //             }
-
-    //             if (!validRef.current) {
-    //                 return new Error("Invalid request");
-    //             };
-    //             const addresses = [];
-    //             postAddress(addressObject)
-    //                 .then((res) => {
-
-    //                     if (!idObject['billing_id'] || !idObject['currency']) {
-    //                         console.error("Invalid payload, Billing and currency  information did no insert correctly!");
-    //                         throw new Error("Invalid payload, Billing and currency information did no insert correctly!");
-    //                     }
-    //                     addresses.push(res?.address_id);
-    //                     idObject.addresses = addresses;
-    //                     WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
-
-    //                     // POSTING CONTACT PERSON
-    //                     const { id, isNew, ...data } = rows[0];
-    //                     const contacts = [];
-    //                     postContactPerson(data)
-    //                         .then((res) => {
-    //                             contacts.push(res?.contact_id);
-    //                             idObject.contacts = contacts;
-    //                             WebStorage.storeToWebDB('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`, idObject);
-
-    //                             // COMPOSE VENDOR
-    //                             const vendorObject = {
-    //                                 vendor_reference: vendorReferenceRef.current.value,
-    //                                 website: vendorWebsiteRef.current.value,
-    //                                 kra_pin: vendorPinRef.current.value,
-    //                                 product_description: vendorProdDescRef.current.value,
-    //                                 company_name: vendorCompanyNameRef.current.value,
-    //                                 vendor_phone: vendorPhoneRef.current.value,
-    //                                 vendor_email: vendorEmailRef.current.value,
-    //                                 vendor_name: vendorNameRef.current.value,
-    //                                 national_id: vendorNationalIDRef.current.value,
-    //                             };
-
-    //                             if (!validRef.current) {
-    //                                 throw new Error("Invalid payload!");
-    //                             }
-    //                             // POST VENDOR
-    //                             postVendor(vendorObject)
-    //                                 .then((res) => {
-    //                                     console.log(res);
-    //                                     WebStorage.RemoveFromStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-    //                                     navigate(`/dashboard/purchases/vendor/vendors`);
-    //                                 })
-    //                                 .catch((error) => {
-    //                                     console.log(error);
-    //                                 });
-    //                         })
-    //                 })
-    //         });
-
-    // }
-
     return (
         <>
             <section className="new_vendors">
@@ -608,7 +524,7 @@ const NewVendor = () => {
                                                 <Button
                                                     onClick={step.stepAction}
                                                     variant="contained" disableElevation
-                                                    sx={{mr: 2}}
+                                                    sx={{ mr: 2 }}
                                                 >
                                                     {index === createVendorSteps.length - 1 ? 'Finish' : 'Continue'}
                                                 </Button>
@@ -628,118 +544,6 @@ const NewVendor = () => {
                     }
                 </Stepper>
             </section>
-
-            {/* // <section className="new_vendors">
-        //     <div className="new_vendors__left">
-        //         <shared.components.SectionIntroduction text="New Vendor" />
-        //         <div className="new_vendors__left__dataentry">
-        //             <Form className="new_vendors__left__dataentry__form">
-        //                 <div className="new_vendors__left__dataentry__form_vendorinfo">
-        //                     <VendorInformation
-        //                         ref={vendorInformationRefObject}
-        //                     />
-        //                 </div>
-        //                 <div className="new_vendors__left__dataentry__form_billinginfo">
-        //                     <div className="new_vendors__left__dataentry__form_billinginfo_introduction form_section_introductions">
-        //                         <h4>Billing</h4>
-        //                         <p>The tax number appears in every bill issued to you. The selected currency becomes the default currency for this vendor.</p>
-        //                     </div>
-        //                     <VendorBilling ref={billingInfo} handleSelectedPaymentMethod={handleSelectedPaymentMethod} handleAddCurrency={handleAddCurrency} />
-        //                     <CurrencyComponent ref={currencyRefObject} open={open} handleCloseDialog={handleCloseDialog} dialogTitle="Add currency" maxWidth='200' handleSubmitCurrency={handleSubmitCurrency} />
-        //                 </div>
-        //                 <div className="new_vendors__left__dataentry__form_addressinfo">
-        //                     <div className="new_vendors__left__dataentry__form_addressinfo_introduction form_section_introductions">
-        //                         <h4>Address</h4>
-        //                         <p>The address is required for the bills, so you need to add billing address details for your vendor.</p>
-        //                     </div>
-        //                     <div className="new_vendors__left__dataentry__form_addressinfo_datanetry">
-        //                         <div className="new_vendors__left__dataentry__form_addressinfo_datanetry__section-one">
-        //                             <InputComponent
-        //                                 prelabelText={"address finder"}
-        //                             />
-        //                             <div className="textarea_container">
-        //                                 <label htmlFor="address">address</label>
-        //                                 <textarea name="address" id="address" cols="30" rows="4" className="info_textarea" ref={addressRef}></textarea>
-        //                             </div>
-        //                         </div>
-        //                         <div className="new_vendors__left__dataentry__form_addressinfo_datanetry__section-two">
-        //                             <InputComponent
-        //                                 type="text"
-        //                                 prelabelText={"town / city"}
-        //                                 name="city"
-        //                                 ref={cityRef}
-        //                             />
-        //                             <InputComponent
-        //                                 type="text"
-        //                                 prelabelText={"postal / zip code"}
-        //                                 name="zip_code"
-        //                                 ref={zipCodeRef}
-        //                             />
-        //                             <InputComponent
-        //                                 type="text"
-        //                                 prelabelText={"province / state"}
-        //                                 name="state"
-        //                                 ref={stateRef}
-        //                             />
-        //                             <InputComponent
-        //                                 type="text"
-        //                                 prelabelText={"country"}
-        //                                 name="country"
-        //                                 ref={countryRef}
-        //                             />
-        //                         </div>
-        //                     </div>
-        //                 </div>
-        //                 <div className="new_vendors__left__dataentry__form_contactperson">
-        //                     <div className="new_vendors__left__dataentry__form_contactperson_introduction form_section_introductions">
-        //                         <h4>Contact Person</h4>
-        //                         <p>To include additional recipients in an email as CC, add them as contact persons.</p>
-        //                     </div>
-                            <div className="new_vendors__left__dataentry__form_contactperson_datacolumns">
-                                <ContactPerson
-                                    rows={rows}
-                                    columns={contactColumns}
-                                    setRows={setRows}
-                                    rowModesModel={rowModesModel}
-                                    setRowModesModel={setRowModesModel}
-                                    handleRowModesModelChange={handleRowModesModelChange}
-                                    processRowUpdate={processRowUpdate}
-                                    handleRowEditStop={handleRowEditStop}
-                                />
-                            </div>
-        //                 </div>
-        //                 <FormButtonRow className={'form_actions_wide'} methodHandler={SetPayload} />
-        //             </Form>
-        //         </div>
-        //     </div>
-        //     <div className="new_vendors__right">
-        //         <div className="new_vendors__right_container">
-        //             <img src={cardImage} alt="card" />
-        //         </div>
-        //         <div className="new_vendors__right_text_div">
-        //             <div className="customefields">
-        //                 <Button>custom fields</Button>
-        //             </div>
-        //             <div className="payroll-hypertext">
-        //                 <h3>Payroll</h3>
-        //                 <p>Create multiple pay calendars, run payrolls, print payslips, add benefits and deductions, and make bulk payments.</p>
-        //                 <Button>Learn more</Button>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </section> */}
-            {/* <div className="new_vendors__left__dataentry__form_contactperson_datacolumns">
-                                <ContactPerson
-                                    rows={rows}
-                                    columns={contactColumns}
-                                    setRows={setRows}
-                                    rowModesModel={rowModesModel}
-                                    setRowModesModel={setRowModesModel}
-                                    handleRowModesModelChange={handleRowModesModelChange}
-                                    processRowUpdate={processRowUpdate}
-                                    handleRowEditStop={handleRowEditStop}
-                                />
-                            </div> */}
         </>
     )
 }

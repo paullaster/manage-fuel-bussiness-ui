@@ -8,12 +8,8 @@
 
     .stepperButtons {
         & > button:not(:first-child) {
-            // margin-inline-start: u.rem(20);
-            // margin-bottom: u.rem(20);
-            // background-color: #01022048;
         }
         & > button {
-            // border-radius: .8rem !important;  
             width: u.rem(160);
         }
     }
@@ -31,15 +27,7 @@
                 }
 
                 &_vendorinfo {
-                    // &_introduction {
-                    //     border-bottom: g.$default_border;
-                    //     padding-bottom: g.$msmall_font;
-
-                    //     &>h4 {
-                    //         font-weight: 300;
-                    //         font-size: g.$small_font;
-                    //     }
-                    // }
+                 
 
                     &__vendorname {
                         margin-bottom: g.$small_font;
@@ -281,26 +269,6 @@
                             }
                         }
 
-                        // &>.button_container {
-                        //     justify-content: center;
-                        //     align-items: center;
-                        //     padding-bottom: g.$small;
-
-                        //     &>button {
-                        //         display: flex;
-                        //         justify-content: center;
-                        //         align-items: center;
-                        //         font-size: g.$msmall_font;
-
-                        //         &>* {
-                        //             display: block;
-                        //         }
-
-                        //         &>*:not(:first-child) {
-                        //             margin-left: g.$tiny;
-                        //         }
-                        //     }
-                        // }
                     }
                 }
             }
@@ -384,7 +352,6 @@
 }
 
 .info_textarea:focus {
-    // border: g.$color_primary !important;
     outline: g.$color_primary !important;
 }
 

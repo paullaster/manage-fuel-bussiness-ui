@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo, useRef, useContext } from "react";
 import shared from "../../../shared";
 import SummaryComponent from "../../../shared/components/SummaryComponent";
 import { useGlobalDispatcher, useGlobalState,LoadingContext, AuthContext  } from '@/store';
-import { Form } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 import { composableAutofils} from "../setups";
 import TankEntries from "./TankEntries";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
@@ -13,9 +13,7 @@ import {
   GridRowModes,
   GridRowEditStopReasons
 } from '@mui/x-data-grid';
-import { apiFetchUtil, GetGross, ObjectValidator, YearMonthDate } from "@/utils";
-import WebStorage from "@/utils/WebStorage";
-import { APPNAME } from "@/environments";
+import { GetGross, ObjectValidator, YearMonthDate } from "@/utils";
 import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 import { MdOutlineSaveAlt, MdCreate, MdCancel, MdDelete } from "react-icons/md";
 import Transport from "./Transport";
@@ -27,6 +25,7 @@ import { toast } from 'react-toastify';
 const NewFuelPurchase = () => {
   const { account } = useContext(AuthContext);
   const { setLoader } = useContext(LoadingContext);
+  const navigate = useNavigate();
   const [rows, setRows] = useState([]);
   const [rowModesModel, setRowModesModel] = useState({});
   
@@ -431,9 +430,12 @@ const NewFuelPurchase = () => {
     for (const prop in payload) {
       if (!payload[prop]) {toast.error("Invalid payload, Cross check your item and submit again!"); return};
     }
+    setLoader({message:'Posting fuel purchase', status: true});
     postingFuelPurchase(payload)
     .then((res) => {
-      console.log(res);
+      setLoader({message:'', status: false});
+      toast.success('Purchase item created successfully');
+      navigate(`/dashboard/purchases/bills?type=items`);
     })
     .catch((err) => {
       console.error(err);

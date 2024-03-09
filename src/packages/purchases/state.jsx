@@ -19,7 +19,7 @@ export default {
                     ...state,
                     vendors: action.payload
                 };
-            case 'SET_OFFICER':
+            case 'SET_OFFICERS':
                 return {
                     ...state,
                     officers: action.payload,

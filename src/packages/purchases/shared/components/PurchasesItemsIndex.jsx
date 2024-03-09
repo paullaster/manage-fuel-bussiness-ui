@@ -2,7 +2,7 @@ import { MdChevronRight } from "react-icons/md";
 import vendorsImage from "@/assets/images/vendors.svg";
 import { NavLink } from "react-router-dom";
 import { usePurchasesDispatcher } from "../../Context";
-import {useEffect, useContext} from 'react';
+import { useEffect, useContext } from 'react';
 import { fetchVendorsList } from "../../actions";
 import { generator } from '@/utils/';
 import { LoadingContext } from '@/store';
@@ -22,34 +22,42 @@ const PurchasesItemsIndex = (
 ) => {
 
 
-  const purchasesActions = usePurchasesDispatcher();
-  const { setLoader } = useContext(LoadingContext);
+    const purchasesActions = usePurchasesDispatcher();
+    const { setLoader } = useContext(LoadingContext);
 
 
-  useEffect(() => {
-    setLoader({ message: '', status: true });
-    fetchVendorsList({limit: 10})
-        .then((res) => {
-            const vendorsWithID = [];
-            for (const vendor of generator(res.vendors.results)) {
-                vendor.id = vendor.vendor_id;
-                vendorsWithID.push(vendor);
-            }
-            const vendorsArray = Array.from(new Set(vendorsWithID));
-            purchasesActions({type: 'SET_VENDORS', payload: vendorsArray});
-            setLoader({ message: '', status: false });
-        })
-        .catch((error) => {
-            setLoader({ message: '', status: false });
-            toast.error(error.message);
-        });
-    
-        
+    useEffect(() => {
+        setLoader({ message: '', status: true });
+        fetchVendorsList({ limit: 10 })
+            .then((res) => {
+                const vendorsWithID = [];
+                for (const vendor of generator(res.vendors.results)) {
+                    vendor.id = vendor.vendor_id;
+                    vendorsWithID.push(vendor);
+                }
+                const vendorsArray = Array.from(new Set(vendorsWithID));
+                purchasesActions({ type: 'SET_VENDORS', payload: vendorsArray });
+                setLoader({ message: '', status: false });
+            })
+            .catch((error) => {
+                setLoader({ message: '', status: false });
+                toast.error(error.message);
+            });
+        setLoader({ message: '', status: true });
+        fetchOfficersList({ limit: 50 })
+            .then((res) => {
+                purchasesActions({ type: 'SET_OFFICERS', payload: res.Officers.results });
+                setLoader({ message: '', status: false });
+            })
+            .catch((err) => {
+                setLoader({ message: '', status: false });
+                toast.error(error.message);
+            })
 
-    return () => {
+        return () => {
 
-    }
-}, []);
+        }
+    }, []);
 
 
     return (

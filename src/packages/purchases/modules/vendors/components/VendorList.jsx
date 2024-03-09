@@ -9,17 +9,17 @@ import { useNavigate } from "react-router-dom";
 import { deleteItem } from '../../../../../store';
 import constants from '../../../constants';
 import Button from '@mui/material/Button';
-import { usePurchasesState } from '../../../Context';
+import { usePurchasesDispatcher, usePurchasesState } from '../../../Context';
 import { LoadingContext } from '@/store';
 import { toast } from 'react-toastify';
+import { generator } from '@/utils/';
 
 
-const VendorListGridToolBar = ({ }) => {
-
+const VendorListGridToolBar = ({ handleRefresh }) => {
 
     return (
         <GridToolbarContainer>
-            <Button color="primary" startIcon={<MdOutlineRefresh size={25} />} >
+            <Button color="primary" startIcon={<MdOutlineRefresh size={25} onClick={handleRefresh} />} >
                 refresh list
             </Button>
         </GridToolbarContainer>
@@ -29,6 +29,7 @@ const VendorListGridToolBar = ({ }) => {
 const VendorList = () => {
     const navigate = useNavigate()
     const purchasesState = usePurchasesState();
+    const setVendorsList = usePurchasesDispatcher();
     const { setLoader, loader } = useContext(LoadingContext);
 
     const handleViewClick = (params) => {
@@ -39,12 +40,12 @@ const VendorList = () => {
 
     const handleDelete = useCallback((params) => {
         deleteItem(constants.vendor, { vendor_id: params.id })
-            .then(( ) => {
-                setLoader({message: '', status: ''});
+            .then(() => {
+                setLoader({ message: '', status: false });
                 toast.success('Vendor deleted successfully');
             })
             .catch((error) => {
-                setLoader({message: '', status: false});
+                setLoader({ message: '', status: false });
                 toast.error(error.message);
             });
     });
@@ -93,7 +94,7 @@ const VendorList = () => {
         {
             field: 'website',
             headerName: 'Website',
-            width: 200,
+            width: 300,
             headeralign: 'start',
             sortable: false,
             editable: false,
@@ -104,7 +105,7 @@ const VendorList = () => {
             field: 'actions',
             headerName: 'Actions',
             type: 'actions',
-            width: 200,
+            width: 80,
             headeralign: 'center',
             sortable: false,
             hideable: false,
@@ -135,6 +136,25 @@ const VendorList = () => {
         },
     ], []);
 
+    const handleRefresh = () => {
+        setLoader({ message: '', status: true });
+        fetchVendorsList()
+            .then((res) => {
+                const vendorsWithID = [];
+                for (const vendor of generator(res.vendors.results)) {
+                    vendor.id = vendor.vendor_id;
+                    vendorsWithID.push(vendor);
+                }
+                const vendorsArray = Array.from(new Set(vendorsWithID));
+                purchasesActions({ type: 'SET_VENDORS', payload: vendorsArray });
+                setLoader({ message: '', status: false });
+                toast.success('Vendor list refreshed successfully');
+            })
+            .catch((error) => {
+                setLoader({ message: '', status: false });
+                toast.error(error.message);
+            });
+    }
 
     return (
         <section className='listOfVendors'>
@@ -146,7 +166,7 @@ const VendorList = () => {
                 initialState={{ pagination: { paginationModel: { page: 0, pageSize: 10 } } }}
                 pageSizeOptions={[5, 10, 20, 30, 50]}
                 slots={{ toolbar: VendorListGridToolBar }}
-                slotProps={{ toolbar: {} }}
+                slotProps={{ toolbar: { handleRefresh } }}
                 checkboxSelection
                 loading={loader.status}
             />

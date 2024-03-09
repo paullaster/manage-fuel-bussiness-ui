@@ -34,7 +34,8 @@ const PurchasesItemsIndex = (
             purchasesActions({type: 'SET_VENDORS', payload: vendorsArray});
         })
         .catch((error) => {
-            console.log(error);
+            setLoader({ message: '', status: false });
+            toast.error(error.message);
         });
 
     return () => {

@@ -20,6 +20,7 @@ import { ObjectValidator, GetGross, YearMonthDate } from "@/utils";
 import { fetchItemsList, postingPurchaseItem } from "../../../actions";
 import { usePurchasesState, usePurchasesDispatcher } from '../../../Context';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const NewItem = () => {
   const appStateDispatcher = useGlobalDispatcher();
@@ -28,6 +29,7 @@ const NewItem = () => {
   const { bills_items } = usePurchasesState();
   const { account } = useContext(AuthContext);
   const { setLoader } = useContext(LoadingContext);
+  const navigate = useNavigate();
 
   const [rows, setRows] = useState([]);
   const [rowModesModel, setRowModesModel] = useState({});
@@ -333,7 +335,6 @@ const NewItem = () => {
     };
 
     for (const prop in payload) {
-      console.log(payload);
       if (!payload[prop]) toast.error("Invalid payload, Cross check your item and submit again!")
     }
     setLoader({message:'Posting purchase item', status: true});

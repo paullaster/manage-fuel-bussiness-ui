@@ -25,6 +25,17 @@ class AuthService {
     getAccessToken() {
         return this.accessToken;
     }
+    getUser() {
+        const token = this.getAccessToken()?.split('.')[1];
+        return token ? JSON.parse(atob(token)) : null;
+    }
+    Logout() {
+        this.accessToken = null;
+        this.refreshtoken = null;
+        WebStorage.RemoveFromStorage('session', `${APPNAME}_accessToken`);
+        WebStorage.RemoveFromStorage('local', `${APPNAME}_refreshToken`);
+        window.location.reload();
+    }
 }
 
 Object.freeze(AuthService);

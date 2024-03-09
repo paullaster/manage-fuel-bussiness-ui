@@ -46,24 +46,9 @@ export const postCurrency = async (item) => {
     });
 }
 export const postVendor = async (item) => {
-    const objectKeys = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-    if (Object.keys(objectKeys).length !== 4) {
-        console.error("Missing dependency key, please check your data then send again");
-        throw new Error("Missing dependency key, please check you data then send again");
-    }
-    const nullKey = Object.keys(objectKeys).filter((key) => {
-        return !objectKeys[key];
-    });
-
-    if (nullKey.length) {
-        console.error("Missing dependency key, please check your data then send again");
-        throw new Error("Missing dependency key, please check you data then send again");
-    }
     const data = {
         ...item,
-        ...objectKeys
     }
-    console.log("sendin data to vendor", data)
     return await _request({
         method: 'POST',
         data: data,

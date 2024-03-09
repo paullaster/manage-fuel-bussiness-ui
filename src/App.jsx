@@ -1,6 +1,6 @@
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { StateProvider, AuthContext, LoadingContext } from './store';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import AuthService from './packages/auth/AuthService';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,11 +17,12 @@ const App = () => {
     return location.pathname.includes(path);
   }
 
-
-  // useEffect(() => {
-  //   if (Hide('/account') && auth.isAuthenticated) navigate('/dashboard');
-  //   if (!auth.isAuthenticated && Hide('/dashboard')) navigate('/account/login');
-  // }, [location, auth]);
+  // const loaderObj = useMemo(()=> ({loader: isLoading, setLoader: setIsLoading }), []);
+  // const authObj = useMemo(()=> ({ account: auth, authSetter: setAuth }), []);
+  useEffect(() => {
+    if (Hide('/account') && auth.isAuthenticated) navigate('/dashboard');
+    if (!auth.isAuthenticated && Hide('/dashboard')) navigate('/account/login');
+  }, [location, auth]);
 
   useEffect(() => {
     setAuth({ user: 'user', isAuthenticated: AuthService.isLoggedIn() });

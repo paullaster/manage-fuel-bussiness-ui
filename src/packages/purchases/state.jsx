@@ -9,6 +9,7 @@ export default {
         bill: {},
         vendor: {},
         ContactPersonArray: [],
+        bills_items: [],
     },
     actions: (state, action) => {
         switch (action.type) {
@@ -26,6 +27,11 @@ export default {
                 return {
                     ...state,
                     bills: action.payload.filter ? Array.from(new Set(action.payload.bills)) : Array.from(new Set([...state.bills, ...action.payload.bills])),
+                }
+            case 'SET_BILL_ITEMS':
+                return {
+                    ...state,
+                    bills_items: action.payload.filter ? Array.from(new Set(action.payload.bills)) : Array.from(new Set([...state.bills, ...action.payload.bills])),
                 }
             case 'SET_CURRENTSELECTED_BILL':
                 return {

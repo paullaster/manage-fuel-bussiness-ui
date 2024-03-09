@@ -1,11 +1,11 @@
-import { Button, InputComponent, } from "@/components";
-import { useRef, useState, useContext, forwardRef } from "react";
+import { /*Button,*/ InputComponent, } from "@/components";
+import { useRef, useState, useContext, forwardRef, useEffect } from "react";
 import shared from "../../../shared";
 import { postAddress, postBillingInformation, postContactPerson, postVendor, postCurrency } from "../../../actions";
 import VendorBilling from "./VendorBilling";
 import ContactPerson from "./ContactPerson";
 import { v4 as uuidv4 } from 'uuid';
-import { ObjectValidator } from "@/utils";
+import Autocomplete from '@mui/material/Autocomplete';
 import VendorInformation from "./VendorInformation";
 import { useNavigate } from 'react-router-dom';
 import Stepper from "@mui/material/Stepper";
@@ -16,46 +16,116 @@ import Box from '@mui/material/Box';
 import { LoadingContext } from '@/store';
 import { toast } from 'react-toastify';
 import DivisionTopBar from "../../../shared/components/DivisionTopBar";
-import { usePurchasesState } from "../../../Context";
+import TextField from '@mui/material/TextField';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import { APPNAME } from "@/environments";
+import WebStorage from "@/utils/WebStorage";
 
+
+const currenciesList = [{ value: 'createCurrency', label: 'Create New Currency' }];
 
 const VendorCurrencyComponent = forwardRef((props, ref) => {
+    const { getNewAddedCurrency, setCurrencies, currencies } = props;
+  
+    const theme = useTheme();
+    const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+
+
+    const handleSelectedCurrency = (event, value) => {
+        <li {...props}>{option['label'] ? option['label'] : ''}</li>
+    }
+
+    const handleOpenCreateCurrencyDialog = () => {
+        setCurrencies({ value: 'createCurrency', label: 'Create New Currency' });
+    }
+
+    const handleAddedCurrency = () => {
+        const newCurrency = getNewAddedCurrency();
+        newCurrency.value = newCurrency.currency_code;
+        newCurrency.label = newCurrency.currency_name;
+        setCurrencies(newCurrency);
+        console.log(newCurrency);
+    }
 
     return (
-        <div  className="currencyComponent">
+        <div className="currencyComponent">
             <DivisionTopBar
                 sectionTitle={'Currency'}
             >
                 <p>This will be your vendor's primary currency.</p>
             </DivisionTopBar>
-            <div className="addCurrency">
-                <InputComponent
-                    type="text"
-                    prelabelText={"Currency name"}
-                    name="currency_name"
-                    title="currency name"
-                    ref={ref.currencyNameRef}
-                />
-                <InputComponent
-                    type="text"
-                    prelabelText={"Currency code"}
-                    name="currency_code"
-                    ref={ref.currencyCodeRef}
-                />
-                <InputComponent
-                    type="text"
-                    prelabelText={"Rate"}
-                    name="rate"
-                    ref={ref.currencyRateRef}
-                />
-                <InputComponent
-                    type="text"
-                    prelabelText={"Symbol"}
-                    name="symbol"
-                    ref={ref.currencySymbolref}
-                />
+            <Autocomplete
+                value={currencies}
+                options={currenciesList}
+                onChange={handleSelectedCurrency}
+                id={'Select Currency'}
+                renderInput={(params) => <TextField {...params} label={'Select Currency'} />}
+                getOptionLabel={(option) => option['label'] ? option['label'] : ''}
+                renderOption={(props, option, { selected }) => (
+                    <>
+                        {option.value === 'createCurrency' ? (
+                            <Button variant="outlined" onClick={handleOpenCreateCurrencyDialog}>
+                                {option.label}
+                            </Button>
+                        ) : (
+                            <ListItem button selected={selected}>
+                                <ListItemText primary={option.label} />
+                            </ListItem>
+                        )}
+                    </>
+                )}
+            />
+            <Dialog
+                open={currencies.value === 'createCurrency'}
+                onClose={handleOpenCreateCurrencyDialog}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                fullScreen={fullScreen}
+            >
+                <DialogTitle>New Currency</DialogTitle>
+                <DialogContent>
+                    <div className="addCurrency">
+                        <InputComponent
+                            type="text"
+                            prelabelText={"Currency name"}
+                            name="currency_name"
+                            title="currency name"
+                            ref={ref.currencyNameRef}
+                        />
+                        <InputComponent
+                            type="text"
+                            prelabelText={"Currency code"}
+                            name="currency_code"
+                            ref={ref.currencyCodeRef}
+                        />
+                        <InputComponent
+                            type="text"
+                            prelabelText={"Rate"}
+                            name="rate"
+                            ref={ref.currencyRateRef}
+                        />
+                        <InputComponent
+                            type="text"
+                            prelabelText={"Symbol"}
+                            name="symbol"
+                            ref={ref.currencySymbolref}
+                        />
 
-            </div>
+                    </div>
+                </DialogContent>
+                <DialogActions>
+                    <Button variant="outlined" onClick={ () => setCurrencies({ value: 'KES', label: 'Kenya shillings' })}>close</Button>
+                    <Button variant="contained" disableElevation  onClick={handleAddedCurrency}>create</Button>
+                </DialogActions>
+            </Dialog>
         </div>
     )
 });
@@ -113,9 +183,9 @@ const VendorAddressDetails = forwardRef((props, ref) => {
 const NewVendor = () => {
 
     const [paymentMethod, setPaymentMethod] = useState([{ method: 'Mpesa' }, { method: 'Bank' }]);
+    const [currencies, setCurrencies] = useState({ value: 'KES', label: 'Kenya shillings' });
     const [activeStep, setActiveStep] = useState(0);
     const { setLoader } = useContext(LoadingContext);
-    const {ContactPersonArray} = usePurchasesState();
 
     // CURRENCY
     const currencyNameRef = useRef(null);
@@ -130,7 +200,6 @@ const NewVendor = () => {
     const countryRef = useRef(null);
 
     // checks
-    const validRef = useRef(true);
     const invalid = useRef(false);
 
     const phoneNumberRef = useRef(null);
@@ -208,12 +277,23 @@ const NewVendor = () => {
     const handleSubmitCurrency = (event) => {
         invalid.current = false;
         if (event.type === 'click') {
-            const currencyObject = {
-                currency_name: currencyNameRef.current.value,
-                currency_code: currencyCodeRef.current.value,
-                rate: currencyRateRef.current.value,
-                symbol: currencySymbolref.current.value,
-            };
+            // const currencyObject = {
+            //     currency_name: currencyNameRef.current.value,
+            //     currency_code: currencyCodeRef.current.value,
+            //     rate: currencyRateRef.current.value,
+            //     symbol: currencySymbolref.current.value,
+            // };
+            let currencyObject = currencies;
+            if ( currencyObject.value === 'KES') {
+                currencyObject = Object.assign({},{
+                    value: 'KES',
+                    label: 'Kenya shillings',
+                    currency_code: 'KES',
+                    currency_name: 'Kenya shillings',
+                    symbol: 'KES',
+                    rate: 1,
+                    });
+            }
             for (let prop in currencyObject) {
                 if (!currencyObject[prop] && prop !== 'symbol') {
                     invalid.current = true;
@@ -225,15 +305,19 @@ const NewVendor = () => {
                 toast.error("Invalid form");
                 return;
             }
+            const { label, value, ...payload} = currencyObject;
             setLoader({ message: "Saving currency informtion...", status: true });
-            postCurrency(currencyObject)
+            postCurrency(payload)
                 .then((res) => {
+                    WebStorage.storeToWebDB('session', `${APPNAME}_VENDORDEPENDENCIES`, {currency: res.currency_id});
                     setLoader({ message: "", status: false });
                     toast.success('Currency information saved successfully');
+                    currencyObject= {};
                     handleNext();
                 })
                 .catch((error) => {
                     setLoader({ message: "", status: false });
+                    currencyObject = {};
                     toast.error(error.message);
                 });
         }
@@ -268,6 +352,11 @@ const NewVendor = () => {
         setLoader({ message: "Saving billing informtion...", status: true });
         postBillingInformation(billinObject)
             .then((res) => {
+                const vndDeps = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDORDEPENDENCIES`);
+                if (vndDeps) {
+                    vndDeps.billing = [res.id];
+                    WebStorage.storeToWebDB('session', `${APPNAME}_VENDORDEPENDENCIES`, vndDeps);
+                }
                 setLoader({ message: "", status: false });
                 toast.success(`Billing information saved successfully`);
                 handleNext();
@@ -295,6 +384,11 @@ const NewVendor = () => {
         setLoader({ message: "Saving address informtion...", status: true });
         postAddress(addressObject)
             .then((res) => {
+                const vndDeps = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDORDEPENDENCIES`);
+                if (vndDeps) {
+                    vndDeps.addresses = [res.address_id];
+                    WebStorage.storeToWebDB('session', `${APPNAME}_VENDORDEPENDENCIES`, vndDeps);
+                }
                 setLoader({ message: "", status: false });
                 toast.success(`Successfully saved`);
                 handleNext();
@@ -305,8 +399,9 @@ const NewVendor = () => {
             });
     };
 
-    const handleSubmitContactInfo = () => {
-        const { id, isNew, ...data } = ContactPersonArray[0];
+    const handleSubmitContactInfo = (payload) => {
+        console.log(payload);
+        const { id, isNew, ...data } = payload[0];
         const { isValid, field } = validateObject(data);
         if (isValid) {
             toast.error(`${field} is a required filed`);
@@ -314,6 +409,11 @@ const NewVendor = () => {
         }
         postContactPerson(data)
             .then((res) => {
+                const vndDeps = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDORDEPENDENCIES`);
+                if (vndDeps) {
+                    vndDeps.contacts = [res.contact_id];
+                    WebStorage.storeToWebDB('session', `${APPNAME}_VENDORDEPENDENCIES`, vndDeps);
+                }
                 setLoader({ message: "", status: false });
                 toast.success(`Successfully saved`);
                 handleNext();
@@ -326,6 +426,7 @@ const NewVendor = () => {
 
     const handleSubmitVendorInformation = (event) => {
         event.preventDefault();
+        const vndDeps = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDORDEPENDENCIES`);
         const vendorObject = {
             vendor_reference: vendorReferenceRef.current.value,
             website: vendorWebsiteRef.current.value,
@@ -336,26 +437,20 @@ const NewVendor = () => {
             vendor_email: vendorEmailRef.current.value,
             vendor_name: vendorNameRef.current.value,
             national_id: vendorNationalIDRef.current.value,
+            ...vndDeps,
         };
         // VALIDATE VENDOR OBJECT
-        validRef.current = ObjectValidator(
-            [
-                "company_name",
-                "product_description",
-                "kra_pin",
-                "vendor_name"
-            ],
-            vendorObject
-        );
-        if (!validRef.current) {
-            toast.error("Invalid payload!");
-            handleBack();
+        const { isValid, field } = validateObject(vendorObject);
+        if (isValid) {
+            toast.error(`${field} is a required filed`);
             return;
         }
         // POST VENDOR
         setLoader({ message: "Creating vendor...", status: true });
+        console.log("Log clean vendor data", vendorObject);
         postVendor(vendorObject)
             .then((res) => {
+                WebStorage.RemoveFromStorage('session', `${APPNAME}_VENDORDEPENDENCIES`);
                 setLoader({ message: "", status: false });
                 toast.success("Vendor successfully created");
                 navigate(`/dashboard/purchases/vendor/vendors`);
@@ -366,11 +461,20 @@ const NewVendor = () => {
             });
     }
 
+    const getNewAddedCurrency = () => {
+        return {
+            currency_name: currencyNameRef.current.value,
+            currency_code: currencyCodeRef.current.value,
+            rate: currencyRateRef.current.value,
+            symbol: currencySymbolref.current.value,
+        };
+    }
+
     const createVendorSteps = [
         {
             caption: 'Add primary currency',
             id: uuidv4(),
-            Component: <VendorCurrencyComponent ref={currencyRefObject} />,
+            Component: <VendorCurrencyComponent currencies={currencies} setCurrencies={setCurrencies} ref={currencyRefObject}  getNewAddedCurrency={getNewAddedCurrency} />,
             stepAction: handleSubmitCurrency
         },
         {
@@ -388,7 +492,7 @@ const NewVendor = () => {
         {
             caption: 'Add contact person',
             id: uuidv4(),
-            Component: <ContactPerson />,
+            Component: <ContactPerson handleSubmitContactInfo={handleSubmitContactInfo} />,
             stepAction: handleSubmitContactInfo
         },
         {
@@ -489,42 +593,43 @@ const NewVendor = () => {
 
     return (
         <>
-        <section className="new_vendors">
-            <shared.components.SectionIntroduction text="New Vendor" />
-            <Stepper activeStep={activeStep} orientation="vertical">
-                {
-                    createVendorSteps.map((step, index) => {
-                        return (
-                            <Step key={step.id}>
-                                <StepLabel>{step.caption}</StepLabel>
-                                <StepContent>
-                                    <>{step.Component}</>
-                                    <Box sx={{ mb: 2, mt: 4 }}>
-                                        <div className="stepperButtons">
-                                            <Button
-                                                onClick={step.stepAction}
-                                                className="btn-element btn_primary "
-                                            >
-                                                {index === createVendorSteps.length - 1 ? 'Finish' : 'Continue'}
-                                            </Button>
-                                            <Button
-                                                disabled={index === 0}
-                                                onClick={handleBack}
-                                                className="btn-element btn_transparent "
-                                            >
-                                                Back
-                                            </Button>
-                                        </div>
-                                    </Box>
-                                </StepContent>
-                            </Step>
-                        )
-                    })
-                }
-            </Stepper>
-        </section>
+            <section className="new_vendors">
+                <shared.components.SectionIntroduction text="New Vendor" />
+                <Stepper activeStep={activeStep} orientation="vertical">
+                    {
+                        createVendorSteps.map((step, index) => {
+                            return (
+                                <Step key={step.id}>
+                                    <StepLabel>{step.caption}</StepLabel>
+                                    <StepContent>
+                                        <>{step.Component}</>
+                                        <Box sx={{ mb: 2, mt: 4 }}>
+                                            <div className="stepperButtons">
+                                                <Button
+                                                    onClick={step.stepAction}
+                                                    variant="contained" disableElevation
+                                                    sx={{mr: 2}}
+                                                >
+                                                    {index === createVendorSteps.length - 1 ? 'Finish' : 'Continue'}
+                                                </Button>
+                                                <Button
+                                                    disabled={index === 0}
+                                                    onClick={handleBack}
+                                                    variant="outlined"
+                                                >
+                                                    Back
+                                                </Button>
+                                            </div>
+                                        </Box>
+                                    </StepContent>
+                                </Step>
+                            )
+                        })
+                    }
+                </Stepper>
+            </section>
 
-        {/* // <section className="new_vendors">
+            {/* // <section className="new_vendors">
         //     <div className="new_vendors__left">
         //         <shared.components.SectionIntroduction text="New Vendor" />
         //         <div className="new_vendors__left__dataentry">
@@ -623,7 +728,7 @@ const NewVendor = () => {
         //         </div>
         //     </div>
         // </section> */}
-          {/* <div className="new_vendors__left__dataentry__form_contactperson_datacolumns">
+            {/* <div className="new_vendors__left__dataentry__form_contactperson_datacolumns">
                                 <ContactPerson
                                     rows={rows}
                                     columns={contactColumns}

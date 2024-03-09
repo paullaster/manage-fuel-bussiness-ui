@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { Form } from "react-router-dom";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
 import shared from "../../../shared";
-import { useGlobalDispatcher, useGlobalState } from '@/store';
+import { useGlobalDispatcher, useGlobalState, LoadingContext } from '@/store';
 import { composableAutofils } from "../setups";
 import PurchaseItemEntry from "./PurchaseItemEntry";
 import WebStorage from "@/utils/WebStorage";
@@ -19,8 +19,10 @@ import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 import OfficerComponent from "./OfficerComponent";
 import SummaryComponent from "../../../shared/components/SummaryComponent";
 import { ObjectValidator, GetGross, YearMonthDate } from "@/utils";
-import { postingPurchaseItem } from "../../../actions";
+import { fetchItemPurchases, postingPurchaseItem } from "../../../actions";
 import { usePurchasesState } from '../../../Context';
+import { toast } from 'react-toastify';
+import { usePurchasesDispatcher } from "../../../Context";
 
 
 const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
@@ -28,11 +30,13 @@ const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
 const NewItem = () => {
   const appStateDispatcher = useGlobalDispatcher();
   const { cardLabelView } = useGlobalState();
+  const purchaseActions = usePurchasesDispatcher();
   const [rows, setRows] = useState([]);
   const [rowModesModel, setRowModesModel] = useState({});
   const [summaryValues, setSummaryValues] = useState({ subtotal: 0, taxt_amount_total: 0, total: 0 });
   const [selectedOfficer, setSelectedOfficer] = useState(null);
   const [vendor, setVendor] = useState(null);
+  const { setLoader} = useContext(LoadingContext);
 
   const billNumberRef = useRef(null);
   const invoiceNumberRef = useRef(null);
@@ -265,6 +269,18 @@ const NewItem = () => {
     return setSummaryValues({ subtotal: 0, taxt_amount_total: 0, total: 0 });
   }, [rows]);
 
+  useEffect(() => {
+    setLoader({message: '', status: true});
+    fetchItemPurchases()
+    .then((res) => {
+      purchaseActions({type: 'SET_BILL_ITEMS', payload: {filter: true, bills_items: res.purchase_item.results}})
+      setLoader({message: '', status: false});
+    })
+    .catch((err) => {
+      setLoader({message: '', status: false});
+      toast.error(err.message);
+    });
+  }, []);
 
   useEffect(() => {
     appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });

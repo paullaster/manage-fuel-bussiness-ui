@@ -8,11 +8,12 @@
 
     .stepperButtons {
         & > button:not(:first-child) {
-            margin-inline-start: u.rem(20);
-            background-color: #01022048;
+            // margin-inline-start: u.rem(20);
+            // margin-bottom: u.rem(20);
+            // background-color: #01022048;
         }
         & > button {
-            border-radius: .8rem !important;  
+            // border-radius: .8rem !important;  
             width: u.rem(160);
         }
     }

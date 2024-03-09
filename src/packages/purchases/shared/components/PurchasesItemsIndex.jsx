@@ -60,7 +60,7 @@ const PurchasesItemsIndex = (
                                 <div key={action.caption}>
                                     <NavLink to={action.link} >
                                         <span className="action_name_and_description">
-                                            <span className="action_name new_purchase_items_glow"><span>{action.caption}</span><span></span>
+                                            <span className="action_name new_purchase_items_glow"><span className="sudoglow"></span><span className="spanCaption">{action.caption}</span>
                                             </span>
                                             <span className="action_description">{action.description}</span>
                                         </span>

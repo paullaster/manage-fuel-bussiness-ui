@@ -33,22 +33,44 @@ const VendorList = () => {
     const purchasesState = usePurchasesState();
     const setVendorsList = usePurchasesDispatcher();
     const { setLoader, loader } = useContext(LoadingContext);
-
+    
     const handleViewClick = (params) => {
         const url = `/dashboard/purchases/vendor/vendors/${params.id}`;
         console.log(url);
         navigate(url);
     };
-
-    const handleDelete = useCallback((params) => {
-        deleteItem(constants.vendor, { vendor_id: params.id })
-            .then(() => {
+    
+    const handleRefresh = () => {
+        setLoader({ message: '', status: true });
+        fetchVendorsList()
+            .then((res) => {
+                const vendorsWithID = [];
+                for (const vendor of generator(res.vendors.results)) {
+                    vendor.id = vendor.vendor_id;
+                    vendorsWithID.push(vendor);
+                }
+                const vendorsArray = Array.from(new Set(vendorsWithID));
+                setVendorsList({ type: 'SET_VENDORS', payload: vendorsArray });
                 setLoader({ message: '', status: false });
-                toast.success('Vendor deleted successfully');
+                toast.success('Vendor list refreshed successfully');
             })
             .catch((error) => {
                 setLoader({ message: '', status: false });
                 toast.error(error.message);
+            });
+    }
+    
+    const handleDelete = useCallback((params) => {
+        setLoader({ message: '', status: true });
+        deleteItem(constants.vendor, { vendor_id: params.id })
+        .then(() => {
+            setLoader({ message: '', status: false });
+            toast.success('Vendor deleted successfully');
+            handleRefresh();
+        })
+        .catch((error) => {
+            setLoader({ message: '', status: false });
+            toast.error(error.message);
             });
     });
 
@@ -138,24 +160,6 @@ const VendorList = () => {
         },
     ], []);
 
-    const handleRefresh = () => {
-        fetchVendorsList()
-            .then((res) => {
-                const vendorsWithID = [];
-                for (const vendor of generator(res.vendors.results)) {
-                    vendor.id = vendor.vendor_id;
-                    vendorsWithID.push(vendor);
-                }
-                const vendorsArray = Array.from(new Set(vendorsWithID));
-                setVendorsList({ type: 'SET_VENDORS', payload: vendorsArray });
-                setLoader({ message: '', status: false });
-                toast.success('Vendor list refreshed successfully');
-            })
-            .catch((error) => {
-                setLoader({ message: '', status: false });
-                toast.error(error.message);
-            });
-    }
 
     return (
         <section className='listOfVendors'>

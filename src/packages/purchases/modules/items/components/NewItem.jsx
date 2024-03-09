@@ -340,6 +340,7 @@ const NewItem = () => {
       .then((res) => {
         setLoader({message:'', status: false});
         toast.success('Purchase item created successfully');
+        navigate(`/dashboard/purchases/bills?type=items`);
       })
       .catch((err) => {
         toast.error(err.message);

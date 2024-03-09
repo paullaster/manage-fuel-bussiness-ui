@@ -3,7 +3,7 @@ import constants from './constants';
 import WebStorage from '@/utils/WebStorage';
 import { APPNAME } from '@/environments';
 
-const { address, billing, contact, vendor, currency, purchase_item, fuelPurchase, fuelType, purchaseItem } = constants;
+const { address, billing, contact, vendor, currency, purchase_item, fuelPurchase, fuelType, purchaseItem, officer } = constants;
 
 export const postBillingInformation = async (payload) => {
     const data = {
@@ -85,4 +85,10 @@ export const fetchfuelType = async(params = {}) => {
 // FETCH ITEMS
 export const fetchItemsList = async(params = {}) => {
     return await _request({url: purchaseItem, method: 'GET', params, headers: {'Content-Type': 'application/json'}});
+}
+
+
+// FETCH OFFICERS
+export const fetchOfficersList = async(params = {}) => {
+    return await _request({url: officer, method: 'GET', params, headers: {'Content-Type': 'application/json'}});
 }

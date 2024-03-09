@@ -44,7 +44,6 @@ const router = createBrowserRouter(
                         element={<Purchases.modules.items.components.NewItem
                         />}
                         path='item/create'
-                        action={Purchases.modules.items.saveNewPurchaseItem}
                     />
                     <Route element={<Purchases.BillRecords />} path='bills'/>
                     <Route element={<Purchases.BillRecordPageComponent />} path='bills/:uuid'/>

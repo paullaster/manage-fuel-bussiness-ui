@@ -23,7 +23,7 @@ const PurchasesItemsIndex = (
 
 
   const purchasesActions = usePurchasesDispatcher();
-  const { setLoader, loader } = useContext(LoadingContext);
+  const { setLoader } = useContext(LoadingContext);
 
 
   useEffect(() => {
@@ -43,6 +43,8 @@ const PurchasesItemsIndex = (
             setLoader({ message: '', status: false });
             toast.error(error.message);
         });
+    
+        
 
     return () => {
 

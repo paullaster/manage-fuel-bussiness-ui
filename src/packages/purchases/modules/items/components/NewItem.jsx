@@ -272,6 +272,7 @@ const NewItem = () => {
   }, [rows]);
 
   useEffect(() => {
+
     setLoader({ message: '', status: true });
     fetchItemsList()
       .then((res) => {
@@ -312,7 +313,7 @@ const NewItem = () => {
         toast.error("Please check your items table and complete before you submit again");
       }
     });
-    const pickedDate = YearMonthDate(billDate);
+    const pickedDate = YearMonthDate(billDate.current.value);
 
     const { organization_id } = account.user;
     const payload = {

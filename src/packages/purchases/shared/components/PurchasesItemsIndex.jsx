@@ -2,7 +2,7 @@ import { MdChevronRight } from "react-icons/md";
 import vendorsImage from "@/assets/images/vendors.svg";
 import { NavLink } from "react-router-dom";
 import { usePurchasesDispatcher } from "../../Context";
-import {useEffect} from 'react';
+import {useEffect, useContext} from 'react';
 import { fetchVendorsList } from "../../actions";
 import { generator } from '@/utils/';
 import { LoadingContext } from '@/store';

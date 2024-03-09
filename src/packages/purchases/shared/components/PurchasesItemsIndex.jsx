@@ -5,6 +5,8 @@ import { usePurchasesDispatcher } from "../../Context";
 import {useEffect} from 'react';
 import { fetchVendorsList } from "../../actions";
 import { generator } from '@/utils/';
+import { LoadingContext } from '@/store';
+import { toast } from 'react-toastify';
 
 const PurchasesItemsIndex = (
     {
@@ -21,8 +23,11 @@ const PurchasesItemsIndex = (
 
 
   const purchasesActions = usePurchasesDispatcher();
+  const { setLoader, loader } = useContext(LoadingContext);
+
 
   useEffect(() => {
+    setLoader({ message: '', status: true });
     fetchVendorsList({limit: 10})
         .then((res) => {
             const vendorsWithID = [];
@@ -32,6 +37,7 @@ const PurchasesItemsIndex = (
             }
             const vendorsArray = Array.from(new Set(vendorsWithID));
             purchasesActions({type: 'SET_VENDORS', payload: vendorsArray});
+            setLoader({ message: '', status: false });
         })
         .catch((error) => {
             setLoader({ message: '', status: false });

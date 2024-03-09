@@ -146,7 +146,7 @@ const VendorList = () => {
                     vendorsWithID.push(vendor);
                 }
                 const vendorsArray = Array.from(new Set(vendorsWithID));
-                purchasesActions({ type: 'SET_VENDORS', payload: vendorsArray });
+                setVendorsList({ type: 'SET_VENDORS', payload: vendorsArray });
                 setLoader({ message: '', status: false });
                 toast.success('Vendor list refreshed successfully');
             })

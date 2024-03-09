@@ -95,14 +95,14 @@ const TransactionTabContent = ({value, tab}) => {
                 valueGetter: () => 'Paid'
             },
             {
-                field: 'vendor_name',
+                field: 'vendor',
                 headerName: 'Vendor Name',
                 type: 'string',
                 width: 250,
                 headerAlign: 'center',
                 align: 'center',
                 editable: false,
-                valueGetter: (params) => params.row.vendor.vendor_name
+                valueGetter: (params) => params.row.vendor.vendor
             },
             {
                 field: 'gross_amount',

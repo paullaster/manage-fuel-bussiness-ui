@@ -1,4 +1,6 @@
 @use '../utilities/' as u;
+@use '../global/' as g;
+
 .listOfVendors {
     min-width: 80%;
     max-width: u.rem(2000);
@@ -6,7 +8,13 @@
         border-left: none!important;
         border-right: none!important;
     }
-    .MuiDataGrid-virtualScroller {
-        // display: none !important;
+    .MuiDataGrid-withBorderColor {
+        outline: none!important;
+    }
+    .css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root {
+        color: red;
+    }
+    .css-etipxg-MuiButtonBase-root-MuiIconButton-root {
+        color: g.$color_primary;
     }
 }

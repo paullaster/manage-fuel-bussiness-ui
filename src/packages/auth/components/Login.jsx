@@ -1,4 +1,4 @@
-import { Form } from 'react-router-dom';
+import { Form, useNavigate } from 'react-router-dom';
 import { Button } from '@/components';
 import { MdAlternateEmail, MdLockOutline } from "react-icons/md";
 import { useRef, useContext } from 'react';
@@ -9,8 +9,9 @@ import { toast } from 'react-toastify';
 
 
 const Login = () => {
-  const { authSetter } = useContext(AuthContext);
+  const { authSetter, account } = useContext(AuthContext);
   const { setLoader } =useContext(LoadingContext);
+  const navigate = useNavigate();
 
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
@@ -21,7 +22,7 @@ const Login = () => {
       password: passwordRef.current.value,
     };
     for (const prop in payload) {
-      if (!payload[prop]) throw new Error(`${prop} can not be empty!`);
+      if (!payload[prop]) {toast.error(`${prop} can not be empty!`); return; }
     }
     setLoader({message: "Login you in...", status: true});
     login(payload)
@@ -30,6 +31,9 @@ const Login = () => {
       authSetter({ user: AuthService.getUser(), isAuthenticated: AuthService.isLoggedIn()});
       setLoader({message: "", status: false});
       toast.success('Login successful');
+      if (account?.isAuthenticated) {
+        navigate('/dashboard');
+      }
     })
     .catch((error) => {
       console.log("Login", error);

@@ -6,6 +6,7 @@ import { Admin, User, CompanyList, AddCompany, NewCompany, Wizard, TankAndPumpDa
 import auth from '@/packages/auth';
 import Purchases from '@/packages/purchases';
 import { CreateNewUser } from '../packages/dashboard/admin/modules';
+import { useAuthGuard } from '../hooks';
 
 
 const router = createBrowserRouter(

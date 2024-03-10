@@ -45,9 +45,15 @@ const Dashboard = () => {
     handleCheckAuth();
   }, []);
 
-if (isAuthenticated) {
-    return <Navigate to={'/dashboard'}  replace />
-}
+
+  useEffect(() => {
+    const protectedRoute = () => {
+      if (!isAuthenticated) {
+        return <Navigate to={'/account/login'}  replace />
+    }
+    }
+    protectedRoute();
+  }, [isAuthenticated]);
 
 
   return (

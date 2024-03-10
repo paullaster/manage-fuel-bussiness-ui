@@ -26,10 +26,9 @@ const Account = () => {
     handleCheckAuth();
   }, []);
 
-if (isAuthenticated) {
+  if (isAuthenticated) {
     return <Navigate to={'/dashboard'}  replace />
 }
-
 
 
   const handleSelectLanguage = (e) => {

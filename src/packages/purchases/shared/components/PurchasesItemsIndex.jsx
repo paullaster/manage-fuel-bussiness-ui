@@ -51,7 +51,7 @@ const PurchasesItemsIndex = (
             })
             .catch((err) => {
                 setLoader({ message: '', status: false });
-                toast.error(error.message);
+                toast.error(err.message);
             })
 
         return () => {

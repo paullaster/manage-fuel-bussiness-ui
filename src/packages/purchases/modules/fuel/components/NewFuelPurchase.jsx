@@ -13,12 +13,12 @@ import {
   GridRowModes,
   GridRowEditStopReasons
 } from '@mui/x-data-grid';
-import { GetGross, ObjectValidator, YearMonthDate } from "@/utils";
+import { GetGross, ObjectValidator, YearMonthDate, generator } from "@/utils";
 import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 import { MdOutlineSaveAlt, MdCreate, MdCancel, MdDelete } from "react-icons/md";
 import Transport from "./Transport";
-import { postingFuelPurchase, fetchCompanyTankData } from "../../../actions";
-import { usePurchasesState } from '../../../Context';
+import { postingFuelPurchase, fetchCompanyTankData, fetchVendorsList, fetchOfficersList } from "../../../actions";
+import { usePurchasesDispatcher, usePurchasesState } from '../../../Context';
 import { toast } from 'react-toastify';
 
 
@@ -420,14 +420,9 @@ const NewFuelPurchase = () => {
       tank_entries: itemsList,
       sub_total_tax_amount: summaryValues.subtotal,
       net_payable: summaryValues.taxt_amount_total,
-      quantity: itemsList[0]?.expected_quantity,
       gross_amount: summaryValues.total,
-      tax_amount: summaryValues.taxt_amount_total,
-      tax_rate: itemsList[0]?.tax_rate,
       organization_id,
       transport_name: transportNameRef.current.value,
-      price: itemsList[0]?.price,
-      product: 'product',
       vehicle_registration: vehicleRegistrationRef.current.value,
       driver_name: driverNameRef.current.value
     };

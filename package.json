@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --force",
     "build": "vite build",
+    "docker-build": "docker build -t fuelcloud-ui:production  . && docker run -d -p 5173:80 --rm --name fuelcloud-ui fuelcloud-ui:production",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

@@ -9,6 +9,8 @@ export default {
         bill: {},
         vendor: {},
         ContactPersonArray: [],
+        bills_items: [],
+        onDialog: false,
     },
     actions: (state, action) => {
         switch (action.type) {
@@ -17,7 +19,7 @@ export default {
                     ...state,
                     vendors: action.payload
                 };
-            case 'SET_OFFICER':
+            case 'SET_OFFICERS':
                 return {
                     ...state,
                     officers: action.payload,
@@ -26,6 +28,11 @@ export default {
                 return {
                     ...state,
                     bills: action.payload.filter ? Array.from(new Set(action.payload.bills)) : Array.from(new Set([...state.bills, ...action.payload.bills])),
+                }
+            case 'SET_BILL_ITEMS':
+                return {
+                    ...state,
+                    bills_items: action.payload.filter ? Array.from(new Set(action.payload.items)) : Array.from(new Set([...state.bills_items, ...action.payload.items])),
                 }
             case 'SET_CURRENTSELECTED_BILL':
                 return {
@@ -41,6 +48,11 @@ export default {
                 return {
                     ...state,
                     ContactPersonArray: action.payload
+                };
+            case 'SET_ON_DIALOG_STATE':
+                return {
+                    ...state,
+                    onDialog: action.payload
                 };
         }
     }

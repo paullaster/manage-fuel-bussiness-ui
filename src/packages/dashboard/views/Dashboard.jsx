@@ -1,15 +1,18 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, Navigate } from "react-router-dom";
 import purchases from "../../purchases";
-import { useGlobalDispatcher, useGlobalState } from "@/store";
-import { useEffect, useMemo } from "react";
+import { useGlobalDispatcher, useGlobalState, AuthContext } from "@/store";
+import { useEffect, useMemo, useContext } from "react";
 import { Navigation, Footer } from "@/components";
 import { RandomCodeGenerator } from "@/utils";
+import AuthService from "../../auth/AuthService";
 
 const Dashboard = () => {
 
   const appStateDispatcher = useGlobalDispatcher();
   const { links } = useGlobalState();
   const location = useLocation();
+  const { account, authSetter } = useContext(AuthContext);
+  const { isAuthenticated } = account;
 
   const transactionCode = useMemo(() => {
     const locationArray = location.pathname.split('/');
@@ -32,6 +35,26 @@ const Dashboard = () => {
      * - this is to be done for code refactoring and optimization
      */
   }, [transactionCode]);
+
+
+
+  useEffect(() => {
+    const handleCheckAuth = async () => {
+        authSetter({ user: AuthService.getUser(), isAuthenticated: AuthService.isLoggedIn() });
+    }
+    handleCheckAuth();
+  }, []);
+
+
+  useEffect(() => {
+    const protectedRoute = () => {
+      if (!isAuthenticated) {
+        return <Navigate to={'/account/login'}  replace />
+    }
+    }
+    protectedRoute();
+  }, [isAuthenticated]);
+
 
   return (
     <>

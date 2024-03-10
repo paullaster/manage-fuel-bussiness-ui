@@ -1,12 +1,9 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import { Form } from "react-router-dom";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import FormButtonRow from "../../../shared/components/FormButtonRow";
 import shared from "../../../shared";
-import { useGlobalDispatcher, useGlobalState } from '@/store';
+import { useGlobalDispatcher, useGlobalState, LoadingContext, AuthContext } from '@/store';
 import { composableAutofils } from "../setups";
 import PurchaseItemEntry from "./PurchaseItemEntry";
-import WebStorage from "@/utils/WebStorage";
-import { APPNAME } from "@/environments";
 import { MdDelete, MdOutlineSaveAlt, MdCancel, MdCreate } from "react-icons/md";
 import NewVendor from "../../vendors/components/NewVendor";
 import {
@@ -19,15 +16,20 @@ import DataGridToolbar from "../../../shared/components/DataGridToolbar";
 import OfficerComponent from "./OfficerComponent";
 import SummaryComponent from "../../../shared/components/SummaryComponent";
 import { ObjectValidator, GetGross, YearMonthDate } from "@/utils";
-import { postingPurchaseItem } from "../../../actions";
-import { usePurchasesState } from '../../../Context';
-
-
-const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
+import { fetchItemsList, postingPurchaseItem } from "../../../actions";
+import { usePurchasesState, usePurchasesDispatcher } from '../../../Context';
+import { toast } from 'react-toastify';
+import { useNavigate, Form } from 'react-router-dom';
 
 const NewItem = () => {
   const appStateDispatcher = useGlobalDispatcher();
   const { cardLabelView } = useGlobalState();
+  const purchaseActions = usePurchasesDispatcher();
+  const { bills_items } = usePurchasesState();
+  const { account } = useContext(AuthContext);
+  const { setLoader } = useContext(LoadingContext);
+  const navigate = useNavigate();
+
   const [rows, setRows] = useState([]);
   const [rowModesModel, setRowModesModel] = useState({});
   const [summaryValues, setSummaryValues] = useState({ subtotal: 0, taxt_amount_total: 0, total: 0 });
@@ -41,7 +43,7 @@ const NewItem = () => {
   const billDate = useRef(null);
 
 
-  const {vendors, officers} = usePurchasesState();
+  const { vendors, officers } = usePurchasesState();
 
   const billingInfoRefObject = {
     billNumberRef,
@@ -60,7 +62,7 @@ const NewItem = () => {
   const handleSelectedOficer = (event, newValue) => {
     event.stopPropagation();
     event.preventDefault();
-    setSelectedOfficer(newValue.officer_id);
+    setSelectedOfficer(newValue.id);
   }
 
 
@@ -100,7 +102,6 @@ const NewItem = () => {
   const processRowUpdate = (newRow) => {
     const updatedRow = { ...newRow, isNew: false };
     setRows(rows.map((row) => row.id === newRow.id ? updatedRow : row));
-    console.log({ rows: rows });
     return updatedRow;
   };
 
@@ -118,9 +119,15 @@ const NewItem = () => {
         headerName: 'Item',
         width: 200,
         type: 'singleSelect',
-        valueOptions: () => orgData.items.map((item) => {
-          return `Item ${item.item_id}`
+        valueOptions: () => bills_items.map((item) => {
+          return `${item.id}-${item.item_name}`
         }),
+        valueFormatter: (params) => {
+          if (params.value) {
+            const name = params.value.split('-')[1];
+            return `${name}`;
+          }
+        },
         editable: true,
         hideable: false,
 
@@ -265,6 +272,19 @@ const NewItem = () => {
     return setSummaryValues({ subtotal: 0, taxt_amount_total: 0, total: 0 });
   }, [rows]);
 
+  useEffect(() => {
+
+    setLoader({ message: '', status: true });
+    fetchItemsList()
+      .then((res) => {
+        purchaseActions({ type: 'SET_BILL_ITEMS', payload: { filter: true, items: res.Items.results } })
+        setLoader({ message: '', status: false });
+      }, [])
+      .catch((err) => {
+        setLoader({ message: '', status: false });
+        toast.error(err.message);
+      });
+  }, []);
 
   useEffect(() => {
     appStateDispatcher({ type: "CREATECOMPOSABLEAUTOFILS", payload: composableAutofils });
@@ -280,22 +300,23 @@ const NewItem = () => {
     event.preventDefault();
 
     const itemsList = rows.map((it) => {
-      const{ vat_rate, quantity, price:purchase_price , item } = it;
+      const { vat_rate, quantity, price: purchase_price, item: itemValue } = it;
       const tax_amount = GetGross(it, 'vat_rate', 'quantity', 'price', 'tax_amount');
       const net_amount = it.quantity * it.price;
       const gross_amount = GetGross(it, 'vat_rate', 'quantity', 'price', 'gross_amount');
-      const tax = Number(vat_rate)/100;
-      return { tax, quantity, purchase_price, item, tax_amount, net_amount, gross_amount};
+      const tax = Number(Math.ceil(vat_rate)) / 100;
+      const item = itemValue.split('-')[0];
+      return { tax, quantity, purchase_price, item, tax_amount, net_amount, gross_amount };
     });
 
     itemsList.forEach((item) => {
       if (!ObjectValidator(['vat_rate', 'quantity', 'price', 'item', 'vat_amount', 'net_amount', 'gross_amount'], item)) {
-        throw Error("Please check your items table and complete before you submit again");
+        toast.error("Please check your items table and complete before you submit again");
       }
     });
-    const pickedDate = YearMonthDate(billDate);
+    const pickedDate = YearMonthDate(billDate.current.value);
 
-    const { organization_id } = orgData;
+    const { organization_id } = account.user;
     const payload = {
       vendor: vendor,
       officer: selectedOfficer,
@@ -313,15 +334,18 @@ const NewItem = () => {
     };
 
     for (const prop in payload) {
-      console.log(payload);
-      if (!payload[prop]) throw new Error("Invalid payload, Cross check your item and submit again!")
+      if (!payload[prop]) {toast.error("Invalid payload, Cross check your item and submit again!"); return;};
     }
+    setLoader({message:'Posting purchase item', status: true});
     postingPurchaseItem(payload)
       .then((res) => {
-        console.log(res);
+        setLoader({message:'', status: false});
+        toast.success('Purchase item created successfully');
+        navigate(`/dashboard/purchases/bills?type=items`);
       })
       .catch((err) => {
-        console.error(err);
+        toast.error(err.message);
+        setLoader({message:'', status: false});
       });
   }
 

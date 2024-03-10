@@ -9,17 +9,19 @@ import { useNavigate } from "react-router-dom";
 import { deleteItem } from '../../../../../store';
 import constants from '../../../constants';
 import Button from '@mui/material/Button';
-import { usePurchasesState } from '../../../Context';
+import { usePurchasesDispatcher, usePurchasesState } from '../../../Context';
 import { LoadingContext } from '@/store';
 import { toast } from 'react-toastify';
+import { generator } from '@/utils/';
 
 
-const VendorListGridToolBar = ({ }) => {
-
-
+const VendorListGridToolBar = ({ handleRefresh }) => {
+    const initiateListRefresh = () => {
+        handleRefresh();
+    }
     return (
         <GridToolbarContainer>
-            <Button color="primary" startIcon={<MdOutlineRefresh size={25} />} >
+            <Button color="primary" startIcon={<MdOutlineRefresh size={25} onClick={initiateListRefresh} />} >
                 refresh list
             </Button>
         </GridToolbarContainer>
@@ -29,23 +31,46 @@ const VendorListGridToolBar = ({ }) => {
 const VendorList = () => {
     const navigate = useNavigate()
     const purchasesState = usePurchasesState();
-    const { setLoader } = useContext(LoadingContext);
-
+    const setVendorsList = usePurchasesDispatcher();
+    const { setLoader, loader } = useContext(LoadingContext);
+    
     const handleViewClick = (params) => {
         const url = `/dashboard/purchases/vendor/vendors/${params.id}`;
         console.log(url);
         navigate(url);
     };
-
-    const handleDelete = useCallback((params) => {
-        deleteItem(constants.vendor, { vendor_id: params.id })
-            .then(( ) => {
-                setLoader({message: '', status: ''});
-                toast.success('Vendor deleted successfully');
+    
+    const handleRefresh = () => {
+        setLoader({ message: '', status: true });
+        fetchVendorsList()
+            .then((res) => {
+                const vendorsWithID = [];
+                for (const vendor of generator(res.vendors.results)) {
+                    vendor.id = vendor.vendor_id;
+                    vendorsWithID.push(vendor);
+                }
+                const vendorsArray = Array.from(new Set(vendorsWithID));
+                setVendorsList({ type: 'SET_VENDORS', payload: vendorsArray });
+                setLoader({ message: '', status: false });
+                toast.success('Vendor list refreshed successfully');
             })
             .catch((error) => {
-                setLoader({message: '', status: false});
+                setLoader({ message: '', status: false });
                 toast.error(error.message);
+            });
+    }
+    
+    const handleDelete = useCallback((params) => {
+        setLoader({ message: '', status: true });
+        deleteItem(constants.vendor, { vendor_id: params.id })
+        .then(() => {
+            setLoader({ message: '', status: false });
+            toast.success('Vendor deleted successfully');
+            handleRefresh();
+        })
+        .catch((error) => {
+            setLoader({ message: '', status: false });
+            toast.error(error.message);
             });
     });
 
@@ -54,62 +79,62 @@ const VendorList = () => {
             field: 'vendor_name',
             headerName: 'Name',
             width: 300,
-            headerAlign: 'center',
+            headerAlign: 'left',
             sortable: true,
             hideable: false,
             editable: false,
-            align: 'center',
+            align: 'left',
         },
         {
             field: 'vendor_email',
             headerName: 'Email ',
-            width: 200,
-            headerAlign: 'center',
+            width: 300,
+            headerAlign: 'left',
             sortable: false,
             hideable: false,
             editable: false,
-            align: 'center',
+            align: 'left',
         },
         {
             field: 'vendor_phone',
             headerName: 'Phone',
             width: 200,
-            headerAlign: 'center',
+            headeralign: 'left',
             sortable: false,
             hideable: false,
             editable: false,
-            align: 'center',
+            align: 'left',
         },
         {
             field: 'company_name',
             headerName: 'Company name',
             width: 300,
-            headerAlign: 'center',
+            headeralign: 'left',
             sortable: true,
             hideable: false,
             editable: false,
-            align: 'center',
+            align: 'left',
         },
         {
             field: 'website',
             headerName: 'Website',
-            width: 200,
-            headerAlign: 'center',
+            width: 300,
+            headeralign: 'left',
             sortable: false,
             editable: false,
             hideable: false,
-            align: 'center',
+            align: 'left',
         },
         {
             field: 'actions',
             headerName: 'Actions',
             type: 'actions',
-            width: 200,
-            headerAlign: 'center',
+            width: 80,
+            headeralign: 'center',
             sortable: false,
             hideable: false,
             editable: false,
-            align: 'center',
+            align: 'right',
             getActions: (params) => {
                 return [
                     <GridActionsCellItem
@@ -119,6 +144,8 @@ const VendorList = () => {
                         onClick={() => {
                             handleViewClick(params)
                         }}
+                        className="textSecondary"
+                        color="red"
                     />,
                     <GridActionsCellItem
                         key={uuidv4()}
@@ -144,7 +171,9 @@ const VendorList = () => {
                 initialState={{ pagination: { paginationModel: { page: 0, pageSize: 10 } } }}
                 pageSizeOptions={[5, 10, 20, 30, 50]}
                 slots={{ toolbar: VendorListGridToolBar }}
-                slotProps={{ toolbar: {} }}
+                slotProps={{ toolbar: { handleRefresh } }}
+                checkboxSelection
+                loading={loader.status}
             />
         </section>
     )

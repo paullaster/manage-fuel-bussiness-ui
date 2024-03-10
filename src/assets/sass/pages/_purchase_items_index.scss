@@ -65,17 +65,19 @@
                                 display: block;
                             }
 
-                            &>*:first-child {
+                            &>.spanCaption{
                                 min-width: 20%;
                                 max-width: 60%;
                                 margin-right: g.$small;
                             }
 
-                            &>*:last-child {
+                            &>.sudoglow {
                                 width: .8rem;
                                 height: .8rem;
                                 border-radius: 100%;
                                 background-color: g.$color_primary;
+                                margin-right: u.rem(20);
+                                margin-left: u.rem(12);
                             }
                         }
 

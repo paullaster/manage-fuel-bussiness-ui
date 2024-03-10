@@ -10,6 +10,7 @@ import { usePurchasesState } from '../../Context';
 import WebStorage from "@/utils/WebStorage";
 import { APPNAME } from "@/environments";
 import { useNavigate } from 'react-router-dom';
+import { GetPropertyValue } from '@/utils';
 
 const orgData = WebStorage.GetFromWebStorage('session', `${APPNAME}_ORG_DATA`);
 
@@ -70,7 +71,7 @@ export default PurchaseTransactionComponent
 
 const TransactionTabContent = ({value, tab}) => {
     
-    const { bills } = usePurchasesState();
+    const { bills, vendors } = usePurchasesState();
     const navigate = useNavigate();
 
     const Columns = useMemo(() => {
@@ -95,14 +96,14 @@ const TransactionTabContent = ({value, tab}) => {
                 valueGetter: () => 'Paid'
             },
             {
-                field: 'vendor_name',
+                field: 'vendor',
                 headerName: 'Vendor Name',
                 type: 'string',
                 width: 250,
                 headerAlign: 'center',
                 align: 'center',
                 editable: false,
-                valueGetter: (params) => params.row.vendor.vendor_name
+                valueGetter: (params) =>  GetPropertyValue(vendors, params.row.vendor, 'vendor_id', 'vendor_name'), 
             },
             {
                 field: 'gross_amount',
@@ -119,7 +120,7 @@ const TransactionTabContent = ({value, tab}) => {
 
     
     const handleGridRowClick = (params) => {
-        navigate(`/dashboard/purchases/bills/${params.row.uuid}`);
+        navigate(`/dashboard/purchases/bills/${params.row.id}`);
     };
     useEffect(() => {
         

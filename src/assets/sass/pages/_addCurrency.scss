@@ -3,28 +3,38 @@
 
 .currencyComponent {
     
-    .addCurrency {
-        margin-top: 2rem;
-        display:grid;
-        grid-template-columns: 6fr 6fr;
-        column-gap: 2rem;
-        & > .input-group {
-            overflow: hidden;
-            perspective: none;
-            margin-bottom: 1.2rem;
-            display: flex;
-            flex-direction: column;
-            border: none !important;
-            & > * {
-                display: block;
-            }
-            & > *:first-child{
-                margin-bottom: .4rem;
-            }
-            & > input {
-                outline: none !important;
-                border: u.rem(.1) solid g.$color_primary !important;
-            }
+    .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+        width: max-content !important;
+        padding: 1.6rem !important;
+    }
+}
+.addCurrency {
+    width: 100%;
+    min-width: u.rem(400);
+    max-width: u.rem(900);
+    display:grid;
+    grid-template-columns: 6fr 6fr;
+    column-gap: 2rem;
+    & > .input-group {
+        overflow: hidden;
+        perspective: none;
+        margin-bottom: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        border: none !important;
+        & > * {
+            display: block;
+        }
+        & > *:first-child{
+            margin-bottom: .4rem;
+        }
+        & > input {
+            outline: none !important;
+            border: u.rem(.1) solid g.$color_primary !important;
         }
     }
+}
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+    width: max-content !important;
+    padding: 1.6rem !important;
 }

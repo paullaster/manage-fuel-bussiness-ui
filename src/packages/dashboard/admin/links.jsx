@@ -1,6 +1,8 @@
 
 import { MdSettingsSuggest, MdOutlineHouse, MdOutlinePeopleAlt } from 'react-icons/md';
 import { v4 as uuidv4 } from 'uuid';
+import AuthService from '../../auth/AuthService';
+
 
 export const links =
     {
@@ -15,17 +17,7 @@ export const links =
         sublinks: [
             {
                 id: uuidv4(),
-                to: '/dashboard/admin/:id/manage/users/list',
-                icon: <MdOutlinePeopleAlt   size={20} />,
-                caption: "Users",
-                disabled: false,
-                order: 2,
-                hasSublinks: false,
-                showSubs: false,
-            },
-            {
-                id: uuidv4(),
-                to: '/dashboard/admin/:id/manage/company/list',
+                to: `/dashboard/admin/${AuthService.getUser()?.user_id}/manage/company/list`,
                 icon: <MdOutlineHouse   size={20} />,
                 caption: "Company",
                 disabled: false,

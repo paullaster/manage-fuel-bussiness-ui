@@ -9,7 +9,7 @@ const OfficerComponent = ({ handleSelectedOficer, officers }) => {
                 <AutocompleteComponent
                     list={officers}
                     label={'Select Officer'}
-                    keyField={'officer_name'}
+                    keyField={'name'}
                     handleOnchange={handleSelectedOficer}
                 />
                 

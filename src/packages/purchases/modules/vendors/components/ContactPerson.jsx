@@ -2,10 +2,9 @@ import { DataTable } from '@/components';
 import Button from '@mui/material/Button';
 import { v4 as uuidv4 } from 'uuid';
 import DivisionTopBar from '../../../shared/components/DivisionTopBar';
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect  } from 'react';
 import { GridRowModes, GridActionsCellItem, GridToolbarContainer, GridRowEditStopReasons, } from '@mui/x-data-grid';
 import { MdOutlineSaveAlt, MdCancel, MdCreate, MdDelete, MdAdd } from 'react-icons/md';
-import { usePurchasesDispatcher } from '../../../Context';
 
 
 const rowInitialValues = {
@@ -14,7 +13,7 @@ const rowInitialValues = {
     contact_phone_number: '',
 };
 
-const GridTableToolbar = ({ setRows, setRowModesModel }) => {
+const GridTableToolbar = ({ setRows, setRowModesModel, rows, handleSubmitContactInfo }) => {
     const handleAddcontact = () => {
         const id = uuidv4();
         setRows(
@@ -27,18 +26,25 @@ const GridTableToolbar = ({ setRows, setRowModesModel }) => {
             })
         );
     }
+
+    const saveContactPerson = () => {
+        handleSubmitContactInfo(rows);
+    }
+
     return (
         <GridToolbarContainer>
             <Button color="primary" startIcon={<MdAdd size={25} />} onClick={handleAddcontact}>
                 Add contact
             </Button>
+            <Button color="primary"  variant="contained" startIcon={<MdOutlineSaveAlt size={25} />} onClick={saveContactPerson}>
+                save contacts
+            </Button>
         </GridToolbarContainer>
     )
 }
-const ContactPerson = () => {
+const ContactPerson = ({handleSubmitContactInfo}) => {
     const [rows, setRows] = useState([]);
     const [rowModesModel, setRowModesModel] = useState({});
-    const vendorDispatch = usePurchasesDispatcher();
 
     const deleteItem = (item) => {
         setRows((prevRows) => prevRows.filter((row) => row.id !== item.id));
@@ -166,10 +172,6 @@ const ContactPerson = () => {
 
     }, [contactColumns, rows]);
 
-    useEffect(() => {
-        vendorDispatch({type: 'SET_VENDORS_CONTACT_PERSON', payload: rows});
-    }, [rows]);
-
     return (
         <div className='contactPerson'>
             <DivisionTopBar
@@ -188,7 +190,7 @@ const ContactPerson = () => {
                     { toolbar: GridTableToolbar }
                 }
                 slotProps={{
-                    toolbar: { setRows, setRowModesModel }
+                    toolbar: { setRows, setRowModesModel, rows, handleSubmitContactInfo }
                 }}
                 style={{ height: 'auto', width: '100%' }}
             />

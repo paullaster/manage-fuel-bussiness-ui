@@ -3,7 +3,7 @@ import constants from './constants';
 import WebStorage from '@/utils/WebStorage';
 import { APPNAME } from '@/environments';
 
-const { address, billing, contact, vendor, currency, purchase_item, fuelPurchase, fuelType } = constants;
+const { address, billing, contact, vendor, currency, purchase_item, fuelPurchase, fuelType, purchaseItem, officer, companyTankData } = constants;
 
 export const postBillingInformation = async (payload) => {
     const data = {
@@ -46,24 +46,9 @@ export const postCurrency = async (item) => {
     });
 }
 export const postVendor = async (item) => {
-    const objectKeys = WebStorage.GetFromWebStorage('session', `${APPNAME}_VENDOR_DEPENDENCY_KEYS`);
-    if (Object.keys(objectKeys).length !== 4) {
-        console.error("Missing dependency key, please check your data then send again");
-        throw new Error("Missing dependency key, please check you data then send again");
-    }
-    const nullKey = Object.keys(objectKeys).filter((key) => {
-        return !objectKeys[key];
-    });
-
-    if (nullKey.length) {
-        console.error("Missing dependency key, please check your data then send again");
-        throw new Error("Missing dependency key, please check you data then send again");
-    }
     const data = {
         ...item,
-        ...objectKeys
     }
-    console.log("sendin data to vendor", data)
     return await _request({
         method: 'POST',
         data: data,
@@ -96,3 +81,19 @@ export const fetchItemPurchases = async(params = {}) => {
 export const fetchfuelType = async(params = {}) => {
     return await _request({method: 'GET', params, url: fuelType})
 }
+
+// FETCH ITEMS
+export const fetchItemsList = async(params = {}) => {
+    return await _request({url: purchaseItem, method: 'GET', params, headers: {'Content-Type': 'application/json'}});
+}
+
+
+// FETCH OFFICERS
+export const fetchOfficersList = async(params = {}) => {
+    return await _request({url: officer, method: 'GET', params, headers: {'Content-Type': 'application/json'}});
+}
+
+// FETCH COMPANY TANK DATA
+export const fetchCompanyTankData = async(params = {}) => {
+    return await _request({url: companyTankData, method: 'GET', params, headers: {'Content-Type': 'application/json'}});
+};

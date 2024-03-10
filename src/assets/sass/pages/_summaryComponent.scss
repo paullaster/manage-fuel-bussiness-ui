@@ -1,0 +1,13 @@
+@use '../utilities/' as u;
+
+.summaryComponent {
+    display: flex;
+    justify-content: flex-end;
+    .css-7skc06 {
+        width: 20% !important;
+        justify-content: flex-end;
+    }
+    .MuiGrid-grid-xs-8 {
+        width: u.rem(10) !important;
+    }
+}

@@ -9,7 +9,7 @@ export const ObjectValidator = (requiredFields, Obj) => {
         }
     }
     if (missingRequiredFields.length) {
-        throw new Error(`The following required fields are missing: ${missingFields.join(", ")}`);
+        throw new Error(`The following required fields are missing: ${missingRequiredFields.join(", ")}`);
     }
     return true;
 

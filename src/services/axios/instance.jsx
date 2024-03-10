@@ -20,7 +20,7 @@ export const errorInterceptor = (error) => {
     console.log(error);
     const errorMessage = error?.response?.statusText;
     error.message = errorMessage;
-    return Promise.reject(error);
+    return error?.response?.status === 401 ? AuthService.Logout() : Promise.reject(error);
 };
 
 instance.interceptors.request.use(protectedRequestInterceptor, errorInterceptor);

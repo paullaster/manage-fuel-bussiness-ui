@@ -8,5 +8,7 @@ export default {
     cardLabelView: [],
     transactionCode: '',
     isAuthenticated: false,
+    companyData: {},
+    tankData: [],
 
 }

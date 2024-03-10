@@ -1,19 +1,34 @@
-import { NavLink, Outlet, redirect } from 'react-router-dom';
+import { NavLink, Outlet, redirect, Navigate } from 'react-router-dom';
 import account_avatar from '@/assets/images/accounts_avatar.svg';
 import { Hide } from '@/utils';
 import { Logo } from '@/components';
 import { MdArrowDropDown } from 'react-icons/md';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import AuthService from '../AuthService';
+import { AuthContext } from '@/store';
 
 
 const Account = () => {
 
   const [selectLanguage, setSelectLanguage] = useState(false);
+  const { account, authSetter } = useContext(AuthContext);
+    const { isAuthenticated } = account;
 
   useEffect(() => {
 
   }, [selectLanguage]);
+
+  useEffect(() => {
+    const handleCheckAuth = async () => {
+        authSetter({ user: AuthService.getUser(), isAuthenticated: AuthService.isLoggedIn() });
+    }
+    handleCheckAuth();
+  }, []);
+
+  if (isAuthenticated) {
+    return <Navigate to={'/dashboard'}  replace />
+}
 
 
   const handleSelectLanguage = (e) => {

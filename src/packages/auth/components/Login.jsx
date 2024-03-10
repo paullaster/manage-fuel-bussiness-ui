@@ -36,7 +36,6 @@ const Login = () => {
       }
     })
     .catch((error) => {
-      console.log("Login", error);
       setLoader({message: "", status: false});
       toast.error(error.message);
     })

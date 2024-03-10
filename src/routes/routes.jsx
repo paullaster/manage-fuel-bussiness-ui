@@ -6,7 +6,8 @@ import { Admin, User, CompanyList, AddCompany, NewCompany, Wizard, TankAndPumpDa
 import auth from '@/packages/auth';
 import Purchases from '@/packages/purchases';
 import { CreateNewUser } from '../packages/dashboard/admin/modules';
-import { useAuthGuard } from '../hooks';
+import ProtectionMiddleware from '../hooks/useAuthGuard';
+import { Suspense } from 'react';
 
 
 const router = createBrowserRouter(
@@ -17,7 +18,16 @@ const router = createBrowserRouter(
                 <Route element={<auth.components.Login />} path='login' />
                 <Route element={<auth.components.Register />} path='register' />
             </Route>
-            <Route element={<Dashboard />} path='dashboard'>
+            <Route 
+            element={
+             <Suspense fallback={<div>Loading...</div>}>
+                <ProtectionMiddleware>
+                 <Dashboard />
+                </ProtectionMiddleware>
+             </Suspense>   
+            } 
+            path='dashboard'
+            >
                 <Route element={<Admin />} path='admin/:id'>
                     {/* Company module */}
                     <Route element={<CompanyList />} path='manage/company/list' />

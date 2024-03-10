@@ -1,11 +1,19 @@
 import { useContext } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { AuthContext } from '../store';
+import AuthService from '../packages/auth/AuthService';
 
-export const useAuthGuard = (redirectTo = '/account/login') => {
+const ProtectionMiddleware = ({redirectTo = '/account/login'}) => {
 
-    const { account } = useContext(AuthContext);
+    const { account, setAuth } = useContext(AuthContext);
     const { isAuthenticated } = account;
+
+    useEffect(() => {
+        const handleCheckAuth = async () => {
+          setAuth({ user: AuthService.getUser(), isAuthenticated: AuthService.isLoggedIn() });
+        }
+        handleCheckAuth();
+      }, []);
 
     if (isAuthenticated && window.location.pathname.includes('/account/')) {
         return <Navigate to={'/dashboard'}  replace />
@@ -17,3 +25,5 @@ export const useAuthGuard = (redirectTo = '/account/login') => {
         <Outlet />
     )
 }
+
+export default ProtectionMiddleware

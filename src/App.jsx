@@ -1,6 +1,6 @@
-import { Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { StateProvider, AuthContext, LoadingContext } from './store';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect,  useState } from 'react';
 import AuthService from './packages/auth/AuthService';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,12 +10,7 @@ const App = () => {
 
   const [auth, setAuth] = useState({ user: null, isAuthenticated: false });
   const [isLoading, setIsLoading] = useState({ message: 'Loading...', status: false });
-  const navigate = useNavigate();
-  const location = useLocation();
 
-  const Hide = (path) => {
-    return location.pathname.includes(path);
-  }
   
   useEffect(() => {
     const handleCheckAuth = async () => {
@@ -24,13 +19,6 @@ const App = () => {
     handleCheckAuth();
   }, []);
   
-  // useEffect(() => {
-  //   const handleProtectedRoutes = () => {
-
-  //   }
-  //   if (Hide('/account') && auth.isAuthenticated) return false;
-  //   if (!auth.isAuthenticated && Hide('/dashboard')) navigate('/account/login');
-  // }, [location, auth]);
 
   return (
     <LoadingContext.Provider value={{loader: isLoading, setLoader: setIsLoading }}>

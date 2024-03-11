@@ -2,10 +2,6 @@
 
 The FUEL CLOUD APPLICATION INTERFACE DEVELOPED WITH REACT
 
-Developed by:
-<a href="https://github.com/paullaster">Paullaster</a>
-
-
 # SETTING UP THIS PROJECT
 
 ### DEVELOPMENT
@@ -15,12 +11,12 @@ Developed by:
 <li>Vite v5 and latest</li>
 </ul>
 
-Clone to this project to you development environment using this link: 
+Clone to this project to your development environment using this link: 
 <a href="https://github.com/finiflow/fuelcloud-ui.git" target="_blank"> `https://github.com/finiflow/fuelcloud-ui.git`</a>
 `git clone  https://github.com/finiflow/fuelcloud-ui.git`
 
 Navigate to the project root folder and 
-###### Run the following commands after cloning the project
+##### Run the following commands after cloning the project
 `npm run install` to install dependencies and dev-dependencies packages for this project
 
 Then run `npm run dev` to serve the project on your local host.

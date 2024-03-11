@@ -418,7 +418,7 @@ const NewFuelPurchase = () => {
       invoice_number: invoiceNumberRef.current.value,
       delivery_note_number: deliveryNoteNumberRef.current.value,
       tank_entries: itemsList,
-      sub_total_tax_amount: summaryValues.subtotal,
+      subtotal_tax_amount: summaryValues.subtotal,
       net_payable: summaryValues.taxt_amount_total,
       gross_amount: summaryValues.total,
       organization_id,
@@ -426,7 +426,6 @@ const NewFuelPurchase = () => {
       vehicle_registration: vehicleRegistrationRef.current.value,
       driver_name: driverNameRef.current.value
     };
-    console.log(payload);
     for (const prop in payload) {
       if (!payload[prop]) { toast.error("Invalid payload, Cross check your item and submit again!"); return };
     }

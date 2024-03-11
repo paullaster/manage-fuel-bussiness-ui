@@ -10,8 +10,10 @@ Developed by:
 
 ### DEVELOPMENT
 ##### Prerequisites
-Node v20.10 and latest
-Vite v5 and latest
+<ul>
+<li>Node v20.10 and latest</li>
+<li>Vite v5 and latest</li>
+</ul>
 
 Clone to this project to you development environment using this link: 
 <a href="https://github.com/finiflow/fuelcloud-ui.git" target="_blank"> `https://github.com/finiflow/fuelcloud-ui.git`</a>

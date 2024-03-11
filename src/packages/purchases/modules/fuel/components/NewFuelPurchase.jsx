@@ -414,7 +414,7 @@ const NewFuelPurchase = () => {
       officer: selectedOfficer,
       bill_number: billNumberRef.current.value,
       purchase_date: pickedDate,
-      po_number: billNumberRef.current.value,
+      po_number: purchaseOrderNumberRef.current.value,
       invoice_number: invoiceNumberRef.current.value,
       delivery_note_number: deliveryNoteNumberRef.current.value,
       tank_entries: itemsList,

@@ -31,19 +31,13 @@ import WebStorage from "@/utils/WebStorage";
 import { usePurchasesDispatcher, usePurchasesState } from "../../../Context";
 
 
-// const currenciesList = [{ value: 'createCurrency', label: 'Create New Currency' }];
-
 const VendorCurrencyComponent = forwardRef((props, ref) => {
     const { getNewAddedCurrency, setCurrency, currency } = props;
-    const { currencies:currenciesList } = usePurchasesState();
+    const { currencies: currenciesList } = usePurchasesState();
 
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
-    const handleSelectedCurrency = (event, value) => {
-        <li {...props}>{value['currency_name'] ? value['currency_name'] : ''}</li>
-        setCurrency(value);
-    }
 
     const handleOpenCreateCurrencyDialog = () => {
         setCurrency({ currency_code: 'createCurrency', currency_name: 'Create New Currency' });
@@ -64,9 +58,9 @@ const VendorCurrencyComponent = forwardRef((props, ref) => {
             <Autocomplete
                 value={currency}
                 options={currenciesList}
-                onChange={handleSelectedCurrency}
+                onChange={(event, value) => setCurrency(value)}
                 id={'Select Currency'}
-                isOptionEqualToValue={(option, value) => option.id === value.id}
+                isOptionEqualToValue={(option, value) => option.currency_code === value.currency_code}
                 renderInput={(params) => <TextField {...params} label={'Select Currency'} />}
                 getOptionLabel={(option) => option['currency_name'] ? option['currency_name'] : ''}
                 renderOption={(props, option, { selected }) => (
@@ -279,6 +273,11 @@ const NewVendor = () => {
     const handleSubmitCurrency = (event) => {
         invalid.current = false;
         if (event.type === 'click') {
+            if (currency?.currency_id) {
+                WebStorage.storeToWebDB('session', `${APPNAME}_VENDORDEPENDENCIES`, { currency: currency.currency_id });
+                toast.success('Currency information saved successfully');
+                handleNext();
+            }
             let currencyObject = currency;
             for (let prop in currencyObject) {
                 if (!currencyObject[prop] && prop !== 'symbol') {
@@ -501,7 +500,7 @@ const NewVendor = () => {
                 setLoader({ message: "", status: false });
                 toast.error(error.message);
             });
-            // setCurrency(purchaseState.currencies.find((c => c.currency_code === 'KESK')));
+        // setCurrency(purchaseState.currencies.find((c => c.currency_code === 'KESK')));
     }, []);
 
     return (

@@ -58,7 +58,7 @@ export default {
             case 'SET_CURRENCIES':
                 return {
                   ...state,
-                  currencies: action.payload
+                  currencies: [...action.payload, { currency_code: 'createCurrency', currency_name: 'Create New Currency' }]
                 };
             default:
         }

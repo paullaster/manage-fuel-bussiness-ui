@@ -41,24 +41,18 @@ const VendorCurrencyComponent = forwardRef((props, ref) => {
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
     const handleSelectedCurrency = (event, value) => {
-        <li {...props}>{option['label'] ? option['label'] : ''}</li>
+        <li {...props}>{value['currency_name'] ? value['currency_name'] : ''}</li>
+        setCurrency(value);
     }
 
     const handleOpenCreateCurrencyDialog = () => {
-        setCurrencies({ value: 'createCurrency', label: 'Create New Currency' });
+        setCurrency({ currency_code: 'createCurrency', currency_name: 'Create New Currency' });
     }
 
     const handleAddedCurrency = () => {
         const newCurrency = getNewAddedCurrency();
-        newCurrency.value = newCurrency.currency_code;
-        newCurrency.label = newCurrency.currency_name;
-        setCurrencies(newCurrency);
+        setCurrency(newCurrency);
     }
-    useEffect(() => {
-        console.log(currency);
-        // setCurrency(currenciesList.find((c => c.currency_code === 'KESK')));
-    });
-    // currenciesList[currenciesList.length] = { value: 'createCurrency', label: 'Create New Currency' };
 
     return (
         <div className="currencyComponent">
@@ -72,24 +66,25 @@ const VendorCurrencyComponent = forwardRef((props, ref) => {
                 options={currenciesList}
                 onChange={handleSelectedCurrency}
                 id={'Select Currency'}
+                isOptionEqualToValue={(option, value) => option.id === value.id}
                 renderInput={(params) => <TextField {...params} label={'Select Currency'} />}
                 getOptionLabel={(option) => option['currency_name'] ? option['currency_name'] : ''}
-                /*renderOption={(props, option, { selected }) => (
+                renderOption={(props, option, { selected }) => (
                     <>
-                        {option.value === 'createCurrency' ? (
-                            <Button variant="outlined" onClick={handleOpenCreateCurrencyDialog}>
-                                {option.label}
+                        {option.currency_code === 'createCurrency' ? (
+                            <Button variant="contained" onClick={handleOpenCreateCurrencyDialog}>
+                                {option.currency_name}
                             </Button>
                         ) : (
-                            <ListItem button selected={selected}>
-                                <ListItemText primary={option.label} />
+                            <ListItem button selected={selected} key={option.currency_code}>
+                                <ListItemText primary={option.currency_name} />
                             </ListItem>
                         )}
                     </>
-                )}*/
+                )}
             />
-            {/* <Dialog
-                open={currencies.value === 'createCurrency'}
+            <Dialog
+                open={currency?.currency_code === 'createCurrency'}
                 onClose={handleOpenCreateCurrencyDialog}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
@@ -127,10 +122,10 @@ const VendorCurrencyComponent = forwardRef((props, ref) => {
                     </div>
                 </DialogContent>
                 <DialogActions>
-                    <Button variant="outlined" onClick={() => setCurrencies({ value: 'KES', label: 'Kenya shillings' })}>close</Button>
+                    <Button variant="outlined" onClick={() => setCurrency(currenciesList?.find(c => c?.currency_code === "KES"))}>close</Button>
                     <Button variant="contained" disableElevation onClick={handleAddedCurrency}>create</Button>
                 </DialogActions>
-            </Dialog> */}
+            </Dialog>
         </div>
     )
 });
@@ -192,7 +187,7 @@ const NewVendor = () => {
     const { setLoader } = useContext(LoadingContext);
     const purchaseStateSetter = usePurchasesDispatcher();
     const purchaseState = usePurchasesState();
-    const [currency, setCurrency] = useState({currency_code: 'KES', currency_name: 'Kenya Shilling'});
+    const [currency, setCurrency] = useState(purchaseState?.currencies?.find(c => c.currency_code === "KES"));
 
     // CURRENCY
     const currencyNameRef = useRef(null);
@@ -284,17 +279,7 @@ const NewVendor = () => {
     const handleSubmitCurrency = (event) => {
         invalid.current = false;
         if (event.type === 'click') {
-            let currencyObject = currencies;
-            if (currencyObject.value === 'KES') {
-                currencyObject = Object.assign({}, {
-                    value: 'KES',
-                    label: 'Kenya shillings',
-                    currency_code: 'KES',
-                    currency_name: 'Kenya shillings',
-                    symbol: 'KES',
-                    rate: 1,
-                });
-            }
+            let currencyObject = currency;
             for (let prop in currencyObject) {
                 if (!currencyObject[prop] && prop !== 'symbol') {
                     invalid.current = true;
@@ -516,6 +501,7 @@ const NewVendor = () => {
                 setLoader({ message: "", status: false });
                 toast.error(error.message);
             });
+            // setCurrency(purchaseState.currencies.find((c => c.currency_code === 'KESK')));
     }, []);
 
     return (

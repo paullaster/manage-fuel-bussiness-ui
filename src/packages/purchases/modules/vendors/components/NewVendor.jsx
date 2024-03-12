@@ -277,6 +277,7 @@ const NewVendor = () => {
                 WebStorage.storeToWebDB('session', `${APPNAME}_VENDORDEPENDENCIES`, { currency: currency.currency_id });
                 toast.success('Currency information saved successfully');
                 handleNext();
+                return;
             }
             let currencyObject = currency;
             for (let prop in currencyObject) {

@@ -11,6 +11,7 @@ export default {
         ContactPersonArray: [],
         bills_items: [],
         onDialog: false,
+        currencies: [],
     },
     actions: (state, action) => {
         switch (action.type) {
@@ -54,6 +55,12 @@ export default {
                     ...state,
                     onDialog: action.payload
                 };
+            case 'SET_CURRENCIES':
+                return {
+                  ...state,
+                  currencies: action.payload
+                };
+            default:
         }
     }
 }

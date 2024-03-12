@@ -151,6 +151,12 @@ const NewItem = () => {
         headerAlign: 'center',
         type: 'number',
         align: 'center',
+        valueGetter: (params) => {
+          if (params.row.item) {
+            const item = bills_items.find((t) => t.id === Number(params.row.item.split('-')[0]));
+            return `${item.selling_price}`;
+          }
+        },
       },
 
       {
